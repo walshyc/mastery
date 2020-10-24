@@ -6,7 +6,9 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import GolfCourseSharpIcon from '@material-ui/icons/GolfCourseSharp';
+import GolfCourseSharpIcon from "@material-ui/icons/GolfCourseSharp";
+import { Link as RouterLink } from "react-router-dom";
+import { Tab, Tabs } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,14 +19,25 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    textDecoration: 'none',
+    color: '#ECFEF6'
   },
+  button: {
+    color: '#ECFEF6'
+  },
+
 }));
 
 const Navbar = () => {
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <>
-      <AppBar position="static" color='primary'>
+      <AppBar position="static" color="primary">
         <Toolbar>
           <IconButton
             edge="start"
@@ -34,11 +47,16 @@ const Navbar = () => {
           >
             <MenuIcon />
           </IconButton>
-          
-          <Typography variant="h6" className={classes.title}>
-          <GolfCourseSharpIcon></GolfCourseSharpIcon> Mastery Fantasy
+
+          <Typography variant="h6" className={classes.title} component={RouterLink} to="/">
+            <GolfCourseSharpIcon></GolfCourseSharpIcon> Mastery Fantasy
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button className={classes.button} component={RouterLink} to="/signup">
+            Sign Up
+          </Button>
+          <Button className={classes.button} component={RouterLink} to="/login">
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </>

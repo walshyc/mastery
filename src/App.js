@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import Navbar from "./components/layout/Navbar";
 import ScoreTable from "./components/ScoreTable";
+import SignUp from './components/SignUp'
+import Login from './components/Login'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Container } from "@material-ui/core";
 import { GlobalProvider, GlobalContext } from "./context/GlobalState";
@@ -9,7 +12,6 @@ import {
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
-import Spinner from "./components/layout/Spinner";
 
 function App() {
   const { loading } = useContext(GlobalContext);
@@ -18,6 +20,9 @@ function App() {
       primary: {
         main: "#009B77",
       },
+      secondary: {
+        main: "#ECFEF6"
+      }
     },
   });
 
@@ -32,12 +37,18 @@ function App() {
   return (
     <GlobalProvider>
       <ThemeProvider theme={theme}>
-        <div className="App">
-          <Navbar></Navbar>
-          <Container maxWidth="md" disableGutters={true}>
-            <ScoreTable></ScoreTable>
-          </Container>
-        </div>
+        <Router>
+          <div className="App">
+            <Navbar></Navbar>
+            <Container maxWidth="md" disableGutters={true}>
+              <Switch>
+              <Route exact path="/" component={ScoreTable}></Route>
+              <Route exact path="/signup" component={SignUp}></Route>
+              <Route exact path="/login" component={Login}></Route>
+              </Switch>
+            </Container>
+          </div>
+        </Router>
       </ThemeProvider>
     </GlobalProvider>
   );
