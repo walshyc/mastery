@@ -16,7 +16,7 @@ export const GlobalProvider = ({ children }) => {
       method: "GET",
       headers: {
         "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
-        "x-rapidapi-key": "f68402c7b0msh08f5e0df402ede4p12f7eajsn43496a3122b5",
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
       },
     };
 
