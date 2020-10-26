@@ -3,9 +3,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -48,28 +46,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+const ForgotPassword = () => {
   const classes = useStyles();
   const emailFormRef = useRef();
-  const passwordRef = useRef();
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
-  const { login } = useAuth();
-  const history = useHistory();
+  const { resetPassword } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(emailFormRef.current.value, passwordRef.current.value);
-      history.push("/account");
-      console.log("loggin in");
+        setMessage('');
+        setError('')
+      await resetPassword(emailFormRef.current.value);
+      setMessage('Check your inbox for further instructions')
     } catch (err) {
-      if (err.code === "auth/email-already-in-use") {
-        setError("Account already exits with this email address");
-      } else {
-        setError("Failed to login");
-      }
-      console.log(err);
+      setError('Failed to reset password');
     }
   };
   return (
@@ -80,9 +73,10 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Password Reset
         </Typography>
         {error && <Alert severity="error">{error}</Alert>}
+        {message && <Alert severity="success">{message}</Alert>}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
@@ -96,22 +90,6 @@ export default function Login() {
             autoFocus
             inputRef={emailFormRef}
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            inputRef={passwordRef}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -119,12 +97,12 @@ export default function Login() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Reset Password
           </Button>
           <Grid container>
             <Grid item xs>
-              <RouterLink to="/forgot-password" variant="body2">
-                Forgot password?
+              <RouterLink to="/login" variant="body2">
+                Login?
               </RouterLink>
             </Grid>
             <Grid item>
@@ -140,4 +118,6 @@ export default function Login() {
       </Box>
     </Container>
   );
-}
+};
+
+export default ForgotPassword;

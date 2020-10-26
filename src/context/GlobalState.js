@@ -1,9 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
-import { GET_SCORE_DATA } from "./Types";
+import { GET_SCORE_DATA, GET_USERS } from "./Types";
 import axios from "axios";
+import { db } from "../firebase";
 
-const initialState = { player: "COnor", data: [], loading: true };
+const initialState = { users: [], data: [], loading: true };
 
 export const GlobalContext = createContext(initialState);
 
@@ -30,15 +31,28 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
+  const getUsers = async () => {
+    setLoading();
+    const snapshot = await await db.collection("users").get();
+    
+    const res = snapshot.docs.map((doc) => doc.data());
+    dispatch({
+      type: GET_USERS,
+      payload: res,
+    });
+  };
+
   const setLoading = () => dispatch({ type: "" });
   return (
     <GlobalContext.Provider
       value={{
         player: state.player,
+        users: state.users,
         data: state.data,
         loading: state.loading,
         getScoreData,
         setLoading,
+        getUsers,
       }}
     >
       {children}
