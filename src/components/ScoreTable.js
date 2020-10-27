@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import { Hidden } from "@material-ui/core";
 import PersonSharpIcon from "@material-ui/icons/PersonSharp";
 import { GlobalContext } from "../context/GlobalState";
-import Row from './Row'
+import Row from "./Row";
 import Spinner from "./layout/Spinner";
 
 const useRowStyles = makeStyles({
@@ -21,7 +21,16 @@ const useRowStyles = makeStyles({
   },
 });
 
-const createData = (name, golfer1, golfer2, golfer3, score, golfersData) => {
+const createData = (
+  name,
+  golfer1,
+  golferOneID,
+  golfer2,
+  golferTwoID,
+  golfer3,
+  golferThreeID,
+  score
+) => {
   return {
     name,
     golfer1,
@@ -29,135 +38,50 @@ const createData = (name, golfer1, golfer2, golfer3, score, golfersData) => {
     golfer3,
     score,
     history: [
-      { date: "2020-01-05", customerId: "11091700", amount: 3 },
-      { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
+      { golfer: golfer1, score: golferOneID },
+      { golfer: golfer2, score: golferTwoID },
+      { golfer: golfer3, score: golferThreeID },
     ],
   };
 };
 
 const ScoreTable = () => {
-  const { player, data, getScoreData, loading, getUsers } = useContext(GlobalContext);
+  const { player, data, getScoreData, loading, getUsers, users } = useContext(
+    GlobalContext
+  );
   useEffect(() => {
     getScoreData();
-    getUsers()
+    getUsers();
     // eslint-disable-next-line
   }, []);
 
-  
   const randomArr = Array.from({ length: 78 }, () =>
     Math.floor(Math.random() * 78)
   );
-  let rows = []
+  const score = (id) =>
+    data.results.leaderboard.find((g) => g.player_id === id).total_to_par;
+  let rows = [];
   if (data.length === 0) {
     rows = [];
   } else {
-    rows = [
-      createData(
-        "Conor Walsh",
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[0]].first_name} ${
-              data.results.leaderboard[randomArr[0]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[1]].first_name} ${
-              data.results.leaderboard[randomArr[1]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[2]].first_name} ${
-              data.results.leaderboard[randomArr[2]].last_name
-            } `,
-        data.results.leaderboard[randomArr[0]].total_to_par +
-          data.results.leaderboard[randomArr[1]].total_to_par +
-          data.results.leaderboard[randomArr[2]].total_to_par
-      ),
-      createData(
-        "James McGauran",
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[3]].first_name} ${
-              data.results.leaderboard[randomArr[3]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[4]].first_name} ${
-              data.results.leaderboard[randomArr[4]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[5]].first_name} ${
-              data.results.leaderboard[randomArr[5]].last_name
-            } `,
-        data.results.leaderboard[randomArr[3]].total_to_par +
-          data.results.leaderboard[randomArr[4]].total_to_par +
-          data.results.leaderboard[randomArr[5]].total_to_par
-      ),
-      createData(
-        "Mark Towey",
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[6]].first_name} ${
-              data.results.leaderboard[randomArr[6]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[7]].first_name} ${
-              data.results.leaderboard[randomArr[7]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[8]].first_name} ${
-              data.results.leaderboard[randomArr[8]].last_name
-            } `,
-        data.results.leaderboard[randomArr[6]].total_to_par +
-          data.results.leaderboard[randomArr[7]].total_to_par +
-          data.results.leaderboard[randomArr[8]].total_to_par
-      ),
-      createData(
-        "Brian Fahey",
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[12]].first_name} ${
-              data.results.leaderboard[randomArr[12]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[13]].first_name} ${
-              data.results.leaderboard[randomArr[13]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[14]].first_name} ${
-              data.results.leaderboard[randomArr[14]].last_name
-            } `,
-        data.results.leaderboard[randomArr[12]].total_to_par +
-          data.results.leaderboard[randomArr[13]].total_to_par +
-          data.results.leaderboard[randomArr[14]].total_to_par
-      ),
-      createData(
-        "Martin P Clarke",
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[9]].first_name} ${
-              data.results.leaderboard[randomArr[9]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[10]].first_name} ${
-              data.results.leaderboard[randomArr[10]].last_name
-            } `,
-        data.length === 0
-          ? " "
-          : `${data.results.leaderboard[randomArr[11]].first_name} ${
-              data.results.leaderboard[randomArr[11]].last_name
-            } `,
-        data.results.leaderboard[randomArr[9]].total_to_par +
-          data.results.leaderboard[randomArr[10]].total_to_par +
-          data.results.leaderboard[randomArr[11]].total_to_par
-      ),
-    ];
+    console.log(score(144259));
+    rows = users.map((u) => {
+      console.log(score(u.selections.golferOne.id))
+      const row = createData(
+        u.name,
+        u.selections.golferOne.name,
+        score(u.selections.golferOne.id),
+        u.selections.golferTwo.name,
+        score(u.selections.golferTwo.id),
+        u.selections.golferThree.name,
+        score(u.selections.golferThree.id),
+        score(u.selections.golferOne.id) +
+          score(u.selections.golferTwo.id) +
+          score(u.selections.golferThree.id)
+      );
+
+      return row;
+    });
   }
   if (loading) {
     return <Spinner></Spinner>;
@@ -184,13 +108,15 @@ const ScoreTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.sort((a, b) => {
-            if (a.score < b.score) {
-              return -1;
-            } else return 1;
-          }).map((row) => (
-              <Row key={row.name} row={row} />
-            ))}
+            {rows
+              .sort((a, b) => {
+                if (a.score < b.score) {
+                  return -1;
+                } else return 1;
+              })
+              .map((row) => (
+                <Row key={row.name} row={row} />
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

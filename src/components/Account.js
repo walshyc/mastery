@@ -6,23 +6,21 @@ import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
-    button: {
-      color: "#ECFEF6",
-    },
+  button: {},
 }));
 
 const Account = () => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
-  const history = useHistory()
+  const history = useHistory();
   const handleLogout = async (e) => {
-      setError('')
-      try {
-          await logout()
-          history.push('/login')
-      } catch (error) {
-          setError('Failed to Logout')
-      }
+    setError("");
+    try {
+      await logout();
+      history.push("/login");
+    } catch (error) {
+      setError("Failed to Logout");
+    }
   };
 
   const classes = useStyles();
@@ -31,13 +29,24 @@ const Account = () => {
       {error && <Alert severity="error">{error}</Alert>}
       <strong>Email: </strong>
       {currentUser.email}
+      <br/>
       <Button
         onClick={handleLogout}
-        className={classes.button}
         component={RouterLink}
         to="/login"
+        color="danger"
+        variant="contained"
       >
         Logout
+      </Button>
+      <Button
+        
+        component={RouterLink}
+        to="/add-team"
+        color="primary"
+        variant="contained"
+      >
+        Add Team
       </Button>
     </div>
   );

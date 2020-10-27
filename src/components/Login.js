@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "../context/AuthContext";
 import Alert from "@material-ui/lab/Alert";
+import { GlobalContext } from "../context/GlobalState";
 
 function Copyright() {
   return (
@@ -49,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+  const { player, data, getScoreData, loading, getUsers, users } = useContext(
+    GlobalContext
+  );
   const classes = useStyles();
   const emailFormRef = useRef();
   const passwordRef = useRef();
@@ -56,6 +60,12 @@ export default function Login() {
 
   const { login } = useAuth();
   const history = useHistory();
+
+  useEffect(() => {
+    getScoreData();
+    getUsers();
+    // eslint-disable-next-line
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

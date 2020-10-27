@@ -17,6 +17,7 @@ import {
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
+import AddTeam from "./components/AddTeam";
 
 function App() {
   const { loading } = useContext(GlobalContext);
@@ -49,6 +50,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Hero}></Route>
                 <PrivateRoute exact path="/account" component={Account}></PrivateRoute>
+                <PrivateRoute exact path="/add-team" component={AddTeam}></PrivateRoute>
                 <Route exact path="/scores" component={ScoreTable}></Route>
                 <Route exact path="/signup" component={SignUp}></Route>
                 <Route exact path="/login" component={Login}></Route>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,6 +15,8 @@ import Container from "@material-ui/core/Container";
 import { useAuth } from "../context/AuthContext";
 import Alert from "@material-ui/lab/Alert";
 import { db } from "../firebase";
+import { GlobalContext } from "../context/GlobalState";
+
 
 function Copyright() {
   return (
@@ -50,7 +52,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-  
+  const { player, data, getScoreData, loading, getUsers, addUser } = useContext(
+    GlobalContext
+  );
   const classes = useStyles();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -69,21 +73,16 @@ export default function SignUp() {
     }
     try {
       await signUp(emailFormRef.current.value, passwordRef.current.value);
-
-      //const db = app.firestore();
-      //   db.settings({
-      //     timestampsInSnapshots: true,
-      //   });
-      db.collection("users").add({
-        name: `${firstNameRef.current.value} ${lastNameRef.current.value}`,
-        email: emailFormRef.current.value,
-        selections: {
-          golferOne: "Shane Lowry",
-          golferTwo: "Tyrrell Hatton",
-          golferThree: "Xander Schauffele",
-        },
-      });
-      //await createUser(emailFormRef.current.value, `${firstNameRef} ${lastNameRef.current.value}`, 'Brooks Koepka', 'Tyrrell Hatton', 'Xander Schauffele')
+      addUser(
+        `${firstNameRef.current.value} ${lastNameRef.current.value}`,
+        emailFormRef.current.value,
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+      );
       history.push("/login");
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {

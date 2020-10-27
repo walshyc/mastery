@@ -49,7 +49,7 @@ const Navbar = () => {
           </IconButton>
 
           <Typography variant="h6" className={classes.title} component={RouterLink} to="/">
-            <GolfCourseSharpIcon></GolfCourseSharpIcon> Mastery Fantasy
+            <GolfCourseSharpIcon></GolfCourseSharpIcon> Mastery
           </Typography>
           <Button className={classes.button} component={RouterLink} to="/signup">
             Sign Up

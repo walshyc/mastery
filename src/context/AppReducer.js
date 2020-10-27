@@ -1,17 +1,17 @@
-import { GET_SCORE_DATA, GET_USERS, SET_LOADING } from "./Types";
+import { GET_SCORE_DATA, GET_USERS, SET_LOADING, ADD_SELECTION } from "./Types";
 const AppReducer = (state, action) => {
   switch (action.type) {
     case GET_SCORE_DATA:
       return {
         ...state,
         data: action.payload,
-        loading: false
+        loading: false,
       };
     case GET_USERS:
       return {
         ...state,
         users: action.payload,
-        loading: false
+        loading: false,
       };
     case SET_LOADING:
       return {
