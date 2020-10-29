@@ -50,15 +50,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-  const { player, data, getScoreData, loading, getUsers, users } = useContext(
-    GlobalContext
-  );
+  const { getScoreData, getUsers } = useContext(GlobalContext);
   const classes = useStyles();
   const emailFormRef = useRef();
   const passwordRef = useRef();
   const [error, setError] = useState("");
 
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
   const history = useHistory();
 
   useEffect(() => {
@@ -82,6 +80,10 @@ export default function Login() {
       console.log(err);
     }
   };
+
+  if (currentUser) {
+    history.push("/account");
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

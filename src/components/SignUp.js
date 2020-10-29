@@ -14,9 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "../context/AuthContext";
 import Alert from "@material-ui/lab/Alert";
-import { db } from "../firebase";
 import { GlobalContext } from "../context/GlobalState";
-
 
 function Copyright() {
   return (
@@ -56,14 +54,13 @@ export default function SignUp() {
     GlobalContext
   );
   const classes = useStyles();
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
+  const nameRef = useRef();
   const emailFormRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const [error, setError] = useState("");
 
-  const { signUp } = useAuth();
+  const { signUp, currentUser } = useAuth();
   const history = useHistory();
 
   const handleSubmit = async (e) => {
@@ -71,18 +68,11 @@ export default function SignUp() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match!");
     }
+    console.log(emailFormRef.current.value);
+    console.log(passwordRef.current.value);
     try {
+      addUser(nameRef.current.value, emailFormRef.current.value);
       await signUp(emailFormRef.current.value, passwordRef.current.value);
-      addUser(
-        `${firstNameRef.current.value} ${lastNameRef.current.value}`,
-        emailFormRef.current.value,
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-      );
       history.push("/login");
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
@@ -90,9 +80,11 @@ export default function SignUp() {
       } else {
         setError("Failed to create an account");
       }
-      console.log(err);
     }
   };
+  if (currentUser) {
+    history.push("/account");
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -106,31 +98,20 @@ export default function SignUp() {
         {error && <Alert severity="error">{error}</Alert>}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                autoComplete="name"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="name"
+                label="Name"
                 autoFocus
-                inputRef={firstNameRef}
+                inputRef={nameRef}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                inputRef={lastNameRef}
-              />
-            </Grid>
+
             <Grid item xs={12}>
               <TextField
                 variant="outlined"

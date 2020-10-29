@@ -1,8 +1,8 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
-import { GET_SCORE_DATA, GET_USERS, ADD_SELECTION } from "./Types";
+import { GET_SCORE_DATA, GET_USERS } from "./Types";
 import axios from "axios";
-import { db } from "../firebase";
+import { db, firebase } from "../firebase";
 
 const initialState = {
   users: [],
@@ -48,8 +48,24 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  const addUser = async (
-    name,
+  const addUser = async (name, email) => {
+    console.log(name);
+    console.log(email);
+    setLoading();
+    db.collection("users").add({
+      name: name,
+      email: email,
+      // selections: [
+      //   {
+      //     golferOne: "",
+      //     golferTwo: "",
+      //     golferThree: "",
+      //   },
+      // ],
+    });
+  };
+
+  const addSelections = async (
     email,
     golferOne,
     golferOneID,
@@ -58,35 +74,28 @@ export const GlobalProvider = ({ children }) => {
     golferThree,
     golferThreeID
   ) => {
-    setLoading();
-    db.collection("users").add({
-      name: name,
-      email: email,
-      selections: {
-        golferOne: "",
-        golferTwo: "",
-        golferThree: "",
-      },
-    });
-  };
-
-  const addSelections = async (
-    golferOne,
-    golferOneID,
-    golferTwo,
-    golferTwoID,
-    golferThree,
-    golferThreeID
-  ) => {
     db.collection("users")
-      //.where("email", "==", "mark@towey.com")
-      .doc("JEDxqZWPL7BFCGY76pwV")
-      .update({
-        selections: {
-          golferOne: { name: golferOne, id: parseInt(golferOneID) },
-          golferTwo: { name: golferTwo, id: parseInt(golferTwoID) },
-          golferThree: { name: golferThree, id: parseInt(golferThreeID) },
-        },
+      .where("email", "==", email)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          const docId = doc.id;
+
+          db.collection("users")
+            .doc(docId)
+            .update({
+              selections: firebase.firestore.FieldValue.arrayUnion({
+                selections: {
+                  golferOne: { name: golferOne, id: parseInt(golferOneID) },
+                  golferTwo: { name: golferTwo, id: parseInt(golferTwoID) },
+                  golferThree: {
+                    name: golferThree,
+                    id: parseInt(golferThreeID),
+                  },
+                },
+              }),
+            });
+        });
       });
   };
 

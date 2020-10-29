@@ -1,4 +1,4 @@
-import { GET_SCORE_DATA, GET_USERS, SET_LOADING, ADD_SELECTION } from "./Types";
+import { GET_SCORE_DATA, GET_USERS, SET_LOADING } from "./Types";
 const AppReducer = (state, action) => {
   switch (action.type) {
     case GET_SCORE_DATA:

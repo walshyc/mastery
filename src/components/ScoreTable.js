@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,14 +11,6 @@ import PersonSharpIcon from "@material-ui/icons/PersonSharp";
 import { GlobalContext } from "../context/GlobalState";
 import Row from "./Row";
 import Spinner from "./layout/Spinner";
-
-const useRowStyles = makeStyles({
-  root: {
-    "& > *": {
-      borderBottom: "unset",
-    },
-  },
-});
 
 const createData = (
   name,
@@ -37,7 +28,7 @@ const createData = (
     golfer2,
     golfer3,
     score,
-    history: [
+    detail: [
       { golfer: golfer1, score: golferOneID },
       { golfer: golfer2, score: golferTwoID },
       { golfer: golfer3, score: golferThreeID },
@@ -46,43 +37,45 @@ const createData = (
 };
 
 const ScoreTable = () => {
-  const { player, data, getScoreData, loading, getUsers, users } = useContext(
+  const { data, getScoreData, loading, getUsers, users } = useContext(
     GlobalContext
   );
   useEffect(() => {
     getScoreData();
     getUsers();
+    console.log(rows);
     // eslint-disable-next-line
   }, []);
 
-  const randomArr = Array.from({ length: 78 }, () =>
-    Math.floor(Math.random() * 78)
-  );
   const score = (id) =>
     data.results.leaderboard.find((g) => g.player_id === id).total_to_par;
+
   let rows = [];
   if (data.length === 0) {
     rows = [];
   } else {
-    console.log(score(144259));
     rows = users.map((u) => {
-      console.log(score(u.selections.golferOne.id))
-      const row = createData(
-        u.name,
-        u.selections.golferOne.name,
-        score(u.selections.golferOne.id),
-        u.selections.golferTwo.name,
-        score(u.selections.golferTwo.id),
-        u.selections.golferThree.name,
-        score(u.selections.golferThree.id),
-        score(u.selections.golferOne.id) +
-          score(u.selections.golferTwo.id) +
-          score(u.selections.golferThree.id)
-      );
-
-      return row;
+      const name = u.name;
+      let inside = u.selections.map((s) => {
+        const row = createData(
+          name,
+          s.selections.golferOne.name,
+          score(s.selections.golferOne.id),
+          s.selections.golferTwo.name,
+          score(s.selections.golferTwo.id),
+          s.selections.golferThree.name,
+          score(s.selections.golferThree.id),
+          score(s.selections.golferOne.id) +
+            score(s.selections.golferTwo.id) +
+            score(s.selections.golferThree.id)
+        );
+        return row;
+      });
+      return inside;
     });
   }
+  let allScores = rows.reduce((a, b) => a.concat(b), []);
+
   if (loading) {
     return <Spinner></Spinner>;
   } else {
@@ -93,7 +86,7 @@ const ScoreTable = () => {
             <TableRow>
               <TableCell />
               <TableCell>Name</TableCell>
-              <Hidden smDown>
+              <Hidden xsDown>
                 <TableCell>
                   <PersonSharpIcon></PersonSharpIcon> Golfer 1
                 </TableCell>
@@ -108,14 +101,14 @@ const ScoreTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {allScores
               .sort((a, b) => {
                 if (a.score < b.score) {
                   return -1;
                 } else return 1;
               })
-              .map((row) => (
-                <Row key={row.name} row={row} />
+              .map((row, index) => (
+                <Row key={`${row.name}-${index}`} row={row} />
               ))}
           </TableBody>
         </Table>

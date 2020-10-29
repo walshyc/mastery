@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
 import Container from "@material-ui/core/Container";
+import { GlobalContext } from "../context/GlobalState";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -41,6 +41,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Hero = () => {
+  const { getScoreData, getUsers, users, data } = useContext(GlobalContext);
+  const createData = (
+    name,
+    golfer1,
+    golferOneID,
+    golfer2,
+    golferTwoID,
+    golfer3,
+    golferThreeID,
+    score
+  ) => {
+    return {
+      name,
+      golfer1,
+      golfer2,
+      golfer3,
+      score,
+      history: [
+        { golfer: golfer1, score: golferOneID },
+        { golfer: golfer2, score: golferTwoID },
+        { golfer: golfer3, score: golferThreeID },
+      ],
+    };
+  };
+  
+
+  useEffect(() => {
+    getScoreData();
+    getUsers();
+
+    // eslint-disable-next-line
+  }, []);
   const classes = useStyles();
   return (
     <div className={classes.heroContent}>
@@ -83,7 +115,6 @@ const Hero = () => {
                 View Standings
               </Button>
             </Grid>
-           
           </Grid>
         </div>
       </Container>

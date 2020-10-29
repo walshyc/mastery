@@ -8,7 +8,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import GolfCourseSharpIcon from "@material-ui/icons/GolfCourseSharp";
 import { Link as RouterLink } from "react-router-dom";
-
+import { useAuth } from "../../context/AuthContext";
+import AccountBoxRoundedIcon from "@material-ui/icons/AccountBoxRounded";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,22 +20,18 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    textDecoration: 'none',
-    color: '#ECFEF6'
+    textDecoration: "none",
+    color: "#ECFEF6",
   },
   button: {
-    color: '#ECFEF6'
+    color: "#ECFEF6",
   },
-
 }));
 
 const Navbar = () => {
   const classes = useStyles();
-  // const [value, setValue] = React.useState(0);
-
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
+  const { currentUser } = useAuth();
+  console.log(currentUser);
   return (
     <>
       <AppBar position="static" color="primary">
@@ -48,15 +45,43 @@ const Navbar = () => {
             <MenuIcon />
           </IconButton>
 
-          <Typography variant="h6" className={classes.title} component={RouterLink} to="/">
+          <Typography
+            variant="h6"
+            className={classes.title}
+            component={RouterLink}
+            to="/"
+          >
             <GolfCourseSharpIcon></GolfCourseSharpIcon> Mastery
           </Typography>
-          <Button className={classes.button} component={RouterLink} to="/signup">
-            Sign Up
-          </Button>
-          <Button className={classes.button} component={RouterLink} to="/login">
-            Login
-          </Button>
+          {currentUser ? (
+            <>
+              <Button
+                className={classes.button}
+                component={RouterLink}
+                to="/account"
+              >
+                <AccountBoxRoundedIcon></AccountBoxRoundedIcon>
+                Account
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                className={classes.button}
+                component={RouterLink}
+                to="/signup"
+              >
+                Sign Up
+              </Button>
+              <Button
+                className={classes.button}
+                component={RouterLink}
+                to="/login"
+              >
+                Login
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </>

@@ -1,10 +1,7 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -14,13 +11,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "../context/AuthContext";
 import Alert from "@material-ui/lab/Alert";
-import { db } from "../firebase";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
 import { GlobalContext } from "../context/GlobalState";
 
 function Copyright() {
@@ -65,13 +59,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddTeam() {
-  const { data, addUser, addSelections } = useContext(GlobalContext);
+  const { data, addSelections } = useContext(GlobalContext);
   const classes = useStyles();
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const emailFormRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
   const [error, setError] = useState("");
 
   const { currentUser } = useAuth();
@@ -85,13 +74,14 @@ export default function AddTeam() {
     if (nameA > nameB) return 1;
     return 0; //default return value (no sorting)
   });
-  console.log(currentUser);
+  console.log(currentUser.email);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       addSelections(
+        currentUser.email,
         state.selectionOne,
         state.selectionOneId,
         state.selectionTwo,

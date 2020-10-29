@@ -9,13 +9,10 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { Hidden } from "@material-ui/core";
-import PersonSharpIcon from "@material-ui/icons/PersonSharp";
-import { GlobalContext } from "../context/GlobalState";
+
 
 const Row = (props) => {
   const useRowStyles = makeStyles({
@@ -29,7 +26,6 @@ const Row = (props) => {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
-
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -45,7 +41,7 @@ const Row = (props) => {
         <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
-        <Hidden smDown>
+        <Hidden xsDown>
           <TableCell>{row.golfer1}</TableCell>
           <TableCell>{row.golfer2}</TableCell>
           <TableCell>{row.golfer3}</TableCell>
@@ -66,12 +62,12 @@ const Row = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.golfer}>
+                  {row.detail.map((detailRow) => (
+                    <TableRow key={detailRow.golfer}>
                       <TableCell component="th" scope="row">
-                        {historyRow.golfer}
+                        {detailRow.golfer}
                       </TableCell>
-                      <TableCell>{historyRow.score}</TableCell>
+                      <TableCell>{detailRow.score}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
