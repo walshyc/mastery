@@ -41,31 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Hero = () => {
-  const { getScoreData, getUsers, users, data } = useContext(GlobalContext);
-  const createData = (
-    name,
-    golfer1,
-    golferOneID,
-    golfer2,
-    golferTwoID,
-    golfer3,
-    golferThreeID,
-    score
-  ) => {
-    return {
-      name,
-      golfer1,
-      golfer2,
-      golfer3,
-      score,
-      history: [
-        { golfer: golfer1, score: golferOneID },
-        { golfer: golfer2, score: golferTwoID },
-        { golfer: golfer3, score: golferThreeID },
-      ],
-    };
-  };
-  
+  const { getScoreData, getUsers } = useContext(GlobalContext);
 
   useEffect(() => {
     getScoreData();

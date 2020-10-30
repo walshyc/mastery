@@ -11,41 +11,64 @@ import PersonSharpIcon from "@material-ui/icons/PersonSharp";
 import { GlobalContext } from "../context/GlobalState";
 import Row from "./Row";
 import Spinner from "./layout/Spinner";
+import { makeStyles } from "@material-ui/core/styles";
 
-const createData = (
-  name,
-  golfer1,
-  golferOneID,
-  golfer2,
-  golferTwoID,
-  golfer3,
-  golferThreeID,
-  score
-) => {
-  return {
-    name,
-    golfer1,
-    golfer2,
-    golfer3,
-    score,
-    detail: [
-      { golfer: golfer1, score: golferOneID },
-      { golfer: golfer2, score: golferTwoID },
-      { golfer: golfer3, score: golferThreeID },
-    ],
-  };
-};
+
+
 
 const ScoreTable = () => {
-  const { data, getScoreData, loading, getUsers, users } = useContext(
+  const useRowStyles = makeStyles({
+    root: {
+      "& > *": {
+        borderBottom: "unset",
+      },
+    },
+    tableHead: {
+      background: '#009b77',
+      color: '#ecfef6'
+    },
+    tableCell: {
+      color: '#ecfef6'
+    },
+    table: {
+      marginTop: '20px'
+    },
+  });
+  const classes = useRowStyles();
+  const { data, getScoreData, loading, getUsers, users, matchSelection } = useContext(
     GlobalContext
   );
   useEffect(() => {
     getScoreData();
     getUsers();
-    console.log(rows);
     // eslint-disable-next-line
   }, []);
+  const createData = (
+    name,
+    golfer1,
+    golferOneID,
+    oneID,
+    golfer2,
+    golferTwoID,
+    twoID,
+    golfer3,
+    golferThreeID,
+    threeID,
+    totalScore
+  ) => {
+    return {
+      name,
+      golfer1,
+      golfer2,
+      golfer3,
+      totalScore,
+      detail: [
+        matchSelection(oneID)[0],
+        matchSelection(twoID)[0],
+        matchSelection(threeID)[0],
+      ],
+    };
+  };
 
   const score = (id) =>
     data.results.leaderboard.find((g) => g.player_id === id).total_to_par;
@@ -54,20 +77,29 @@ const ScoreTable = () => {
   if (data.length === 0) {
     rows = [];
   } else {
-    rows = users.map((u) => {
+    rows = users.filter((a) => {
+      if ((typeof(a.selections) !== 'undefined' && a.selections != null)) {
+        return true; // skip
+      }
+      return false;
+    }).map((u) => {
       const name = u.name;
       let inside = u.selections.map((s) => {
+        
         const row = createData(
           name,
-          s.selections.golferOne.name,
-          score(s.selections.golferOne.id),
-          s.selections.golferTwo.name,
-          score(s.selections.golferTwo.id),
-          s.selections.golferThree.name,
-          score(s.selections.golferThree.id),
-          score(s.selections.golferOne.id) +
-            score(s.selections.golferTwo.id) +
-            score(s.selections.golferThree.id)
+          `${s.golferOne.first_name} ${s.golferOne.last_name}`,
+          score(s.golferOne.player_id),
+          s.golferOne.player_id,
+          `${s.golferTwo.first_name} ${s.golferTwo.last_name}`,
+          score(s.golferTwo.player_id),
+          s.golferTwo.player_id,
+          `${s.golferThree.first_name} ${s.golferThree.last_name}`,
+          score(s.golferThree.player_id),
+          s.golferThree.player_id,
+          score(s.golferOne.player_id) +
+            score(s.golferTwo.player_id) +
+            score(s.golferThree.player_id)
         );
         return row;
       });
@@ -80,21 +112,21 @@ const ScoreTable = () => {
     return <Spinner></Spinner>;
   } else {
     return (
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+      <TableContainer component={Paper} >
+        <Table size="small" aria-label="collapsible table">
           <TableHead>
-            <TableRow>
+            <TableRow className={classes.tableHead}>
               <TableCell />
-              <TableCell>Name</TableCell>
+              <TableCell >Name</TableCell>
               <Hidden xsDown>
                 <TableCell>
-                  <PersonSharpIcon></PersonSharpIcon> Golfer 1
+                  <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
                 <TableCell>
-                  <PersonSharpIcon></PersonSharpIcon> Golfer 2
+                  <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
                 <TableCell>
-                  <PersonSharpIcon></PersonSharpIcon> Golfer 3
+                  <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
               </Hidden>
               <TableCell align="right">Score</TableCell>
@@ -108,7 +140,7 @@ const ScoreTable = () => {
                 } else return 1;
               })
               .map((row, index) => (
-                <Row key={`${row.name}-${index}`} row={row} />
+                <Row key={`${row.name}-${index}`} row={row} index={index} />
               ))}
           </TableBody>
         </Table>

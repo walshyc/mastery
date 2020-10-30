@@ -64,6 +64,12 @@ export const GlobalProvider = ({ children }) => {
       // ],
     });
   };
+  const matchSelection = (id) => {
+    console.log(id)
+    const leaderboard = state.data.results.leaderboard;
+    const player = leaderboard.filter((p) => p.player_id === parseInt(id));
+    return player;
+  };
 
   const addSelections = async (
     email,
@@ -74,6 +80,7 @@ export const GlobalProvider = ({ children }) => {
     golferThree,
     golferThreeID
   ) => {
+    matchSelection(golferOneID);
     db.collection("users")
       .where("email", "==", email)
       .get()
@@ -85,14 +92,9 @@ export const GlobalProvider = ({ children }) => {
             .doc(docId)
             .update({
               selections: firebase.firestore.FieldValue.arrayUnion({
-                selections: {
-                  golferOne: { name: golferOne, id: parseInt(golferOneID) },
-                  golferTwo: { name: golferTwo, id: parseInt(golferTwoID) },
-                  golferThree: {
-                    name: golferThree,
-                    id: parseInt(golferThreeID),
-                  },
-                },
+                golferOne: matchSelection(golferOneID)[0],
+                golferTwo: matchSelection(golferTwoID)[0],
+                golferThree: matchSelection(golferThreeID)[0],
               }),
             });
         });
@@ -113,6 +115,7 @@ export const GlobalProvider = ({ children }) => {
         getUsers,
         addUser,
         addSelections,
+        matchSelection
       }}
     >
       {children}

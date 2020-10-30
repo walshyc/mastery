@@ -50,9 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-  const { player, data, getScoreData, loading, getUsers, addUser } = useContext(
-    GlobalContext
-  );
+  const { addUser } = useContext(GlobalContext);
   const classes = useStyles();
   const nameRef = useRef();
   const emailFormRef = useRef();

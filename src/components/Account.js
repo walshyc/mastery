@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const useStyles = makeStyles((theme) => ({
-  button: {},
-}));
+// const useStyles = makeStyles((theme) => ({
+//   button: {},
+// }));
 
 const Account = () => {
   const [error, setError] = useState("");
@@ -18,18 +18,19 @@ const Account = () => {
     try {
       await logout();
       history.push("/login");
-    } catch (error) {
+    } catch (err) {
       setError("Failed to Logout");
     }
   };
 
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <div>
       {error && <Alert severity="error">{error}</Alert>}
       <strong>Email: </strong>
       {currentUser.email}
       <br/>
+      
       <Button
         onClick={handleLogout}
         component={RouterLink}

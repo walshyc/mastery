@@ -14,6 +14,7 @@ import AccountBoxRoundedIcon from "@material-ui/icons/AccountBoxRounded";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: '25px'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -31,10 +32,9 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   const { currentUser } = useAuth();
-  console.log(currentUser);
   return (
     <>
-      <AppBar position="static" color="primary">
+      <AppBar className={classes.root} position="static" color="primary">
         <Toolbar>
           <IconButton
             edge="start"

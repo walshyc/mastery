@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
@@ -13,7 +12,6 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { Hidden } from "@material-ui/core";
 
-
 const Row = (props) => {
   const useRowStyles = makeStyles({
     root: {
@@ -22,13 +20,19 @@ const Row = (props) => {
       },
     },
   });
-  
+
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
+  console.log(row);
   return (
     <React.Fragment>
-      <TableRow className={classes.root}>
+      <TableRow
+        className={classes.root}
+        style={
+          props.index % 2 ? { background: "#ecfef6" } : { background: "white" }
+        }
+      >
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -39,15 +43,15 @@ const Row = (props) => {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.name}
+          <b> {row.name}</b>
         </TableCell>
         <Hidden xsDown>
           <TableCell>{row.golfer1}</TableCell>
-          <TableCell>{row.golfer2}</TableCell>
+          <TableCell color="primary">{row.golfer2}</TableCell>
           <TableCell>{row.golfer3}</TableCell>
         </Hidden>
         <TableCell align="right">
-          <b>{row.score}</b>
+          <b>{row.totalScore > 0 ? `+${row.totalScore}` : row.totalScore}</b>
         </TableCell>
       </TableRow>
       <TableRow>
@@ -58,16 +62,22 @@ const Row = (props) => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Selection</TableCell>
+                    <TableCell>Played</TableCell>
                     <TableCell>Score</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {row.detail.map((detailRow) => (
-                    <TableRow key={detailRow.golfer}>
+                    <TableRow key={detailRow.player_id}>
                       <TableCell component="th" scope="row">
-                        {detailRow.golfer}
+                        {`${detailRow.first_name} ${detailRow.last_name}`}
                       </TableCell>
-                      <TableCell>{detailRow.score}</TableCell>
+                      <TableCell>{detailRow.holes_played}</TableCell>
+                      <TableCell>
+                        {detailRow.total_to_par > 0
+                          ? `+${detailRow.total_to_par}`
+                          : detailRow.total_to_par}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -80,21 +90,21 @@ const Row = (props) => {
   );
 };
 
-Row.propTypes = {
-  row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
-  }).isRequired,
-};
+// Row.propTypes = {
+//   row: PropTypes.shape({
+//     calories: PropTypes.number.isRequired,
+//     carbs: PropTypes.number.isRequired,
+//     fat: PropTypes.number.isRequired,
+//     history: PropTypes.arrayOf(
+//       PropTypes.shape({
+//         amount: PropTypes.number.isRequired,
+//         customerId: PropTypes.string.isRequired,
+//         date: PropTypes.string.isRequired,
+//       })
+//     ).isRequired,
+//     name: PropTypes.string.isRequired,
+//     price: PropTypes.number.isRequired,
+//     protein: PropTypes.number.isRequired,
+//   }).isRequired,
+// };
 export default Row;
