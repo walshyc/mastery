@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-  const { addUser } = useContext(GlobalContext);
+  const { addUser, getUser } = useContext(GlobalContext);
   const classes = useStyles();
   const nameRef = useRef();
   const emailFormRef = useRef();
@@ -58,7 +58,7 @@ export default function SignUp() {
   const passwordConfirmRef = useRef();
   const [error, setError] = useState("");
 
-  const { signUp, currentUser } = useAuth();
+  const { signUp, currentUser, logout } = useAuth();
   const history = useHistory();
 
   const handleSubmit = async (e) => {
@@ -71,6 +71,7 @@ export default function SignUp() {
     try {
       addUser(nameRef.current.value, emailFormRef.current.value);
       await signUp(emailFormRef.current.value, passwordRef.current.value);
+     logout()
       history.push("/login");
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {

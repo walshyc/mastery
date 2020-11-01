@@ -1,13 +1,22 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
-import { GET_SCORE_DATA, GET_USERS } from "./Types";
+import {
+  GET_SCORE_DATA,
+  GET_USERS,
+  GET_USER,
+  REMOVE_USER,
+  SET_LOADING,
+  UPDATED,
+} from "./Types";
 import axios from "axios";
 import { db, firebase } from "../firebase";
 
 const initialState = {
   users: [],
+  loggedInUser: {},
   data: [],
   loading: true,
+  updated: "",
   selections: [{ selectionOne: "", selectionTwo: "", selectionThree: "" }],
 };
 
@@ -27,10 +36,9 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/217`,
+      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/219`,
       requestOptions
     );
-
     dispatch({
       type: GET_SCORE_DATA,
       payload: res.data,
@@ -39,33 +47,48 @@ export const GlobalProvider = ({ children }) => {
 
   const getUsers = async () => {
     setLoading();
-    const snapshot = await await db.collection("users").get();
+    const snapshot = await db.collection("users").get();
 
     const res = snapshot.docs.map((doc) => doc.data());
+    console.log("got single user");
+    console.log("got users");
     dispatch({
       type: GET_USERS,
       payload: res,
     });
   };
 
+  const getUser = async(email) => {
+    setLoading();
+    const user = await state.users.filter((u) => u.email === email);
+    console.log("got single user");
+    dispatch({
+      type: GET_USER,
+      payload: user,
+    });
+  };
+
+  const removeUser = () => {
+    setLoading();
+    dispatch({
+      type: REMOVE_USER,
+    });
+  };
+
   const addUser = async (name, email) => {
-    console.log(name);
-    console.log(email);
     setLoading();
     db.collection("users").add({
       name: name,
       email: email,
-      // selections: [
-      //   {
-      //     golferOne: "",
-      //     golferTwo: "",
-      //     golferThree: "",
-      //   },
-      // ],
+    });
+    const user = state.users.filter((u) => u.email === email);
+    console.log(user);
+    dispatch({
+      type: GET_USER,
+      payload: user,
     });
   };
   const matchSelection = (id) => {
-    console.log(id)
     const leaderboard = state.data.results.leaderboard;
     const player = leaderboard.filter((p) => p.player_id === parseInt(id));
     return player;
@@ -80,8 +103,9 @@ export const GlobalProvider = ({ children }) => {
     golferThree,
     golferThreeID
   ) => {
-    matchSelection(golferOneID);
-    db.collection("users")
+    setLoading();
+    await db
+      .collection("users")
       .where("email", "==", email)
       .get()
       .then(function (querySnapshot) {
@@ -99,14 +123,25 @@ export const GlobalProvider = ({ children }) => {
             });
         });
       });
+
+    setLoading();
+    const snapshot = await db.collection("users").get();
+
+    const res = snapshot.docs.map((doc) => doc.data());
+    console.log("got users from selection");
+    dispatch({
+      type: GET_USERS,
+      payload: res,
+    });
   };
 
-  const setLoading = () => dispatch({ type: "" });
+  const setLoading = () => dispatch({ type: SET_LOADING });
   return (
     <GlobalContext.Provider
       value={{
         player: state.player,
         users: state.users,
+        loggedInUser: state.loggedInUser,
         data: state.data,
         loading: state.loading,
         selections: state.selections,
@@ -114,8 +149,10 @@ export const GlobalProvider = ({ children }) => {
         setLoading,
         getUsers,
         addUser,
+        removeUser,
+        getUser,
         addSelections,
-        matchSelection
+        matchSelection,
       }}
     >
       {children}

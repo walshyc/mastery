@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { GlobalContext } from "../context/GlobalState";
+import { useAuth } from "../context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -41,12 +42,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Hero = () => {
-  const { getScoreData, getUsers } = useContext(GlobalContext);
-
+  const { getScoreData, getUsers, getUser } = useContext(GlobalContext);
+  const { currentUser } = useAuth();
   useEffect(() => {
     getScoreData();
     getUsers();
-
+    if(currentUser){
+      getUser(currentUser.email)
+    }
     // eslint-disable-next-line
   }, []);
   const classes = useStyles();

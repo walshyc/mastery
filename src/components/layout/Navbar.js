@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
@@ -7,14 +7,15 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import GolfCourseSharpIcon from "@material-ui/icons/GolfCourseSharp";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import {GlobalContext} from '../../context/GlobalState'
 import AccountBoxRoundedIcon from "@material-ui/icons/AccountBoxRounded";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginBottom: '25px'
+    marginBottom: "25px",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -30,8 +31,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
+  const {removeUser, getUser, getUsers, loggedInUser} = useContext(GlobalContext)
   const classes = useStyles();
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+  const handleLogout = async (e) => {
+    try {
+      await logout();
+      removeUser()
+      history.push("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getUsers();
+    if (currentUser) {
+      getUser(currentUser.email);
+    }
+    // eslint-disable-next-line
+  }, []);
+  
   return (
     <>
       <AppBar className={classes.root} position="static" color="primary">
@@ -62,6 +82,15 @@ const Navbar = () => {
               >
                 <AccountBoxRoundedIcon></AccountBoxRoundedIcon>
                 Account
+              </Button>
+              <Button
+                onClick={handleLogout}
+                component={RouterLink}
+                to="/"
+                color="default"
+                variant="contained"
+              >
+                Logout
               </Button>
             </>
           ) : (

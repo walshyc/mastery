@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -44,8 +44,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddTeam() {
-  const { data, addSelections, } = useContext(GlobalContext);
+const AddTeam = () => {
+  const { data, addSelections, getUser, getUsers, getScoreData } = useContext(
+    GlobalContext
+  );
   const classes = useStyles();
   const [error, setError] = useState("");
 
@@ -62,9 +64,8 @@ export default function AddTeam() {
   });
   console.log(currentUser.email);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
     try {
       addSelections(
         currentUser.email,
@@ -75,12 +76,17 @@ export default function AddTeam() {
         state.selectionThree,
         state.selectionThreeId
       );
-      history.push("/account");
+      const getData = async () => {
+        await getUsers().then(getUser(currentUser.email));
+        history.push("/account");
+      };
+      getData();
     } catch (err) {
       setError("Could not add your team");
       console.log(err);
     }
   };
+
   const [state, setState] = React.useState({
     selectionOne: "",
     selectionTwo: "",
@@ -136,6 +142,7 @@ export default function AddTeam() {
                       <MenuItem
                         value={name}
                         name={name}
+                        key={p.player_id}
                         playerid={p.player_id}
                         selection="selectionOne"
                         selectionid="selectionOneId"
@@ -225,4 +232,5 @@ export default function AddTeam() {
       </div>
     </Container>
   );
-}
+};
+export default AddTeam;

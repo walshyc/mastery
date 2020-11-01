@@ -50,11 +50,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-  const { getScoreData, getUsers } = useContext(GlobalContext);
+  const { getScoreData, getUsers, getUser, setLoading, loading } = useContext(
+    GlobalContext
+  );
   const classes = useStyles();
   const emailFormRef = useRef();
   const passwordRef = useRef();
-  const [error, setError] = useState("");
+
 
   const { login, currentUser } = useAuth();
   const history = useHistory();
@@ -62,28 +64,32 @@ export default function Login() {
   useEffect(() => {
     getScoreData();
     getUsers();
+     if (currentUser) {
+       getUser(currentUser.email);
+       history.push("/account");
+     }
     // eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+       const email = emailFormRef.current.value;
+       getUser(email);
       await login(emailFormRef.current.value, passwordRef.current.value);
+
       history.push("/account");
-      console.log("loggin in");
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
-        setError("Account already exits with this email address");
+       console.log("Account already exits with this email address");
       } else {
-        setError("Failed to login");
+       console.log("Failed to login");
       }
       console.log(err);
     }
   };
 
-  if (currentUser) {
-    history.push("/account");
-  }
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -94,7 +100,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        {error && <Alert severity="error">{error}</Alert>}
+        {/* {error && <Alert severity="error">{error}</Alert>} */}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"

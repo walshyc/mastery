@@ -7,15 +7,22 @@ import Account from "./components/Account";
 import Hero from "./components/Hero";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 import { Container } from "@material-ui/core";
 import { GlobalProvider } from "./context/GlobalState";
-import {
-  createMuiTheme,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import AddTeam from "./components/AddTeam";
+import "fontsource-poppins";
+import Spinner from "./components/layout/Spinner";
+import { useContext } from "react";
+import { GlobalContext } from "./context/GlobalState";
+
 
 function App() {
   const theme = createMuiTheme({
@@ -30,6 +37,13 @@ function App() {
         main: "#033a22",
       },
     },
+    typography: {
+      fontFamily: `"Poppins", "Helvetica", "Arial", sans-serif`,
+      fontSize: 14,
+      fontWeightLight: 300,
+      fontWeightRegular: 400,
+      fontWeightMedium: 500,
+    },
   });
 
   // const useStyles = makeStyles((theme) => ({
@@ -40,6 +54,8 @@ function App() {
 
   // const classes = useStyles();
 
+  const { loading } = useContext(GlobalContext);
+
   return (
     <GlobalProvider>
       <ThemeProvider theme={theme}>
@@ -47,20 +63,24 @@ function App() {
           <AuthProvider>
             <div className="App">
               <Navbar></Navbar>
-              <Switch>
-                <Container maxWidth="md" disableGutters={true}>
+              <Container maxWidth="md" disableGutters={true}>
+                <Switch>
                   <Route exact path="/" component={Hero}></Route>
-                  <PrivateRoute
+                  <Route
                     exact
                     path="/account"
                     component={Account}
-                  ></PrivateRoute>
-                  <PrivateRoute
+                  ></Route>
+                  <Route
                     exact
                     path="/add-team"
                     component={AddTeam}
-                  ></PrivateRoute>
-                  <Route exact path="/scores" component={ScoreTable}></Route>
+                  ></Route>
+                  <Route
+                    exact
+                    path="/scores"
+                    component={ScoreTable}
+                  ></Route>
                   <Route exact path="/signup" component={SignUp}></Route>
                   <Route exact path="/login" component={Login}></Route>
                   <Route
@@ -68,8 +88,8 @@ function App() {
                     path="/forgot-password"
                     component={ForgotPassword}
                   ></Route>
-                </Container>
-              </Switch>
+                </Switch>
+              </Container>
             </div>
           </AuthProvider>
         </Router>

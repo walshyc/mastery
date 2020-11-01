@@ -24,7 +24,6 @@ const Row = (props) => {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
-  console.log(row);
   return (
     <React.Fragment>
       <TableRow
@@ -61,16 +60,17 @@ const Row = (props) => {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Selection</TableCell>
-                    <TableCell>Played</TableCell>
-                    <TableCell>Score</TableCell>
+                    <TableCell style={{fontWeight:'bold'}}>Selection</TableCell>
+                    <TableCell style={{fontWeight:'bold'}}>Played</TableCell>
+                    <TableCell style={{fontWeight:'bold'}}>Score</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {row.detail.map((detailRow) => (
                     <TableRow key={detailRow.player_id}>
                       <TableCell component="th" scope="row">
-                        {`${detailRow.first_name} ${detailRow.last_name}`}
+                        <b>{detailRow.last_name.toUpperCase()}</b>
+                        {`, ${detailRow.first_name}`}
                       </TableCell>
                       <TableCell>{detailRow.holes_played}</TableCell>
                       <TableCell>
