@@ -28,6 +28,7 @@ const Account = () => {
     getUsers,
     users,
   } = useContext(GlobalContext);
+
   const handleLogout = async (e) => {
     setError("");
     try {
@@ -38,32 +39,40 @@ const Account = () => {
       setError("Failed to Logout");
     }
   };
-  // console.log(JSON.stringify(currentUser))
-  // const classes = useStyles();
-let arrayIndex = 0
+
+  let arrayIndex = 0;
   const currentIndex = users.filter((u, index) => {
     if (u.email === currentUser.email) {
-      arrayIndex = index
+      arrayIndex = index;
       return index;
     }
   });
 
-  console.log(arrayIndex)
   useEffect(() => {
     const getData = async () => {
       await getUsers();
-      await getUser(currentUser.email);
+      if (currentUser) {
+        await getUser(currentUser.email);
+      }
     };
     getData();
     // eslint-disable-next-line
-  }, [users[arrayIndex].selections && users[arrayIndex].selections.length]);
+  }, [
+    users[arrayIndex] &&
+      users[arrayIndex].selections &&
+      users[arrayIndex].selections.length,
+  ]);
+
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <div>
       {error && <Alert severity="error">{error}</Alert>}
 
       <Typography variant="h4" gutterBottom>
-        Hey {loggedInUser && loggedInUser.name.split(" ", 1)}!
+        Hey {loggedInUser.name && loggedInUser.name.split(" ", 1)}!
       </Typography>
       <Typography variant="h6" gutterBottom>
         Here are your teams:

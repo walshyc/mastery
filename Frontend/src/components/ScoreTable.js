@@ -6,7 +6,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Hidden } from "@material-ui/core";
+import { Hidden, useTheme } from "@material-ui/core";
 import PersonSharpIcon from "@material-ui/icons/PersonSharp";
 import { GlobalContext } from "../context/GlobalState";
 import Row from "./Row";
@@ -71,8 +71,9 @@ const ScoreTable = () => {
       ],
     };
   };
-
+  const theme = useTheme()
   const score = (id) =>
+
     data.results.leaderboard.find((g) => g.player_id === id).total_to_par;
 
   let rows = [];
@@ -117,21 +118,21 @@ const ScoreTable = () => {
       <TableContainer component={Paper}>
         <Table size="small" aria-label="collapsible table">
           <TableHead>
-            <TableRow className={classes.tableHead}>
+            <TableRow className={classes.tableHead} >
               <TableCell />
-              <TableCell>Name</TableCell>
+              <TableCell style={{color: theme.palette.secondary.main}}>Name</TableCell>
               <Hidden xsDown>
-                <TableCell>
+                <TableCell style={{color: theme.palette.secondary.main}}>
                   <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
-                <TableCell>
+                <TableCell style={{color: theme.palette.secondary.main}}>
                   <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
-                <TableCell>
+                <TableCell style={{color: theme.palette.secondary.main}}>
                   <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
               </Hidden>
-              <TableCell align="right">Score</TableCell>
+              <TableCell style={{color: theme.palette.secondary.main}} align="right">Score</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

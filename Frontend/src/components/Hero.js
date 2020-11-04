@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { GlobalContext } from "../context/GlobalState";
@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
   },
   heroButtons: {
     marginTop: theme.spacing(4),
+  },
+  heroSecondaryBTN: {
+    backgroundColor: theme.palette.third.main,
+    color: '#f0f0f0'
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -44,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 const Hero = () => {
   const { getScoreData, getUsers, getUser } = useContext(GlobalContext);
   const { currentUser } = useAuth();
+  const theme = useTheme()
   useEffect(() => {
     getScoreData();
     getUsers();
@@ -83,11 +88,22 @@ const Hero = () => {
                 Create a Team
               </Button>
             </Grid>
+            {/* <Grid item>
+              <Button
+                variant="outlined"
+                color={theme.palette.primary.main}
+                className={classes.button}
+                component={RouterLink}
+                to="/scores"
+              >
+                View Standings
+              </Button>
+            </Grid> */}
             <Grid item>
               <Button
                 variant="outlined"
-                color="primary"
-                className={classes.button}
+                
+                className={`${classes.button} ${classes.heroSecondaryBTN}`}
                 component={RouterLink}
                 to="/scores"
               >

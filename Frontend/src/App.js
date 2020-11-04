@@ -22,7 +22,8 @@ import "fontsource-poppins";
 import Spinner from "./components/layout/Spinner";
 import { useContext } from "react";
 import { GlobalContext } from "./context/GlobalState";
-
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const theme = createMuiTheme({
@@ -55,42 +56,35 @@ function App() {
   // const classes = useStyles();
 
   const { loading } = useContext(GlobalContext);
+  const stripePromise = loadStripe(
+    process.env.REACT_APP_STRIPE_API_KEY_PUB
+  );
 
   return (
     <GlobalProvider>
       <ThemeProvider theme={theme}>
         <Router>
           <AuthProvider>
-            <div className="App">
-              <Navbar></Navbar>
-              <Container maxWidth="md" disableGutters={true}>
-                <Switch>
-                  <Route exact path="/" component={Hero}></Route>
-                  <Route
-                    exact
-                    path="/account"
-                    component={Account}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/add-team"
-                    component={AddTeam}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/scores"
-                    component={ScoreTable}
-                  ></Route>
-                  <Route exact path="/signup" component={SignUp}></Route>
-                  <Route exact path="/login" component={Login}></Route>
-                  <Route
-                    exact
-                    path="/forgot-password"
-                    component={ForgotPassword}
-                  ></Route>
-                </Switch>
-              </Container>
-            </div>
+            <Elements stripe={stripePromise}>
+              <div className="App">
+                <Navbar></Navbar>
+                <Container maxWidth="md" disableGutters={true}>
+                  <Switch>
+                    <Route exact path="/" component={Hero}></Route>
+                    <Route exact path="/account" component={Account}></Route>
+                    <Route exact path="/add-team" component={AddTeam}></Route>
+                    <Route exact path="/scores" component={ScoreTable}></Route>
+                    <Route exact path="/signup" component={SignUp}></Route>
+                    <Route exact path="/login" component={Login}></Route>
+                    <Route
+                      exact
+                      path="/forgot-password"
+                      component={ForgotPassword}
+                    ></Route>
+                  </Switch>
+                </Container>
+              </div>
+            </Elements>
           </AuthProvider>
         </Router>
       </ThemeProvider>

@@ -46,9 +46,9 @@ const Navbar = () => {
   };
   useEffect(() => {
     getUsers();
-    if (currentUser) {
-      getUser(currentUser.email);
-    }
+    // if (currentUser) {
+    //   getUser(currentUser.email);
+    // }
     // eslint-disable-next-line
   }, []);
   
