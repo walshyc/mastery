@@ -1,0 +1,94 @@
+[debug] [2020-11-05T22:40:53.493Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T22:40:53.494Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-11-05T22:40:53.494Z] CLI Version:   8.15.0
+[debug] [2020-11-05T22:40:53.495Z] Platform:      win32
+[debug] [2020-11-05T22:40:53.495Z] Node Version:  v13.12.0
+[debug] [2020-11-05T22:40:53.495Z] Time:          Thu Nov 05 2020 22:40:53 GMT+0000 (Greenwich Mean Time)
+[debug] [2020-11-05T22:40:53.496Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T22:40:53.496Z] 
+[debug] [2020-11-05T22:40:53.501Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-05T22:40:53.502Z] > authorizing via signed-in user
+[debug] [2020-11-05T22:40:53.502Z] [iam] checking project mastery-c650a for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-11-05T22:40:53.504Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/mastery-c650a:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-11-05T22:40:53.704Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:40:53 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=122","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:40:53.706Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/mastery-c650a/serviceAccounts/mastery-c650a@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-11-05T22:40:54.364Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:40:54 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:40:54.368Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/mastery-c650a  
+ 
+[debug] [2020-11-05T22:40:54.655Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:40:54 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:40:54.741Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at validateString (internal/validators.js:120:11)
+    at Object.join (path.js:375:7)
+    at Object.checkFunctionsSDKVersion [as fn] (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\checkFirebaseSDKVersion.js:34:28)
+    at Command.<anonymous> (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:169:30)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:5:58)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2020-11-05T22:41:27.224Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T22:41:27.226Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-11-05T22:41:27.226Z] CLI Version:   8.15.0
+[debug] [2020-11-05T22:41:27.226Z] Platform:      win32
+[debug] [2020-11-05T22:41:27.226Z] Node Version:  v13.12.0
+[debug] [2020-11-05T22:41:27.227Z] Time:          Thu Nov 05 2020 22:41:27 GMT+0000 (Greenwich Mean Time)
+[debug] [2020-11-05T22:41:27.227Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T22:41:27.227Z] 
+[debug] [2020-11-05T22:41:27.233Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-05T22:41:27.233Z] > authorizing via signed-in user
+[debug] [2020-11-05T22:41:27.233Z] [iam] checking project mastery-c650a for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-11-05T22:41:27.235Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/mastery-c650a:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-11-05T22:41:27.455Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:41:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=116","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:41:27.458Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/mastery-c650a/serviceAccounts/mastery-c650a@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-11-05T22:41:28.123Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:41:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:41:28.125Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/mastery-c650a  
+ 
+[debug] [2020-11-05T22:41:28.419Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:41:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:41:28.488Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at validateString (internal/validators.js:120:11)
+    at Object.join (path.js:375:7)
+    at Object.checkFunctionsSDKVersion [as fn] (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\checkFirebaseSDKVersion.js:34:28)
+    at Command.<anonymous> (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:169:30)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:5:58)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2020-11-05T22:43:58.422Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T22:43:58.424Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-11-05T22:43:58.424Z] CLI Version:   8.15.0
+[debug] [2020-11-05T22:43:58.424Z] Platform:      win32
+[debug] [2020-11-05T22:43:58.424Z] Node Version:  v13.12.0
+[debug] [2020-11-05T22:43:58.425Z] Time:          Thu Nov 05 2020 22:43:58 GMT+0000 (Greenwich Mean Time)
+[debug] [2020-11-05T22:43:58.425Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T22:43:58.425Z] 
+[debug] [2020-11-05T22:43:58.431Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-05T22:43:58.431Z] > authorizing via signed-in user
+[debug] [2020-11-05T22:43:58.431Z] [iam] checking project mastery-c650a for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-11-05T22:43:58.434Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-11-05T22:43:58.434Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-11-05T22:43:58.546Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Thu, 05 Nov 2020 22:43:58 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:43:58.550Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/mastery-c650a:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-11-05T22:43:59.209Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:43:59 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=590","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:43:59.210Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/mastery-c650a/serviceAccounts/mastery-c650a@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-11-05T22:43:59.894Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:43:59 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:43:59.898Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/mastery-c650a  
+ 
+[debug] [2020-11-05T22:44:00.196Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 05 Nov 2020 22:44:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-05T22:44:00.266Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at validateString (internal/validators.js:120:11)
+    at Object.join (path.js:375:7)
+    at Object.checkFunctionsSDKVersion [as fn] (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\checkFirebaseSDKVersion.js:34:28)
+    at Command.<anonymous> (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:169:30)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:5:58)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.
