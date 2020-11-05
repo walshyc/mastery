@@ -1,6 +1,6 @@
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/layout/Navbar";
-import ScoreTable from "./components/ScoreTable";
+import ScoreContent from "./components/Scores/ScoreContent";
 import SignUp from "./components/SignUp";
 import ForgotPassword from "./components/ForgotPassword";
 import Account from "./components/Account";
@@ -72,7 +72,7 @@ function App() {
                     <Route exact path="/" component={Hero}></Route>
                     <Route exact path="/account" component={Account}></Route>
                     <Route exact path="/add-team" component={AddTeam}></Route>
-                    <Route exact path="/scores" component={ScoreTable}></Route>
+                    <Route exact path="/scores" component={ScoreContent}></Route>
                     <Route exact path="/signup" component={SignUp}></Route>
                     <Route exact path="/login" component={Login}></Route>
                     <Route

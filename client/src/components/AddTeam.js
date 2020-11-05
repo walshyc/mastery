@@ -19,6 +19,7 @@ import CheckoutForm from "./Stripe/CheckoutForm";
 import Spinner from "./layout/Spinner";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
+import TeamForm from "./TeamForm";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -63,7 +64,24 @@ const AddTeam = () => {
   const [error, setError] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [checkoutErrorMessage, setCheckoutErrorMessage] = useState("");
-  const [selections, setSelections] = useState({
+  const [teamCount, setTeamCount] = useState(1);
+  const [teamOne, setTeamOne] = useState({
+    selectionOne: "",
+    selectionTwo: "",
+    selectionThree: "",
+    selectionOneId: "",
+    selectionTwoId: "",
+    selectionThreeId: "",
+  });
+  const [teamTwo, setTeamTwo] = useState({
+    selectionOne: "",
+    selectionTwo: "",
+    selectionThree: "",
+    selectionOneId: "",
+    selectionTwoId: "",
+    selectionThreeId: "",
+  });
+  const [teamThree, setTeamThree] = useState({
     selectionOne: "",
     selectionTwo: "",
     selectionThree: "",
@@ -77,7 +95,6 @@ const AddTeam = () => {
 
   const { currentUser } = useAuth();
   const history = useHistory();
-  const amount = 500;
 
   useEffect(() => {
     getScoreData();
@@ -107,10 +124,17 @@ const AddTeam = () => {
     }
     setCheckoutErrorMessage("");
   };
-
+  console.log(teamCount);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    let amount;
+    if (teamCount === 1) {
+      amount = 500;
+    } else if (teamCount === 2) {
+      amount = 1000;
+    } else {
+      amount = 1250;
+    }
     setIsProcessing(true);
     const cardElement = element.getElement("card");
 
@@ -152,15 +176,51 @@ const AddTeam = () => {
     }
 
     try {
-      addSelections(
-        currentUser.email,
-        selections.selectionOne,
-        selections.selectionOneId,
-        selections.selectionTwo,
-        selections.selectionTwoId,
-        selections.selectionThree,
-        selections.selectionThreeId
-      );
+      if (
+        teamOne.selectionOne.length > 0 &&
+        teamOne.selectionTwo.length > 0 &&
+        teamOne.selectionThree.length > 0
+      ) {
+        addSelections(
+          currentUser.email,
+          teamOne.selectionOne,
+          teamOne.selectionOneId,
+          teamOne.selectionTwo,
+          teamOne.selectionTwoId,
+          teamOne.selectionThree,
+          teamOne.selectionThreeId
+        );
+      }
+      if (
+        teamTwo.selectionTwo.length > 0 &&
+        teamTwo.selectionTwo.length > 0 &&
+        teamTwo.selectionThree.length > 0
+      ) {
+        addSelections(
+          currentUser.email,
+          teamTwo.selectionOne,
+          teamTwo.selectionOneId,
+          teamTwo.selectionTwo,
+          teamTwo.selectionTwoId,
+          teamTwo.selectionThree,
+          teamTwo.selectionThreeId
+        );
+      }
+      if (
+        teamThree.selectionThree.length > 0 &&
+        teamThree.selectionTwo.length > 0 &&
+        teamThree.selectionThree.length > 0
+      ) {
+        addSelections(
+          currentUser.email,
+          teamThree.selectionOne,
+          teamThree.selectionOneId,
+          teamThree.selectionTwo,
+          teamThree.selectionTwoId,
+          teamThree.selectionThree,
+          teamThree.selectionThreeId
+        );
+      }
     } catch (err) {
       setError("Could not add your team");
       console.log(err);
@@ -172,15 +232,35 @@ const AddTeam = () => {
     getData();
   };
 
-
-
-  const handleChange = (event) => {
+  const handleChangeTeamOne = (event) => {
     const id = event.currentTarget.getAttribute("playerid");
     const name = event.currentTarget.getAttribute("name");
     const selection = event.currentTarget.getAttribute("selection");
     const selectionid = event.currentTarget.getAttribute("selectionid");
-    setSelections({
-      ...selections,
+    setTeamOne({
+      ...teamOne,
+      [selection]: name,
+      [selectionid]: id,
+    });
+  };
+  const handleChangeTeamTwo = (event) => {
+    const id = event.currentTarget.getAttribute("playerid");
+    const name = event.currentTarget.getAttribute("name");
+    const selection = event.currentTarget.getAttribute("selection");
+    const selectionid = event.currentTarget.getAttribute("selectionid");
+    setTeamTwo({
+      ...teamTwo,
+      [selection]: name,
+      [selectionid]: id,
+    });
+  };
+  const handleChangeTeamThree = (event) => {
+    const id = event.currentTarget.getAttribute("playerid");
+    const name = event.currentTarget.getAttribute("name");
+    const selection = event.currentTarget.getAttribute("selection");
+    const selectionid = event.currentTarget.getAttribute("selectionid");
+    setTeamThree({
+      ...teamThree,
       [selection]: name,
       [selectionid]: id,
     });
@@ -206,9 +286,94 @@ const AddTeam = () => {
     hidePostalCode: true,
   };
 
+  console.log(teamOne);
+  console.log(teamTwo);
+  console.log(teamThree);
+
   if (loading) {
     return <Spinner></Spinner>;
   }
+
+  const displayTeams = () => {
+    if (teamCount === 1) {
+      return (
+        <Grid item xs={12}>
+          <TeamForm
+            selections={teamOne}
+            teamCount={teamCount}
+            setTeamCount={setTeamCount}
+            setSelections={setTeamOne}
+            data={sortedData}
+            handleChange={handleChangeTeamOne}
+          ></TeamForm>
+        </Grid>
+      );
+    } else if (teamCount === 2) {
+      return (
+        <>
+          <Grid item xs={12} sm={6}>
+            <TeamForm
+              selections={teamOne}
+              teamCount={teamCount}
+              setTeamCount={setTeamCount}
+              setSelections={setTeamOne}
+              data={sortedData}
+              handleChange={handleChangeTeamOne}
+            ></TeamForm>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TeamForm
+              selections={teamTwo}
+              teamCount={teamCount}
+              setTeamCount={setTeamCount}
+              setSelections={setTeamTwo}
+              data={sortedData}
+              handleChange={handleChangeTeamTwo}
+            ></TeamForm>
+          </Grid>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Grid item xs={12} sm={4}>
+            <TeamForm
+              selections={teamOne}
+              teamCount={teamCount}
+              setTeamCount={setTeamCount}
+              setSelections={setTeamOne}
+              data={sortedData}
+              handleChange={handleChangeTeamOne}
+              number={1}
+            ></TeamForm>{" "}
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TeamForm
+              selections={teamTwo}
+              teamCount={teamCount}
+              setTeamCount={setTeamCount}
+              setSelections={setTeamTwo}
+              data={sortedData}
+              handleChange={handleChangeTeamTwo}
+              number={2}
+            ></TeamForm>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            {" "}
+            <TeamForm
+              selections={teamThree}
+              teamCount={teamCount}
+              setTeamCount={setTeamCount}
+              setSelections={setTeamThree}
+              data={sortedData}
+              handleChange={handleChangeTeamThree}
+              number={3}
+            ></TeamForm>
+          </Grid>
+        </>
+      );
+    }
+  };
   return (
     <>
       <Container component="main" maxWidth="md">
@@ -220,108 +385,24 @@ const AddTeam = () => {
           <Typography component="h1" variant="h5">
             Add Team
           </Typography>
+          {teamCount <= 2 ? (
+            <Button
+              onClick={() => setTeamCount((teamCount) => teamCount + 1)}
+              color="default"
+              variant="contained"
+            >
+              Add another Team
+            </Button>
+          ) : (
+            ""
+          )}
+
           {error && <Alert severity="error">{error}</Alert>}
 
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel htmlFor="golferOne">Selection 1</InputLabel>
+              {displayTeams()}
 
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={selections.selectionOne}
-                    onChange={handleChange}
-                    inputProps={{
-                      name: "selectionOne",
-                      id: "age-native-simple",
-                    }}
-                  >
-                    <MenuItem></MenuItem>
-                    {sortedData &&
-                      sortedData.map((p) => {
-                        const name = `${p.first_name} ${p.last_name}`;
-                        return (
-                          <MenuItem
-                            value={name}
-                            name={name}
-                            key={p.player_id}
-                            playerid={p.player_id}
-                            selection="selectionOne"
-                            selectionid="selectionOneId"
-                          >{`${p.last_name.toUpperCase()}, ${
-                            p.first_name
-                          }`}</MenuItem>
-                        );
-                      })}
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel htmlFor="golferTwo">Selection 2</InputLabel>
-
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={selections.selectionTwo}
-                    onChange={handleChange}
-                    inputProps={{
-                      name: "selectionTwo",
-                      id: "age-native-simple",
-                    }}
-                  >
-                    <MenuItem></MenuItem>
-                    {sortedData.map((p) => {
-                      const name = `${p.first_name} ${p.last_name}`;
-                      return (
-                        <MenuItem
-                          value={name}
-                          name={name}
-                          playerid={p.player_id}
-                          selection="selectionTwo"
-                          selectionid="selectionTwoId"
-                        >{`${p.last_name.toUpperCase()}, ${
-                          p.first_name
-                        }`}</MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel htmlFor="golferThree">Selection 3</InputLabel>
-
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={selections.selectionThree}
-                    onChange={handleChange}
-                    inputProps={{
-                      name: "selectionThree",
-                      id: "age-native-simple",
-                    }}
-                  >
-                    <MenuItem></MenuItem>
-                    {sortedData.map((p) => {
-                      const name = `${p.first_name} ${p.last_name}`;
-                      return (
-                        <MenuItem
-                          value={name}
-                          name={name}
-                          playerid={p.player_id}
-                          selection="selectionThree"
-                          selectionid="selectionThreeId"
-                        >{`${p.last_name.toUpperCase()}, ${
-                          p.first_name
-                        }`}</MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </Grid>
               <Grid item xs={12}>
                 <p>{checkoutErrorMessage}</p>
               </Grid>

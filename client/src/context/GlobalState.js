@@ -17,7 +17,9 @@ const initialState = {
   data: [],
   loading: true,
   updated: "",
-  selections: [{ selectionOne: "", selectionTwo: "", selectionThree: "" }],
+  selections: [
+    { selectionOneID: "", selectionTwoID: "", selectionThreeID: "" },
+  ],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -36,7 +38,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/219`,
+      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/220`,
       requestOptions
     );
     dispatch({
@@ -58,7 +60,7 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  const getUser = async(email) => {
+  const getUser = async (email) => {
     setLoading();
     const user = await state.users.filter((u) => u.email === email);
     console.log("got single user");

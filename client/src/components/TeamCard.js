@@ -31,27 +31,51 @@ export default function TeamCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} style={{background: theme.palette.secondary.main}} variant="outlined">
+    <Card
+      className={classes.root}
+      style={{ background: theme.palette.secondary.main }}
+      variant="outlined"
+    >
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={8}>
-            {`${props.selections.golferOne.last_name} ${props.selections.golferOne.first_name} `}{" "}
+            <b>{`${props.selections.golferOne.last_name.toUpperCase()}`}</b>,{" "}
+            {props.selections.golferOne.first_name}
           </Grid>
           <Grid item xs={4}>
-            {props.selections.golferOne.total_to_par}
+            {props.selections.golferOne.total_to_par > 0
+              ? `+${props.selections.golferOne.total_to_par}`
+              : props.selections.golferOne.total_to_par}
           </Grid>
           <br></br>
           <Grid item xs={8}>
-            {`${props.selections.golferTwo.last_name} ${props.selections.golferTwo.first_name} `}{" "}
+            <b>{`${props.selections.golferTwo.last_name.toUpperCase()}`}</b>,{" "}
+            {props.selections.golferTwo.first_name}
           </Grid>
           <Grid item xs={4}>
-            {props.selections.golferTwo.total_to_par}
+            {props.selections.golferTwo.total_to_par > 0
+              ? `+${props.selections.golferTwo.total_to_par}`
+              : props.selections.golferTwo.total_to_par}
           </Grid>
           <Grid item xs={8}>
-            {`${props.selections.golferThree.last_name} ${props.selections.golferThree.first_name} `}{" "}
+            <b>{`${props.selections.golferThree.last_name.toUpperCase()}`}</b>,{" "}
+            {props.selections.golferThree.first_name}
           </Grid>
           <Grid item xs={4}>
-            {props.selections.golferThree.total_to_par}
+            {props.selections.golferThree.total_to_par > 0
+              ? `+${props.selections.golferThree.total_to_par}`
+              : props.selections.golferThree.total_to_par}
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant='h6'>Total Score:{" "}
+            {(props.selections.golferOne.total_to_par +
+              props.selections.golferTwo.total_to_par +
+              props.selections.golferThree.total_to_par) > 0 ? `+${props.selections.golferOne.total_to_par +
+                props.selections.golferTwo.total_to_par +
+                props.selections.golferThree.total_to_par}`: props.selections.golferOne.total_to_par +
+                props.selections.golferTwo.total_to_par +
+                props.selections.golferThree.total_to_par }</Typography>
+            
           </Grid>
         </Grid>
         {/* <Typography

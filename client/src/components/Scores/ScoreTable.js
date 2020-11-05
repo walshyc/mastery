@@ -8,9 +8,10 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Hidden, useTheme } from "@material-ui/core";
 import PersonSharpIcon from "@material-ui/icons/PersonSharp";
-import { GlobalContext } from "../context/GlobalState";
-import Row from "./Row";
-import Spinner from "./layout/Spinner";
+import { GlobalContext } from "../../context/GlobalState";
+import Row from "../Row";
+
+import Spinner from "../layout/Spinner";
 import { makeStyles } from "@material-ui/core/styles";
 
 const ScoreTable = () => {
