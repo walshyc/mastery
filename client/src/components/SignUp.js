@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-  const { addUser, getUser } = useContext(GlobalContext);
+  const { addUser } = useContext(GlobalContext);
   const classes = useStyles();
   const nameRef = useRef();
   const emailFormRef = useRef();
@@ -58,7 +58,7 @@ export default function SignUp() {
   const passwordConfirmRef = useRef();
   const [error, setError] = useState("");
 
-  const { signUp, currentUser, logout } = useAuth();
+  const { signUp, logout } = useAuth();
   const history = useHistory();
 
   const handleSubmit = async (e) => {
@@ -66,8 +66,6 @@ export default function SignUp() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match!");
     }
-    console.log(emailFormRef.current.value);
-    console.log(passwordRef.current.value);
     try {
       addUser(nameRef.current.value, emailFormRef.current.value);
       await signUp(emailFormRef.current.value, passwordRef.current.value);
@@ -81,9 +79,8 @@ export default function SignUp() {
       }
     }
   };
-  if (currentUser) {
-    history.push("/account");
-  }
+
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

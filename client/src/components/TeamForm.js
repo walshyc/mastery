@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -7,7 +7,6 @@ import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -43,7 +42,6 @@ const TeamForm = (props) => {
     setSelections,
     data,
     handleChange,
-    number,
     teamCount,
     setTeamCount,
   } = props;

@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 // import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 import TeamCard from "./TeamCard";
-import { Link as RouterLink, useHistory, withRouter } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Typography from "@material-ui/core/Typography";
 import { GlobalContext } from "../context/GlobalState";
@@ -16,14 +16,12 @@ import Grid from "@material-ui/core/Grid";
 
 const Account = () => {
   const [error, setError] = useState("");
-  const [update, setUpdate] = useState(false);
   const { currentUser, logout } = useAuth();
   const history = useHistory();
   const {
     loggedInUser,
     loading,
     removeUser,
-    setLoading,
     getUser,
     getUsers,
     users,
@@ -63,9 +61,10 @@ const Account = () => {
       users[arrayIndex].selections.length,
   ]);
 
-  if (loading) {
+  if (loading || !loggedInUser) {
     return <Spinner></Spinner>;
   }
+
 
   return (
     <div>

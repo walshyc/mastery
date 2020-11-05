@@ -6,7 +6,6 @@ import {
   GET_USER,
   REMOVE_USER,
   SET_LOADING,
-  UPDATED,
 } from "./Types";
 import axios from "axios";
 import { db, firebase } from "../firebase";
@@ -52,8 +51,6 @@ export const GlobalProvider = ({ children }) => {
     const snapshot = await db.collection("users").get();
 
     const res = snapshot.docs.map((doc) => doc.data());
-    console.log("got single user");
-    console.log("got users");
     dispatch({
       type: GET_USERS,
       payload: res,
@@ -63,7 +60,6 @@ export const GlobalProvider = ({ children }) => {
   const getUser = async (email) => {
     setLoading();
     const user = await state.users.filter((u) => u.email === email);
-    console.log("got single user");
     dispatch({
       type: GET_USER,
       payload: user,

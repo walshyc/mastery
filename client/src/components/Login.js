@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,7 +13,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "../context/AuthContext";
-import Alert from "@material-ui/lab/Alert";
 import { GlobalContext } from "../context/GlobalState";
 
 function Copyright() {
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-  const { getScoreData, getUsers, getUser, setLoading, loading } = useContext(
+  const { getScoreData, getUsers, getUser, } = useContext(
     GlobalContext
   );
   const classes = useStyles();
@@ -64,21 +63,23 @@ export default function Login() {
   useEffect(() => {
     getScoreData();
     getUsers();
-     if (currentUser) {
+     
+    // eslint-disable-next-line
+  }, []);
+if (currentUser) {
        getUser(currentUser.email);
        history.push("/account");
      }
-    // eslint-disable-next-line
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
        const email = emailFormRef.current.value;
        getUser(email);
       await login(emailFormRef.current.value, passwordRef.current.value);
-
-      history.push("/account");
+      if (currentUser) {
+        getUser(currentUser.email);
+        history.push("/account");
+      }
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
        console.log("Account already exits with this email address");

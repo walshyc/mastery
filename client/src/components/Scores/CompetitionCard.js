@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -7,11 +7,8 @@ import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import Typography from "@material-ui/core/Typography";
 import GolfCourseIcon from "@material-ui/icons/GolfCourse";
 import PublicIcon from "@material-ui/icons/Public";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
-import { Grid } from "@material-ui/core";
 import { GlobalContext } from "../../context/GlobalState";
 import masters from "../../static/images/masters.png";
-import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
 export default function CompetitionCard() {
   const { data } = useContext(GlobalContext);
   const classes = useStyles();
-  const theme = useTheme();
+
   console.log(data.results.tournament);
-  const { country, course, name, prize_fund } = data.results.tournament;
-  const { players, current_round } = data.results.tournament.live_details;
+  const { country, course, name,} = data.results.tournament;
+  const { current_round } = data.results.tournament.live_details;
 
   const checkRound = () => {
     switch (current_round) {

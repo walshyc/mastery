@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
-  const {removeUser, getUser, getUsers, loggedInUser, getScoreData} = useContext(GlobalContext)
+  const {removeUser, getUsers, getScoreData} = useContext(GlobalContext)
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
   const history = useHistory();

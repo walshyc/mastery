@@ -55,7 +55,6 @@ function App() {
 
   // const classes = useStyles();
 
-  const { loading } = useContext(GlobalContext);
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY_PUB);
   stripePromise.then((data) => console.log(data));
 
@@ -70,8 +69,8 @@ function App() {
                 <Container maxWidth="md" disableGutters={true}>
                   <Switch>
                     <Route exact path="/" component={Hero}></Route>
-                    <Route exact path="/account" component={Account}></Route>
-                    <Route exact path="/add-team" component={AddTeam}></Route>
+                    <PrivateRoute exact path="/account" component={Account}></PrivateRoute>
+                    <PrivateRoute exact path="/add-team" component={AddTeam}></PrivateRoute>
                     <Route exact path="/scores" component={ScoreContent}></Route>
                     <Route exact path="/signup" component={SignUp}></Route>
                     <Route exact path="/login" component={Login}></Route>
