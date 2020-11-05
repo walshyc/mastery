@@ -23,11 +23,18 @@ const CheckoutForm =() => {
         body: JSON.stringify({items: [{ id: "xl-tshirt" }]})
       })
       .then(res => {
+       // console.log(res.json)
         return res.json();
       })
       .then(data => {
+        console.log(data)
         setClientSecret(data.clientSecret);
+        
+      }).catch(err => {
+        console.log(err)
       });
+      
+      
   }, []);
   const cardStyle = {
     style: {
@@ -91,7 +98,7 @@ const CheckoutForm =() => {
         </div>
       )}
       {/* Show a success message upon completion */}
-      <p className={succeeded ? "result-message" : "result-message hidden"}>
+      {/* <p className={succeeded ? "result-message" : "result-message hidden"}>
         Payment succeeded, see the result in your
         <a
           href={`https://dashboard.stripe.com/test/payments`}
@@ -99,7 +106,7 @@ const CheckoutForm =() => {
           {" "}
           Stripe dashboard.
         </a> Refresh the page to pay again.
-      </p>
+      </p> */}
     </form>
   );
 }

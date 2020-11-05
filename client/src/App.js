@@ -56,16 +56,15 @@ function App() {
   // const classes = useStyles();
 
   const { loading } = useContext(GlobalContext);
-  const stripePromise = loadStripe(
-    process.env.REACT_APP_STRIPE_API_KEY_PUB
-  );
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY_PUB);
+  stripePromise.then((data) => console.log(data));
 
   return (
-    <GlobalProvider>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <AuthProvider>
-            <Elements stripe={stripePromise}>
+    <Elements stripe={stripePromise}>
+      <GlobalProvider>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <AuthProvider>
               <div className="App">
                 <Navbar></Navbar>
                 <Container maxWidth="md" disableGutters={true}>
@@ -84,11 +83,11 @@ function App() {
                   </Switch>
                 </Container>
               </div>
-            </Elements>
-          </AuthProvider>
-        </Router>
-      </ThemeProvider>
-    </GlobalProvider>
+            </AuthProvider>
+          </Router>
+        </ThemeProvider>
+      </GlobalProvider>
+    </Elements>
   );
 }
 

@@ -16,6 +16,9 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { GlobalContext } from "../context/GlobalState";
 import CheckoutForm from "./Stripe/CheckoutForm";
+import Spinner from "./layout/Spinner";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -46,49 +49,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddTeam = () => {
-  const { data, addSelections, getUser, getUsers, getScoreData } = useContext(
-    GlobalContext
-  );
+  const {
+    data,
+    addSelections,
+    getUser,
+    getUsers,
+    getScoreData,
+    loading,
+    loggedInUser,
+  } = useContext(GlobalContext);
   const classes = useStyles();
+
   const [error, setError] = useState("");
-
-  const { currentUser } = useAuth();
-  const history = useHistory();
-  const sortedData = data.results.leaderboard.sort(function (a, b) {
-    var nameA = a.last_name.toLowerCase(),
-      nameB = b.last_name.toLowerCase();
-    if (nameA < nameB)
-      //sort string ascending
-      return -1;
-    if (nameA > nameB) return 1;
-    return 0; //default return value (no sorting)
-  });
-  console.log(currentUser.email);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    try {
-      addSelections(
-        currentUser.email,
-        state.selectionOne,
-        state.selectionOneId,
-        state.selectionTwo,
-        state.selectionTwoId,
-        state.selectionThree,
-        state.selectionThreeId
-      );
-      const getData = async () => {
-        await getUsers().then(getUser(currentUser.email));
-        history.push("/account");
-      };
-      getData();
-    } catch (err) {
-      setError("Could not add your team");
-      console.log(err);
-    }
-  };
-
-  const [state, setState] = React.useState({
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [checkoutErrorMessage, setCheckoutErrorMessage] = useState("");
+  const [selections, setSelections] = useState({
     selectionOne: "",
     selectionTwo: "",
     selectionThree: "",
@@ -97,20 +72,145 @@ const AddTeam = () => {
     selectionThreeId: "",
   });
 
+  const stripe = useStripe();
+  const element = useElements();
+
+  const { currentUser } = useAuth();
+  const history = useHistory();
+  const amount = 500;
+
+  useEffect(() => {
+    getScoreData();
+    const getData = async () => {
+      await getUsers();
+    };
+    getData();
+    // eslint-disable-next-line
+  }, [data.length]);
+
+  let sortedData = [];
+  if (data) {
+    sortedData = data.results.leaderboard.sort(function (a, b) {
+      var nameA = a.last_name.toLowerCase(),
+        nameB = b.last_name.toLowerCase();
+      if (nameA < nameB)
+        //sort string ascending
+        return -1;
+      if (nameA > nameB) return 1;
+      return 0; //default return value (no sorting)
+    });
+  }
+
+  const handleStripeChange = (e) => {
+    if (e.error) {
+      return setCheckoutErrorMessage(e.error.message);
+    }
+    setCheckoutErrorMessage("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsProcessing(true);
+    const cardElement = element.getElement("card");
+
+    const custInfo = { name: loggedInUser.name, email: loggedInUser.email };
+    try {
+      const paymentIntent = await axios.post("http://localhost:5000/payment", {
+        amount: amount,
+      });
+
+      // Create payment method object
+      const paymentMethodObj = await stripe.createPaymentMethod({
+        type: "card",
+        card: cardElement,
+        billing_details: custInfo,
+      });
+
+      if (paymentMethodObj.error) {
+        setCheckoutErrorMessage(paymentMethodObj.error.message);
+        setIsProcessing(false);
+        return;
+      }
+
+      // Confirm the payment
+      const confirmPayment = await stripe.confirmCardPayment(
+        paymentIntent.data,
+        {
+          payment_method: paymentMethodObj.paymentMethod.id,
+        }
+      );
+
+      if (confirmPayment.error) {
+        setCheckoutErrorMessage(confirmPayment.error.message);
+        setIsProcessing(false);
+        return;
+      }
+    } catch (err) {
+      setCheckoutErrorMessage(err.message);
+      setIsProcessing(false);
+    }
+
+    try {
+      addSelections(
+        currentUser.email,
+        selections.selectionOne,
+        selections.selectionOneId,
+        selections.selectionTwo,
+        selections.selectionTwoId,
+        selections.selectionThree,
+        selections.selectionThreeId
+      );
+    } catch (err) {
+      setError("Could not add your team");
+      console.log(err);
+    }
+    const getData = async () => {
+      await getUsers().then(getUser(currentUser.email));
+      history.push("/account");
+    };
+    getData();
+  };
+
+
+
   const handleChange = (event) => {
     const id = event.currentTarget.getAttribute("playerid");
     const name = event.currentTarget.getAttribute("name");
     const selection = event.currentTarget.getAttribute("selection");
     const selectionid = event.currentTarget.getAttribute("selectionid");
-    setState({
-      ...state,
+    setSelections({
+      ...selections,
       [selection]: name,
       [selectionid]: id,
     });
   };
+  const cardStyle = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: "Arial, sans-serif",
+        fontSmoothing: "antialiased",
+        fontSize: "20px",
+        "::placeholder": {
+          color: "#32325d",
+        },
+        // width: "100%",
+        // height: "100%",
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a",
+      },
+    },
+    hidePostalCode: true,
+  };
+
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <>
-
       <Container component="main" maxWidth="md">
         <CssBaseline />
         <div className={classes.paper}>
@@ -131,7 +231,7 @@ const AddTeam = () => {
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={state.selectionOne}
+                    value={selections.selectionOne}
                     onChange={handleChange}
                     inputProps={{
                       name: "selectionOne",
@@ -139,21 +239,22 @@ const AddTeam = () => {
                     }}
                   >
                     <MenuItem></MenuItem>
-                    {sortedData.map((p) => {
-                      const name = `${p.first_name} ${p.last_name}`;
-                      return (
-                        <MenuItem
-                          value={name}
-                          name={name}
-                          key={p.player_id}
-                          playerid={p.player_id}
-                          selection="selectionOne"
-                          selectionid="selectionOneId"
-                        >{`${p.last_name.toUpperCase()}, ${
-                          p.first_name
-                        }`}</MenuItem>
-                      );
-                    })}
+                    {sortedData &&
+                      sortedData.map((p) => {
+                        const name = `${p.first_name} ${p.last_name}`;
+                        return (
+                          <MenuItem
+                            value={name}
+                            name={name}
+                            key={p.player_id}
+                            playerid={p.player_id}
+                            selection="selectionOne"
+                            selectionid="selectionOneId"
+                          >{`${p.last_name.toUpperCase()}, ${
+                            p.first_name
+                          }`}</MenuItem>
+                        );
+                      })}
                   </Select>
                 </FormControl>
               </Grid>
@@ -164,7 +265,7 @@ const AddTeam = () => {
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={state.selectionTwo}
+                    value={selections.selectionTwo}
                     onChange={handleChange}
                     inputProps={{
                       name: "selectionTwo",
@@ -196,7 +297,7 @@ const AddTeam = () => {
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={state.selectionThree}
+                    value={selections.selectionThree}
                     onChange={handleChange}
                     inputProps={{
                       name: "selectionThree",
@@ -221,19 +322,29 @@ const AddTeam = () => {
                   </Select>
                 </FormControl>
               </Grid>
+              <Grid item xs={12}>
+                <p>{checkoutErrorMessage}</p>
+              </Grid>
+              <Grid item xs={12}>
+                <CardElement
+                  id="card-element"
+                  options={cardStyle}
+                  onChange={handleStripeChange}
+                />
+              </Grid>
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
+              disabled={isProcessing}
               className={classes.submit}
             >
-              Submit Team
+              {!isProcessing ? "Pay" : "Processing"}
             </Button>
           </form>
-        </div>      
-        {/* <CheckoutForm></CheckoutForm> */}
+        </div>
       </Container>
     </>
   );
