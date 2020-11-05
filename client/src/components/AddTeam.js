@@ -10,12 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "../context/AuthContext";
 import Alert from "@material-ui/lab/Alert";
-import MenuItem from "@material-ui/core/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import { GlobalContext } from "../context/GlobalState";
-import CheckoutForm from "./Stripe/CheckoutForm";
 import Spinner from "./layout/Spinner";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
@@ -140,7 +135,7 @@ const AddTeam = () => {
 
     const custInfo = { name: loggedInUser.name, email: loggedInUser.email };
     try {
-      const paymentIntent = await axios.post("http://localhost:5000/payment", {
+      const paymentIntent = await axios.post("https://stormy-hamlet-50511.herokuapp.com/payment", {
         amount: amount,
       });
 
@@ -173,6 +168,7 @@ const AddTeam = () => {
     } catch (err) {
       setCheckoutErrorMessage(err.message);
       setIsProcessing(false);
+      console.log(err.message)
     }
 
     try {
