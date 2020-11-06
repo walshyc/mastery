@@ -60,26 +60,42 @@ const Row = (props) => {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell style={{fontWeight:'bold'}}>Selection</TableCell>
-                    <TableCell style={{fontWeight:'bold'}}>Played</TableCell>
-                    <TableCell style={{fontWeight:'bold'}}>Score</TableCell>
+                    <TableCell style={{ fontWeight: "bold" }}>Pos.</TableCell>
+                    <TableCell style={{ fontWeight: "bold" }}>
+                      Selection
+                    </TableCell>
+                    <TableCell style={{ fontWeight: "bold" }}>Score</TableCell>
+                    <TableCell style={{ fontWeight: "bold" }}>Played</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.detail.map((detailRow) => (
-                    <TableRow key={detailRow.player_id}>
-                      <TableCell component="th" scope="row">
-                        <b>{detailRow.last_name.toUpperCase()}</b>
-                        {`, ${detailRow.first_name}`}
-                      </TableCell>
-                      <TableCell>{detailRow.holes_played}</TableCell>
-                      <TableCell>
-                        {detailRow.total_to_par > 0
-                          ? `+${detailRow.total_to_par}`
-                          : detailRow.total_to_par}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {row.detail
+                    .sort((a, b) => {
+                      if (a.position > b.position) {
+                        return 1;
+                      } else {
+                        return -1;
+                      }
+                    })
+                    .map((detailRow) => (
+                      <TableRow key={detailRow.player_id}>
+                        <TableCell width="10%" component="th" scope="row">
+                          <b>{detailRow.position}</b>
+                        </TableCell>
+                        <TableCell width="70%" component="th" scope="row">
+                          <b>{detailRow.last_name.toUpperCase()}</b>
+                          {`, ${detailRow.first_name}`}
+                        </TableCell>
+                        <TableCell width="10%">
+                          {detailRow.total_to_par > 0
+                            ? `+${detailRow.total_to_par}`
+                            : detailRow.total_to_par}
+                        </TableCell>
+                        <TableCell width="10%">
+                          {detailRow.holes_played}
+                        </TableCell>
+                      </TableRow>
+                    ))}
                 </TableBody>
               </Table>
             </Box>

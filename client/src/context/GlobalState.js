@@ -115,6 +115,11 @@ export const GlobalProvider = ({ children }) => {
     return player;
   };
 
+  const calculateTeamScore = async () => {
+    await getScoreData()
+    
+  }
+
   const addSelections = async (
     email,
     golferOne,
