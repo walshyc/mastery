@@ -122,7 +122,7 @@ export const GlobalProvider = ({ children }) => {
     golferTwo,
     golferTwoID,
     golferThree,
-    golferThreeID
+    golferThreeID,
   ) => {
     setLoading();
     await db

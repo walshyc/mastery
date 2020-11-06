@@ -70,7 +70,7 @@ const Hero = () => {
           color="textPrimary"
           gutterBottom
         >
-          Headline
+          Mastery
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
           The Masters - The greatest golf tournament in the world...

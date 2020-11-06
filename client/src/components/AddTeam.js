@@ -61,6 +61,7 @@ const AddTeam = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [checkoutErrorMessage, setCheckoutErrorMessage] = useState("");
   const [teamCount, setTeamCount] = useState(1);
+  const [showPay, setShowPay] = useState(true);
   const [teamOne, setTeamOne] = useState({
     selectionOne: "",
     selectionTwo: "",
@@ -103,9 +104,9 @@ const AddTeam = () => {
   const wr = worldRankings.results.rankings;
   const compPlayers = data.results.leaderboard;
 
-   const playersArray = wr.filter((a) =>
-  compPlayers.some((b) => a.player_id === b.player_id)
-);
+  const playersArray = wr.filter((a) =>
+    compPlayers.some((b) => a.player_id === b.player_id)
+  );
   if (data) {
     // sortedData = data.results.leaderboard.sort(function (a, b) {
     //   let nameA = a.last_name.toLowerCase(),
@@ -116,6 +117,35 @@ const AddTeam = () => {
     //   if (nameA > nameB) return 1;
     //   return 0; //default return value (no sorting)
     // });
+  }
+  let enableButton;
+  if (teamCount === 1) {
+    enableButton = !(
+      teamOne.selectionOne &&
+      teamOne.selectionTwo &&
+      teamOne.selectionThree
+    );
+  } else if (teamCount === 2) {
+    enableButton = !(
+      teamOne.selectionOne &&
+      teamOne.selectionTwo &&
+      teamOne.selectionThree &&
+      teamTwo.selectionOne &&
+      teamTwo.selectionTwo &&
+      teamTwo.selectionThree
+    );
+  } else {
+    enableButton = !(
+      teamOne.selectionOne &&
+      teamOne.selectionTwo &&
+      teamOne.selectionThree &&
+      teamTwo.selectionOne &&
+      teamTwo.selectionTwo &&
+      teamTwo.selectionThree &&
+      teamThree.selectionOne &&
+      teamThree.selectionTwo &&
+      teamThree.selectionThree
+    );
   }
 
   const handleStripeChange = (e) => {
@@ -303,6 +333,7 @@ const AddTeam = () => {
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
             data={playersArray}
+            setShowPay={setShowPay}
             handleChange={handleChangeTeamOne}
           ></TeamForm>
         </Grid>
@@ -317,6 +348,7 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamOne}
               data={playersArray}
+              setShowPay={setShowPay}
               handleChange={handleChangeTeamOne}
             ></TeamForm>
           </Grid>
@@ -327,6 +359,7 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamTwo}
               data={playersArray}
+              setShowPay={setShowPay}
               handleChange={handleChangeTeamTwo}
             ></TeamForm>
           </Grid>
@@ -342,6 +375,7 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamOne}
               data={playersArray}
+              setShowPay={setShowPay}
               handleChange={handleChangeTeamOne}
               number={1}
             ></TeamForm>{" "}
@@ -353,6 +387,7 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamTwo}
               data={playersArray}
+              setShowPay={setShowPay}
               handleChange={handleChangeTeamTwo}
               number={2}
             ></TeamForm>
@@ -365,6 +400,7 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamThree}
               data={playersArray}
+              setShowPay={setShowPay}
               handleChange={handleChangeTeamThree}
               number={3}
             ></TeamForm>
@@ -418,7 +454,7 @@ const AddTeam = () => {
               fullWidth
               variant="contained"
               color="primary"
-              disabled={isProcessing}
+              disabled={isProcessing || enableButton}
               className={classes.submit}
             >
               {!isProcessing ? "Pay" : "Processing"}

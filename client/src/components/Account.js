@@ -81,7 +81,7 @@ const Account = () => {
           loggedInUser.selections &&
           loggedInUser.selections.map((s) => {
             return (
-              <Grid item xs={12} sm={6} md={4}>
+              <Grid key={s.golferTwo} item xs={12} sm={6} md={4}>
                 <TeamCard selections={s}></TeamCard>
               </Grid>
             );
