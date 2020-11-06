@@ -5,6 +5,7 @@ import {
   GET_USERS,
   GET_USER,
   REMOVE_USER,
+  GET_WORLD_RANKINGS,
   SET_LOADING,
 } from "./Types";
 import axios from "axios";
@@ -14,6 +15,7 @@ const initialState = {
   users: [],
   loggedInUser: {},
   data: [],
+  worldRankings: [],
   loading: true,
   updated: "",
   selections: [
@@ -45,11 +47,29 @@ export const GlobalProvider = ({ children }) => {
       payload: res.data,
     });
   };
+  const getWorldRankings = async () => {
+    setLoading();
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+      },
+    };
+
+    const res = await axios.get(
+      `https://golf-leaderboard-data.p.rapidapi.com/world-rankings`,
+      requestOptions
+    );
+    dispatch({
+      type: GET_WORLD_RANKINGS,
+      payload: res.data,
+    });
+  };
 
   const getUsers = async () => {
     setLoading();
     const snapshot = await db.collection("users").get();
-
     const res = snapshot.docs.map((doc) => doc.data());
     dispatch({
       type: GET_USERS,
@@ -86,6 +106,9 @@ export const GlobalProvider = ({ children }) => {
       payload: user,
     });
   };
+
+
+
   const matchSelection = (id) => {
     const leaderboard = state.data.results.leaderboard;
     const player = leaderboard.filter((p) => p.player_id === parseInt(id));
@@ -122,7 +145,6 @@ export const GlobalProvider = ({ children }) => {
         });
       });
 
-    setLoading();
     const snapshot = await db.collection("users").get();
 
     const res = snapshot.docs.map((doc) => doc.data());
@@ -141,6 +163,7 @@ export const GlobalProvider = ({ children }) => {
         users: state.users,
         loggedInUser: state.loggedInUser,
         data: state.data,
+        worldRankings: state.worldRankings,
         loading: state.loading,
         selections: state.selections,
         getScoreData,
@@ -148,6 +171,7 @@ export const GlobalProvider = ({ children }) => {
         getUsers,
         addUser,
         removeUser,
+        getWorldRankings,
         getUser,
         addSelections,
         matchSelection,

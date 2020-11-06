@@ -46,6 +46,8 @@ const TeamForm = (props) => {
     setTeamCount,
   } = props;
 
+  console.log();
+
   const classes = useStyles();
 
   const handleDeleteClick = (e) => {
@@ -82,7 +84,7 @@ const TeamForm = (props) => {
             <MenuItem></MenuItem>
             {data &&
               data.map((p) => {
-                const name = `${p.first_name} ${p.last_name}`;
+                const name = `${p.player_name}`;
                 return (
                   <MenuItem
                     value={name}
@@ -91,7 +93,9 @@ const TeamForm = (props) => {
                     playerid={p.player_id}
                     selection="selectionOne"
                     selectionid="selectionOneId"
-                  >{`${p.last_name.toUpperCase()}, ${p.first_name}`}</MenuItem>
+                  >
+                    {name}
+                  </MenuItem>
                 );
               })}
           </Select>
@@ -112,8 +116,8 @@ const TeamForm = (props) => {
             }}
           >
             <MenuItem></MenuItem>
-            {data.map((p) => {
-              const name = `${p.first_name} ${p.last_name}`;
+            {data.slice(Math.round((data.length + 1) / 3)).map((p) => {
+              const name = `${p.player_name}`;
               return (
                 <MenuItem
                   value={name}
@@ -121,7 +125,9 @@ const TeamForm = (props) => {
                   playerid={p.player_id}
                   selection="selectionTwo"
                   selectionid="selectionTwoId"
-                >{`${p.last_name.toUpperCase()}, ${p.first_name}`}</MenuItem>
+                >
+                  {name}
+                </MenuItem>
               );
             })}
           </Select>
@@ -142,8 +148,8 @@ const TeamForm = (props) => {
             }}
           >
             <MenuItem></MenuItem>
-            {data.map((p) => {
-              const name = `${p.first_name} ${p.last_name}`;
+            {data.slice(Math.round(((data.length + 1) * 2) / 3)).map((p) => {
+              const name = `${p.player_name}`;
               return (
                 <MenuItem
                   value={name}
@@ -151,11 +157,13 @@ const TeamForm = (props) => {
                   playerid={p.player_id}
                   selection="selectionThree"
                   selectionid="selectionThreeId"
-                >{`${p.last_name.toUpperCase()}, ${p.first_name}`}</MenuItem>
+                >
+                  {name}
+                </MenuItem>
               );
             })}
           </Select>
-          { teamCount >= 2 ? (
+          {teamCount >= 2 ? (
             <Button
               onClick={handleDeleteClick}
               color="default"

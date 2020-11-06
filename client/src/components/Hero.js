@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heroSecondaryBTN: {
     backgroundColor: theme.palette.third.main,
-    color: '#f0f0f0'
+    color: "#f0f0f0",
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -46,13 +46,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Hero = () => {
-  const { getScoreData, getUsers, getUser } = useContext(GlobalContext);
+  const {getUser, getWorldRankings } = useContext(
+    GlobalContext
+  );
   const { currentUser } = useAuth();
   useEffect(() => {
-    getScoreData();
-    getUsers();
-    if(currentUser){
-      getUser(currentUser.email)
+    // getScoreData();
+    // getUsers();
+    getWorldRankings()
+    if (currentUser) {
+      getUser(currentUser.email);
     }
     // eslint-disable-next-line
   }, []);
@@ -70,9 +73,7 @@ const Hero = () => {
           Headline
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
-          Something short and leading about the collection below—its contents,
-          the creator, etc. Make it short and sweet, but not too short so folks
-          don&apos;t simply skip over it entirely.
+          The Masters - The greatest golf tournament in the world...
         </Typography>
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
@@ -101,7 +102,6 @@ const Hero = () => {
             <Grid item>
               <Button
                 variant="outlined"
-                
                 className={`${classes.button} ${classes.heroSecondaryBTN}`}
                 component={RouterLink}
                 to="/scores"

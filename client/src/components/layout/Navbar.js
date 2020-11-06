@@ -15,7 +15,7 @@ import AccountBoxRoundedIcon from "@material-ui/icons/AccountBoxRounded";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginBottom: "25px",
+    //marginBottom: "25px",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
-  const {removeUser, getUsers, getScoreData} = useContext(GlobalContext)
+  const {removeUser, getUsers, getScoreData, getWorldRankings} = useContext(GlobalContext)
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
   const history = useHistory();
@@ -45,8 +45,10 @@ const Navbar = () => {
     }
   };
   useEffect(() => {
-    getScoreData()
-    getUsers();
+     getScoreData()
+     getUsers();
+     getWorldRankings()
+    console.log('loaded from nav')
     // if (currentUser) {
     //   getUser(currentUser.email);
     // }

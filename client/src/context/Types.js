@@ -1,4 +1,5 @@
 export const GET_SCORE_DATA = "GET_SCORE_DATA";
+export const GET_WORLD_RANKINGS = "GET_WORLD_RANKINGS";
 export const SET_LOADING = "SET_LOADING";
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";

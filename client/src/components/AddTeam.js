@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -53,6 +53,7 @@ const AddTeam = () => {
     getScoreData,
     loading,
     loggedInUser,
+    worldRankings,
   } = useContext(GlobalContext);
   const classes = useStyles();
 
@@ -99,18 +100,22 @@ const AddTeam = () => {
     getData();
     // eslint-disable-next-line
   }, [data.length]);
+  const wr = worldRankings.results.rankings;
+  const compPlayers = data.results.leaderboard;
 
-  let sortedData = [];
+   const playersArray = wr.filter((a) =>
+  compPlayers.some((b) => a.player_id === b.player_id)
+);
   if (data) {
-    sortedData = data.results.leaderboard.sort(function (a, b) {
-      var nameA = a.last_name.toLowerCase(),
-        nameB = b.last_name.toLowerCase();
-      if (nameA < nameB)
-        //sort string ascending
-        return -1;
-      if (nameA > nameB) return 1;
-      return 0; //default return value (no sorting)
-    });
+    // sortedData = data.results.leaderboard.sort(function (a, b) {
+    //   let nameA = a.last_name.toLowerCase(),
+    //     nameB = b.last_name.toLowerCase();
+    //   if (nameA < nameB)
+    //     //sort string ascending
+    //     return -1;
+    //   if (nameA > nameB) return 1;
+    //   return 0; //default return value (no sorting)
+    // });
   }
 
   const handleStripeChange = (e) => {
@@ -119,7 +124,6 @@ const AddTeam = () => {
     }
     setCheckoutErrorMessage("");
   };
-  console.log(teamCount);
   const handleSubmit = async (e) => {
     e.preventDefault();
     let amount;
@@ -135,9 +139,12 @@ const AddTeam = () => {
 
     const custInfo = { name: loggedInUser.name, email: loggedInUser.email };
     try {
-      const paymentIntent = await axios.post("https://stormy-hamlet-50511.herokuapp.com/payment", {
-        amount: amount,
-      });
+      const paymentIntent = await axios.post(
+        "https://stormy-hamlet-50511.herokuapp.com/payment",
+        {
+          amount: amount,
+        }
+      );
 
       // Create payment method object
       const paymentMethodObj = await stripe.createPaymentMethod({
@@ -168,7 +175,7 @@ const AddTeam = () => {
     } catch (err) {
       setCheckoutErrorMessage(err.message);
       setIsProcessing(false);
-      console.log(err.message)
+      console.log(err.message);
     }
 
     try {
@@ -282,10 +289,6 @@ const AddTeam = () => {
     hidePostalCode: true,
   };
 
-  console.log(teamOne);
-  console.log(teamTwo);
-  console.log(teamThree);
-
   if (loading) {
     return <Spinner></Spinner>;
   }
@@ -299,7 +302,7 @@ const AddTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
-            data={sortedData}
+            data={playersArray}
             handleChange={handleChangeTeamOne}
           ></TeamForm>
         </Grid>
@@ -313,7 +316,7 @@ const AddTeam = () => {
               teamCount={teamCount}
               setTeamCount={setTeamCount}
               setSelections={setTeamOne}
-              data={sortedData}
+              data={playersArray}
               handleChange={handleChangeTeamOne}
             ></TeamForm>
           </Grid>
@@ -323,7 +326,7 @@ const AddTeam = () => {
               teamCount={teamCount}
               setTeamCount={setTeamCount}
               setSelections={setTeamTwo}
-              data={sortedData}
+              data={playersArray}
               handleChange={handleChangeTeamTwo}
             ></TeamForm>
           </Grid>
@@ -338,7 +341,7 @@ const AddTeam = () => {
               teamCount={teamCount}
               setTeamCount={setTeamCount}
               setSelections={setTeamOne}
-              data={sortedData}
+              data={playersArray}
               handleChange={handleChangeTeamOne}
               number={1}
             ></TeamForm>{" "}
@@ -349,7 +352,7 @@ const AddTeam = () => {
               teamCount={teamCount}
               setTeamCount={setTeamCount}
               setSelections={setTeamTwo}
-              data={sortedData}
+              data={playersArray}
               handleChange={handleChangeTeamTwo}
               number={2}
             ></TeamForm>
@@ -361,7 +364,7 @@ const AddTeam = () => {
               teamCount={teamCount}
               setTeamCount={setTeamCount}
               setSelections={setTeamThree}
-              data={sortedData}
+              data={playersArray}
               handleChange={handleChangeTeamThree}
               number={3}
             ></TeamForm>

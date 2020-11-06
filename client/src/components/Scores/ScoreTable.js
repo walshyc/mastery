@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -35,17 +35,11 @@ const ScoreTable = () => {
   const classes = useRowStyles();
   const {
     data,
-    getScoreData,
     loading,
-    getUsers,
     users,
     matchSelection,
   } = useContext(GlobalContext);
-  useEffect(() => {
-    getScoreData();
-    getUsers();
-    // eslint-disable-next-line
-  }, []);
+
   const createData = (
     name,
     golfer1,

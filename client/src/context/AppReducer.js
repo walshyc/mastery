@@ -1,10 +1,24 @@
-import { GET_SCORE_DATA, GET_USERS, SET_LOADING, GET_USER, REMOVE_USER, UPDATED } from "./Types";
+import {
+  GET_SCORE_DATA,
+  GET_USERS,
+  SET_LOADING,
+  GET_USER,
+  REMOVE_USER,
+  UPDATED,
+  GET_WORLD_RANKINGS,
+} from "./Types";
 const AppReducer = (state, action) => {
   switch (action.type) {
     case GET_SCORE_DATA:
       return {
         ...state,
         data: action.payload,
+        loading: false,
+      };
+    case GET_WORLD_RANKINGS:
+      return {
+        ...state,
+        worldRankings: action.payload,
         loading: false,
       };
     case GET_USERS:
@@ -16,7 +30,7 @@ const AppReducer = (state, action) => {
     case UPDATED:
       return {
         ...state,
-        updated: Math.floor((Math.random() * 100) + 1),
+        updated: Math.floor(Math.random() * 100 + 1),
         loading: false,
       };
     case GET_USER:
