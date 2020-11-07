@@ -42,39 +42,39 @@ export default function TeamCard(props) {
     >
       <CardContent className={classes.text}>
         <Grid container spacing={2}>
-          <Grid item xs={8}>
+          <Grid item xs={10}>
             <Typography variant="body1" align="left">
               <b>{`${props.selections.golferOne.last_name.toUpperCase()}`}</b>,{" "}
               {props.selections.golferOne.first_name}
             </Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             <Typography variant="body1" align="left">
               {props.selections.golferOne.total_to_par > 0
                 ? `+${props.selections.golferOne.total_to_par}`
                 : props.selections.golferOne.total_to_par}
             </Typography>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={10}>
             <Typography variant="body1" align="left">
               <b>{`${props.selections.golferTwo.last_name.toUpperCase()}`}</b>,{" "}
               {props.selections.golferTwo.first_name}
             </Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             <Typography variant="body1" align="left">
               {props.selections.golferTwo.total_to_par > 0
                 ? `+${props.selections.golferTwo.total_to_par}`
                 : props.selections.golferTwo.total_to_par}
             </Typography>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={10}>
             <Typography variant="body1" align="left">
               <b>{`${props.selections.golferThree.last_name.toUpperCase()}`}</b>
               , {props.selections.golferThree.first_name}
             </Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             <Typography variant="body1" align="left">
               {props.selections.golferThree.total_to_par > 0
                 ? `+${props.selections.golferThree.total_to_par}`
@@ -86,12 +86,12 @@ export default function TeamCard(props) {
             style={{ width: "100%", height: 2, marginLeft: "0" }}
           />
 
-          <Grid item xs={8}>
+          <Grid item xs={10}>
             <Typography variant="body1" align='left'>
               <b>Total</b>
             </Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             <Typography variant="body1" align='left'>
               {props.selections.golferOne.total_to_par +
                 props.selections.golferTwo.total_to_par +

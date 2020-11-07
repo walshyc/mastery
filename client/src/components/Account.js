@@ -124,7 +124,7 @@ const Account = () => {
         </Grid>
       </Grid>
 
-      <Grid container spacing={2}>
+      <Grid container >
         {loggedInUser &&
           loggedInUser.selections &&
           loggedInUser.selections.map((s) => {
@@ -136,8 +136,9 @@ const Account = () => {
                   s.golferThree.player_id
                 }
                 item
-                xs={12}
-                sm={6}
+                xs={11}
+                sm={5}
+                style={{margin: 15 }}
               >
                 <TeamCard selections={s}></TeamCard>
               </Grid>

@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 import { GlobalContext } from "../context/GlobalState";
 import { useAuth } from "../context/AuthContext";
 import masters from "../static/images/masters1.png";
+import Scoreboards from "./Scores/Scoreboards";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -18,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(rgba(236, 254, 246,.6), rgba(236, 254, 246,.7)), url(${masters})`,
     padding: theme.spacing(8, 0, 6),
     backgroundSize: "cover",
-    backgroundPosition: 'center'
-    
+    backgroundPosition: "center",
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -49,14 +49,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Hero = () => {
-  const {getUser, getWorldRankings } = useContext(
-    GlobalContext
-  );
+  const { getUser, getWorldRankings } = useContext(GlobalContext);
   const { currentUser } = useAuth();
   useEffect(() => {
     // getScoreData();
     // getUsers();
-    getWorldRankings()
+    getWorldRankings();
     if (currentUser) {
       getUser(currentUser.email);
     }
@@ -64,47 +62,59 @@ const Hero = () => {
   }, []);
   const classes = useStyles();
   return (
-    <div className={classes.heroContent}>
-      <Container className={classes.container} maxWidth="sm">
-        <Typography
-          component="h1"
-          variant="h2"
-          align="center"
-          color="textPrimary"
-          gutterBottom
-        >
-          Mastery
-        </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" paragraph>
-          The Masters - The greatest golf tournament in the world...
-        </Typography>
-        <div className={classes.heroButtons}>
-          <Grid container spacing={2} justify="center">
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                component={RouterLink}
-                to="/signup"
-              >
-                Create a Team
-              </Button>
+    <>
+      <div className={classes.heroContent}>
+        <Container className={classes.container} maxWidth="sm">
+          <Typography
+            component="h1"
+            variant="h2"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+          >
+            Mastery
+          </Typography>
+          <Typography
+            variant="h5"
+            align="center"
+            color="textSecondary"
+            paragraph
+          >
+            The Masters - The greatest golf tournament in the world...
+          </Typography>
+          <div className={classes.heroButtons}>
+            <Grid container spacing={2} justify="center">
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  component={RouterLink}
+                  to="/signup"
+                >
+                  Create a Team
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  className={`${classes.button} ${classes.heroSecondaryBTN}`}
+                  component={RouterLink}
+                  to="/scores"
+                >
+                  View Standings
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Button
-                variant="contained"
-                className={`${classes.button} ${classes.heroSecondaryBTN}`}
-                component={RouterLink}
-                to="/scores"
-              >
-                View Standings
-              </Button>
-            </Grid>
-          </Grid>
-        </div>
-      </Container>
-    </div>
+          </div>
+        </Container>
+      </div>
+      <Grid container>
+        <Grid item xs={12}>
+          <Scoreboards></Scoreboards>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 

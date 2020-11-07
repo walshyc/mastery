@@ -29,7 +29,7 @@ const Row = (props) => {
       <TableRow
         className={classes.root}
         style={
-          props.index % 2 ? { background: "#ecfef6" } : { background: "white" }
+          props.index % 2 ? { background: "#ecfef6" } : { background: "ffffff" }
         }
       >
         <TableCell>
@@ -64,8 +64,9 @@ const Row = (props) => {
                     <TableCell style={{ fontWeight: "bold" }}>
                       Selection
                     </TableCell>
-                    <TableCell style={{ fontWeight: "bold" }}>Score</TableCell>
                     <TableCell style={{ fontWeight: "bold" }}>Played</TableCell>
+                    <TableCell style={{ fontWeight: "bold" }}>Today</TableCell>
+                    <TableCell style={{ fontWeight: "bold" }}>Score</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -86,13 +87,19 @@ const Row = (props) => {
                           <b>{detailRow.last_name.toUpperCase()}</b>
                           {`, ${detailRow.first_name}`}
                         </TableCell>
+                        <TableCell width="10%" component="th" scope="row">
+                          <b>{detailRow.holes_played}</b>
+                        </TableCell>
                         <TableCell width="10%">
+                          {
+                            detailRow.rounds[detailRow.rounds.length - 1]
+                              .total_to_par
+                          }
+                        </TableCell>
+                        <TableCell style={{ fontWeight: "bold" }} width="10%">
                           {detailRow.total_to_par > 0
                             ? `+${detailRow.total_to_par}`
                             : detailRow.total_to_par}
-                        </TableCell>
-                        <TableCell width="10%">
-                          {detailRow.holes_played}
                         </TableCell>
                       </TableRow>
                     ))}

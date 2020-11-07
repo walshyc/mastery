@@ -5,14 +5,14 @@ import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
+import ListIcon from "@material-ui/icons/List";
+import MastersScoreboard from "../Scores/MastersScoreboard";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
-import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -20,7 +20,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import GolfCourseSharpIcon from "@material-ui/icons/GolfCourseSharp";
-import SportsGolfIcon from "@material-ui/icons/SportsGolf";
+import MenuIcon from "@material-ui/icons/Menu";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -32,7 +32,7 @@ import SignUp from "../Auth/SignUp";
 import ForgotPassword from "../Auth/ForgotPassword";
 import Account from "../../components/Account";
 import Hero from "../../components/Hero";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Login from "../Auth/Login";
 import PrivateRoute from "../../components/PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
   },
-  list : {
-      color: theme.palette.primary.light
+  list: {
+    color: theme.palette.primary.light,
   },
   appBar: {
     flexGrow: 1,
@@ -80,8 +80,9 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundImage: 'linear-gradient(to top, #3cba92 0%, #0ba360 100%)'
+    backgroundImage: "linear-gradient(to top, #3cba92 0%, #0ba360 100%)",
   },
+  email: { fontSize: "0.4rem" },
   content: {
     flexGrow: 1,
     //padding: theme.spacing(3),
@@ -123,7 +124,18 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar}>
+        <List className={classes.list}>
+          {currentUser ? (
+            <ListItem button component={RouterLink} to="/account">
+              <ListItemText className={classes.email} />
+              {`${currentUser.email}`}
+            </ListItem>
+          ) : (
+            ""
+          )}
+        </List>
+      </div>
 
       <Divider />
       <List className={classes.list}>
@@ -164,6 +176,15 @@ function ResponsiveDrawer(props) {
             </ListItem>
           </>
         )}
+        <Divider></Divider>
+        <ListItem>
+          <ListItemIcon className={classes.list}>
+            <ListIcon />
+          </ListItemIcon>
+          <ListItemText primary="Live Scoreboard" />
+        </ListItem>
+
+        <MastersScoreboard></MastersScoreboard>
       </List>
     </div>
   );
@@ -183,7 +204,7 @@ function ResponsiveDrawer(props) {
             aria-label="menu"
             onClick={handleDrawerToggle}
           >
-            <SportsGolfIcon />
+            <MenuIcon />
           </IconButton>
 
           <Typography
