@@ -1,19 +1,7 @@
 import { AuthProvider } from "./context/AuthContext";
-import Navbar from "./components/layout/Navbar";
-import ScoreContent from "./components/Scores/ScoreContent";
-import SignUp from "./components/SignUp";
-import ForgotPassword from "./components/ForgotPassword";
-import Account from "./components/Account";
-import Hero from "./components/Hero";
-import Login from "./components/Login";
-import PrivateRoute from "./components/PrivateRoute";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import Drawer from "./components/layout/Drawer";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { Container } from "@material-ui/core";
 import { GlobalProvider } from "./context/GlobalState";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import AddTeam from "./components/AddTeam";
@@ -22,17 +10,17 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
-
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: "#009B77",
+        main: "#0ba360",
+        light: '#ffffff'
       },
       secondary: {
-        main: "#ECFEF6",
+        main: "#202020",
       },
       third: {
-        main: "#033a22",
+        main: "#ffffff",
       },
     },
     typography: {
@@ -61,34 +49,7 @@ function App() {
           <Router>
             <AuthProvider>
               <div className="App">
-                <Navbar></Navbar>
-                <Container maxWidth="md" disableGutters={true}>
-                  <Switch>
-                    <Route exact path="/" component={Hero}></Route>
-                    <PrivateRoute
-                      exact
-                      path="/account"
-                      component={Account}
-                    ></PrivateRoute>
-                    <PrivateRoute
-                      exact
-                      path="/add-team"
-                      component={AddTeam}
-                    ></PrivateRoute>
-                    <Route
-                      exact
-                      path="/scores"
-                      component={ScoreContent}
-                    ></Route>
-                    <Route exact path="/signup" component={SignUp}></Route>
-                    <Route exact path="/login" component={Login}></Route>
-                    <Route
-                      exact
-                      path="/forgot-password"
-                      component={ForgotPassword}
-                    ></Route>
-                  </Switch>
-                </Container>
+                <Drawer></Drawer>
               </div>
             </AuthProvider>
           </Router>

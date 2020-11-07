@@ -11,6 +11,7 @@ import Container from "@material-ui/core/Container";
 import { useAuth } from "../context/AuthContext";
 import Alert from "@material-ui/lab/Alert";
 import { GlobalContext } from "../context/GlobalState";
+import GolfCourseIcon from "@material-ui/icons/GolfCourse";
 import Spinner from "./layout/Spinner";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
@@ -41,6 +42,15 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    background: "#ffffff",
+    color: theme.palette.primary.main,
+  },
+  stripe: {
+    padding: 15,
+    background: theme.palette.primary.main,
+    boxShadow:
+      "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
+    marginBottom: 20,
   },
 }));
 
@@ -301,12 +311,13 @@ const AddTeam = () => {
   const cardStyle = {
     style: {
       base: {
-        color: "#32325d",
+        color: "#ffffff",
+        background: "#0ba360",
         fontFamily: "Arial, sans-serif",
         fontSmoothing: "antialiased",
         fontSize: "20px",
         "::placeholder": {
-          color: "#32325d",
+          color: "#ffffff",
         },
         // width: "100%",
         // height: "100%",
@@ -415,32 +426,35 @@ const AddTeam = () => {
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <GolfCourseIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Add Team
           </Typography>
-          {teamCount <= 2 ? (
-            <Button
-              onClick={() => setTeamCount((teamCount) => teamCount + 1)}
-              color="default"
-              variant="contained"
-            >
-              Add another Team
-            </Button>
-          ) : (
-            ""
-          )}
 
           {error && <Alert severity="error">{error}</Alert>}
 
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               {displayTeams()}
-
+              <Grid item xs={12}>
+                {teamCount <= 2 ? (
+                  <Button
+                    onClick={() => setTeamCount((teamCount) => teamCount + 1)}
+                    color="default"
+                    variant="contained"
+                  >
+                    Add another Team
+                  </Button>
+                ) : (
+                  ""
+                )}
+              </Grid>
               <Grid item xs={12}>
                 <p>{checkoutErrorMessage}</p>
               </Grid>
+            </Grid>
+            <Grid container className={classes.stripe}>
               <Grid item xs={12}>
                 <CardElement
                   id="card-element"
@@ -448,17 +462,26 @@ const AddTeam = () => {
                   onChange={handleStripeChange}
                 />
               </Grid>
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                disabled={isProcessing || enableButton}
+                className={classes.submit}
+              >
+                {!isProcessing ? "Pay" : "Processing"}
+              </Button>
+              <Grid item xs={12}>
+                <Typography
+                  align="right"
+                  style={{ color: "#ffffff", fontSize: "0.7rem" }}
+                >
+                  Powered by Stripe
+                </Typography>
+              </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              disabled={isProcessing || enableButton}
-              className={classes.submit}
-            >
-              {!isProcessing ? "Pay" : "Processing"}
-            </Button>
           </form>
         </div>
       </Container>

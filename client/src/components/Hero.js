@@ -7,6 +7,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { GlobalContext } from "../context/GlobalState";
 import { useAuth } from "../context/AuthContext";
+import masters from "../static/images/masters1.png";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -14,17 +15,19 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    background: `linear-gradient(rgba(236, 254, 246,.6), rgba(236, 254, 246,.7)), url(${"https://images.unsplash.com/photo-1576220258822-153014832245?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2128&q=80"})`,
+    background: `linear-gradient(rgba(236, 254, 246,.6), rgba(236, 254, 246,.7)), url(${masters})`,
     padding: theme.spacing(8, 0, 6),
     backgroundSize: "cover",
+    backgroundPosition: 'center'
+    
   },
   heroButtons: {
     marginTop: theme.spacing(4),
   },
-  heroSecondaryBTN: {
-    backgroundColor: theme.palette.third.main,
-    color: "#f0f0f0",
-  },
+  // heroSecondaryBTN: {
+  //   backgroundColor: theme.palette.third.main,
+  //   color: "#f0f0f0",
+  // },
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -88,20 +91,9 @@ const Hero = () => {
                 Create a Team
               </Button>
             </Grid>
-            {/* <Grid item>
-              <Button
-                variant="outlined"
-                color={theme.palette.primary.main}
-                className={classes.button}
-                component={RouterLink}
-                to="/scores"
-              >
-                View Standings
-              </Button>
-            </Grid> */}
             <Grid item>
               <Button
-                variant="outlined"
+                variant="contained"
                 className={`${classes.button} ${classes.heroSecondaryBTN}`}
                 component={RouterLink}
                 to="/scores"

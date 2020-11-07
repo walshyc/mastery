@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
     },
-    background: theme.palette.secondary.main,
+    background: '#ECFEF6',
   },
   text: {
     display: "flex",

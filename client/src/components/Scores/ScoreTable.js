@@ -15,14 +15,14 @@ import Spinner from "../layout/Spinner";
 import { makeStyles } from "@material-ui/core/styles";
 
 const ScoreTable = () => {
-  const useRowStyles = makeStyles({
+  const useRowStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
         borderBottom: "unset",
       },
     },
     tableHead: {
-      background: "#009b77",
+      background: theme.palette.primary.main,
       color: "#ecfef6",
     },
     tableCell: {
@@ -31,14 +31,9 @@ const ScoreTable = () => {
     table: {
       marginTop: "20px",
     },
-  });
+  }));
   const classes = useRowStyles();
-  const {
-    data,
-    loading,
-    users,
-    matchSelection,
-  } = useContext(GlobalContext);
+  const { data, loading, users, matchSelection } = useContext(GlobalContext);
 
   const createData = (
     name,
@@ -66,9 +61,8 @@ const ScoreTable = () => {
       ],
     };
   };
-  const theme = useTheme()
+  const theme = useTheme();
   const score = (id) =>
-
     data.results.leaderboard.find((g) => g.player_id === id).total_to_par;
 
   let rows = [];
@@ -113,21 +107,28 @@ const ScoreTable = () => {
       <TableContainer component={Paper}>
         <Table size="small" aria-label="collapsible table">
           <TableHead>
-            <TableRow className={classes.tableHead} >
+            <TableRow className={classes.tableHead}>
               <TableCell />
-              <TableCell style={{color: theme.palette.secondary.main}}>Name</TableCell>
+              <TableCell style={{ color: theme.palette.primary.light }}>
+                Name
+              </TableCell>
               <Hidden xsDown>
-                <TableCell style={{color: theme.palette.secondary.main}}>
+                <TableCell style={{ color: theme.palette.primary.light }}>
                   <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
-                <TableCell style={{color: theme.palette.secondary.main}}>
+                <TableCell style={{ color: theme.palette.primary.light }}>
                   <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
-                <TableCell style={{color: theme.palette.secondary.main}}>
+                <TableCell style={{ color: theme.palette.primary.light }}>
                   <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
               </Hidden>
-              <TableCell style={{color: theme.palette.secondary.main}} align="right">Score</TableCell>
+              <TableCell
+                style={{ color: theme.palette.primary.light }}
+                align="right"
+              >
+                Score
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

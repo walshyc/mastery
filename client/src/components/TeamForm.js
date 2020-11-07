@@ -65,9 +65,6 @@ const TeamForm = (props) => {
   return (
     <>
       <Grid item xs={12}>
-        <Typography component="h1" variant="h5">
-          New Team
-        </Typography>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="golferOne">Selection 1</InputLabel>
 
@@ -122,6 +119,7 @@ const TeamForm = (props) => {
                 <MenuItem
                   value={name}
                   name={name}
+                  key={p.player_id}
                   playerid={p.player_id}
                   selection="selectionTwo"
                   selectionid="selectionTwoId"
@@ -168,6 +166,7 @@ const TeamForm = (props) => {
               onClick={handleDeleteClick}
               color="default"
               variant="contained"
+              style={{marginTop: 20}}
             >
               Delete Team
             </Button>

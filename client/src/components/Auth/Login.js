@@ -1,30 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect, useContext, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import { Link as RouterLink } from "react-router-dom";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { useAuth } from "../context/AuthContext";
-import Alert from "@material-ui/lab/Alert";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <RouterLink color="inherit" to="/">
-        Mastery
-      </RouterLink>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { useAuth } from "../../context/AuthContext";
+import Alert from '@material-ui/lab/Alert';
+import { GlobalContext } from "../../context/GlobalState";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,25 +36,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ForgotPassword = () => {
+export default function Login() {
+  const { getScoreData, getUsers, getUser } = useContext(GlobalContext);
   const classes = useStyles();
   const emailFormRef = useRef();
+  const passwordRef = useRef();
   const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
+  const { login, currentUser } = useAuth();
+  const history = useHistory();
 
-  const { resetPassword } = useAuth();
+  useEffect(() => {
+    getScoreData();
+    getUsers();
 
+    // eslint-disable-next-line
+  }, []);
+  // if (currentUser) {
+  //   getUser(currentUser.email);
+  //   history.push("/account");
+  // }
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        setMessage('');
-        setError('')
-      await resetPassword(emailFormRef.current.value);
-      setMessage('Check your inbox for further instructions')
+      const email = emailFormRef.current.value;
+      getUser(email);
+      await login(emailFormRef.current.value, passwordRef.current.value);
+      if (currentUser) {
+        getUser(currentUser.email);
+      }
+      history.push("/account");
     } catch (err) {
-      setError('Failed to reset password');
+      if (err.code === "auth/invalid-email") {
+        setError("Email address is incorrect!");
+        console.log("Email address is incorrect!");
+      } else if (err.code === "auth/wrong-password") {
+        setError("Password is incorrect!");
+      } else {
+        setError("Failed to login! Please try again.");
+      }
     }
   };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -73,10 +85,9 @@ const ForgotPassword = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Password Reset
+          Login
         </Typography>
         {error && <Alert severity="error">{error}</Alert>}
-        {message && <Alert severity="success">{message}</Alert>}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
@@ -90,6 +101,22 @@ const ForgotPassword = () => {
             autoFocus
             inputRef={emailFormRef}
           />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            inputRef={passwordRef}
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
           <Button
             type="submit"
             fullWidth
@@ -97,12 +124,12 @@ const ForgotPassword = () => {
             color="primary"
             className={classes.submit}
           >
-            Reset Password
+            Sign In
           </Button>
           <Grid container>
             <Grid item xs>
-              <RouterLink to="/login" variant="body2">
-                Login?
+              <RouterLink to="/forgot-password" variant="body2">
+                Forgot password?
               </RouterLink>
             </Grid>
             <Grid item>
@@ -113,11 +140,6 @@ const ForgotPassword = () => {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
     </Container>
   );
-};
-
-export default ForgotPassword;
+}

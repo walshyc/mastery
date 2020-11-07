@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { GlobalContext } from "../context/GlobalState";
 import Spinner from "./layout/Spinner";
 import Grid from "@material-ui/core/Grid";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 
 // const useStyles = makeStyles((theme) => ({
 //   button: {},
@@ -26,17 +27,6 @@ const Account = () => {
     getUsers,
     users,
   } = useContext(GlobalContext);
-
-  const handleLogout = async (e) => {
-    setError("");
-    try {
-      await logout();
-      removeUser();
-      history.push("/login");
-    } catch (err) {
-      setError("Failed to Logout");
-    }
-  };
 
   let arrayIndex = 0;
   const currentIndex = users.filter((u, index) => {
@@ -64,46 +54,96 @@ const Account = () => {
   if (loading || !loggedInUser) {
     return <Spinner></Spinner>;
   }
-
+  const showTeams = () => {
+    if (loggedInUser && loggedInUser.selections) {
+      switch (loggedInUser.selections.length) {
+        case 0:
+          return (
+            <>
+              You have no teams yet!
+              <Button
+                component={RouterLink}
+                to="/add-team"
+                color="primary"
+                variant="contained"
+              >
+                Add Team
+              </Button>
+            </>
+          );
+        case 1:
+          return "Your team";
+        default:
+          return "Your team's";
+      }
+    } else {
+      return (
+        <>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              You have no teams yet!
+            </Grid>
+            <Grid item xs={12} style={{ marginTop: 15 }}>
+              <Button
+                startIcon={<PlaylistAddIcon />}
+                component={RouterLink}
+                to="/add-team"
+                color="primary"
+                variant="contained"
+                fullwidth={true}
+              >
+                Add Team
+              </Button>
+            </Grid>
+          </Grid>
+        </>
+      );
+    }
+  };
 
   return (
     <div>
       {error && <Alert severity="error">{error}</Alert>}
+      <Grid container spacing={2} style={{ marginTop: 15 }}>
+        <Grid item xs={12} sm={8}>
+          <Typography variant="h4" gutterBottom align="center">
+            {loggedInUser && showTeams()}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Button
+            startIcon={<PlaylistAddIcon />}
+            component={RouterLink}
+            to="/add-team"
+            color="primary"
+            variant="contained"
+            fullwidth={true}
+          >
+            Add Team
+          </Button>
+        </Grid>
+      </Grid>
 
-      <Typography variant="h4" gutterBottom>
-        Hey {loggedInUser.name && loggedInUser.name.split(" ", 1)}!
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Here are your teams:
-      </Typography>
       <Grid container spacing={2}>
         {loggedInUser &&
           loggedInUser.selections &&
           loggedInUser.selections.map((s) => {
             return (
-              <Grid key={s.golferTwo} item xs={12} sm={6} md={4}>
+              <Grid
+                key={
+                  s.golferOne.player_id +
+                  s.golferTwo.player_id +
+                  s.golferThree.player_id
+                }
+                item
+                xs={12}
+                sm={6}
+              >
                 <TeamCard selections={s}></TeamCard>
               </Grid>
             );
           })}
       </Grid>
-      <Button
-        onClick={handleLogout}
-        component={RouterLink}
-        to="/login"
-        color="default"
-        variant="contained"
-      >
-        Logout
-      </Button>
-      <Button
-        component={RouterLink}
-        to="/add-team"
-        color="primary"
-        variant="contained"
-      >
-        Add Team
-      </Button>
     </div>
   );
 };

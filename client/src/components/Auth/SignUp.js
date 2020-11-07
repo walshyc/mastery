@@ -12,22 +12,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import Alert from "@material-ui/lab/Alert";
-import { GlobalContext } from "../context/GlobalState";
+import { GlobalContext } from "../../context/GlobalState";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <RouterLink color="inherit" to="/">
-        Mastery
-      </RouterLink>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -69,17 +57,19 @@ export default function SignUp() {
     try {
       addUser(nameRef.current.value, emailFormRef.current.value);
       await signUp(emailFormRef.current.value, passwordRef.current.value);
-     logout()
+      logout();
       history.push("/login");
     } catch (err) {
+      console.log(err.code);
       if (err.code === "auth/email-already-in-use") {
         setError("Account already exits with this email address");
+      } else if (err.code === "auth/weak-password") {
+        setError("Your password must be 6 or more characters!");
       } else {
-        setError("Failed to create an account");
+        setError("Failed to sign up! Please try again.");
       }
     }
   };
-
 
   return (
     <Container component="main" maxWidth="xs">
@@ -145,12 +135,6 @@ export default function SignUp() {
                 inputRef={passwordConfirmRef}
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I agree to receive updates via email."
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"
@@ -163,16 +147,17 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <RouterLink to="/login" variant="body2">
-                Already have an account? Sign in
+              <RouterLink
+                to="/login"
+                variant="body2"
+                style={{ textDecoration: "none", color: "#0ba360" }}
+              >
+                Already have an account? Sign in here!
               </RouterLink>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }
