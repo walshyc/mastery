@@ -24,11 +24,10 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   text: {
-    fontSize:'0.8 rem',
-    letterSpacing: '0.2em'
-  }
+    fontSize: "0.8 rem",
+    letterSpacing: "0.2em",
+  },
 });
-
 
 export default function TeamCard(props) {
   const theme = useTheme();
@@ -41,41 +40,56 @@ export default function TeamCard(props) {
       variant="outlined"
     >
       <CardContent className={classes.text}>
-        <Grid container spacing={2}>
-          <Grid item xs={10}>
-            <Typography variant="body1" align="left">
+        <Grid container spacing={1}>
+          <Grid item xs={2}>
+            <Typography variant="body2" align="left">
+              {props.selections.golferOne.position}
+            </Typography>
+          </Grid>
+          <Grid item xs={9}>
+            <Typography variant="body2" align="left">
               <b>{`${props.selections.golferOne.last_name.toUpperCase()}`}</b>,{" "}
               {props.selections.golferOne.first_name}
             </Typography>
           </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body1" align="left">
+          <Grid item xs={1}>
+            <Typography variant="body2" align="left">
               {props.selections.golferOne.total_to_par > 0
                 ? `+${props.selections.golferOne.total_to_par}`
                 : props.selections.golferOne.total_to_par}
             </Typography>
           </Grid>
-          <Grid item xs={10}>
-            <Typography variant="body1" align="left">
+          <Grid item xs={2}>
+            <Typography variant="body2" align="left">
+              {props.selections.golferTwo.position}
+            </Typography>
+          </Grid>
+          <Grid item xs={9}>
+            <Typography variant="body2" align="left">
               <b>{`${props.selections.golferTwo.last_name.toUpperCase()}`}</b>,{" "}
               {props.selections.golferTwo.first_name}
             </Typography>
           </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body1" align="left">
+          <Grid item xs={1}>
+            <Typography variant="body2" align="left">
               {props.selections.golferTwo.total_to_par > 0
                 ? `+${props.selections.golferTwo.total_to_par}`
                 : props.selections.golferTwo.total_to_par}
             </Typography>
           </Grid>
-          <Grid item xs={10}>
-            <Typography variant="body1" align="left">
+          <Grid item xs={2}>
+            <Typography variant="body2" align="left">
+              {props.selections.golferThree.position}
+            </Typography>
+          </Grid>
+          <Grid item xs={9}>
+            <Typography variant="body2" align="left">
               <b>{`${props.selections.golferThree.last_name.toUpperCase()}`}</b>
               , {props.selections.golferThree.first_name}
             </Typography>
           </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body1" align="left">
+          <Grid item xs={1}>
+            <Typography variant="body2" align="left">
               {props.selections.golferThree.total_to_par > 0
                 ? `+${props.selections.golferThree.total_to_par}`
                 : props.selections.golferThree.total_to_par}
@@ -87,12 +101,12 @@ export default function TeamCard(props) {
           />
 
           <Grid item xs={10}>
-            <Typography variant="body1" align='left'>
+            <Typography variant="body2" align="left">
               <b>Total</b>
             </Typography>
           </Grid>
           <Grid item xs={2}>
-            <Typography variant="body1" align='left'>
+            <Typography variant="body2" align="left">
               {props.selections.golferOne.total_to_par +
                 props.selections.golferTwo.total_to_par +
                 props.selections.golferThree.total_to_par >

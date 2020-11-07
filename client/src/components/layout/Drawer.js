@@ -98,8 +98,8 @@ function ResponsiveDrawer(props) {
   const history = useHistory();
   const handleLogout = async (e) => {
     try {
-      await logout();
       removeUser();
+      await logout();
       history.push("/login");
     } catch (err) {
       console.log(err);
