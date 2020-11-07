@@ -64,8 +64,14 @@ const Row = (props) => {
                     <TableCell style={{ fontWeight: "bold" }}>
                       Selection
                     </TableCell>
-                    <TableCell style={{ fontWeight: "bold" }}>Played</TableCell>
-                    <TableCell style={{ fontWeight: "bold" }}>Today</TableCell>
+                    <Hidden xsDown>
+                      <TableCell style={{ fontWeight: "bold" }}>
+                        Played
+                      </TableCell>
+                      <TableCell style={{ fontWeight: "bold" }}>
+                        Today
+                      </TableCell>
+                    </Hidden>
                     <TableCell style={{ fontWeight: "bold" }}>Score</TableCell>
                   </TableRow>
                 </TableHead>
@@ -87,15 +93,17 @@ const Row = (props) => {
                           <b>{detailRow.last_name.toUpperCase()}</b>
                           {`, ${detailRow.first_name}`}
                         </TableCell>
-                        <TableCell width="10%" component="th" scope="row">
-                          <b>{detailRow.holes_played}</b>
-                        </TableCell>
-                        <TableCell width="10%">
-                          {
-                            detailRow.rounds[detailRow.rounds.length - 1]
-                              .total_to_par
-                          }
-                        </TableCell>
+                        <Hidden xsDown>
+                          <TableCell width="10%" component="th" scope="row">
+                            <b>{detailRow.holes_played}</b>
+                          </TableCell>
+                          <TableCell width="10%">
+                            {
+                              detailRow.rounds[detailRow.rounds.length - 1]
+                                .total_to_par
+                            }
+                          </TableCell>
+                        </Hidden>
                         <TableCell style={{ fontWeight: "bold" }} width="10%">
                           {detailRow.total_to_par > 0
                             ? `+${detailRow.total_to_par}`

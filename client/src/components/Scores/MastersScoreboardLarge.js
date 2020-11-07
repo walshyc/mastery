@@ -35,15 +35,32 @@ const MastersScoreboardLarge = () => {
         <Table size="small" className={classes.table} aria-label="simple table">
           <TableHead className={classes.tableHead}>
             <TableRow>
-              <TableCell align="left" style={{ color: theme.palette.primary.light }}>
+              <TableCell
+                align="left"
+                style={{ color: theme.palette.primary.light, fontWeight: 'bold' }}
+              >
+                Pos.
+              </TableCell>
+              <TableCell
+                align="left"
+                style={{ color: theme.palette.primary.light }}
+              >
                 Player
               </TableCell>
-              <TableCell align="right" style={{ color: theme.palette.primary.light }}>
-                Played
-              </TableCell>
-              <TableCell align="right" style={{ color: theme.palette.primary.light }}>
-                Today
-              </TableCell>
+              <Hidden xsDown>
+                <TableCell
+                  align="right"
+                  style={{ color: theme.palette.primary.light }}
+                >
+                  Played
+                </TableCell>
+                <TableCell
+                  align="right"
+                  style={{ color: theme.palette.primary.light }}
+                >
+                  Today
+                </TableCell>
+              </Hidden>
               <TableCell
                 style={{ color: theme.palette.primary.light }}
                 align="right"
@@ -56,7 +73,7 @@ const MastersScoreboardLarge = () => {
             {data.results &&
               scores
                 .sort((a, b) => {
-                  if (a.total_to_par > b.total_to_par) {
+                  if (a.position > b.position) {
                     return 1;
                   } else return -1;
                 })
@@ -69,6 +86,9 @@ const MastersScoreboardLarge = () => {
                         : { background: "ffffff" }
                     }
                   >
+                    <TableCell align="left" style={{ width: "10px" }}>
+                        {row.position}.
+                      </TableCell>
                     <TableCell
                       component="th"
                       scope="row"
@@ -79,12 +99,14 @@ const MastersScoreboardLarge = () => {
                         0
                       )}`}
                     </TableCell>
-                    <TableCell align="right" style={{ width: "10px" }}>
-                      {row.holes_played}
-                    </TableCell>
-                    <TableCell align="right" style={{ width: "10px" }}>
-                      {row.rounds[row.rounds.length - 1].total_to_par}
-                    </TableCell>
+                    <Hidden xsDown>
+                      <TableCell align="right" style={{ width: "10px" }}>
+                        {row.holes_played}
+                      </TableCell>
+                      <TableCell align="right" style={{ width: "10px" }}>
+                        {row.rounds[row.rounds.length - 1].total_to_par}
+                      </TableCell>
+                    </Hidden>
                     <TableCell align="right" style={{ width: "10px" }}>
                       {row.total_to_par > 0
                         ? `+${row.total_to_par}`
