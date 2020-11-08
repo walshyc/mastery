@@ -7,6 +7,7 @@ import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import "fontsource-bree-serif"
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
@@ -66,9 +67,11 @@ const useStyles = makeStyles((theme) => ({
   },
   typographyBar: {
     flexGrow: 1,
-    align: "center",
+    textAlign: 'center',
     textDecoration: "none",
     color: "#ECFEF6",
+    fontFamily: "Bree Serif",
+    fontSize: '2rem'
   },
   menuButton: {
     //marginRight: theme.spacing(2),

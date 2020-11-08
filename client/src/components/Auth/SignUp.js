@@ -55,8 +55,8 @@ export default function SignUp() {
       return setError("Passwords do not match!");
     }
     try {
-      addUser(nameRef.current.value, emailFormRef.current.value);
       await signUp(emailFormRef.current.value, passwordRef.current.value);
+      addUser(nameRef.current.value, emailFormRef.current.value);
       logout();
       history.push("/login");
     } catch (err) {
