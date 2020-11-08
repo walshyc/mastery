@@ -181,7 +181,7 @@ function ResponsiveDrawer(props) {
           <ListItemIcon className={classes.list}>
             <ListIcon />
           </ListItemIcon>
-          <ListItemText primary="Live Scoreboard" />
+          <ListItemText primary="Leaderboard" />
         </ListItem>
 
         <MastersScoreboard></MastersScoreboard>

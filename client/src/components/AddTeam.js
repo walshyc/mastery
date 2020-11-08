@@ -16,6 +16,8 @@ import Spinner from "./layout/Spinner";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import TeamForm from "./TeamForm";
+import Chip from "@material-ui/core/Chip";
+import EuroIcon from "@material-ui/icons/Euro";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -164,16 +166,19 @@ const AddTeam = () => {
     }
     setCheckoutErrorMessage("");
   };
+
+  let amount;
+  if (teamCount === 1) {
+    amount = 500;
+  } else if (teamCount === 2) {
+    amount = 1000;
+  } else {
+    amount = 1250;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let amount;
-    if (teamCount === 1) {
-      amount = 500;
-    } else if (teamCount === 2) {
-      amount = 1000;
-    } else {
-      amount = 1250;
-    }
+
     setIsProcessing(true);
     const cardElement = element.getElement("card");
 
@@ -431,6 +436,11 @@ const AddTeam = () => {
           <Typography component="h1" variant="h5">
             Add Team
           </Typography>
+          {/* <Typography component="h4" variant="body1">
+            To enter select 3 golfers below. Golfers are listed by the world
+            rankings and each selection has limitations based on World Rankings.
+            Each entry costs €5 with 3 entrys costing €12.50! Most of the entry money goes to the prize fund. The winning team gets 70%, 2nd place gets 20% and 10% to third. 
+          </Typography> */}
 
           {error && <Alert severity="error">{error}</Alert>}
 
@@ -452,6 +462,11 @@ const AddTeam = () => {
               </Grid>
               <Grid item xs={12}>
                 <p>{checkoutErrorMessage}</p>
+              </Grid>
+              <Grid item xs={12} style={{ marginTop: 5, marginBottom: 20 }}>
+                <Button fullWidth variant="contained" color="primary">
+                  Total: €{(amount / 100).toFixed(2)}
+                </Button>{" "}
               </Grid>
             </Grid>
             <Grid container className={classes.stripe}>
