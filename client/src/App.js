@@ -1,10 +1,9 @@
 import { AuthProvider } from "./context/AuthContext";
 import Drawer from "./components/layout/Drawer";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import { GlobalProvider } from "./context/GlobalState";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import AddTeam from "./components/AddTeam";
 import "fontsource-poppins";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";

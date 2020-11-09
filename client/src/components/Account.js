@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import Button from "@material-ui/core/Button";
-// import { makeStyles } from "@material-ui/core/styles";
-import Alert from "@material-ui/lab/Alert";
 import TeamCard from "./TeamCard";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -16,8 +14,7 @@ import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 // }));
 
 const Account = () => {
-  const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
   const history = useHistory();
   const {
     loggedInUser,
@@ -58,19 +55,7 @@ const Account = () => {
     if (loggedInUser && loggedInUser.selections) {
       switch (loggedInUser.selections.length) {
         case 0:
-          return (
-            <>
-              You have no teams yet!
-              <Button
-                component={RouterLink}
-                to="/add-team"
-                color="primary"
-                variant="contained"
-              >
-                Add Team
-              </Button>
-            </>
-          );
+          return <>You have no teams yet!</>;
         case 1:
           return "Your team";
         default:
@@ -84,16 +69,6 @@ const Account = () => {
               You have no teams yet!
             </Grid>
             <Grid item xs={12} style={{ marginTop: 15 }}>
-              <Button
-                startIcon={<PlaylistAddIcon />}
-                component={RouterLink}
-                to="/add-team"
-                color="primary"
-                variant="contained"
-                fullwidth={true}
-              >
-                Add Team
-              </Button>
             </Grid>
           </Grid>
         </>
@@ -103,7 +78,6 @@ const Account = () => {
 
   return (
     <div>
-      {error && <Alert severity="error">{error}</Alert>}
       <Grid container spacing={2} style={{ marginTop: 15 }}>
         <Grid item xs={12} sm={8}>
           <Typography variant="h4" gutterBottom align="center">
@@ -124,7 +98,10 @@ const Account = () => {
         </Grid>
       </Grid>
 
-      <Grid container >
+      <Grid container>
+        <Grid container item>
+          <Grid item></Grid>
+        </Grid>
         {loggedInUser &&
           loggedInUser.selections &&
           loggedInUser.selections.map((s) => {
@@ -138,7 +115,7 @@ const Account = () => {
                 item
                 xs={11}
                 sm={5}
-                style={{margin: 15 }}
+                style={{ margin: 15 }}
               >
                 <TeamCard selections={s}></TeamCard>
               </Grid>

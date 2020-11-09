@@ -87,30 +87,30 @@ const MastersScoreboardLarge = () => {
                     }
                   >
                     <TableCell align="left" style={{ width: "10px" }}>
-                        {row.position}.
+                       <b>{row.position}.</b> 
                       </TableCell>
                     <TableCell
                       component="th"
                       scope="row"
                       align="left"
                       style={{ width: "10px" }}
-                    >
+                    ><b>
                       {`${row.last_name.toUpperCase()}, ${row.first_name.charAt(
                         0
-                      )}`}
+                      )}`}</b>
                     </TableCell>
                     <Hidden xsDown>
                       <TableCell align="right" style={{ width: "10px" }}>
-                        {row.holes_played}
+                       <b>{row.holes_played}</b> 
                       </TableCell>
                       <TableCell align="right" style={{ width: "10px" }}>
-                        {row.rounds[row.rounds.length - 1].total_to_par}
+                       <b>{row.rounds[row.rounds.length - 1].total_to_par}</b> 
                       </TableCell>
                     </Hidden>
                     <TableCell align="right" style={{ width: "10px" }}>
-                      {row.total_to_par > 0
+                      <b>{row.total_to_par > 0
                         ? `+${row.total_to_par}`
-                        : row.total_to_par}
+                        : row.total_to_par}</b>
                     </TableCell>
                   </TableRow>
                 ))}

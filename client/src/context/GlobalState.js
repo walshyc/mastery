@@ -107,18 +107,11 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-
-
   const matchSelection = (id) => {
     const leaderboard = state.data.results.leaderboard;
     const player = leaderboard.filter((p) => p.player_id === parseInt(id));
     return player;
   };
-
-  const calculateTeamScore = async () => {
-    await getScoreData()
-    
-  }
 
   const addSelections = async (
     email,
@@ -127,7 +120,7 @@ export const GlobalProvider = ({ children }) => {
     golferTwo,
     golferTwoID,
     golferThree,
-    golferThreeID,
+    golferThreeID
   ) => {
     setLoading();
     await db

@@ -112,6 +112,12 @@ const ScoreTable = () => {
               <TableCell style={{ color: theme.palette.primary.light }}>
                 Name
               </TableCell>
+              <TableCell
+                style={{ color: theme.palette.primary.light }}
+                align="left"
+              >
+                Score
+              </TableCell>
               <Hidden xsDown>
                 <TableCell style={{ color: theme.palette.primary.light }}>
                   <PersonSharpIcon></PersonSharpIcon>
@@ -123,12 +129,6 @@ const ScoreTable = () => {
                   <PersonSharpIcon></PersonSharpIcon>
                 </TableCell>
               </Hidden>
-              <TableCell
-                style={{ color: theme.palette.primary.light }}
-                align="right"
-              >
-                Score
-              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

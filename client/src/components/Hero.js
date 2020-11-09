@@ -9,6 +9,7 @@ import { GlobalContext } from "../context/GlobalState";
 import { useAuth } from "../context/AuthContext";
 import masters from "../static/images/masters1.png";
 import Scoreboards from "./Scores/Scoreboards";
+import "fontsource-bree-serif"
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -65,7 +66,7 @@ const Hero = () => {
     <>
       <div className={classes.heroContent}>
         <Container className={classes.container} maxWidth="sm">
-          <Typography
+          {/* <Typography
             component="h1"
             variant="h2"
             align="center"
@@ -73,14 +74,14 @@ const Hero = () => {
             gutterBottom
           >
             Mastery
-          </Typography>
+          </Typography> */}
           <Typography
-            variant="h5"
+            variant="h4"
             align="center"
-            color="textSecondary"
+            style={{color: '#101010',fontFamily: "Bree Serif"}}
             paragraph
           >
-            The Masters - The greatest golf tournament in the world...
+            The greatest golf tournament in the world...
           </Typography>
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">

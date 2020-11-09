@@ -44,14 +44,14 @@ const Row = (props) => {
         <TableCell component="th" scope="row">
           <b> {row.name}</b>
         </TableCell>
+        <TableCell align="left">
+          <b>{row.totalScore > 0 ? `+${row.totalScore}` : row.totalScore}</b>
+        </TableCell>
         <Hidden xsDown>
           <TableCell>{row.golfer1}</TableCell>
           <TableCell color="primary">{row.golfer2}</TableCell>
           <TableCell>{row.golfer3}</TableCell>
         </Hidden>
-        <TableCell align="right">
-          <b>{row.totalScore > 0 ? `+${row.totalScore}` : row.totalScore}</b>
-        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

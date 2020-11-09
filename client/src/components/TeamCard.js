@@ -6,6 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { useTheme } from "@material-ui/core/styles";
 import { Divider } from "@material-ui/core";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles({
   root: {
@@ -33,117 +40,62 @@ export default function TeamCard(props) {
   const theme = useTheme();
   const classes = useStyles();
 
-  return (
-    <Card
-      className={classes.root}
-      style={{ background: theme.palette.primary.light }}
-      variant="outlined"
-    >
-      <CardContent className={classes.text}>
-        <Grid container spacing={1}>
-          <Grid item xs={2}>
-            <Typography variant="body2" align="left">
-              {props.selections.golferOne.position}
-            </Typography>
-          </Grid>
-          <Grid item xs={9}>
-            <Typography variant="body2" align="left">
-              <b>{`${props.selections.golferOne.last_name.toUpperCase()}`}</b>,{" "}
-              {props.selections.golferOne.first_name}
-            </Typography>
-          </Grid>
-          <Grid item xs={1}>
-            <Typography variant="body2" align="left">
-              {props.selections.golferOne.total_to_par > 0
-                ? `+${props.selections.golferOne.total_to_par}`
-                : props.selections.golferOne.total_to_par}
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body2" align="left">
-              {props.selections.golferTwo.position}
-            </Typography>
-          </Grid>
-          <Grid item xs={9}>
-            <Typography variant="body2" align="left">
-              <b>{`${props.selections.golferTwo.last_name.toUpperCase()}`}</b>,{" "}
-              {props.selections.golferTwo.first_name}
-            </Typography>
-          </Grid>
-          <Grid item xs={1}>
-            <Typography variant="body2" align="left">
-              {props.selections.golferTwo.total_to_par > 0
-                ? `+${props.selections.golferTwo.total_to_par}`
-                : props.selections.golferTwo.total_to_par}
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body2" align="left">
-              {props.selections.golferThree.position}
-            </Typography>
-          </Grid>
-          <Grid item xs={9}>
-            <Typography variant="body2" align="left">
-              <b>{`${props.selections.golferThree.last_name.toUpperCase()}`}</b>
-              , {props.selections.golferThree.first_name}
-            </Typography>
-          </Grid>
-          <Grid item xs={1}>
-            <Typography variant="body2" align="left">
-              {props.selections.golferThree.total_to_par > 0
-                ? `+${props.selections.golferThree.total_to_par}`
-                : props.selections.golferThree.total_to_par}
-            </Typography>
-          </Grid>
-          <Divider
-            variant="middle"
-            style={{ width: "100%", height: 2, marginLeft: "0" }}
-          />
+  const selections = Object.values(props.selections);
+  const totalScore = selections.reduce((acc, s) => acc + s.total_to_par, 0);
 
-          <Grid item xs={10}>
-            <Typography variant="body2" align="left">
+  return (
+    <TableContainer component={Paper}>
+      <Table aria-label="simple table">
+        <TableHead style={{ background: "#0EA463" }}>
+          <TableRow>
+            <TableCell style={{ color: "#ffffff" }}>Pos.</TableCell>
+            <TableCell style={{ color: "#ffffff" }}>Player</TableCell>
+            <TableCell style={{ color: "#ffffff" }} align="right">
+              Score
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {selections &&
+            selections.map((s) => {
+              return (
+                <>
+                  <TableRow key={s.player_id}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      align="left"
+                      style={{ width: "10px" }}
+                    >
+                      {s.position}
+                    </TableCell>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      align="left"
+                      style={{ width: "10px" }}
+                    >
+                      <b>{`${s.last_name.toUpperCase()}`}</b>, {s.first_name}
+                    </TableCell>
+                    <TableCell align="right" style={{ width: "10px" }}>
+                      {s.total_to_par > 0
+                        ? `+${s.total_to_par}`
+                        : s.total_to_par}
+                    </TableCell>
+                  </TableRow>
+                </>
+              );
+            })}{" "}
+          <TableRow>
+            <TableCell style={{ fontSize: "1.3em" }} align="right" colSpan={2}>
               <b>Total</b>
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body2" align="left">
-              {props.selections.golferOne.total_to_par +
-                props.selections.golferTwo.total_to_par +
-                props.selections.golferThree.total_to_par >
-              0
-                ? `+${
-                    props.selections.golferOne.total_to_par +
-                    props.selections.golferTwo.total_to_par +
-                    props.selections.golferThree.total_to_par
-                  }`
-                : props.selections.golferOne.total_to_par +
-                  props.selections.golferTwo.total_to_par +
-                  props.selections.golferThree.total_to_par}
-            </Typography>
-          </Grid>
-        </Grid>
-        {/* <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography> */}
-      </CardContent>
-      {/* <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
-    </Card>
+            </TableCell>
+            <TableCell style={{ fontSize: "1.3em" }} align="right">
+              <b>{totalScore}</b>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
