@@ -10,6 +10,7 @@ import { useAuth } from "../context/AuthContext";
 import masters from "../static/images/masters1.png";
 import Scoreboards from "./Scores/Scoreboards";
 import "fontsource-bree-serif";
+import Footer from "./layout/Footer";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -120,6 +121,7 @@ const Hero = () => {
           <Scoreboards></Scoreboards>
         </Grid>
       </Grid>
+      <Footer></Footer>
     </>
   );
 };

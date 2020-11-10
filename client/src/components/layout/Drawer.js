@@ -71,10 +71,15 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Bree Serif",
     fontSize: "2rem",
   },
+
   footer: {
     padding: 15,
     background: "#ECFEF6",
     display: "flex",
+    height: 50,
+    position: "fixed",
+    bottom: 0,
+    width: "100%",
   },
   footerText: {
     color: "black",
@@ -280,80 +285,31 @@ function ResponsiveDrawer(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
-
-        <Switch>
-          <Route exact path="/" component={Hero}></Route>
-          <PrivateRoute
-            exact
-            path="/account"
-            component={Account}
-          ></PrivateRoute>
-          <PrivateRoute
-            exact
-            path="/add-team"
-            component={AddTeam}
-          ></PrivateRoute>
-          <Route exact path="/scores" component={ScoreContent}></Route>
-          <Route exact path="/signup" component={SignUp}></Route>
-          <Route exact path="/login" component={Login}></Route>
-          <Route exact path="/about" component={About}></Route>
-          <Route
-            exact
-            path="/forgot-password"
-            component={ForgotPassword}
-          ></Route>
-        </Switch>
-        <footer className={classes.footer}>
-          <div style={{ margin: "15", flex: 1 }}>
-            <Typography
-              variant="subtitle"
-              className={classes.footerText}
-              component={RouterLink}
-              to="/"
-              align="center"
-            >
-              Made by{" "}
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://twitter.com/walshy_c"
-                style={{ textDecoration: "none", color: "#111" }}
-              >
-                walshyc
-              </a>
-            </Typography>
-          </div>
-
-          <div style={{ margin: "15", flex: 1 }}>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://github.com/walshyc"
-            >
-              <GitHubIcon
-                style={{ marginRight: 20, color: "#111" }}
-              ></GitHubIcon>
-            </a>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="mailto:conorwalsh0703@gmail.com"
-            >
-              <EmailIcon style={{ marginRight: 20, color: "#111" }}></EmailIcon>
-            </a>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://twitter.com/walshy_c"
-              style={{ marginRight: 20, color: "#111" }}
-            >
-              <TwitterIcon
-                style={{ marginRight: 20, color: "#111" }}
-              ></TwitterIcon>
-            </a>
-          </div>
-        </footer>
+        <div style={{ height: "100vh" }}>
+          <div className={classes.toolbar} />
+          <Switch>
+            <Route exact path="/" component={Hero}></Route>
+            <PrivateRoute
+              exact
+              path="/account"
+              component={Account}
+            ></PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/add-team"
+              component={AddTeam}
+            ></PrivateRoute>
+            <Route exact path="/scores" component={ScoreContent}></Route>
+            <Route exact path="/signup" component={SignUp}></Route>
+            <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/about" component={About}></Route>
+            <Route
+              exact
+              path="/forgot-password"
+              component={ForgotPassword}
+            ></Route>
+          </Switch>
+        </div>
       </main>
     </div>
   );
