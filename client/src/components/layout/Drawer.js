@@ -10,7 +10,6 @@ import ListItem from "@material-ui/core/ListItem";
 import "fontsource-bree-serif"
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
 import ListIcon from "@material-ui/icons/List";
 import MastersScoreboard from "../Scores/MastersScoreboard";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
@@ -18,28 +17,23 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
-import GolfCourseSharpIcon from "@material-ui/icons/GolfCourseSharp";
 import MenuIcon from "@material-ui/icons/Menu";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { GlobalContext } from "../../context/GlobalState";
 import GroupIcon from "@material-ui/icons/Group";
-import { AuthProvider } from "../../context/AuthContext";
 import ScoreContent from "../../components/Scores/ScoreContent";
 import SignUp from "../Auth/SignUp";
 import ForgotPassword from "../Auth/ForgotPassword";
 import Account from "../../components/Account";
 import Hero from "../../components/Hero";
+import About from "../../components/About";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Login from "../Auth/Login";
 import PrivateRoute from "../../components/PrivateRoute";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Container } from "@material-ui/core";
-import { GlobalProvider } from "../../context/GlobalState";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Route, Switch } from "react-router-dom";
 import AddTeam from "../../components/AddTeam";
 
 const drawerWidth = 240;
@@ -93,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
-  const { removeUser, getUsers, getScoreData, getWorldRankings } = useContext(
+  const { removeUser, getUsers, getScoreData, getWorldRankings, getEntries } = useContext(
     GlobalContext
   );
   const classes = useStyles();
@@ -112,6 +106,7 @@ function ResponsiveDrawer(props) {
     getScoreData();
     getUsers();
     getWorldRankings();
+    getEntries();
     // if (currentUser) {
     //   getUser(currentUser.email);
     // }
@@ -270,6 +265,7 @@ function ResponsiveDrawer(props) {
           <Route exact path="/scores" component={ScoreContent}></Route>
           <Route exact path="/signup" component={SignUp}></Route>
           <Route exact path="/login" component={Login}></Route>
+          <Route exact path="/about" component={About}></Route>
           <Route
             exact
             path="/forgot-password"

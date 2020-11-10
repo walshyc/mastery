@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
-  const {removeUser, getUsers, getScoreData, getWorldRankings} = useContext(GlobalContext)
+  const {removeUser, getUsers, getScoreData, getWorldRankings, getEntries} = useContext(GlobalContext)
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
   const history = useHistory();
@@ -47,6 +47,7 @@ const Navbar = () => {
   useEffect(() => {
      getScoreData()
      getUsers();
+     getEntries();
      getWorldRankings()
     console.log('loaded from nav')
     // if (currentUser) {

@@ -6,6 +6,7 @@ import {
   REMOVE_USER,
   UPDATED,
   GET_WORLD_RANKINGS,
+  GET_ENTRIES,
 } from "./Types";
 const AppReducer = (state, action) => {
   switch (action.type) {
@@ -25,6 +26,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         users: action.payload,
+        loading: false,
+      };
+    case GET_ENTRIES:
+      return {
+        ...state,
+        entries: action.payload,
         loading: false,
       };
     case UPDATED:

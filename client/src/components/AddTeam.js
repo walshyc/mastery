@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -16,8 +15,13 @@ import Spinner from "./layout/Spinner";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import TeamForm from "./TeamForm";
-import Chip from "@material-ui/core/Chip";
 import EuroIcon from "@material-ui/icons/Euro";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import ListItemText from "@material-ui/core/ListItemText";
+import additional from '../static/data/additionalPlayers.json'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -65,6 +69,7 @@ const AddTeam = () => {
     getScoreData,
     loading,
     loggedInUser,
+    entries,
     worldRankings,
   } = useContext(GlobalContext);
   const classes = useStyles();
@@ -114,22 +119,16 @@ const AddTeam = () => {
     // eslint-disable-next-line
   }, [data.length]);
   const wr = worldRankings.results.rankings;
-  const compPlayers = data.results.leaderboard;
+  const compPlayers = entries;
 
   const playersArray = wr.filter((a) =>
     compPlayers.some((b) => a.player_id === b.player_id)
   );
-  if (data) {
-    // sortedData = data.results.leaderboard.sort(function (a, b) {
-    //   let nameA = a.last_name.toLowerCase(),
-    //     nameB = b.last_name.toLowerCase();
-    //   if (nameA < nameB)
-    //     //sort string ascending
-    //     return -1;
-    //   if (nameA > nameB) return 1;
-    //   return 0; //default return value (no sorting)
-    // });
-  }
+
+  additional.map(p => {
+    playersArray.push(p);
+  })
+
   let enableButton;
   if (teamCount === 1) {
     enableButton = !(
@@ -436,11 +435,48 @@ const AddTeam = () => {
           <Typography component="h1" variant="h5">
             Add Team
           </Typography>
-          {/* <Typography component="h4" variant="body1">
-            To enter select 3 golfers below. Golfers are listed by the world
-            rankings and each selection has limitations based on World Rankings.
-            Each entry costs €5 with 3 entrys costing €12.50! Most of the entry money goes to the prize fund. The winning team gets 70%, 2nd place gets 20% and 10% to third. 
-          </Typography> */}
+
+          <Grid item xs={12}>
+            <div className={classes.demo}>
+              <List dense>
+                <ListItem style={{ fontSize: "2em" }}>
+                  <ListItemAvatar style={{ color: "#0ea463" }}>
+                    <Avatar style={{ background: "#0ea463" }}>
+                      <GroupAddIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <Typography variant="body1">
+                        3 Golfer's per entry. Selections are restricted by World
+                        Rankings.
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <div className={classes.demo}>
+              <List dense>
+                <ListItem style={{ fontSize: "2em" }}>
+                  <ListItemAvatar style={{ color: "#0ea463" }}>
+                    <Avatar style={{ background: "#0ea463" }}>
+                      <EuroIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <Typography variant="body1">
+                        €5 per entry / €12.50 for 3 entries
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </div>
+          </Grid>
 
           {error && <Alert severity="error">{error}</Alert>}
 

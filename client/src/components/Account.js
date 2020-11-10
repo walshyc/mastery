@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TeamCard from "./TeamCard";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink} from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Typography from "@material-ui/core/Typography";
 import { GlobalContext } from "../context/GlobalState";
@@ -15,11 +15,9 @@ import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 
 const Account = () => {
   const { currentUser } = useAuth();
-  const history = useHistory();
   const {
     loggedInUser,
     loading,
-    removeUser,
     getUser,
     getUsers,
     users,
@@ -91,7 +89,7 @@ const Account = () => {
             to="/add-team"
             color="primary"
             variant="contained"
-            fullwidth={true}
+            fullwidth
           >
             Add Team
           </Button>

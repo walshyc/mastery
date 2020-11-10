@@ -7,6 +7,7 @@ import {
   REMOVE_USER,
   GET_WORLD_RANKINGS,
   SET_LOADING,
+  GET_ENTRIES
 } from "./Types";
 import axios from "axios";
 import { db, firebase } from "../firebase";
@@ -16,6 +17,7 @@ const initialState = {
   loggedInUser: {},
   data: [],
   worldRankings: [],
+  entries: [],
   loading: true,
   updated: "",
   selections: [
@@ -45,6 +47,26 @@ export const GlobalProvider = ({ children }) => {
     dispatch({
       type: GET_SCORE_DATA,
       payload: res.data,
+    });
+  };
+  const getEntries = async () => {
+    setLoading();
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+      },
+    };
+
+    const res = await axios.get(
+      `https://golf-leaderboard-data.p.rapidapi.com/entry-list/263`,
+      requestOptions
+    );
+    console.log('entries')
+    dispatch({
+      type: GET_ENTRIES,
+      payload: res.data.results.entry_list,
     });
   };
   const getWorldRankings = async () => {
@@ -159,6 +181,7 @@ export const GlobalProvider = ({ children }) => {
       value={{
         player: state.player,
         users: state.users,
+        entries: state.entries,
         loggedInUser: state.loggedInUser,
         data: state.data,
         worldRankings: state.worldRankings,
@@ -167,6 +190,7 @@ export const GlobalProvider = ({ children }) => {
         getScoreData,
         setLoading,
         getUsers,
+        getEntries,
         addUser,
         removeUser,
         getWorldRankings,

@@ -9,7 +9,7 @@ import { GlobalContext } from "../context/GlobalState";
 import { useAuth } from "../context/AuthContext";
 import masters from "../static/images/masters1.png";
 import Scoreboards from "./Scores/Scoreboards";
-import "fontsource-bree-serif"
+import "fontsource-bree-serif";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    background: `linear-gradient(rgba(236, 254, 246,.6), rgba(236, 254, 246,.7)), url(${masters})`,
+    background: `linear-gradient(rgba(236, 254, 246,.3), rgba(236, 254, 246,.4)), url(${masters})`,
     padding: theme.spacing(8, 0, 6),
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -50,11 +50,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Hero = () => {
-  const { getUser, getWorldRankings } = useContext(GlobalContext);
+  const { getUser, getWorldRankings, } = useContext(GlobalContext);
   const { currentUser } = useAuth();
   useEffect(() => {
     // getScoreData();
     // getUsers();
+
     getWorldRankings();
     if (currentUser) {
       getUser(currentUser.email);
@@ -78,10 +79,14 @@ const Hero = () => {
           <Typography
             variant="h4"
             align="center"
-            style={{color: '#101010',fontFamily: "Bree Serif"}}
+            style={{
+              fontWeight: "100",
+              color: "#111111",
+              fontFamily: "Bree Serif",
+            }}
             paragraph
           >
-            The greatest golf tournament in the world...
+            A tradition unlike any other...
           </Typography>
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
@@ -91,7 +96,7 @@ const Hero = () => {
                   color="primary"
                   className={classes.button}
                   component={RouterLink}
-                  to="/signup"
+                  to="/account"
                 >
                   Create a Team
                 </Button>

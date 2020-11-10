@@ -5,7 +5,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -78,7 +77,6 @@ const TeamForm = (props) => {
               id: "age-native-simple",
             }}
           >
-            <MenuItem></MenuItem>
             {data &&
               data.map((p) => {
                 const name = `${p.player_name}`;
@@ -113,7 +111,7 @@ const TeamForm = (props) => {
             }}
           >
             <MenuItem></MenuItem>
-            {data.slice(Math.round((data.length + 1) / 3)).map((p) => {
+            {data.slice(Math.round((data.length + 1) / 4)).map((p) => {
               const name = `${p.player_name}`;
               return (
                 <MenuItem
@@ -146,7 +144,7 @@ const TeamForm = (props) => {
             }}
           >
             <MenuItem></MenuItem>
-            {data.slice(Math.round(((data.length + 1) * 2) / 3)).map((p) => {
+            {data.slice(Math.round(((data.length + 1) * 2) / 4)).map((p) => {
               const name = `${p.player_name}`;
               return (
                 <MenuItem

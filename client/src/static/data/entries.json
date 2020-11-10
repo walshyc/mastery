@@ -1,0 +1,560 @@
+[
+    {
+      "player_id": 101860,
+      "first_name": "Byeong Hun",
+      "last_name": "An",
+      "country": "KOR"
+    },
+    {
+      "player_id": 136594,
+      "first_name": "Abraham",
+      "last_name": "Ancer",
+      "country": "MEX"
+    },
+    {
+      "player_id": 170044,
+      "first_name": "John",
+      "last_name": "Augenstein",
+      "country": "USA"
+    },
+    {
+      "player_id": 136582,
+      "first_name": "Christiaan",
+      "last_name": "Bezuidenhout",
+      "country": "RSA"
+    },
+    {
+      "player_id": 79513,
+      "first_name": "Rafa",
+      "last_name": "Cabrera Bello",
+      "country": "ESP"
+    },
+    {
+      "player_id": 106366,
+      "first_name": "Patrick",
+      "last_name": "Cantlay",
+      "country": "USA"
+    },
+    {
+      "player_id": 76108,
+      "first_name": "Paul",
+      "last_name": "Casey",
+      "country": "ENG"
+    },
+    {
+      "player_id": 157132,
+      "first_name": "Cameron",
+      "last_name": "Champ",
+      "country": "USA"
+    },
+    {
+      "player_id": 120007,
+      "first_name": "Corey",
+      "last_name": "Conners",
+      "country": "CAN"
+    },
+    {
+      "player_id": 3694,
+      "first_name": "Fred",
+      "last_name": "Couples",
+      "country": "USA"
+    },
+    {
+      "player_id": 84283,
+      "first_name": "Jason",
+      "last_name": "Day",
+      "country": "AUS"
+    },
+    {
+      "player_id": 143893,
+      "first_name": "Bryson",
+      "last_name": "DeChambeau",
+      "country": "USA"
+    },
+    {
+      "player_id": 136843,
+      "first_name": "Tyler",
+      "last_name": "Duncan",
+      "country": "USA"
+    },
+    {
+      "player_id": 89191,
+      "first_name": "Tony",
+      "last_name": "Finau",
+      "country": "USA"
+    },
+    {
+      "player_id": 120310,
+      "first_name": "Matthew",
+      "last_name": "Fitzpatrick",
+      "country": "ENG"
+    },
+    {
+      "player_id": 92749,
+      "first_name": "Tommy",
+      "last_name": "Fleetwood",
+      "country": "ENG"
+    },
+    {
+      "player_id": 96322,
+      "first_name": "Rickie",
+      "last_name": "Fowler",
+      "country": "USA"
+    },
+    {
+      "player_id": 89926,
+      "first_name": "Dylan",
+      "last_name": "Frittelli",
+      "country": "RSA"
+    },
+    {
+      "player_id": 174514,
+      "first_name": "Abel",
+      "last_name": "Gallegos",
+      "country": ""
+    },
+    {
+      "player_id": 77716,
+      "first_name": "Lucas",
+      "last_name": "Glover",
+      "country": "USA"
+    },
+    {
+      "player_id": 105946,
+      "first_name": "Lanto",
+      "last_name": "Griffin",
+      "country": "USA"
+    },
+    {
+      "player_id": 100213,
+      "first_name": "Adam",
+      "last_name": "Hadwin",
+      "country": "CAN"
+    },
+    {
+      "player_id": 86830,
+      "first_name": "Justin",
+      "last_name": "Harding",
+      "country": "RSA"
+    },
+    {
+      "player_id": 103105,
+      "first_name": "Tyrrell",
+      "last_name": "Hatton",
+      "country": "ENG"
+    },
+    {
+      "player_id": 119947,
+      "first_name": "Max",
+      "last_name": "Homa",
+      "country": "USA"
+    },
+    {
+      "player_id": 88276,
+      "first_name": "Billy",
+      "last_name": "Horschel",
+      "country": "USA"
+    },
+    {
+      "player_id": 65899,
+      "first_name": "Charles",
+      "last_name": "Howell III",
+      "country": "USA"
+    },
+    {
+      "player_id": 119929,
+      "first_name": "Sungjae",
+      "last_name": "Im",
+      "country": "KOR"
+    },
+    {
+      "player_id": 98341,
+      "first_name": "Shugo",
+      "last_name": "Imahira",
+      "country": "JPN"
+    },
+    {
+      "player_id": 67150,
+      "first_name": "Trevor",
+      "last_name": "Immelman",
+      "country": "RSA"
+    },
+    {
+      "player_id": 141730,
+      "first_name": "Jazz",
+      "last_name": "Janewattananond",
+      "country": "THA"
+    },
+    {
+      "player_id": 92791,
+      "first_name": "Dustin",
+      "last_name": "Johnson",
+      "country": "USA"
+    },
+    {
+      "player_id": 72088,
+      "first_name": "Zach",
+      "last_name": "Johnson",
+      "country": "USA"
+    },
+    {
+      "player_id": 83938,
+      "first_name": "Sung",
+      "last_name": "Kang",
+      "country": "KOR"
+    },
+    {
+      "player_id": 112381,
+      "first_name": "Si Woo",
+      "last_name": "Kim",
+      "country": "KOR"
+    },
+    {
+      "player_id": 88450,
+      "first_name": "Kevin",
+      "last_name": "Kisner",
+      "country": "USA"
+    },
+    {
+      "player_id": 110083,
+      "first_name": "Brooks",
+      "last_name": "Koepka",
+      "country": "USA"
+    },
+    {
+      "player_id": 92848,
+      "first_name": "Jason",
+      "last_name": "Kokrak",
+      "country": "USA"
+    },
+    {
+      "player_id": 69340,
+      "first_name": "Matt",
+      "last_name": "Kuchar",
+      "country": "USA"
+    },
+    {
+      "player_id": 100246,
+      "first_name": "Andrew",
+      "last_name": "Landry",
+      "country": "USA"
+    },
+    {
+      "player_id": 5014,
+      "first_name": "Bernhard",
+      "last_name": "Langer",
+      "country": "GER"
+    },
+    {
+      "player_id": 86341,
+      "first_name": "Nate",
+      "last_name": "Lashley",
+      "country": "USA"
+    },
+    {
+      "player_id": 80569,
+      "first_name": "Marc",
+      "last_name": "Leishman",
+      "country": "AUS"
+    },
+    {
+      "player_id": 140527,
+      "first_name": "Yuxin",
+      "last_name": "Lin",
+      "country": ""
+    },
+    {
+      "player_id": 99628,
+      "first_name": "Shane",
+      "last_name": "Lowry",
+      "country": "IRL"
+    },
+    {
+      "player_id": 5167,
+      "first_name": "Sandy",
+      "last_name": "Lyle",
+      "country": "SCO"
+    },
+    {
+      "player_id": 98533,
+      "first_name": "Hideki",
+      "last_name": "Matsuyama",
+      "country": "JPN"
+    },
+    {
+      "player_id": 76732,
+      "first_name": "Graeme",
+      "last_name": "McDowell",
+      "country": "NIR"
+    },
+    {
+      "player_id": 84727,
+      "first_name": "Rory",
+      "last_name": "McIlroy",
+      "country": "NIR"
+    },
+    {
+      "player_id": 154864,
+      "first_name": "Lukas",
+      "last_name": "Michel",
+      "country": "AUS"
+    },
+    {
+      "player_id": 5446,
+      "first_name": "Phil",
+      "last_name": "Mickelson",
+      "country": "USA"
+    },
+    {
+      "player_id": 5485,
+      "first_name": "Larry",
+      "last_name": "Mize",
+      "country": "USA"
+    },
+    {
+      "player_id": 75610,
+      "first_name": "Francesco",
+      "last_name": "Molinari",
+      "country": "ITA"
+    },
+    {
+      "player_id": 151591,
+      "first_name": "Collin",
+      "last_name": "Morikawa",
+      "country": "USA"
+    },
+    {
+      "player_id": 146482,
+      "first_name": "Sebastián",
+      "last_name": "Muñoz",
+      "country": "COL"
+    },
+    {
+      "player_id": 76204,
+      "first_name": "Kevin",
+      "last_name": "Na",
+      "country": "USA"
+    },
+    {
+      "player_id": 173848,
+      "first_name": "Andy",
+      "last_name": "Ogletree",
+      "country": "USA"
+    },
+    {
+      "player_id": 19135,
+      "first_name": "José María",
+      "last_name": "Olazábal",
+      "country": "ESP"
+    },
+    {
+      "player_id": 79003,
+      "first_name": "Louis",
+      "last_name": "Oosthuizen",
+      "country": "RSA"
+    },
+    {
+      "player_id": 89740,
+      "first_name": "C.T.",
+      "last_name": "Pan",
+      "country": "TPE"
+    },
+    {
+      "player_id": 143053,
+      "first_name": "Victor",
+      "last_name": "Perez",
+      "country": "FRA"
+    },
+    {
+      "player_id": 149329,
+      "first_name": "J.T.",
+      "last_name": "Poston",
+      "country": "USA"
+    },
+    {
+      "player_id": 72430,
+      "first_name": "Ian",
+      "last_name": "Poulter",
+      "country": "ENG"
+    },
+    {
+      "player_id": 102784,
+      "first_name": "Andrew",
+      "last_name": "Putnam",
+      "country": "USA"
+    },
+    {
+      "player_id": 140926,
+      "first_name": "Jon",
+      "last_name": "Rahm",
+      "country": "ESP"
+    },
+    {
+      "player_id": 79444,
+      "first_name": "Chez",
+      "last_name": "Reavie",
+      "country": "USA"
+    },
+    {
+      "player_id": 103096,
+      "first_name": "Patrick",
+      "last_name": "Reed",
+      "country": "USA"
+    },
+    {
+      "player_id": 67231,
+      "first_name": "Justin",
+      "last_name": "Rose",
+      "country": "ENG"
+    },
+    {
+      "player_id": 144259,
+      "first_name": "Xander",
+      "last_name": "Schauffele",
+      "country": "USA"
+    },
+    {
+      "player_id": 138154,
+      "first_name": "Scottie",
+      "last_name": "Scheffler",
+      "country": "USA"
+    },
+    {
+      "player_id": 79009,
+      "first_name": "Charl",
+      "last_name": "Schwartzel",
+      "country": "RSA"
+    },
+    {
+      "player_id": 73522,
+      "first_name": "Adam",
+      "last_name": "Scott",
+      "country": "AUS"
+    },
+    {
+      "player_id": 87679,
+      "first_name": "Webb",
+      "last_name": "Simpson",
+      "country": "USA"
+    },
+    {
+      "player_id": 19717,
+      "first_name": "Vijay",
+      "last_name": "Singh",
+      "country": "FIJ"
+    },
+    {
+      "player_id": 107689,
+      "first_name": "Cameron",
+      "last_name": "Smith",
+      "country": "AUS"
+    },
+    {
+      "player_id": 82963,
+      "first_name": "Brandt",
+      "last_name": "Snedeker",
+      "country": "USA"
+    },
+    {
+      "player_id": 102154,
+      "first_name": "Jordan",
+      "last_name": "Spieth",
+      "country": "USA"
+    },
+    {
+      "player_id": 64600,
+      "first_name": "Henrik",
+      "last_name": "Stenson",
+      "country": "SWE"
+    },
+    {
+      "player_id": 156988,
+      "first_name": "James",
+      "last_name": "Sugrue",
+      "country": "IRL"
+    },
+    {
+      "player_id": 76495,
+      "first_name": "Nick",
+      "last_name": "Taylor",
+      "country": "CAN"
+    },
+    {
+      "player_id": 100360,
+      "first_name": "Justin",
+      "last_name": "Thomas",
+      "country": "USA"
+    },
+    {
+      "player_id": 92797,
+      "first_name": "Brendon",
+      "last_name": "Todd",
+      "country": "USA"
+    },
+    {
+      "player_id": 120034,
+      "first_name": "Erik",
+      "last_name": "van Rooyen",
+      "country": "RSA"
+    },
+    {
+      "player_id": 76912,
+      "first_name": "Jimmy",
+      "last_name": "Walker",
+      "country": "USA"
+    },
+    {
+      "player_id": 146677,
+      "first_name": "Matt",
+      "last_name": "Wallace",
+      "country": "ENG"
+    },
+    {
+      "player_id": 77428,
+      "first_name": "Bubba",
+      "last_name": "Watson",
+      "country": "USA"
+    },
+    {
+      "player_id": 31285,
+      "first_name": "Mike",
+      "last_name": "Weir",
+      "country": "CAN"
+    },
+    {
+      "player_id": 61204,
+      "first_name": "Lee",
+      "last_name": "Westwood",
+      "country": "ENG"
+    },
+    {
+      "player_id": 88378,
+      "first_name": "Bernd",
+      "last_name": "Wiesberger",
+      "country": "AUT"
+    },
+    {
+      "player_id": 96433,
+      "first_name": "Danny",
+      "last_name": "Willett",
+      "country": "ENG"
+    },
+    {
+      "player_id": 168850,
+      "first_name": "Matthew",
+      "last_name": "Wolff",
+      "country": "USA"
+    },
+    {
+      "player_id": 93985,
+      "first_name": "Gary",
+      "last_name": "Woodland",
+      "country": "USA"
+    },
+    {
+      "player_id": 26395,
+      "first_name": "Tiger",
+      "last_name": "Woods",
+      "country": "USA"
+    }
+  ]

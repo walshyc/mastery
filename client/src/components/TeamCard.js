@@ -1,11 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import { useTheme } from "@material-ui/core/styles";
-import { Divider } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -14,32 +7,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    margin: 5,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  text: {
-    fontSize: "0.8 rem",
-    letterSpacing: "0.2em",
-  },
-});
-
 export default function TeamCard(props) {
-  const theme = useTheme();
-  const classes = useStyles();
-
   const selections = Object.values(props.selections);
   const totalScore = selections.reduce((acc, s) => acc + s.total_to_par, 0);
 
@@ -59,39 +27,35 @@ export default function TeamCard(props) {
           {selections &&
             selections.map((s) => {
               return (
-                <>
-                  <TableRow key={s.player_id}>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      align="left"
-                      style={{ width: "10px" }}
-                    >
-                      {s.position}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      align="left"
-                      style={{ width: "10px" }}
-                    >
-                      <b>{`${s.last_name.toUpperCase()}`}</b>, {s.first_name}
-                    </TableCell>
-                    <TableCell align="right" style={{ width: "10px" }}>
-                      {s.total_to_par > 0
-                        ? `+${s.total_to_par}`
-                        : s.total_to_par}
-                    </TableCell>
-                  </TableRow>
-                </>
+                <TableRow key={s.player_id}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    align="left"
+                    style={{ width: "10px" }}
+                  >
+                    {s.position}
+                  </TableCell>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    align="left"
+                    style={{ width: "10px" }}
+                  >
+                    <b>{`${s.last_name.toUpperCase()}`}</b>, {s.first_name}
+                  </TableCell>
+                  <TableCell align="right" style={{ width: "10px" }}>
+                    {s.total_to_par > 0 ? `+${s.total_to_par}` : s.total_to_par}
+                  </TableCell>
+                </TableRow>
               );
-            })}{" "}
+            })}
           <TableRow>
             <TableCell style={{ fontSize: "1.3em" }} align="right" colSpan={2}>
               <b>Total</b>
             </TableCell>
             <TableCell style={{ fontSize: "1.3em" }} align="right">
-              <b>{totalScore}</b>
+              <b>{totalScore > 0 ? `+${totalScore}` : totalScore}</b>
             </TableCell>
           </TableRow>
         </TableBody>
