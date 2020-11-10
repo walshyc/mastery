@@ -69,7 +69,7 @@ export default function CompetitionCard() {
     }
   };
 
-  const updated = moment(new Date(data.results.tournament.live_details.updated).toISOString()).fromNow("");
+  // const updated = moment(new Date(data.results.tournament.live_details.updated).toISOString()).fromNow("");
 
 
   if (loading || !data || !data.results) {
@@ -122,7 +122,7 @@ export default function CompetitionCard() {
             className={classes.typography}
           >
             <AccessTimeIcon className={classes.icon}></AccessTimeIcon>
-            Updated {updated}
+            Updated {data.results && moment(new Date(data.results.tournament.live_details.updated).toISOString()).fromNow("")}
           </Typography>
         </CardContent>
       </div>

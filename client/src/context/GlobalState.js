@@ -7,10 +7,11 @@ import {
   REMOVE_USER,
   GET_WORLD_RANKINGS,
   SET_LOADING,
-  GET_ENTRIES
+  GET_ENTRIES,
 } from "./Types";
 import axios from "axios";
 import { db, firebase } from "../firebase";
+import * as moment from "moment";
 
 const initialState = {
   users: [],
@@ -20,6 +21,7 @@ const initialState = {
   entries: [],
   loading: true,
   updated: "",
+  start: moment("2020-11-12T12:00:00.000"),
   selections: [
     { selectionOneID: "", selectionTwoID: "", selectionThreeID: "" },
   ],
@@ -63,7 +65,7 @@ export const GlobalProvider = ({ children }) => {
       `https://golf-leaderboard-data.p.rapidapi.com/entry-list/263`,
       requestOptions
     );
-    console.log('entries')
+    console.log("entries");
     dispatch({
       type: GET_ENTRIES,
       payload: res.data.results.entry_list,
@@ -187,6 +189,7 @@ export const GlobalProvider = ({ children }) => {
         worldRankings: state.worldRankings,
         loading: state.loading,
         selections: state.selections,
+        start: state.start,
         getScoreData,
         setLoading,
         getUsers,

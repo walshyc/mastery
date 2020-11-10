@@ -10,9 +10,10 @@ import { Hidden, useTheme } from "@material-ui/core";
 import PersonSharpIcon from "@material-ui/icons/PersonSharp";
 import { GlobalContext } from "../../context/GlobalState";
 import Row from "./Row";
-
+import Alert from "@material-ui/lab/Alert";
 import Spinner from "../layout/Spinner";
 import { makeStyles } from "@material-ui/core/styles";
+import InfoIcon from "@material-ui/icons/Info";
 
 const ScoreTable = () => {
   const useRowStyles = makeStyles((theme) => ({
@@ -33,7 +34,9 @@ const ScoreTable = () => {
     },
   }));
   const classes = useRowStyles();
-  const { data, loading, users, matchSelection } = useContext(GlobalContext);
+  const { data, loading, users, matchSelection, start } = useContext(
+    GlobalContext
+  );
 
   const createData = (
     name,
@@ -104,46 +107,55 @@ const ScoreTable = () => {
     return <Spinner></Spinner>;
   } else {
     return (
-      <TableContainer component={Paper}>
-        <Table size="small" aria-label="collapsible table">
-          <TableHead>
-            <TableRow className={classes.tableHead}>
-              <TableCell />
-              <TableCell style={{ color: theme.palette.primary.light }}>
-                Name
-              </TableCell>
-              <TableCell
-                style={{ color: theme.palette.primary.light }}
-                align="left"
-              >
-                Score
-              </TableCell>
-              <Hidden xsDown>
+      <>
+        <Alert icon={<InfoIcon fontSize="inherit" />}>
+          All selections will appear once the tournament begins.
+        </Alert>
+        <TableContainer component={Paper}>
+          <Table size="small" aria-label="collapsible table">
+            <TableHead>
+              <TableRow className={classes.tableHead}>
+                <TableCell />
                 <TableCell style={{ color: theme.palette.primary.light }}>
-                  <PersonSharpIcon></PersonSharpIcon>
-                </TableCell>
-                <TableCell style={{ color: theme.palette.primary.light }}>
-                  <PersonSharpIcon></PersonSharpIcon>
-                </TableCell>
-                <TableCell style={{ color: theme.palette.primary.light }}>
-                  <PersonSharpIcon></PersonSharpIcon>
-                </TableCell>
-              </Hidden>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {allScores
-              .sort((a, b) => {
-                if (a.totalScore < b.totalScore) {
-                  return -1;
-                } else return 1;
-              })
-              .map((row, index) => (
-                <Row key={`${row.name}-${index}`} row={row} index={index} />
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                  Name
+                </TableCell>{" "}
+                {Date.now() > start ? (
+                  <TableCell
+                    style={{ color: theme.palette.primary.light }}
+                    align="left"
+                  >
+                    Score
+                  </TableCell>
+                ) : (
+                  ""
+                )}
+                <Hidden xsDown>
+                  <TableCell style={{ color: theme.palette.primary.light }}>
+                    <PersonSharpIcon></PersonSharpIcon>
+                  </TableCell>
+                  <TableCell style={{ color: theme.palette.primary.light }}>
+                    <PersonSharpIcon></PersonSharpIcon>
+                  </TableCell>
+                  <TableCell style={{ color: theme.palette.primary.light }}>
+                    <PersonSharpIcon></PersonSharpIcon>
+                  </TableCell>
+                </Hidden>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {allScores
+                .sort((a, b) => {
+                  if (a.totalScore < b.totalScore) {
+                    return -1;
+                  } else return 1;
+                })
+                .map((row, index) => (
+                  <Row key={`${row.name}-${index}`} row={row} index={index} />
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </>
     );
   }
 };

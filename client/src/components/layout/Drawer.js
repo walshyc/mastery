@@ -164,7 +164,7 @@ function ResponsiveDrawer(props) {
       <List className={classes.list}>
         {currentUser ? (
           <>
-            <ListItem button component={RouterLink} to="/scores">
+            <ListItem  button component={RouterLink} to="/scores">
               <ListItemIcon className={classes.list}>
                 <FormatListNumberedIcon />
               </ListItemIcon>
@@ -180,7 +180,7 @@ function ResponsiveDrawer(props) {
               <ListItemIcon className={classes.list}>
                 <InfoIcon />
               </ListItemIcon>
-              <ListItemText primary="About" />
+              <ListItemText primary="FAQ" />
             </ListItem>
             <ListItem button onClick={handleLogout}>
               <ListItemIcon className={classes.list}>

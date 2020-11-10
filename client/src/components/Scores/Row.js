@@ -11,6 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { Hidden } from "@material-ui/core";
+import * as moment from "moment";
 
 const Row = (props) => {
   const useRowStyles = makeStyles({
@@ -21,6 +22,7 @@ const Row = (props) => {
     },
   });
 
+  const start = moment("2020-11-12T12:00:00.000");
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
@@ -44,14 +46,27 @@ const Row = (props) => {
         <TableCell component="th" scope="row">
           <b> {row.name}</b>
         </TableCell>
-        <TableCell align="left">
-          <b>{row.totalScore > 0 ? `+${row.totalScore}` : row.totalScore}</b>
-        </TableCell>
-        <Hidden xsDown>
-          <TableCell>{row.golfer1}</TableCell>
-          <TableCell color="primary">{row.golfer2}</TableCell>
-          <TableCell>{row.golfer3}</TableCell>
-        </Hidden>
+
+        {Date.now() > start ? (
+          <>
+            <TableCell  align="left">
+              <b>
+                {row.totalScore > 0 ? `+${row.totalScore}` : row.totalScore}
+              </b>
+            </TableCell>
+            <Hidden xsDown>
+              <TableCell>{row.golfer1}</TableCell>
+              <TableCell>{row.golfer2}</TableCell>
+              <TableCell>{row.golfer3}</TableCell>
+            </Hidden>
+          </>
+        ) : (
+          <Hidden xsDown>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+          </Hidden>
+        )}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -76,41 +91,67 @@ const Row = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.detail
-                    .sort((a, b) => {
-                      if (a.position > b.position) {
-                        return 1;
-                      } else {
-                        return -1;
-                      }
-                    })
-                    .map((detailRow) => (
-                      <TableRow key={detailRow.player_id}>
-                        <TableCell width="10%" component="th" scope="row">
-                          <b>{detailRow.position}</b>
-                        </TableCell>
-                        <TableCell width="70%" component="th" scope="row">
-                          <b>{detailRow.last_name.toUpperCase()}</b>
-                          {`, ${detailRow.first_name}`}
-                        </TableCell>
-                        <Hidden xsDown>
-                          <TableCell width="10%" component="th" scope="row">
-                            <b>{detailRow.holes_played}</b>
-                          </TableCell>
-                          <TableCell width="10%">
-                            {
-                              detailRow.rounds[detailRow.rounds.length - 1]
-                                .total_to_par
-                            }
-                          </TableCell>
-                        </Hidden>
-                        <TableCell style={{ fontWeight: "bold" }} width="10%">
-                          {detailRow.total_to_par > 0
-                            ? `+${detailRow.total_to_par}`
-                            : detailRow.total_to_par}
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                  {Date.now() > start
+                    ? row.detail
+                        .sort((a, b) => {
+                          if (a.position > b.position) {
+                            return 1;
+                          } else {
+                            return -1;
+                          }
+                        })
+                        .map((detailRow) => (
+                          <TableRow key={detailRow.player_id}>
+                            <TableCell width="10%" component="th" scope="row">
+                              <b>{detailRow.position}</b>
+                            </TableCell>
+                            <TableCell width="70%" component="th" scope="row">
+                              <b>{detailRow.last_name.toUpperCase()}</b>
+                              {`, ${detailRow.first_name}`}
+                            </TableCell>
+                            <Hidden xsDown>
+                              <TableCell width="10%" component="th" scope="row">
+                                <b>{detailRow.holes_played}</b>
+                              </TableCell>
+                              <TableCell width="10%">
+                                {
+                                  detailRow.rounds[detailRow.rounds.length - 1]
+                                    .total_to_par
+                                }
+                              </TableCell>
+                            </Hidden>
+                            <TableCell
+                              style={{ fontWeight: "bold" }}
+                              width="10%"
+                            >
+                              {detailRow.total_to_par > 0
+                                ? `+${detailRow.total_to_par}`
+                                : detailRow.total_to_par}
+                            </TableCell>
+                          </TableRow>
+                        ))
+                    : <TableRow>
+                    <TableCell width="10%" component="th" scope="row">
+                      
+                    </TableCell>
+                    <TableCell width="70%" component="th" scope="row">
+
+                    </TableCell>
+                    <Hidden xsDown>
+                      <TableCell width="10%" component="th" scope="row">
+
+                      </TableCell>
+                      <TableCell width="10%">
+
+                      </TableCell>
+                    </Hidden>
+                    <TableCell
+                      style={{ fontWeight: "bold" }}
+                      width="10%"
+                    >
+
+                    </TableCell>
+                  </TableRow>}
                 </TableBody>
               </Table>
             </Box>
