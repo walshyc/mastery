@@ -3,6 +3,7 @@
 Mastery is a fantasy golf web application built for the 2020 Masters golf competition. The web app is deployed at [mastery.golf](https://mastery.golf). The app is built using the following:
 
  - ReactJS
+ - MaterialUI
  - Firebase
  - Stripe
 
