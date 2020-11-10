@@ -45,8 +45,6 @@ const TeamForm = (props) => {
     setTeamCount,
   } = props;
 
-  console.log();
-
   const classes = useStyles();
 
   const handleDeleteClick = (e) => {
@@ -164,7 +162,7 @@ const TeamForm = (props) => {
               onClick={handleDeleteClick}
               color="default"
               variant="contained"
-              style={{marginTop: 20}}
+              style={{ marginTop: 20 }}
             >
               Delete Team
             </Button>

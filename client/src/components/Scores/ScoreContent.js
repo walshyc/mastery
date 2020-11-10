@@ -11,8 +11,6 @@ const ScoreContent = () => {
   useEffect(() => {
     getScoreData();
     getUsers();
-    console.log("loaded from score content");
-
     // eslint-disable-next-line
   }, []);
   if (loading) {

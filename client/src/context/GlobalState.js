@@ -56,20 +56,21 @@ export const GlobalProvider = ({ children }) => {
     const requestOptions = {
       method: "GET",
       headers: {
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY2,
         "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
-        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
       },
     };
-try {
-  const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/scorecard/220/101017`,
-      requestOptions
-    );
-    console.log(res)
-} catch (error) {
-  console.log(error)
-}
-    
+    try {
+      const res = await axios.get(
+        `https://golf-leaderboard-data.p.rapidapi.com/scorecard/220/101017`,
+        
+        requestOptions
+      );
+      //console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+
     // dispatch({
     //   type: GET_SCORE_DATA,
     //   payload: res.data,
@@ -147,7 +148,6 @@ try {
       email: email,
     });
     const user = state.users.filter((u) => u.email === email);
-    console.log(user);
     dispatch({
       type: GET_USER,
       payload: user,
@@ -193,7 +193,6 @@ try {
     const snapshot = await db.collection("users").get();
 
     const res = snapshot.docs.map((doc) => doc.data());
-    console.log("got users from selection");
     dispatch({
       type: GET_USERS,
       payload: res,

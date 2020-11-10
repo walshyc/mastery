@@ -49,7 +49,7 @@ const Navbar = () => {
      getUsers();
      getEntries();
      getWorldRankings()
-    console.log('loaded from nav')
+
     // if (currentUser) {
     //   getUser(currentUser.email);
     // }

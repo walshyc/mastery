@@ -92,7 +92,6 @@ const AddTeam = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [checkoutErrorMessage, setCheckoutErrorMessage] = useState("");
   const [teamCount, setTeamCount] = useState(1);
-  const [showPay, setShowPay] = useState(true);
   const [teamOne, setTeamOne] = useState({
     selectionOne: "",
     selectionTwo: "",
@@ -364,7 +363,6 @@ const AddTeam = () => {
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
             data={playersArray}
-            setShowPay={setShowPay}
             handleChange={handleChangeTeamOne}
           ></TeamForm>
         </Grid>
@@ -379,7 +377,6 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamOne}
               data={playersArray}
-              setShowPay={setShowPay}
               handleChange={handleChangeTeamOne}
             ></TeamForm>
           </Grid>
@@ -390,7 +387,6 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamTwo}
               data={playersArray}
-              setShowPay={setShowPay}
               handleChange={handleChangeTeamTwo}
             ></TeamForm>
           </Grid>
@@ -406,7 +402,6 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamOne}
               data={playersArray}
-              setShowPay={setShowPay}
               handleChange={handleChangeTeamOne}
               number={1}
             ></TeamForm>{" "}
@@ -418,7 +413,6 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamTwo}
               data={playersArray}
-              setShowPay={setShowPay}
               handleChange={handleChangeTeamTwo}
               number={2}
             ></TeamForm>
@@ -431,7 +425,6 @@ const AddTeam = () => {
               setTeamCount={setTeamCount}
               setSelections={setTeamThree}
               data={playersArray}
-              setShowPay={setShowPay}
               handleChange={handleChangeTeamThree}
               number={3}
             ></TeamForm>
@@ -465,7 +458,7 @@ const AddTeam = () => {
                     primary={
                       <Typography variant="body1">
                         3 Golfer's per entry. Selections are restricted by World
-                        Rankings. Full entry details {" "}
+                        Rankings. Full entry details{" "}
                         <Link to="/about">here</Link>.
                       </Typography>
                     }
