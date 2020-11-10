@@ -40,7 +40,7 @@ const MastersScoreboard = () => {
                   } else return -1;
                 })
                 .map((row) => (
-                  <TableRow key={row.name}>
+                  <TableRow key={row.player_id}>
                     <TableCell
                       component="th"
                       scope="row"

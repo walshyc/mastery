@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "../../context/AuthContext";
-import Alert from '@material-ui/lab/Alert';
+import Alert from "@material-ui/lab/Alert";
 import { GlobalContext } from "../../context/GlobalState";
 
 const useStyles = makeStyles((theme) => ({
@@ -112,10 +112,6 @@ export default function Login() {
             autoComplete="current-password"
             inputRef={passwordRef}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -127,12 +123,20 @@ export default function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <RouterLink to="/forgot-password" variant="body2">
+              <RouterLink
+                to="/forgot-password"
+                variant="body2"
+                style={{ textDecoration: "none", color: "#0ba360" }}
+              >
                 Forgot password?
               </RouterLink>
             </Grid>
             <Grid item>
-              <RouterLink to="/signup" variant="body2">
+              <RouterLink
+                to="/signup"
+                variant="body2"
+                style={{ textDecoration: "none", color: "#0ba360" }}
+              >
                 {"Don't have an account? Sign Up"}
               </RouterLink>
             </Grid>

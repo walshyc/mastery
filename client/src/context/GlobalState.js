@@ -51,6 +51,30 @@ export const GlobalProvider = ({ children }) => {
       payload: res.data,
     });
   };
+  const getScoreDataWScores = async () => {
+    setLoading();
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+      },
+    };
+try {
+  const res = await axios.get(
+      `https://golf-leaderboard-data.p.rapidapi.com/scorecard/220/101017`,
+      requestOptions
+    );
+    console.log(res)
+} catch (error) {
+  console.log(error)
+}
+    
+    // dispatch({
+    //   type: GET_SCORE_DATA,
+    //   payload: res.data,
+    // });
+  };
   const getEntries = async () => {
     setLoading();
     const requestOptions = {
@@ -65,7 +89,6 @@ export const GlobalProvider = ({ children }) => {
       `https://golf-leaderboard-data.p.rapidapi.com/entry-list/263`,
       requestOptions
     );
-    console.log("entries");
     dispatch({
       type: GET_ENTRIES,
       payload: res.data.results.entry_list,
@@ -191,6 +214,7 @@ export const GlobalProvider = ({ children }) => {
         selections: state.selections,
         start: state.start,
         getScoreData,
+        getScoreDataWScores,
         setLoading,
         getUsers,
         getEntries,

@@ -114,6 +114,7 @@ function ResponsiveDrawer(props) {
     getScoreData,
     getWorldRankings,
     getEntries,
+    getScoreDataWScores
   } = useContext(GlobalContext);
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
@@ -132,6 +133,7 @@ function ResponsiveDrawer(props) {
     getUsers();
     getWorldRankings();
     getEntries();
+    getScoreDataWScores()
     // if (currentUser) {
     //   getUser(currentUser.email);
     // }

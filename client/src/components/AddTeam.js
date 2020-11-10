@@ -9,19 +9,22 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "../context/AuthContext";
 import Alert from "@material-ui/lab/Alert";
+import AlertTitle from "@material-ui/lab/AlertTitle";
 import { GlobalContext } from "../context/GlobalState";
 import GolfCourseIcon from "@material-ui/icons/GolfCourse";
+import { Link } from "react-router-dom";
 import Spinner from "./layout/Spinner";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import TeamForm from "./TeamForm";
+import CreditCardIcon from "@material-ui/icons/CreditCard";
 import EuroIcon from "@material-ui/icons/Euro";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import ListItemText from "@material-ui/core/ListItemText";
-import additional from '../static/data/additionalPlayers.json'
+import additional from "../static/data/additionalPlayers.json";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -48,12 +51,23 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    background: "#0AA360",
-    color: '#fff',
+    background: "#fff",
+    color: "#0AA360",
+    "&:hover": {
+      background: "#d4d4d4",
+    },
+  },
+  formRow: {
+    //display: "flex",
+    alignItems: "center",
+    //marginLeft: "15px",
+    padding: 15,
+    border: "1px solid #0AA360",
+    background: "#fff",
   },
   stripe: {
     padding: 30,
-    background: '#fff',
+    background: "#0AA360",
     boxShadow:
       "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
     marginBottom: 20,
@@ -125,9 +139,9 @@ const AddTeam = () => {
     compPlayers.some((b) => a.player_id === b.player_id)
   );
 
-  additional.map(p => {
+  additional.map((p) => {
     playersArray.push(p);
-  })
+  });
 
   let enableButton;
   if (teamCount === 1) {
@@ -315,12 +329,13 @@ const AddTeam = () => {
   const cardStyle = {
     style: {
       base: {
-        color: "#a5d9c2",
+        color: "#111",
         background: "#0ba360",
         fontFamily: "Arial, sans-serif",
         fontSmoothing: "antialiased",
         fontSize: "16px",
         padding: 50,
+        border: "10px",
         "::placeholder": {
           color: "#000",
         },
@@ -450,7 +465,8 @@ const AddTeam = () => {
                     primary={
                       <Typography variant="body1">
                         3 Golfer's per entry. Selections are restricted by World
-                        Rankings.
+                        Rankings. Full entry details {" "}
+                        <Link to="/about">here</Link>.
                       </Typography>
                     }
                   />
@@ -501,18 +517,25 @@ const AddTeam = () => {
                 <p>{checkoutErrorMessage}</p>
               </Grid>
               <Grid item xs={12} style={{ marginTop: 5, marginBottom: 20 }}>
-                <Button fullWidth variant="contained" color="primary">
-                  Total: €{(amount / 100).toFixed(2)}
-                </Button>{" "}
+                <Alert
+                  icon={<CreditCardIcon></CreditCardIcon>}
+                  severity="success"
+                >
+                  <AlertTitle>
+                    <b> Total Cost €{(amount / 100).toFixed(2)}</b>
+                  </AlertTitle>
+                </Alert>
               </Grid>
             </Grid>
             <Grid container className={classes.stripe}>
               <Grid item xs={12}>
-                <CardElement
-                  id="card-element"
-                  options={cardStyle}
-                  onChange={handleStripeChange}
-                />
+                <div className={classes.formRow}>
+                  <CardElement
+                    id="card-element"
+                    options={cardStyle}
+                    onChange={handleStripeChange}
+                  />
+                </div>
               </Grid>
 
               <Button
@@ -523,7 +546,9 @@ const AddTeam = () => {
                 disabled={isProcessing || enableButton}
                 className={classes.submit}
               >
-                {!isProcessing ? "Pay" : "Processing"}
+                {!isProcessing
+                  ? `Pay €${(amount / 100).toFixed(2)}`
+                  : "Processing"}
               </Button>
               <Grid item xs={12}>
                 <Typography
