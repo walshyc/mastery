@@ -76,7 +76,7 @@ export default function About() {
               To enter you must first sign up <Link to="/signup">here.</Link>{" "}
               Then from your account page you can add a team. Each team
               comprises of 3 golfers, with restrictions on who you can select in
-              each slot based on the Offical Golf World Rankings.
+              each slot based on the Official Golf World Rankings.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -127,7 +127,7 @@ export default function About() {
               <br></br>
               <br></br>
               If at the end of the competition, 2 or more entries are level on
-              the same score, the tiebracker will be based on which team has the
+              the same score, the tiebreaker will be based on which team has the
               highest combined world ranking. The current world rankings can be
               viewed{" "}
               <a
@@ -160,8 +160,8 @@ export default function About() {
             <Typography align="left">
               Most of the entry fees are added to the prize fund, so the more
               entries, the more you can win! The winner will get 70% of the
-              prize fun, 20% for 2nd place and 10% for 3rd place. Once the
-              competition starts the total prize fund will be revaled.
+              prize fund, 20% for 2nd place and 10% for 3rd place. Once the
+              competition starts the total prize fund will be revealed.
             </Typography>
           </AccordionDetails>
         </Accordion>

@@ -48,12 +48,12 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    background: "#ffffff",
-    color: theme.palette.primary.main,
+    background: "#0AA360",
+    color: '#fff',
   },
   stripe: {
-    padding: 15,
-    background: theme.palette.primary.main,
+    padding: 30,
+    background: '#fff',
     boxShadow:
       "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
     marginBottom: 20,
@@ -315,13 +315,14 @@ const AddTeam = () => {
   const cardStyle = {
     style: {
       base: {
-        color: "#ffffff",
+        color: "#a5d9c2",
         background: "#0ba360",
         fontFamily: "Arial, sans-serif",
         fontSmoothing: "antialiased",
-        fontSize: "20px",
+        fontSize: "16px",
+        padding: 50,
         "::placeholder": {
-          color: "#ffffff",
+          color: "#000",
         },
         // width: "100%",
         // height: "100%",
@@ -527,7 +528,7 @@ const AddTeam = () => {
               <Grid item xs={12}>
                 <Typography
                   align="right"
-                  style={{ color: "#ffffff", fontSize: "0.7rem" }}
+                  style={{ color: "#a5d9c2", fontSize: "0.7rem" }}
                 >
                   Powered by Stripe
                 </Typography>
