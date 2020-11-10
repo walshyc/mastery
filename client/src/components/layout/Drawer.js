@@ -7,7 +7,7 @@ import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import "fontsource-bree-serif"
+import "fontsource-bree-serif";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListIcon from "@material-ui/icons/List";
@@ -26,6 +26,10 @@ import { GlobalContext } from "../../context/GlobalState";
 import GroupIcon from "@material-ui/icons/Group";
 import ScoreContent from "../../components/Scores/ScoreContent";
 import SignUp from "../Auth/SignUp";
+import InfoIcon from "@material-ui/icons/Info";
+import EmailIcon from "@material-ui/icons/Email";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import TwitterIcon from "@material-ui/icons/Twitter";
 import ForgotPassword from "../Auth/ForgotPassword";
 import Account from "../../components/Account";
 import Hero from "../../components/Hero";
@@ -61,11 +65,23 @@ const useStyles = makeStyles((theme) => ({
   },
   typographyBar: {
     flexGrow: 1,
-    textAlign: 'center',
+    textAlign: "center",
     textDecoration: "none",
     color: "#ECFEF6",
     fontFamily: "Bree Serif",
-    fontSize: '2rem'
+    fontSize: "2rem",
+  },
+  footer: {
+    padding: 15,
+    background: "#ECFEF6",
+    display: "flex",
+  },
+  footerText: {
+    color: "black",
+    fontFamily: "Bree Serif",
+    margin: 15,
+    textDecoration: "none",
+    flex: 1,
   },
   menuButton: {
     //marginRight: theme.spacing(2),
@@ -87,9 +103,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
-  const { removeUser, getUsers, getScoreData, getWorldRankings, getEntries } = useContext(
-    GlobalContext
-  );
+  const {
+    removeUser,
+    getUsers,
+    getScoreData,
+    getWorldRankings,
+    getEntries,
+  } = useContext(GlobalContext);
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
   const history = useHistory();
@@ -143,13 +163,19 @@ function ResponsiveDrawer(props) {
               <ListItemIcon className={classes.list}>
                 <FormatListNumberedIcon />
               </ListItemIcon>
-              <ListItemText primary="Live Scores" />
+              <ListItemText primary="Scores" />
             </ListItem>
             <ListItem button component={RouterLink} to="/account">
               <ListItemIcon className={classes.list}>
                 <GroupIcon />
               </ListItemIcon>
               <ListItemText primary="Your Teams" />
+            </ListItem>
+            <ListItem button component={RouterLink} to="/about">
+              <ListItemIcon className={classes.list}>
+                <InfoIcon />
+              </ListItemIcon>
+              <ListItemText primary="About" />
             </ListItem>
             <ListItem button onClick={handleLogout}>
               <ListItemIcon className={classes.list}>
@@ -171,6 +197,12 @@ function ResponsiveDrawer(props) {
                 <OpenInNewIcon />
               </ListItemIcon>
               <ListItemText primary="Login" />
+            </ListItem>
+            <ListItem button component={RouterLink} to="/about">
+              <ListItemIcon className={classes.list}>
+                <InfoIcon />
+              </ListItemIcon>
+              <ListItemText primary="About" />
             </ListItem>
           </>
         )}
@@ -272,6 +304,56 @@ function ResponsiveDrawer(props) {
             component={ForgotPassword}
           ></Route>
         </Switch>
+        <footer className={classes.footer}>
+          <div style={{ margin: "15", flex: 1 }}>
+            <Typography
+              variant="subtitle"
+              className={classes.footerText}
+              component={RouterLink}
+              to="/"
+              align="center"
+            >
+              Made by{" "}
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://twitter.com/walshy_c"
+                style={{ textDecoration: "none", color: "#111" }}
+              >
+                walshyc
+              </a>
+            </Typography>
+          </div>
+
+          <div style={{ margin: "15", flex: 1 }}>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/walshyc"
+            >
+              <GitHubIcon
+                style={{ marginRight: 20, color: "#111" }}
+              ></GitHubIcon>
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="mailto:conorwalsh0703@gmail.com"
+            >
+              <EmailIcon style={{ marginRight: 20, color: "#111" }}></EmailIcon>
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://twitter.com/walshy_c"
+              style={{ marginRight: 20, color: "#111" }}
+            >
+              <TwitterIcon
+                style={{ marginRight: 20, color: "#111" }}
+              ></TwitterIcon>
+            </a>
+          </div>
+        </footer>
       </main>
     </div>
   );
