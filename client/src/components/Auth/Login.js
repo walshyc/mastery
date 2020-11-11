@@ -56,8 +56,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const email = emailFormRef.current.value;
-      getUser(email);
       await login(emailFormRef.current.value, passwordRef.current.value);
+      getUser(email);
       if (currentUser) {
         getUser(currentUser.email);
       }
