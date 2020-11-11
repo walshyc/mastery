@@ -145,7 +145,7 @@ export const GlobalProvider = ({ children }) => {
     setLoading();
     db.collection("users").add({
       name: name,
-      email: email,
+      email: email.toLowerCase(),
     });
     const user = state.users.filter((u) => u.email.toLowerCase() === email.toLowerCase());
     dispatch({
