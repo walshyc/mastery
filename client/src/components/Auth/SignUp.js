@@ -125,8 +125,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                name="passwordConfirm"
-                label="PasswordConfirm"
+                name="Confirm Password"
+                label="Confirm Password"
                 type="password"
                 id="passwordConfirm"
                 inputRef={passwordConfirmRef}
