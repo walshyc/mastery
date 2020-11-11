@@ -97,7 +97,7 @@ const Hero = () => {
                   color="primary"
                   className={classes.button}
                   component={RouterLink}
-                  to="/account"
+                  to="/add-team"
                 >
                   Create a Team
                 </Button>

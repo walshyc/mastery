@@ -204,7 +204,7 @@ function ResponsiveDrawer(props) {
               <ListItemIcon className={classes.list}>
                 <InfoIcon />
               </ListItemIcon>
-              <ListItemText primary="About" />
+              <ListItemText primary="FAQ" />
             </ListItem>
           </>
         )}

@@ -131,6 +131,7 @@ const AddTeam = () => {
 
   useEffect(() => {
     getScoreData();
+    getUser(currentUser.email)
     const getData = async () => {
       await getUsers();
     };

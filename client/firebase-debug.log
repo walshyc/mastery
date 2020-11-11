@@ -1,0 +1,33 @@
+[debug] [2020-11-11T20:32:38.727Z] ----------------------------------------------------------------------
+[debug] [2020-11-11T20:32:38.728Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\conor\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-11-11T20:32:38.728Z] CLI Version:   8.15.0
+[debug] [2020-11-11T20:32:38.729Z] Platform:      win32
+[debug] [2020-11-11T20:32:38.729Z] Node Version:  v13.12.0
+[debug] [2020-11-11T20:32:38.729Z] Time:          Wed Nov 11 2020 20:32:38 GMT+0000 (Greenwich Mean Time)
+[debug] [2020-11-11T20:32:38.730Z] ----------------------------------------------------------------------
+[debug] [2020-11-11T20:32:38.730Z] 
+[debug] [2020-11-11T20:32:38.738Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-11T20:32:38.739Z] > authorizing via signed-in user
+[debug] [2020-11-11T20:32:38.739Z] [iam] checking project mastery-c650a for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-11-11T20:32:38.742Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/mastery-c650a:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-11-11T20:32:39.486Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 11 Nov 2020 20:32:39 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=648","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-11T20:32:39.487Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/mastery-c650a  
+ 
+[debug] [2020-11-11T20:32:39.806Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 11 Nov 2020 20:32:39 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'mastery-c650a'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2020-11-11T20:32:39.821Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/mastery-c650a/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-11-11T20:32:40.695Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 11 Nov 2020 20:32:40 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[mastery-c650a]: beginning deploy... 
+[info] i  hosting[mastery-c650a]: found 33 files in build 
+[debug] [2020-11-11T20:32:41.188Z] [hosting] hash cache [YnVpbGQ] stored for 33 files
+[debug] [2020-11-11T20:32:41.188Z] [hosting][hash queue][FINAL] {"max":468,"min":6,"avg":31.03030303030303,"active":0,"complete":33,"success":33,"errored":0,"retried":0,"total":33,"elapsed":474}
+[debug] [2020-11-11T20:32:41.188Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/mastery-c650a/versions/f8ae9e6d456bf633:populateFiles  
+ <request body omitted>
+[debug] [2020-11-11T20:32:42.290Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 11 Nov 2020 20:32:42 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-11T20:32:42.293Z] [hosting][populate queue][FINAL] {"max":1104,"min":1104,"avg":1104,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1106}
+[debug] [2020-11-11T20:32:42.293Z] [hosting] uploads queued: 4
