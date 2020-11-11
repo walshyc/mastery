@@ -60,6 +60,7 @@ const Hero = () => {
     getWorldRankings();
     if (currentUser) {
       getUser(currentUser.email);
+      console.log(currentUser)
     }
     // eslint-disable-next-line
   }, []);
