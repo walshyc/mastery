@@ -96,25 +96,31 @@ const AddTeam = () => {
     selectionOne: "",
     selectionTwo: "",
     selectionThree: "",
+    selectionFour: "",
     selectionOneId: "",
     selectionTwoId: "",
     selectionThreeId: "",
+    selectionFourId: "",
   });
   const [teamTwo, setTeamTwo] = useState({
     selectionOne: "",
     selectionTwo: "",
     selectionThree: "",
+    selectionFour: "",
     selectionOneId: "",
     selectionTwoId: "",
     selectionThreeId: "",
+    selectionFourId: "",
   });
   const [teamThree, setTeamThree] = useState({
     selectionOne: "",
     selectionTwo: "",
     selectionThree: "",
+    selectionFour: "",
     selectionOneId: "",
     selectionTwoId: "",
     selectionThreeId: "",
+    selectionFourId: "",
   });
 
   const stripe = useStripe();
@@ -147,28 +153,34 @@ const AddTeam = () => {
     enableButton = !(
       teamOne.selectionOne &&
       teamOne.selectionTwo &&
-      teamOne.selectionThree
+      teamOne.selectionThree &&
+      teamOne.selectionFour
     );
   } else if (teamCount === 2) {
     enableButton = !(
       teamOne.selectionOne &&
       teamOne.selectionTwo &&
       teamOne.selectionThree &&
+      teamOne.selectionFour &&
       teamTwo.selectionOne &&
       teamTwo.selectionTwo &&
-      teamTwo.selectionThree
+      teamTwo.selectionThree &&
+      teamTwo.selectionFour
     );
   } else {
     enableButton = !(
       teamOne.selectionOne &&
       teamOne.selectionTwo &&
       teamOne.selectionThree &&
+      teamOne.selectionFour &&
       teamTwo.selectionOne &&
       teamTwo.selectionTwo &&
       teamTwo.selectionThree &&
+      teamTwo.selectionFour &&
       teamThree.selectionOne &&
       teamThree.selectionTwo &&
-      teamThree.selectionThree
+      teamThree.selectionThree &&
+      teamThree.selectionFour
     );
   }
 
@@ -239,7 +251,8 @@ const AddTeam = () => {
       if (
         teamOne.selectionOne.length > 0 &&
         teamOne.selectionTwo.length > 0 &&
-        teamOne.selectionThree.length > 0
+        teamOne.selectionThree.length > 0 &&
+        teamOne.selectionFour.length > 0
       ) {
         addSelections(
           currentUser.email,
@@ -248,13 +261,15 @@ const AddTeam = () => {
           teamOne.selectionTwo,
           teamOne.selectionTwoId,
           teamOne.selectionThree,
-          teamOne.selectionThreeId
+          teamOne.selectionThreeId,
+          teamOne.selectionFour,
+          teamOne.selectionFourId
         );
       }
       if (
         teamTwo.selectionTwo.length > 0 &&
         teamTwo.selectionTwo.length > 0 &&
-        teamTwo.selectionThree.length > 0
+        teamTwo.selectionThree.length > 0 && teamTwo.selectionFour.length > 0
       ) {
         addSelections(
           currentUser.email,
@@ -263,13 +278,15 @@ const AddTeam = () => {
           teamTwo.selectionTwo,
           teamTwo.selectionTwoId,
           teamTwo.selectionThree,
-          teamTwo.selectionThreeId
+          teamTwo.selectionThreeId,
+          teamTwo.selectionFour,
+          teamTwo.selectionFourId
         );
       }
       if (
         teamThree.selectionThree.length > 0 &&
         teamThree.selectionTwo.length > 0 &&
-        teamThree.selectionThree.length > 0
+        teamThree.selectionThree.length > 0 && teamThree.selectionFour.length > 0
       ) {
         addSelections(
           currentUser.email,
@@ -278,7 +295,9 @@ const AddTeam = () => {
           teamThree.selectionTwo,
           teamThree.selectionTwoId,
           teamThree.selectionThree,
-          teamThree.selectionThreeId
+          teamThree.selectionThreeId,
+          teamThree.selectionFour,
+          teamThree.selectionFourId
         );
       }
     } catch (err) {
@@ -457,7 +476,7 @@ const AddTeam = () => {
                   <ListItemText
                     primary={
                       <Typography variant="body1">
-                        3 Golfer's per entry. Selections are restricted by World
+                        4 Golfer's per entry. Selections are restricted by World
                         Rankings. Full entry details{" "}
                         <Link to="/about">here</Link>.
                       </Typography>

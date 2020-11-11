@@ -108,7 +108,8 @@ const Account = () => {
                 key={
                   s.golferOne.player_id +
                   s.golferTwo.player_id +
-                  s.golferThree.player_id
+                  s.golferThree.player_id +
+                  s.golferFour.player_id
                 }
                 item
                 xs={11}

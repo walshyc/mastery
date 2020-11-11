@@ -75,7 +75,7 @@ export default function About() {
             <Typography align="left">
               To enter you must first sign up <Link to="/signup">here.</Link>{" "}
               Then from your account page you can add a team. Each team
-              comprises of 3 golfers, with restrictions on who you can select in
+              comprises of 4 golfers, with restrictions on who you can select in
               each slot based on the Official Golf World Rankings.
             </Typography>
           </AccordionDetails>
@@ -98,7 +98,7 @@ export default function About() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography align="left">
-              Each entry of 3 golfers cost €5. You can enter 3 teams for the
+              Each entry of 4 golfers cost €5. You can enter 3 teams for the
               special price of €12.50!
             </Typography>
           </AccordionDetails>

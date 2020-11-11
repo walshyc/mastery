@@ -58,10 +58,12 @@ const Row = (props) => {
               <TableCell>{row.golfer1}</TableCell>
               <TableCell>{row.golfer2}</TableCell>
               <TableCell>{row.golfer3}</TableCell>
+              <TableCell>{row.golfer4}</TableCell>
             </Hidden>
           </>
         ) : (
           <Hidden xsDown>
+            <TableCell></TableCell>
             <TableCell></TableCell>
             <TableCell></TableCell>
             <TableCell></TableCell>

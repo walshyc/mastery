@@ -54,9 +54,11 @@ const TeamForm = (props) => {
       selectionOne: "",
       selectionTwo: "",
       selectionThree: "",
+      selectionFour: "",
       selectionOneId: "",
       selectionTwoId: "",
       selectionThreeId: "",
+      selectionFourId: "",
     });
   };
   return (
@@ -108,8 +110,7 @@ const TeamForm = (props) => {
               id: "age-native-simple",
             }}
           >
-            <MenuItem></MenuItem>
-            {data.slice(Math.round((data.length + 1) / 4)).map((p) => {
+            {data.map((p) => {
               const name = `${p.player_name}`;
               return (
                 <MenuItem
@@ -141,6 +142,38 @@ const TeamForm = (props) => {
               id: "age-native-simple",
             }}
           >
+            {data.slice(Math.round((data.length + 1) / 4)).map((p) => {
+              const name = `${p.player_name}`;
+              return (
+                <MenuItem
+                  value={name}
+                  name={name}
+                  key={p.player_id}
+                  playerid={p.player_id}
+                  selection="selectionThree"
+                  selectionid="selectionThreeId"
+                >
+                  {name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Grid>
+      <Grid item xs={12}>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="golferFour">Selection 4</InputLabel>
+
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={selections.selectionFour}
+            onChange={handleChange}
+            inputProps={{
+              name: "selectionFour",
+              id: "age-native-simple",
+            }}
+          >
             <MenuItem></MenuItem>
             {data.slice(Math.round(((data.length + 1) * 2) / 4)).map((p) => {
               const name = `${p.player_name}`;
@@ -149,8 +182,9 @@ const TeamForm = (props) => {
                   value={name}
                   name={name}
                   playerid={p.player_id}
-                  selection="selectionThree"
-                  selectionid="selectionThreeId"
+                  key={p.player_id}
+                  selection="selectionFour"
+                  selectionid="selectionFourId"
                 >
                   {name}
                 </MenuItem>

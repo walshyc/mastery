@@ -49,6 +49,9 @@ const ScoreTable = () => {
     golfer3,
     golferThreeID,
     threeID,
+    golfer4,
+    golferFourID,
+    fourID,
     totalScore
   ) => {
     return {
@@ -56,11 +59,13 @@ const ScoreTable = () => {
       golfer1,
       golfer2,
       golfer3,
+      golfer4,
       totalScore,
       detail: [
         matchSelection(oneID)[0],
         matchSelection(twoID)[0],
         matchSelection(threeID)[0],
+        matchSelection(fourID)[0],
       ],
     };
   };
@@ -93,9 +98,13 @@ const ScoreTable = () => {
             `${s.golferThree.first_name} ${s.golferThree.last_name}`,
             score(s.golferThree.player_id),
             s.golferThree.player_id,
+            `${s.golferFour.first_name} ${s.golferFour.last_name}`,
+            score(s.golferFour.player_id),
+            s.golferFour.player_id,
             score(s.golferOne.player_id) +
               score(s.golferTwo.player_id) +
-              score(s.golferThree.player_id)
+              score(s.golferThree.player_id) +
+              score(s.golferFour.player_id) 
           );
           return row;
         });
@@ -130,6 +139,9 @@ const ScoreTable = () => {
                   ""
                 )}
                 <Hidden xsDown>
+                  <TableCell style={{ color: theme.palette.primary.light }}>
+                    <PersonSharpIcon></PersonSharpIcon>
+                  </TableCell>
                   <TableCell style={{ color: theme.palette.primary.light }}>
                     <PersonSharpIcon></PersonSharpIcon>
                   </TableCell>

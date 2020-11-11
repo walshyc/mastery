@@ -43,7 +43,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/220`,
+      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/263`,
       requestOptions
     );
     dispatch({
@@ -51,31 +51,31 @@ export const GlobalProvider = ({ children }) => {
       payload: res.data,
     });
   };
-  const getScoreDataWScores = async () => {
-    setLoading();
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY2,
-        "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
-      },
-    };
-    try {
-      const res = await axios.get(
-        `https://golf-leaderboard-data.p.rapidapi.com/scorecard/220/101017`,
+  // const getScoreDataWScores = async () => {
+  //   setLoading();
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: {
+  //       "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY2,
+  //       "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
+  //     },
+  //   };
+  //   try {
+  //     const res = await axios.get(
+  //       `https://golf-leaderboard-data.p.rapidapi.com/scorecard/220/101017`,
         
-        requestOptions
-      );
-      //console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+  //       requestOptions
+  //     );
+  //     //console.log(res);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 
-    // dispatch({
-    //   type: GET_SCORE_DATA,
-    //   payload: res.data,
-    // });
-  };
+  //   // dispatch({
+  //   //   type: GET_SCORE_DATA,
+  //   //   payload: res.data,
+  //   // });
+  // };
   const getEntries = async () => {
     setLoading();
     const requestOptions = {
@@ -167,7 +167,9 @@ export const GlobalProvider = ({ children }) => {
     golferTwo,
     golferTwoID,
     golferThree,
-    golferThreeID
+    golferThreeID,
+    golferFour,
+    golferFourID
   ) => {
     setLoading();
     await db
@@ -185,6 +187,7 @@ export const GlobalProvider = ({ children }) => {
                 golferOne: matchSelection(golferOneID)[0],
                 golferTwo: matchSelection(golferTwoID)[0],
                 golferThree: matchSelection(golferThreeID)[0],
+                golferFour: matchSelection(golferFourID)[0],
               }),
             });
         });
@@ -213,7 +216,6 @@ export const GlobalProvider = ({ children }) => {
         selections: state.selections,
         start: state.start,
         getScoreData,
-        getScoreDataWScores,
         setLoading,
         getUsers,
         getEntries,
