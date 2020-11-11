@@ -14,6 +14,7 @@ import Alert from "@material-ui/lab/Alert";
 import Spinner from "../layout/Spinner";
 import { makeStyles } from "@material-ui/core/styles";
 import InfoIcon from "@material-ui/icons/Info";
+import * as moment from "moment";
 
 const ScoreTable = () => {
   const useRowStyles = makeStyles((theme) => ({
@@ -104,7 +105,7 @@ const ScoreTable = () => {
             score(s.golferOne.player_id) +
               score(s.golferTwo.player_id) +
               score(s.golferThree.player_id) +
-              score(s.golferFour.player_id) 
+              score(s.golferFour.player_id)
           );
           return row;
         });
@@ -112,6 +113,16 @@ const ScoreTable = () => {
       });
   }
   let allScores = rows.reduce((a, b) => a.concat(b), []);
+  const date = moment("2020-11-12T12:00:00.000")
+  if (Date.now() < date) {
+    for (let i = allScores.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = allScores[i];
+      allScores[i] = allScores[j];
+      allScores[j] = temp;
+    }
+  }
+  console.log(allScores);
   if (loading) {
     return <Spinner></Spinner>;
   } else {
