@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-  const { getScoreData, getUsers, getUser } = useContext(GlobalContext);
+  const { getScoreData, getUsers, getUser, loggedInUser } = useContext(GlobalContext);
   const classes = useStyles();
   const emailFormRef = useRef();
   const passwordRef = useRef();
@@ -47,7 +47,7 @@ export default function Login() {
     getUsers();
 
     // eslint-disable-next-line
-  }, []);
+  }, [loggedInUser]);
   // if (currentUser) {
   //   getUser(currentUser.email);
   //   history.push("/account");

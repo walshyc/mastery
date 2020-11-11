@@ -128,7 +128,6 @@ export const GlobalProvider = ({ children }) => {
   const getUser = async (email) => {
     setLoading();
     const user = await state.users.filter((u) => u.email.toLowerCase() === email.toLowerCase());
-    console.log('got user')
     dispatch({
       type: GET_USER,
       payload: user,

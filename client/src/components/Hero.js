@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Hero = () => {
-  const { getUser, getWorldRankings, } = useContext(GlobalContext);
+  const { getUser, getWorldRankings } = useContext(GlobalContext);
   const { currentUser } = useAuth();
   useEffect(() => {
     // getScoreData();
@@ -60,7 +60,6 @@ const Hero = () => {
     getWorldRankings();
     if (currentUser) {
       getUser(currentUser.email);
-      console.log(currentUser)
     }
     // eslint-disable-next-line
   }, []);
