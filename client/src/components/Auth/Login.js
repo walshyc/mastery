@@ -61,7 +61,7 @@ export default function Login() {
       if (currentUser) {
         getUser(currentUser.email);
       }
-      history.push("/account");
+      history.push("/");
     } catch (err) {
       if (err.code === "auth/invalid-email") {
         setError("Email address is incorrect!");
