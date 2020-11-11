@@ -12,6 +12,7 @@ firebase.initializeApp({
   appId: process.env.REACT_APP_appId,
   measurementId: process.env.REACT_APP_measurementId,
 });
+firebase.analytics();
 const db = firebase.firestore();
 const auth = firebase.auth();
 export { db, auth, firebase };
