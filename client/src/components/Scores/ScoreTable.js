@@ -122,6 +122,8 @@ const ScoreTable = () => {
       allScores[j] = temp;
     }
   }
+
+  console.log(allScores.length)
   if (loading) {
     return <Spinner></Spinner>;
   } else {
