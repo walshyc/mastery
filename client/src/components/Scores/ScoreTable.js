@@ -130,7 +130,7 @@ const ScoreTable = () => {
     setRefresh(!refresh);
   };
 
-
+  console.log(allScores.length);
 
   if (loading) {
     return <Spinner></Spinner>;

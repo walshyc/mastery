@@ -10,8 +10,7 @@ import { GlobalContext } from "../../context/GlobalState";
 import mastersImg from "../../static/images/masters1.png";
 import Spinner from "../layout/Spinner";
 import BorderAllIcon from "@material-ui/icons/BorderAll";
-import EuroSymbolIcon from "@material-ui/icons/EuroSymbol";
-import * as moment from "moment";
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';import * as moment from "moment";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -130,16 +129,16 @@ export default function CompetitionCard() {
                 ).toISOString()
               ).fromNow("")}
           </Typography>
-          {/* <Typography
+          <Typography
             variant="subtitle1"
             color="textSecondary"
             component="p"
             align="left"
             className={classes.typography}
           >
-            <EuroSymbolIcon className={classes.icon}></EuroSymbolIcon>
-            Prize Fund €390
-          </Typography> */}
+            <AccountBalanceIcon className={classes.icon}></AccountBalanceIcon>
+            Prize Fund €430
+          </Typography>
         </CardContent>
       </div>
     </Card>
