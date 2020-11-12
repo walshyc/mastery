@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -6,11 +6,22 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { GlobalContext } from "../context/GlobalState";
 
 export default function TeamCard(props) {
   const selections = Object.values(props.selections);
-  const totalScore = selections.reduce((acc, s) => acc + s.total_to_par, 0);
 
+  const { matchSelection } = useContext(GlobalContext);
+
+  const getScore = (id) => {
+    const player = matchSelection(id);
+    return player[0].total_to_par;
+  };
+
+  const totalScore = selections.reduce(
+    (acc, s) => acc + getScore(s.player_id),
+    0
+  );
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -45,7 +56,9 @@ export default function TeamCard(props) {
                     <b>{`${s.last_name.toUpperCase()}`}</b>, {s.first_name}
                   </TableCell>
                   <TableCell align="right" style={{ width: "10px" }}>
-                    {s.total_to_par > 0 ? `+${s.total_to_par}` : s.total_to_par}
+                    {getScore(s.player_id) > 0
+                      ? `+${getScore(s.player_id)}`
+                      : getScore(s.player_id)}
                   </TableCell>
                 </TableRow>
               );
