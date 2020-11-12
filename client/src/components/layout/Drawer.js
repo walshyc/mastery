@@ -285,7 +285,7 @@ function ResponsiveDrawer(props) {
         <div style={{ height: "100vh" }}>
           <div className={classes.toolbar} />
           <Switch>
-            <Route exact path="/" component={Hero}></Route>
+            <Route exact path="/" component={ScoreContent}></Route>
             <PrivateRoute
               exact
               path="/account"

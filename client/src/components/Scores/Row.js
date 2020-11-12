@@ -49,7 +49,7 @@ const Row = (props) => {
 
         {Date.now() > start ? (
           <>
-            <TableCell  align="left">
+            <TableCell align="left">
               <b>
                 {row.totalScore > 0 ? `+${row.totalScore}` : row.totalScore}
               </b>
@@ -71,10 +71,10 @@ const Row = (props) => {
         )}
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Table size="small" aria-label="purchases">
+              <Table size="small">
                 <TableHead>
                   <TableRow>
                     <TableCell style={{ fontWeight: "bold" }}>Pos.</TableCell>
@@ -93,67 +93,68 @@ const Row = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {Date.now() > start
-                    ? row.detail
-                        .sort((a, b) => {
-                          if (a.position > b.position) {
-                            return 1;
-                          } else {
-                            return -1;
-                          }
-                        })
-                        .map((detailRow) => (
-                          <TableRow key={detailRow.player_id}>
+                  {Date.now() > start ? (
+                    row.detail
+                      .sort((a, b) => {
+                        if (a.position > b.position) {
+                          return 1;
+                        } else {
+                          return -1;
+                        }
+                      })
+                      .map((detailRow) => (
+                        <TableRow key={detailRow.player_id}>
+                          <TableCell width="10%" component="th" scope="row">
+                            <b>{detailRow.position}</b>
+                          </TableCell>
+                          <TableCell width="70%" component="th" scope="row">
+                            <b>{detailRow.last_name.toUpperCase()}</b>
+                            {`, ${detailRow.first_name}`}
+                          </TableCell>
+                          <Hidden xsDown>
                             <TableCell width="10%" component="th" scope="row">
-                              <b>{detailRow.position}</b>
+                              <b>{detailRow.holes_played}</b>
                             </TableCell>
-                            <TableCell width="70%" component="th" scope="row">
-                              <b>{detailRow.last_name.toUpperCase()}</b>
-                              {`, ${detailRow.first_name}`}
+                            <TableCell width="10%">
+                              {
+                                detailRow.rounds[detailRow.rounds.length - 1]
+                                  .total_to_par
+                              }
                             </TableCell>
-                            <Hidden xsDown>
-                              <TableCell width="10%" component="th" scope="row">
-                                <b>{detailRow.holes_played}</b>
-                              </TableCell>
-                              <TableCell width="10%">
-                                {
-                                  detailRow.rounds[detailRow.rounds.length - 1]
-                                    .total_to_par
-                                }
-                              </TableCell>
-                            </Hidden>
-                            <TableCell
-                              style={{ fontWeight: "bold" }}
-                              width="10%"
-                            >
-                              {detailRow.total_to_par > 0
-                                ? `+${detailRow.total_to_par}`
-                                : detailRow.total_to_par}
-                            </TableCell>
-                          </TableRow>
-                        ))
-                    : <TableRow>
-                    <TableCell width="10%" component="th" scope="row">
-                      
-                    </TableCell>
-                    <TableCell width="70%" component="th" scope="row">
-
-                    </TableCell>
-                    <Hidden xsDown>
-                      <TableCell width="10%" component="th" scope="row">
-
-                      </TableCell>
-                      <TableCell width="10%">
-
-                      </TableCell>
-                    </Hidden>
-                    <TableCell
-                      style={{ fontWeight: "bold" }}
-                      width="10%"
-                    >
-
-                    </TableCell>
-                  </TableRow>}
+                          </Hidden>
+                          <TableCell style={{ fontWeight: "bold" }} width="10%">
+                            {detailRow.total_to_par > 0
+                              ? `+${detailRow.total_to_par}`
+                              : detailRow.total_to_par}
+                          </TableCell>
+                        </TableRow>
+                      ))
+                  ) : (
+                    <TableRow>
+                      <TableCell
+                        width="10%"
+                        component="th"
+                        scope="row"
+                      ></TableCell>
+                      <TableCell
+                        width="70%"
+                        component="th"
+                        scope="row"
+                      ></TableCell>
+                      <Hidden xsDown>
+                        <TableCell
+                          width="10%"
+                          component="th"
+                          scope="row"
+                        ></TableCell>
+                        <TableCell width="10%"></TableCell>
+                      </Hidden>
+                      <TableCell
+                        style={{ fontWeight: "bold" }}
+                        width="10%"
+                      ></TableCell>
+                    </TableRow>
+                  )}
                 </TableBody>
               </Table>
             </Box>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -15,8 +15,11 @@ import Spinner from "../layout/Spinner";
 import { makeStyles } from "@material-ui/core/styles";
 import InfoIcon from "@material-ui/icons/Info";
 import * as moment from "moment";
+import AutorenewIcon from "@material-ui/icons/Autorenew";
 
 const ScoreTable = () => {
+  const [refresh, setRefresh] = useState(false);
+
   const useRowStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
@@ -113,7 +116,7 @@ const ScoreTable = () => {
       });
   }
   let allScores = rows.reduce((a, b) => a.concat(b), []);
-  const date = moment("2020-11-12T12:00:00.000")
+  const date = moment("2020-11-12T12:00:00.000");
   if (Date.now() < date) {
     for (let i = allScores.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);
@@ -123,20 +126,30 @@ const ScoreTable = () => {
     }
   }
 
-  console.log(allScores.length)
+  const refreshPage = (e) => {
+    setRefresh(!refresh);
+  };
+
+
+
   if (loading) {
     return <Spinner></Spinner>;
   } else {
     return (
       <>
-        <Alert icon={<InfoIcon fontSize="inherit" />}>
+        {/* <Alert icon={<InfoIcon fontSize="inherit" />}>
           All selections will appear once the tournament begins.
-        </Alert>
+        </Alert> */}
         <TableContainer component={Paper}>
           <Table size="small" aria-label="collapsible table">
             <TableHead>
               <TableRow className={classes.tableHead}>
-                <TableCell />
+                <TableCell
+                  onClick={refreshPage}
+                  style={{ color: theme.palette.primary.light }}
+                >
+                  <AutorenewIcon style={{ marginTop: 5 }}></AutorenewIcon>{" "}
+                </TableCell>
                 <TableCell style={{ color: theme.palette.primary.light }}>
                   Name
                 </TableCell>{" "}
@@ -152,13 +165,13 @@ const ScoreTable = () => {
                 )}
                 <Hidden xsDown>
                   <TableCell style={{ color: theme.palette.primary.light }}>
-                    <PersonSharpIcon></PersonSharpIcon>
+                    <PersonSharpIcon style={{ marginTop: 5 }}></PersonSharpIcon>
                   </TableCell>
                   <TableCell style={{ color: theme.palette.primary.light }}>
-                    <PersonSharpIcon></PersonSharpIcon>
+                    <PersonSharpIcon style={{ marginTop: 5 }}></PersonSharpIcon>
                   </TableCell>
                   <TableCell style={{ color: theme.palette.primary.light }}>
-                    <PersonSharpIcon></PersonSharpIcon>
+                    <PersonSharpIcon style={{ marginTop: 5 }}></PersonSharpIcon>
                   </TableCell>
                   <TableCell style={{ color: theme.palette.primary.light }}>
                     <PersonSharpIcon></PersonSharpIcon>

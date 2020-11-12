@@ -10,6 +10,7 @@ import { GlobalContext } from "../../context/GlobalState";
 import mastersImg from "../../static/images/masters1.png";
 import Spinner from "../layout/Spinner";
 import BorderAllIcon from "@material-ui/icons/BorderAll";
+import EuroSymbolIcon from "@material-ui/icons/EuroSymbol";
 import * as moment from "moment";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
     },
-    backgroundColor: 'black',
+    backgroundColor: "black",
     background: `linear-gradient(rgba(236, 254, 246,.9), rgba(236, 254, 246,.8)), url(${mastersImg})`,
     //padding: theme.spacing(8, 0, 6),
     backgroundSize: "cover",
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     paddingRight: 5,
-   color: "#0ea463"
+    color: "#111111",
   },
   typography: {
     display: "flex",
@@ -70,7 +71,6 @@ export default function CompetitionCard() {
   };
 
   // const updated = moment(new Date(data.results.tournament.live_details.updated).toISOString()).fromNow("");
-
 
   if (loading || !data || !data.results) {
     return <Spinner></Spinner>;
@@ -122,8 +122,24 @@ export default function CompetitionCard() {
             className={classes.typography}
           >
             <AccessTimeIcon className={classes.icon}></AccessTimeIcon>
-            Updated {data.results && moment(new Date(data.results.tournament.live_details.updated).toISOString()).fromNow("")}
+            Updated{" "}
+            {data.results &&
+              moment(
+                new Date(
+                  data.results.tournament.live_details.updated
+                ).toISOString()
+              ).fromNow("")}
           </Typography>
+          {/* <Typography
+            variant="subtitle1"
+            color="textSecondary"
+            component="p"
+            align="left"
+            className={classes.typography}
+          >
+            <EuroSymbolIcon className={classes.icon}></EuroSymbolIcon>
+            Prize Fund €390
+          </Typography> */}
         </CardContent>
       </div>
     </Card>
