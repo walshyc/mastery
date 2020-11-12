@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import firebase from "firebase/app";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import nextId from "react-id-generator";
 const AuthContext = React.createContext();
 
@@ -11,11 +11,16 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
 
-  const signUp = (emailaddress, password) => {
-    return auth.createUserWithEmailAndPassword(emailaddress, password);
+  const signUp = (emailaddress, password, name) => {
+    auth.createUserWithEmailAndPassword(emailaddress, password).then((cred) => {
+      return db.collection("users").add({
+        name: name,
+        email: emailaddress.toLowerCase(),
+      });
+    });
   };
   const login = (emailaddress, password) => {
-    return auth.signInWithEmailAndPassword(emailaddress, password);
+    auth.signInWithEmailAndPassword(emailaddress, password);
   };
   const logout = () => {
     return auth.signOut();
@@ -48,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     resetPassword,
-    createUser
+    createUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

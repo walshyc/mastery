@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TeamCard from "./TeamCard";
-import { Link as RouterLink} from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Typography from "@material-ui/core/Typography";
 import { GlobalContext } from "../context/GlobalState";
@@ -15,13 +15,9 @@ import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 
 const Account = () => {
   const { currentUser } = useAuth();
-  const {
-    loggedInUser,
-    loading,
-    getUser,
-    getUsers,
-    users,
-  } = useContext(GlobalContext);
+  const { loggedInUser, loading, getUser, getUsers, users } = useContext(
+    GlobalContext
+  );
 
   let arrayIndex = 0;
   const currentIndex = users.filter((u, index) => {
@@ -29,7 +25,10 @@ const Account = () => {
       arrayIndex = index;
       return index;
     }
+    return ;
   });
+  if (currentIndex) {
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -66,8 +65,7 @@ const Account = () => {
             <Grid item xs={12}>
               You have no teams yet!
             </Grid>
-            <Grid item xs={12} style={{ marginTop: 15 }}>
-            </Grid>
+            <Grid item xs={12} style={{ marginTop: 15 }}></Grid>
           </Grid>
         </>
       );
