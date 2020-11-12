@@ -294,7 +294,7 @@ function ResponsiveDrawer(props) {
             <PrivateRoute
               exact
               path="/add-team"
-              component={AddTeam}
+              component={ScoreContent}
             ></PrivateRoute>
             <Route exact path="/scores" component={ScoreContent}></Route>
             <Route exact path="/signup" component={SignUp}></Route>
