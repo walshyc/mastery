@@ -81,10 +81,10 @@ const Row = (props) => {
                     <TableCell style={{ fontWeight: "bold" }}>
                       Selection
                     </TableCell>
-                    <Hidden xsDown>
+                    
                       <TableCell style={{ fontWeight: "bold" }}>
                         Played
-                      </TableCell>
+                      </TableCell><Hidden xsDown>
                       <TableCell style={{ fontWeight: "bold" }}>
                         Today
                       </TableCell>
@@ -111,10 +111,10 @@ const Row = (props) => {
                             <b>{detailRow.last_name.toUpperCase()}</b>
                             {`, ${detailRow.first_name}`}
                           </TableCell>
-                          <Hidden xsDown>
+                          
                             <TableCell width="10%" component="th" scope="row">
                               <b>{detailRow.holes_played}</b>
-                            </TableCell>
+                            </TableCell><Hidden xsDown>
                             <TableCell width="10%">
                               {
                                 detailRow.rounds[detailRow.rounds.length - 1]
