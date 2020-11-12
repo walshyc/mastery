@@ -38,7 +38,7 @@ const ScoreTable = () => {
     },
   }));
   const classes = useRowStyles();
-  const { data, loading, users, matchSelection, start } = useContext(
+  const { data, loading, users, matchSelection, start, getScoreData } = useContext(
     GlobalContext
   );
 
@@ -127,6 +127,7 @@ const ScoreTable = () => {
   }
 
   const refreshPage = (e) => {
+    getScoreData()
     setRefresh(!refresh);
   };
 
