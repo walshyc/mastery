@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import firebase from "firebase/app";
 import { auth, db } from "../firebase";
 import nextId from "react-id-generator";
+import { GlobalContext } from "../context/GlobalState";
 const AuthContext = React.createContext();
 
 export const useAuth = () => {
@@ -9,6 +10,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
+  const { getUser} = useContext(GlobalContext);
   const [currentUser, setCurrentUser] = useState();
 
   const signUp = (emailaddress, password, name) => {
@@ -20,7 +22,9 @@ export const AuthProvider = ({ children }) => {
     });
   };
   const login = (emailaddress, password) => {
-    auth.signInWithEmailAndPassword(emailaddress, password);
+    auth.signInWithEmailAndPassword(emailaddress, password).then((cred) => {
+      return getUser(emailaddress);
+    });
   };
   const logout = () => {
     return auth.signOut();

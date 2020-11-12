@@ -131,7 +131,7 @@ const AddTeam = () => {
 
   useEffect(() => {
     getScoreData();
-    getUser(currentUser.email)
+    getUser(currentUser.email);
     const getData = async () => {
       await getUsers();
     };
@@ -207,7 +207,10 @@ const AddTeam = () => {
     setIsProcessing(true);
     const cardElement = element.getElement("card");
 
-    const custInfo = { name: loggedInUser.name, email: loggedInUser.email };
+    const custInfo = {
+      name: loggedInUser ? loggedInUser.name : "unkown",
+      email: loggedInUser ? loggedInUser.email : currentUser.email,
+    };
     try {
       const paymentIntent = await axios.post(
         "https://stormy-hamlet-50511.herokuapp.com/payment",
@@ -270,7 +273,8 @@ const AddTeam = () => {
       if (
         teamTwo.selectionTwo.length > 0 &&
         teamTwo.selectionTwo.length > 0 &&
-        teamTwo.selectionThree.length > 0 && teamTwo.selectionFour.length > 0
+        teamTwo.selectionThree.length > 0 &&
+        teamTwo.selectionFour.length > 0
       ) {
         addSelections(
           currentUser.email,
@@ -287,7 +291,8 @@ const AddTeam = () => {
       if (
         teamThree.selectionThree.length > 0 &&
         teamThree.selectionTwo.length > 0 &&
-        teamThree.selectionThree.length > 0 && teamThree.selectionFour.length > 0
+        teamThree.selectionThree.length > 0 &&
+        teamThree.selectionFour.length > 0
       ) {
         addSelections(
           currentUser.email,

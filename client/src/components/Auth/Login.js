@@ -57,7 +57,7 @@ export default function Login() {
     try {
       const email = emailFormRef.current.value;
       await login(emailFormRef.current.value, passwordRef.current.value);
-      getUser(email);
+      //getUser(email);
       if (currentUser) {
         getUser(currentUser.email);
       }
