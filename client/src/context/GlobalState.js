@@ -119,7 +119,7 @@ export const GlobalProvider = ({ children }) => {
     setLoading();
     const snapshot = await db.collection("users").get();
     const res = snapshot.docs.map((doc) => doc.data());
-    console.log('got users')
+    //console.log('got users')
     dispatch({
       type: GET_USERS,
       payload: res,
@@ -128,7 +128,7 @@ export const GlobalProvider = ({ children }) => {
 
   const getUser = async (email) => {
     setLoading();
-    console.log('got user')
+    //console.log('got user')
     const user = await state.users.filter((u) => u.email.toLowerCase() === email.toLowerCase());
     dispatch({
       type: GET_USER,
@@ -145,7 +145,7 @@ export const GlobalProvider = ({ children }) => {
 
   const addUser = async (name, email) => {
     setLoading();
-    console.log('add user')
+    //console.log('add user')
     db.collection("users").add({
       name: name,
       email: email.toLowerCase(),
