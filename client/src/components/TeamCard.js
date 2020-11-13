@@ -31,6 +31,7 @@ export default function TeamCard(props) {
           <TableRow>
             <TableCell style={{ color: "#ffffff" }}>Pos.</TableCell>
             <TableCell style={{ color: "#ffffff" }}>Player</TableCell>
+            <TableCell style={{ color: "#ffffff" }} align="right">Played</TableCell>
             <TableCell style={{ color: "#ffffff" }} align="right">
               Score
             </TableCell>
@@ -62,6 +63,14 @@ export default function TeamCard(props) {
                     style={{ width: "10px" }}
                   >
                     <b>{`${s.last_name.toUpperCase()}`}</b>, {s.first_name}
+                  </TableCell>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    align="right"
+                    style={{ width: "10px" }}
+                  >
+                    {getScore(s.player_id).holes_played}
                   </TableCell>
                   <TableCell align="right" style={{ width: "10px" }}>
                     {getScore(s.player_id).total_to_par > 0
