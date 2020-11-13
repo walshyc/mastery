@@ -15,11 +15,13 @@ export default function TeamCard(props) {
 
   const getScore = (id) => {
     const player = matchSelection(id);
-    return player[0].total_to_par;
+    return player[0];
   };
 
+  console.log(getScore(156988).total_to_par)
+
   const totalScore = selections.reduce(
-    (acc, s) => acc + getScore(s.player_id),
+    (acc, s) => acc + getScore(s.player_id).total_to_par,
     0
   );
   return (
@@ -36,7 +38,13 @@ export default function TeamCard(props) {
         </TableHead>
         <TableBody>
           {selections &&
-            selections.map((s) => {
+            selections.sort((a, b) => {
+              if (a.position > b.position) {
+                return 1;
+              } else {
+                return -1;
+              }
+            }).map((s) => {
               return (
                 <TableRow key={s.player_id}>
                   <TableCell
@@ -45,7 +53,7 @@ export default function TeamCard(props) {
                     align="left"
                     style={{ width: "10px" }}
                   >
-                    {s.position}
+                    {getScore(s.player_id).position}
                   </TableCell>
                   <TableCell
                     component="th"
@@ -56,9 +64,9 @@ export default function TeamCard(props) {
                     <b>{`${s.last_name.toUpperCase()}`}</b>, {s.first_name}
                   </TableCell>
                   <TableCell align="right" style={{ width: "10px" }}>
-                    {getScore(s.player_id) > 0
-                      ? `+${getScore(s.player_id)}`
-                      : getScore(s.player_id)}
+                    {getScore(s.player_id).total_to_par > 0
+                      ? `+${getScore(s.player_id).total_to_par}`
+                      : getScore(s.player_id).total_to_par}
                   </TableCell>
                 </TableRow>
               );
