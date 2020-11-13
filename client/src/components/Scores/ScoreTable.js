@@ -141,10 +141,10 @@ const ScoreTable = () => {
   } else {
     return (
       <>
-        <Alert icon={<InfoIcon fontSize="inherit" />}>
+        {/* <Alert icon={<InfoIcon fontSize="inherit" />}>
           There is an issue with some golfers scores not showing correctly. <br></br>
           Hopefully it will be resolved soon!{" "}
-        </Alert>
+        </Alert> */}
         <TableContainer component={Paper}>
           <Table size="small" aria-label="collapsible table">
             <TableHead>
