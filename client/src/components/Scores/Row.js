@@ -49,11 +49,11 @@ const Row = (props) => {
 
         {Date.now() > start ? (
           <>
-            <TableCell align="left">
+            {/* <TableCell align="left">
               <b>
                 {row.totalScore > 0 ? `+${row.totalScore}` : row.totalScore}
               </b>
-            </TableCell>
+            </TableCell> */}
             <Hidden xsDown>
               <TableCell>{row.golfer1}</TableCell>
               <TableCell>{row.golfer2}</TableCell>
@@ -81,7 +81,7 @@ const Row = (props) => {
                     <TableCell style={{ fontWeight: "bold" }}>
                       Selection
                     </TableCell>
-                    
+
                       <TableCell style={{ fontWeight: "bold" }}>
                         Played
                       </TableCell><Hidden xsDown>
@@ -111,7 +111,7 @@ const Row = (props) => {
                             <b>{detailRow.last_name.toUpperCase()}</b>
                             {`, ${detailRow.first_name}`}
                           </TableCell>
-                          
+
                             <TableCell width="10%" component="th" scope="row">
                               <b>{detailRow.holes_played}</b>
                             </TableCell><Hidden xsDown>
@@ -122,11 +122,11 @@ const Row = (props) => {
                               }
                             </TableCell>
                           </Hidden>
-                          <TableCell style={{ fontWeight: "bold" }} width="10%">
+                          {/* <TableCell style={{ fontWeight: "bold" }} width="10%">
                             {detailRow.total_to_par > 0
                               ? `+${detailRow.total_to_par}`
                               : detailRow.total_to_par}
-                          </TableCell>
+                          </TableCell> */}
                         </TableRow>
                       ))
                   ) : (
