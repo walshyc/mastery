@@ -38,9 +38,14 @@ const ScoreTable = () => {
     },
   }));
   const classes = useRowStyles();
-  const { data, loading, users, matchSelection, start, getScoreData } = useContext(
-    GlobalContext
-  );
+  const {
+    data,
+    loading,
+    users,
+    matchSelection,
+    start,
+    getScoreData,
+  } = useContext(GlobalContext);
 
   const createData = (
     name,
@@ -127,20 +132,19 @@ const ScoreTable = () => {
   }
 
   const refreshPage = (e) => {
-    getScoreData()
+    getScoreData();
     setRefresh(!refresh);
   };
-
-
 
   if (loading) {
     return <Spinner></Spinner>;
   } else {
     return (
       <>
-        {/* <Alert icon={<InfoIcon fontSize="inherit" />}>
-          All selections will appear once the tournament begins.
-        </Alert> */}
+        <Alert icon={<InfoIcon fontSize="inherit" />}>
+          There is an issue with some golfers scores not showing correctly. <br></br>
+          Hopefully it will be resolved soon!{" "}
+        </Alert>
         <TableContainer component={Paper}>
           <Table size="small" aria-label="collapsible table">
             <TableHead>

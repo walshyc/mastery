@@ -300,6 +300,7 @@ function ResponsiveDrawer(props) {
             <Route exact path="/signup" component={SignUp}></Route>
             <Route exact path="/login" component={Login}></Route>
             <Route exact path="/about" component={About}></Route>
+            <Route path="/" component={ScoreContent}></Route>
             <Route
               exact
               path="/forgot-password"
