@@ -1,0 +1,4377 @@
+{
+    "meta": {
+      "title": "Golf Leaderboard - Masters Tournament",
+      "description": "Golf Leaderboard including current leaderboard and round scores",
+      "fields": {
+        "tournament_object": {
+          "id": "Integer",
+          "type": "String - Stroke Play or Match Play - determines how to display leaderboard results.",
+          "tour_id": "Integer",
+          "name": "String",
+          "country": "String",
+          "course": "String",
+          "start_date": "String",
+          "end_date": "String",
+          "timezone": "String",
+          "prize_fund": "String",
+          "fund_currency": "String",
+          "live_details": {
+            "status": "String - pre, inprogress, endofday, completed",
+            "current_round": "Integer",
+            "total_rounds": "Integer - total number of rounds in competition",
+            "players": "Integer - number of active players",
+            "updated": "Timestamp - ISO UTC 2020-08-13T05:45:03+00:00"
+          }
+        },
+        "leaderboard_array": {
+          "position": "Integer - ignore if 0, position in tournament",
+          "player_id": "Integer - unique player_id",
+          "first_name": "String",
+          "last_name": "String",
+          "country": "String",
+          "holes_played": "Integer - 0=Not Started, >0 In Play, 18=Finished",
+          "current_round": "Integer - player current round",
+          "status": "String - active, cut, retired, wd=withdrawn, dsq=disqualified",
+          "strokes": "Integer - total strokes across all rounds - updated on completion of each round, default = 0",
+          "updated": "Timestamp - Format ISO UTC 2020-08-13T05:45:03+00:00",
+          "prize_money": "String - player winnings",
+          "ranking_points": "String - ranking points won for this competition",
+          "total_to_par": "String - player score over all rounds completed",
+          "rounds_array": {
+            "round_number": "Integer",
+            "course_number": "Integer - course to which round relates",
+            "position_round": "Integer - position within this round",
+            "tee_time_local": "String - tee time in tournament timezone",
+            "total_to_par": "String - score this round",
+            "strokes": "Integer - strokes this round",
+            "updated": "Timestamp - Format ISO UTC 2020-08-13T05:45:03+00:00"
+          }
+        }
+      }
+    },
+    "results": {
+      "tournament": {
+        "id": 263,
+        "type": "Stroke Play",
+        "tour_id": 2,
+        "name": "Masters Tournament",
+        "country": "Augusta, USA",
+        "course": "Augusta National Golf Club",
+        "start_date": "2020-11-12 00:00:00",
+        "end_date": "2020-11-15 00:00:00",
+        "timezone": "GMT-05:00",
+        "prize_fund": "",
+        "fund_currency": "USD",
+        "live_details": {
+          "status": "completed",
+          "current_round": 4,
+          "total_rounds": 4,
+          "players": 93,
+          "cut_value": null,
+          "updated": "2020-11-16T03:35:04+00:00"
+        }
+      },
+      "leaderboard": [
+        {
+          "position": 1,
+          "player_id": 92791,
+          "first_name": "Dustin",
+          "last_name": "Johnson",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 268,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "2070000",
+          "ranking_points": "600.000",
+          "total_to_par": -20,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "15:10",
+              "total_to_par": -7,
+              "strokes": 65,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "10:25",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:01+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "11:48",
+              "total_to_par": -7,
+              "strokes": 65,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "09:39",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 2,
+          "player_id": 107689,
+          "first_name": "Cameron",
+          "last_name": "Smith",
+          "country": "AUS",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 273,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "1012000",
+          "ranking_points": "270.000",
+          "total_to_par": -15,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "14:48",
+              "total_to_par": -5,
+              "strokes": 67,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "10:03",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-13T15:30:01+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 2,
+              "tee_time_local": "11:59",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 2,
+              "tee_time_local": "09:28",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 2,
+          "player_id": 119929,
+          "first_name": "Sungjae",
+          "last_name": "Im",
+          "country": "KOR",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 273,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "1012000",
+          "ranking_points": "270.000",
+          "total_to_par": -15,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 4,
+              "tee_time_local": "15:32",
+              "total_to_par": -6,
+              "strokes": 66,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "10:47",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:01+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 2,
+              "tee_time_local": "11:37",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 2,
+              "tee_time_local": "09:39",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 4,
+          "player_id": 100360,
+          "first_name": "Justin",
+          "last_name": "Thomas",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 276,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "552000",
+          "ranking_points": "150.000",
+          "total_to_par": -12,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 4,
+              "tee_time_local": "14:59",
+              "total_to_par": -6,
+              "strokes": 66,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "10:14",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-13T15:30:01+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "11:59",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 4,
+              "tee_time_local": "09:28",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 5,
+          "player_id": 84727,
+          "first_name": "Rory",
+          "last_name": "McIlroy",
+          "country": "NIR",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 277,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "437000",
+          "ranking_points": "115.000",
+          "total_to_par": -11,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 77,
+              "tee_time_local": "15:10",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 28,
+              "tee_time_local": "10:25",
+              "total_to_par": -6,
+              "strokes": 66,
+              "updated": "2020-11-13T15:30:05+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "10:20",
+              "total_to_par": -5,
+              "strokes": 67,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 5,
+              "tee_time_local": "09:06",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 5,
+          "player_id": 89926,
+          "first_name": "Dylan",
+          "last_name": "Frittelli",
+          "country": "RSA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 277,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "437000",
+          "ranking_points": "115.000",
+          "total_to_par": -11,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "15:10",
+              "total_to_par": -7,
+              "strokes": 65,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 14,
+              "tee_time_local": "10:25",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:01+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 5,
+              "tee_time_local": "11:15",
+              "total_to_par": -5,
+              "strokes": 67,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 5,
+              "tee_time_local": "09:28",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 7,
+          "player_id": 89740,
+          "first_name": "C.T.",
+          "last_name": "Pan",
+          "country": "TPE",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 278,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "358417",
+          "ranking_points": "94.000",
+          "total_to_par": -10,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "07:10",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "13:35",
+              "total_to_par": -6,
+              "strokes": 66,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 15,
+              "tee_time_local": "11:37",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 7,
+              "tee_time_local": "08:33",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 7,
+          "player_id": 110083,
+          "first_name": "Brooks",
+          "last_name": "Koepka",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 278,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "358417",
+          "ranking_points": "94.000",
+          "total_to_par": -10,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "14:59",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 17,
+              "tee_time_local": "10:14",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "11:04",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 7,
+              "tee_time_local": "09:06",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 7,
+          "player_id": 140926,
+          "first_name": "Jon",
+          "last_name": "Rahm",
+          "country": "ESP",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 278,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "358417",
+          "ranking_points": "94.000",
+          "total_to_par": -10,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 18,
+              "tee_time_local": "10:33",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "14:08",
+              "total_to_par": -6,
+              "strokes": 66,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 7,
+              "tee_time_local": "11:48",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 7,
+              "tee_time_local": "09:17",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 10,
+          "player_id": 87679,
+          "first_name": "Webb",
+          "last_name": "Simpson",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 279,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "287500",
+          "ranking_points": "77.000",
+          "total_to_par": -9,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "07:21",
+              "total_to_par": -5,
+              "strokes": 67,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 23,
+              "tee_time_local": "13:46",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:01+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 20,
+              "tee_time_local": "10:31",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "08:33",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 10,
+          "player_id": 120007,
+          "first_name": "Corey",
+          "last_name": "Conners",
+          "country": "CAN",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 279,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "287500",
+          "ranking_points": "77.000",
+          "total_to_par": -9,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 70,
+              "tee_time_local": "07:10",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 17,
+              "tee_time_local": "13:35",
+              "total_to_par": -7,
+              "strokes": 65,
+              "updated": "2020-11-13T15:30:05+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 15,
+              "tee_time_local": "10:53",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "08:44",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 10,
+          "player_id": 103096,
+          "first_name": "Patrick",
+          "last_name": "Reed",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 279,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "287500",
+          "ranking_points": "77.000",
+          "total_to_par": -9,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "10:44",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "14:19",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 7,
+              "tee_time_local": "11:26",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "09:17",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 13,
+          "player_id": 80569,
+          "first_name": "Marc",
+          "last_name": "Leishman",
+          "country": "AUS",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 280,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "215625",
+          "ranking_points": "63.000",
+          "total_to_par": -8,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "07:21",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 35,
+              "tee_time_local": "13:46",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 26,
+              "tee_time_local": "10:42",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 13,
+              "tee_time_local": "08:11",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 13,
+          "player_id": 98533,
+          "first_name": "Hideki",
+          "last_name": "Matsuyama",
+          "country": "JPN",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 280,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "215625",
+          "ranking_points": "63.000",
+          "total_to_par": -8,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "07:21",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "13:46",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "11:37",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 13,
+              "tee_time_local": "08:55",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 13,
+          "player_id": 76204,
+          "first_name": "Kevin",
+          "last_name": "Na",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 280,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "215625",
+          "ranking_points": "63.000",
+          "total_to_par": -8,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "10:33",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 28,
+              "tee_time_local": "14:08",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 15,
+              "tee_time_local": "10:20",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 13,
+              "tee_time_local": "08:55",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 13,
+          "player_id": 136594,
+          "first_name": "Abraham",
+          "last_name": "Ancer",
+          "country": "MEX",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 280,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "215625",
+          "ranking_points": "63.000",
+          "total_to_par": -8,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "14:37",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "09:52",
+              "total_to_par": -5,
+              "strokes": 67,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 2,
+              "tee_time_local": "11:59",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 13,
+              "tee_time_local": "09:39",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 17,
+          "player_id": 144259,
+          "first_name": "Xander",
+          "last_name": "Schauffele",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 281,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "178250",
+          "ranking_points": "56.000",
+          "total_to_par": -7,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "10:44",
+              "total_to_par": -5,
+              "strokes": 67,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 23,
+              "tee_time_local": "14:19",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:01+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 20,
+              "tee_time_local": "10:31",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 17,
+              "tee_time_local": "08:33",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 17,
+          "player_id": 106366,
+          "first_name": "Patrick",
+          "last_name": "Cantlay",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 281,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "178250",
+          "ranking_points": "56.000",
+          "total_to_par": -7,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "15:10",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "10:25",
+              "total_to_par": -6,
+              "strokes": 66,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 14,
+              "tee_time_local": "11:48",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 17,
+              "tee_time_local": "08:55",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 19,
+          "player_id": 138154,
+          "first_name": "Scottie",
+          "last_name": "Scheffler",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 282,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "144325",
+          "ranking_points": "49.800",
+          "total_to_par": -6,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "07:32",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 17,
+              "tee_time_local": "13:57",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 20,
+              "tee_time_local": "10:53",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 19,
+              "tee_time_local": "08:22",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 19,
+          "player_id": 157132,
+          "first_name": "Cameron",
+          "last_name": "Champ",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 282,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "144325",
+          "ranking_points": "49.800",
+          "total_to_par": -6,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "15:21",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 35,
+              "tee_time_local": "10:36",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 15,
+              "tee_time_local": "10:42",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 19,
+              "tee_time_local": "08:44",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 19,
+          "player_id": 92749,
+          "first_name": "Tommy",
+          "last_name": "Fleetwood",
+          "country": "ENG",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 282,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "144325",
+          "ranking_points": "49.800",
+          "total_to_par": -6,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "14:37",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 11,
+              "tee_time_local": "09:52",
+              "total_to_par": -6,
+              "strokes": 66,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "11:26",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 19,
+              "tee_time_local": "09:06",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 19,
+          "player_id": 146482,
+          "first_name": "Sebastian",
+          "last_name": "Munoz",
+          "country": "COL",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 282,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "144325",
+          "ranking_points": "49.800",
+          "total_to_par": -6,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "14:26",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 14,
+              "tee_time_local": "09:41",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 7,
+              "tee_time_local": "11:15",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 19,
+              "tee_time_local": "09:17",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 23,
+          "player_id": 79003,
+          "first_name": "Louis",
+          "last_name": "Oosthuizen",
+          "country": "RSA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 283,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "115000",
+          "ranking_points": "43.067",
+          "total_to_par": -5,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "10:33",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 14,
+              "tee_time_local": "14:08",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "11:04",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 23,
+              "tee_time_local": "08:00",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 23,
+          "player_id": 67231,
+          "first_name": "Justin",
+          "last_name": "Rose",
+          "country": "ENG",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 283,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "115000",
+          "ranking_points": "43.067",
+          "total_to_par": -5,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 6,
+              "tee_time_local": "15:21",
+              "total_to_par": -5,
+              "strokes": 67,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 11,
+              "tee_time_local": "10:36",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "11:15",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 23,
+              "tee_time_local": "08:00",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 25,
+          "player_id": 96433,
+          "first_name": "Danny",
+          "last_name": "Willett",
+          "country": "ENG",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 284,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "91713",
+          "ranking_points": "37.683",
+          "total_to_par": -4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "14:26",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 11,
+              "tee_time_local": "09:41",
+              "total_to_par": -6,
+              "strokes": 66,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 20,
+              "tee_time_local": "11:26",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "08:11",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 25,
+          "player_id": 79009,
+          "first_name": "Charl",
+          "last_name": "Schwartzel",
+          "country": "RSA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 284,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "91713",
+          "ranking_points": "37.683",
+          "total_to_par": -4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "10:55",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "14:30",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "11:59",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "08:11",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 25,
+          "player_id": 99628,
+          "first_name": "Shane",
+          "last_name": "Lowry",
+          "country": "IRL",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 284,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "91713",
+          "ranking_points": "37.683",
+          "total_to_par": -4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 70,
+              "tee_time_local": "10:55",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 43,
+              "tee_time_local": "14:30",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-13T15:30:05+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 20,
+              "tee_time_local": "11:15",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "08:22",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 25,
+          "player_id": 72430,
+          "first_name": "Ian",
+          "last_name": "Poulter",
+          "country": "ENG",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 284,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "91713",
+          "ranking_points": "37.683",
+          "total_to_par": -4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 54,
+              "tee_time_local": "11:06",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 43,
+              "tee_time_local": "14:41",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 36,
+              "tee_time_local": "11:15",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "08:33",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 29,
+          "player_id": 76495,
+          "first_name": "Nick",
+          "last_name": "Taylor",
+          "country": "CAN",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 285,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "74750",
+          "ranking_points": "30.033",
+          "total_to_par": -3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 54,
+              "tee_time_local": "14:15",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "09:30",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "11:26",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "08:00",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 29,
+          "player_id": 5014,
+          "first_name": "Bernhard",
+          "last_name": "Langer",
+          "country": "GER",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 285,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "74750",
+          "ranking_points": "30.033",
+          "total_to_par": -3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "14:59",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 28,
+              "tee_time_local": "10:14",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 36,
+              "tee_time_local": "10:20",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "08:11",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 29,
+          "player_id": 96322,
+          "first_name": "Rickie",
+          "last_name": "Fowler",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 285,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "74750",
+          "ranking_points": "30.033",
+          "total_to_par": -3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "14:26",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 23,
+              "tee_time_local": "09:41",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 44,
+              "tee_time_local": "10:42",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "08:55",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 29,
+          "player_id": 83938,
+          "first_name": "Sung",
+          "last_name": "Kang",
+          "country": "KOR",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 285,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "74750",
+          "ranking_points": "30.033",
+          "total_to_par": -3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 77,
+              "tee_time_local": "14:15",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "09:30",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-13T15:30:05+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 44,
+              "tee_time_local": "11:26",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "08:55",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 29,
+          "player_id": 79444,
+          "first_name": "Chez",
+          "last_name": "Reavie",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 285,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "74750",
+          "ranking_points": "30.033",
+          "total_to_par": -3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "14:26",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 43,
+              "tee_time_local": "09:41",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 44,
+              "tee_time_local": "11:04",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "08:55",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 34,
+          "player_id": 73522,
+          "first_name": "Adam",
+          "last_name": "Scott",
+          "country": "AUS",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 286,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "62100",
+          "ranking_points": "23.233",
+          "total_to_par": -2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "14:48",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 35,
+              "tee_time_local": "10:03",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "10:31",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 34,
+              "tee_time_local": "08:00",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 34,
+          "player_id": 143893,
+          "first_name": "Bryson",
+          "last_name": "DeChambeau",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 286,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "62100",
+          "ranking_points": "23.233",
+          "total_to_par": -2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "10:33",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "14:08",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "11:48",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 34,
+              "tee_time_local": "08:11",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 34,
+          "player_id": 112381,
+          "first_name": "Si Woo",
+          "last_name": "Kim",
+          "country": "KOR",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 286,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "62100",
+          "ranking_points": "23.233",
+          "total_to_par": -2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "11:17",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 28,
+              "tee_time_local": "14:52",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 36,
+              "tee_time_local": "10:31",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 34,
+              "tee_time_local": "08:22",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 34,
+          "player_id": 173848,
+          "first_name": "Andy",
+          "last_name": "Ogletree",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 286,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": -2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "10:55",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 43,
+              "tee_time_local": "14:30",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 36,
+              "tee_time_local": "11:15",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 34,
+              "tee_time_local": "08:33",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 38,
+          "player_id": 61204,
+          "first_name": "Lee",
+          "last_name": "Westwood",
+          "country": "ENG",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 287,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "50600",
+          "ranking_points": "17.567",
+          "total_to_par": -1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "10:33",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 35,
+              "tee_time_local": "14:08",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 29,
+              "tee_time_local": "10:53",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 38,
+              "tee_time_local": "08:00",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 38,
+          "player_id": 88276,
+          "first_name": "Billy",
+          "last_name": "Horschel",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 287,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "50600",
+          "ranking_points": "17.567",
+          "total_to_par": -1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "14:48",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 23,
+              "tee_time_local": "10:03",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 26,
+              "tee_time_local": "10:42",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 38,
+              "tee_time_local": "08:11",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 38,
+          "player_id": 26395,
+          "first_name": "Tiger",
+          "last_name": "Woods",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 287,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "50600",
+          "ranking_points": "17.567",
+          "total_to_par": -1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 10,
+              "tee_time_local": "10:55",
+              "total_to_par": -4,
+              "strokes": 68,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 17,
+              "tee_time_local": "14:30",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 20,
+              "tee_time_local": "10:42",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 38,
+              "tee_time_local": "08:22",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 38,
+          "player_id": 76108,
+          "first_name": "Paul",
+          "last_name": "Casey",
+          "country": "ENG",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 287,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "50600",
+          "ranking_points": "17.567",
+          "total_to_par": -1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 1,
+              "tee_time_local": "10:44",
+              "total_to_par": -7,
+              "strokes": 65,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 17,
+              "tee_time_local": "14:19",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:01+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 15,
+              "tee_time_local": "10:53",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 38,
+              "tee_time_local": "08:44",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-15T13:30:01+00:00"
+            }
+          ]
+        },
+        {
+          "position": 38,
+          "player_id": 136582,
+          "first_name": "Christiaan",
+          "last_name": "Bezuidenhout",
+          "country": "RSA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 287,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": -1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 18,
+              "tee_time_local": "14:59",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 35,
+              "tee_time_local": "10:14",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "10:42",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 38,
+              "tee_time_local": "09:06",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 38,
+          "player_id": 89191,
+          "first_name": "Tony",
+          "last_name": "Finau",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 287,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "50600",
+          "ranking_points": "17.567",
+          "total_to_par": -1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 18,
+              "tee_time_local": "10:44",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "14:19",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 44,
+              "tee_time_local": "11:48",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 38,
+              "tee_time_local": "09:06",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 44,
+          "player_id": 98341,
+          "first_name": "Shugo",
+          "last_name": "Imahira",
+          "country": "JPN",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 288,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 0,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 54,
+              "tee_time_local": "14:15",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 35,
+              "tee_time_local": "09:30",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 36,
+              "tee_time_local": "10:31",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 44,
+              "tee_time_local": "08:22",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 44,
+          "player_id": 151591,
+          "first_name": "Collin",
+          "last_name": "Morikawa",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 288,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "41400",
+          "ranking_points": "13.034",
+          "total_to_par": 0,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "14:48",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "10:03",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 36,
+              "tee_time_local": "11:37",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 44,
+              "tee_time_local": "08:44",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 46,
+          "player_id": 146677,
+          "first_name": "Matt",
+          "last_name": "Wallace",
+          "country": "ENG",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 289,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "33672",
+          "ranking_points": "10.767",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 18,
+              "tee_time_local": "11:17",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 35,
+              "tee_time_local": "14:52",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 26,
+              "tee_time_local": "10:53",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 46,
+              "tee_time_local": "08:00",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 46,
+          "player_id": 65899,
+          "first_name": "Charles",
+          "last_name": "Howell III",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 289,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "33672",
+          "ranking_points": "10.767",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "07:21",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 28,
+              "tee_time_local": "13:46",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 44,
+              "tee_time_local": "10:20",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 46,
+              "tee_time_local": "08:44",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 46,
+          "player_id": 120310,
+          "first_name": "Matthew",
+          "last_name": "Fitzpatrick",
+          "country": "ENG",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 289,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "33672",
+          "ranking_points": "10.767",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 70,
+              "tee_time_local": "14:59",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "10:14",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:05+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 52,
+              "tee_time_local": "11:37",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 46,
+              "tee_time_local": "09:17",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 46,
+          "player_id": 143053,
+          "first_name": "Victor",
+          "last_name": "Perez",
+          "country": "FRA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 289,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "15:32",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 28,
+              "tee_time_local": "10:47",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 52,
+              "tee_time_local": "10:20",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 46,
+              "tee_time_local": "09:17",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 46,
+          "player_id": 102154,
+          "first_name": "Jordan",
+          "last_name": "Spieth",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 289,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "33672",
+          "ranking_points": "10.767",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 70,
+              "tee_time_local": "11:06",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "14:41",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:05+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 52,
+              "tee_time_local": "11:59",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 46,
+              "tee_time_local": "09:28",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 61,
+          "player_id": 101860,
+          "first_name": "Byeong Hun",
+          "last_name": "An",
+          "country": "KOR",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 145,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 54,
+              "tee_time_local": "14:26",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "09:41",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 62,
+          "player_id": 119947,
+          "first_name": "Max",
+          "last_name": "Homa",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 145,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "19040",
+          "ranking_points": "9.250",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "15:10",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 62,
+              "tee_time_local": "10:25",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-13T15:30:03+00:00"
+            }
+          ]
+        },
+        {
+          "position": 63,
+          "player_id": 102784,
+          "first_name": "Andrew",
+          "last_name": "Putnam",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 145,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "15:21",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 63,
+              "tee_time_local": "10:36",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-13T15:30:05+00:00"
+            }
+          ]
+        },
+        {
+          "position": 64,
+          "player_id": 100213,
+          "first_name": "Adam",
+          "last_name": "Hadwin",
+          "country": "CAN",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 145,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 70,
+              "tee_time_local": "07:32",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 64,
+              "tee_time_local": "13:57",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:05+00:00"
+            }
+          ]
+        },
+        {
+          "position": 65,
+          "player_id": 69340,
+          "first_name": "Matt",
+          "last_name": "Kuchar",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 145,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "10:33",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 65,
+              "tee_time_local": "14:08",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-13T15:30:03+00:00"
+            }
+          ]
+        },
+        {
+          "position": 66,
+          "player_id": 64600,
+          "first_name": "Henrik",
+          "last_name": "Stenson",
+          "country": "SWE",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 145,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "10:44",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 66,
+              "tee_time_local": "14:19",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 67,
+          "player_id": 93985,
+          "first_name": "Gary",
+          "last_name": "Woodland",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 145,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 54,
+              "tee_time_local": "11:06",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 67,
+              "tee_time_local": "14:41",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 68,
+          "player_id": 76732,
+          "first_name": "Graeme",
+          "last_name": "McDowell",
+          "country": "NIR",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 145,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "22750",
+          "ranking_points": "10.875",
+          "total_to_par": 1,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 54,
+              "tee_time_local": "11:17",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 68,
+              "tee_time_local": "14:52",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 51,
+          "player_id": 31285,
+          "first_name": "Mike",
+          "last_name": "Weir",
+          "country": "CAN",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 290,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "28003",
+          "ranking_points": "8.217",
+          "total_to_par": 2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "11:17",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 43,
+              "tee_time_local": "14:52",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 36,
+              "tee_time_local": "11:26",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 51,
+              "tee_time_local": "08:33",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 51,
+          "player_id": 141730,
+          "first_name": "Jazz",
+          "last_name": "Janewattananond",
+          "country": "THA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 290,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 18,
+              "tee_time_local": "07:21",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 23,
+              "tee_time_local": "13:46",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 44,
+              "tee_time_local": "10:31",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 51,
+              "tee_time_local": "08:44",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 51,
+          "player_id": 72088,
+          "first_name": "Zach",
+          "last_name": "Johnson",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 290,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "28003",
+          "ranking_points": "8.217",
+          "total_to_par": 2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "15:21",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "10:36",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:05+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 52,
+              "tee_time_local": "11:37",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 51,
+              "tee_time_local": "09:17",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 51,
+          "player_id": 79513,
+          "first_name": "Rafa",
+          "last_name": "Cabrera Bello",
+          "country": "ESP",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 290,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "28003",
+          "ranking_points": "8.217",
+          "total_to_par": 2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "11:17",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "14:52",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 56,
+              "tee_time_local": "11:59",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 51,
+              "tee_time_local": "09:28",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 69,
+          "player_id": 86830,
+          "first_name": "Justin",
+          "last_name": "Harding",
+          "country": "RSA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 146,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 77,
+              "tee_time_local": "14:15",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 69,
+              "tee_time_local": "09:30",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 70,
+          "player_id": 92797,
+          "first_name": "Brendon",
+          "last_name": "Todd",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 146,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 2,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "15:32",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 70,
+              "tee_time_local": "10:47",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 55,
+          "player_id": 170044,
+          "first_name": "John",
+          "last_name": "Augenstein",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 291,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 18,
+              "tee_time_local": "14:26",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 28,
+              "tee_time_local": "09:41",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "10:20",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 55,
+              "tee_time_local": "09:06",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 55,
+          "player_id": 5446,
+          "first_name": "Phil",
+          "last_name": "Mickelson",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 291,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "26680",
+          "ranking_points": "6.687",
+          "total_to_par": 3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 18,
+              "tee_time_local": "14:37",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 17,
+              "tee_time_local": "09:52",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-13T15:30:02+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 56,
+              "tee_time_local": "11:04",
+              "total_to_par": 7,
+              "strokes": 79,
+              "updated": "2020-11-14T15:55:01+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 55,
+              "tee_time_local": "09:28",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 71,
+          "player_id": 168850,
+          "first_name": "Matthew",
+          "last_name": "Wolff",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 147,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "14:37",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 71,
+              "tee_time_local": "09:52",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-13T15:30:03+00:00"
+            }
+          ]
+        },
+        {
+          "position": 72,
+          "player_id": 103105,
+          "first_name": "Tyrrell",
+          "last_name": "Hatton",
+          "country": "ENG",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 147,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "212625",
+          "ranking_points": "82.500",
+          "total_to_par": 3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "14:48",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 72,
+              "tee_time_local": "10:03",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 73,
+          "player_id": 88450,
+          "first_name": "Kevin",
+          "last_name": "Kisner",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 147,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "07:32",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 73,
+              "tee_time_local": "13:57",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-13T15:30:03+00:00"
+            }
+          ]
+        },
+        {
+          "position": 74,
+          "player_id": 5485,
+          "first_name": "Larry",
+          "last_name": "Mize",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 147,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "07:32",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 74,
+              "tee_time_local": "13:57",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-13T15:30:03+00:00"
+            }
+          ]
+        },
+        {
+          "position": 75,
+          "player_id": 105946,
+          "first_name": "Lanto",
+          "last_name": "Griffin",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 147,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "15890",
+          "ranking_points": "5.200",
+          "total_to_par": 3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 70,
+              "tee_time_local": "11:06",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 75,
+              "tee_time_local": "14:41",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:05+00:00"
+            }
+          ]
+        },
+        {
+          "position": 92,
+          "player_id": 19717,
+          "first_name": "Vijay",
+          "last_name": "Singh",
+          "country": "FIJ",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "wd",
+          "strokes": 75,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 3,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 77,
+              "tee_time_local": "11:06",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 92,
+              "tee_time_local": "14:41",
+              "total_to_par": 0,
+              "strokes": 45,
+              "updated": "2020-11-13T15:30:05+00:00"
+            }
+          ]
+        },
+        {
+          "position": 57,
+          "player_id": 77428,
+          "first_name": "Bubba",
+          "last_name": "Watson",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 292,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "26450",
+          "ranking_points": "6.347",
+          "total_to_par": 4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 70,
+              "tee_time_local": "14:37",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 43,
+              "tee_time_local": "09:52",
+              "total_to_par": -3,
+              "strokes": 69,
+              "updated": "2020-11-13T15:30:05+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 36,
+              "tee_time_local": "11:04",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 57,
+              "tee_time_local": "08:22",
+              "total_to_par": 6,
+              "strokes": 78,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 76,
+          "player_id": 149329,
+          "first_name": "J.T.",
+          "last_name": "Poston",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 148,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "82600",
+          "ranking_points": "42.000",
+          "total_to_par": 4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 61,
+              "tee_time_local": "14:59",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 76,
+              "tee_time_local": "10:14",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 77,
+          "player_id": 156988,
+          "first_name": "James",
+          "last_name": "Sugrue",
+          "country": "IRL",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 148,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 84,
+              "tee_time_local": "15:21",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 77,
+              "tee_time_local": "10:36",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        },
+        {
+          "position": 78,
+          "player_id": 92848,
+          "first_name": "Jason",
+          "last_name": "Kokrak",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 148,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "10:44",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 78,
+              "tee_time_local": "14:19",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-13T15:30:03+00:00"
+            }
+          ]
+        },
+        {
+          "position": 79,
+          "player_id": 84283,
+          "first_name": "Jason",
+          "last_name": "Day",
+          "country": "AUS",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 148,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "212625",
+          "ranking_points": "82.500",
+          "total_to_par": 4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 25,
+              "tee_time_local": "10:55",
+              "total_to_par": -2,
+              "strokes": 70,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 79,
+              "tee_time_local": "14:30",
+              "total_to_par": 6,
+              "strokes": 78,
+              "updated": "2020-11-13T15:30:03+00:00"
+            }
+          ]
+        },
+        {
+          "position": 80,
+          "player_id": 136843,
+          "first_name": "Tyler",
+          "last_name": "Duncan",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 148,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 84,
+              "tee_time_local": "11:06",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 80,
+              "tee_time_local": "14:41",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        },
+        {
+          "position": 91,
+          "player_id": 120034,
+          "first_name": "Erik",
+          "last_name": "van Rooyen",
+          "country": "RSA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "wd",
+          "strokes": 76,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "82600",
+          "ranking_points": "42.000",
+          "total_to_par": 4,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 82,
+              "tee_time_local": "14:15",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 91,
+              "tee_time_local": "09:30",
+              "total_to_par": 0,
+              "strokes": 0,
+              "updated": "2020-11-13T15:30:05+00:00"
+            }
+          ]
+        },
+        {
+          "position": 58,
+          "player_id": 88378,
+          "first_name": "Bernd",
+          "last_name": "Wiesberger",
+          "country": "AUT",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 294,
+          "updated": "2020-11-16T03:35:03+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 6,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "14:37",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 43,
+              "tee_time_local": "09:52",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-13T15:30:04+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 59,
+              "tee_time_local": "11:04",
+              "total_to_par": 6,
+              "strokes": 78,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 58,
+              "tee_time_local": "09:39",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 81,
+          "player_id": 75610,
+          "first_name": "Francesco",
+          "last_name": "Molinari",
+          "country": "ITA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 150,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "113750",
+          "ranking_points": "51.000",
+          "total_to_par": 6,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 54,
+              "tee_time_local": "14:48",
+              "total_to_par": 0,
+              "strokes": 72,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 81,
+              "tee_time_local": "10:03",
+              "total_to_par": 6,
+              "strokes": 78,
+              "updated": "2020-11-13T15:30:04+00:00"
+            }
+          ]
+        },
+        {
+          "position": 82,
+          "player_id": 3694,
+          "first_name": "Fred",
+          "last_name": "Couples",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 150,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 6,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 84,
+              "tee_time_local": "15:10",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 82,
+              "tee_time_local": "10:25",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        },
+        {
+          "position": 83,
+          "player_id": 154864,
+          "first_name": "Lukas",
+          "last_name": "Michel",
+          "country": "AUS",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 150,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 6,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 82,
+              "tee_time_local": "07:32",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 83,
+              "tee_time_local": "13:57",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:05+00:00"
+            }
+          ]
+        },
+        {
+          "position": 59,
+          "player_id": 82963,
+          "first_name": "Brandt",
+          "last_name": "Snedeker",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 295,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "25990",
+          "ranking_points": "5.893",
+          "total_to_par": 7,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "07:21",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 35,
+              "tee_time_local": "13:46",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 59,
+              "tee_time_local": "10:53",
+              "total_to_par": 7,
+              "strokes": 79,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 59,
+              "tee_time_local": "09:39",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 84,
+          "player_id": 5167,
+          "first_name": "Sandy",
+          "last_name": "Lyle",
+          "country": "SCO",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 151,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 7,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 88,
+              "tee_time_local": "07:10",
+              "total_to_par": 6,
+              "strokes": 78,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 84,
+              "tee_time_local": "13:35",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        },
+        {
+          "position": 85,
+          "player_id": 77716,
+          "first_name": "Lucas",
+          "last_name": "Glover",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 151,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 7,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 84,
+              "tee_time_local": "07:10",
+              "total_to_par": 5,
+              "strokes": 77,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 85,
+              "tee_time_local": "13:35",
+              "total_to_par": 2,
+              "strokes": 74,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        },
+        {
+          "position": 86,
+          "player_id": 86341,
+          "first_name": "Nate",
+          "last_name": "Lashley",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 151,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "29750",
+          "ranking_points": "15.500",
+          "total_to_par": 7,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 77,
+              "tee_time_local": "11:17",
+              "total_to_par": 3,
+              "strokes": 75,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 86,
+              "tee_time_local": "14:52",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-13T15:30:05+00:00"
+            }
+          ]
+        },
+        {
+          "position": 60,
+          "player_id": 76912,
+          "first_name": "Jimmy",
+          "last_name": "Walker",
+          "country": "USA",
+          "holes_played": 18,
+          "current_round": 4,
+          "status": "active",
+          "strokes": 296,
+          "updated": "2020-11-23T05:02:08+00:00",
+          "prize_money": "25760",
+          "ranking_points": "5.667",
+          "total_to_par": 8,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 42,
+              "tee_time_local": "07:10",
+              "total_to_par": -1,
+              "strokes": 71,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 50,
+              "tee_time_local": "13:35",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:03+00:00"
+            },
+            {
+              "round_number": 3,
+              "course_number": 1,
+              "position_round": 58,
+              "tee_time_local": "11:48",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-14T15:55:02+00:00"
+            },
+            {
+              "round_number": 4,
+              "course_number": 1,
+              "position_round": 60,
+              "tee_time_local": "09:39",
+              "total_to_par": 4,
+              "strokes": 76,
+              "updated": "2020-11-15T13:30:02+00:00"
+            }
+          ]
+        },
+        {
+          "position": 87,
+          "player_id": 140527,
+          "first_name": "Yuxin",
+          "last_name": "Lin",
+          "country": "CHN",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 152,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 8,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 91,
+              "tee_time_local": "07:10",
+              "total_to_par": 7,
+              "strokes": 79,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 87,
+              "tee_time_local": "13:35",
+              "total_to_par": 1,
+              "strokes": 73,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        },
+        {
+          "position": 88,
+          "player_id": 19135,
+          "first_name": "Jose Maria",
+          "last_name": "Olazabal",
+          "country": "ESP",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 158,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 14,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 88,
+              "tee_time_local": "15:21",
+              "total_to_par": 6,
+              "strokes": 78,
+              "updated": "2020-11-11T02:00:03+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 88,
+              "tee_time_local": "10:36",
+              "total_to_par": 8,
+              "strokes": 80,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        },
+        {
+          "position": 89,
+          "player_id": 100246,
+          "first_name": "Andrew",
+          "last_name": "Landry",
+          "country": "USA",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 160,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 16,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 88,
+              "tee_time_local": "07:32",
+              "total_to_par": 6,
+              "strokes": 78,
+              "updated": "2020-11-11T02:00:01+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 89,
+              "tee_time_local": "13:57",
+              "total_to_par": 10,
+              "strokes": 82,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        },
+        {
+          "position": 90,
+          "player_id": 174514,
+          "first_name": "Abel",
+          "last_name": "Gallegos",
+          "country": "ARG",
+          "holes_played": 0,
+          "current_round": 4,
+          "status": "cut",
+          "strokes": 160,
+          "updated": "2020-11-16T03:35:04+00:00",
+          "prize_money": "",
+          "ranking_points": "",
+          "total_to_par": 16,
+          "rounds": [
+            {
+              "round_number": 1,
+              "course_number": 1,
+              "position_round": 91,
+              "tee_time_local": "10:55",
+              "total_to_par": 7,
+              "strokes": 79,
+              "updated": "2020-11-11T02:00:02+00:00"
+            },
+            {
+              "round_number": 2,
+              "course_number": 1,
+              "position_round": 90,
+              "tee_time_local": "14:30",
+              "total_to_par": 9,
+              "strokes": 81,
+              "updated": "2020-11-13T15:30:06+00:00"
+            }
+          ]
+        }
+      ]
+    }
+  }
