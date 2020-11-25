@@ -35,21 +35,21 @@ export const GlobalProvider = ({ children }) => {
 
   const getScoreData = async () => {
     setLoading();
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
-        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
-      },
-    };
+    // const requestOptions = {
+    //   method: "GET",
+    //   headers: {
+    //     "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
+    //     "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+    //   },
+    // };
 
-    const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/263`,
-      requestOptions
-    );
+    // const res = await axios.get(
+    //   `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/263`,
+    //   requestOptions
+    // );
 
     
-    console.log(res.data)
+    console.log(data)
     dispatch({
       type: GET_SCORE_DATA,
       payload: data,
