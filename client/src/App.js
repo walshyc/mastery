@@ -1,5 +1,4 @@
 import { AuthProvider } from './context/AuthContext';
-import Drawer from './components/layout/Drawer';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -8,10 +7,12 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import 'fontsource-poppins';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import NewNav from './components/layout/NewNav';
-import NewTable from './components/Scores/NewTable';
 import NewAddTeam from './components/NewAddTeam';
+import Landing from './components/Landing';
+import FAQ from './components/FAQ';
 import ScoreTable from './components/Scores/ScoreTable';
+import NewFooter from './components/layout/NewFooter';
+import NewNavTwo from './components/layout/NewNavTwo';
 
 function App() {
   const theme = createMuiTheme({
@@ -55,13 +56,16 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router>
             <AuthProvider>
-              <div className="App w-full bg-green-600">
-                <NewNav></NewNav>
+              <div className="App w-full h-full bg-green-400">
+                {/* <NewNav></NewNav> */}
+                <NewNavTwo></NewNavTwo>
                 <Switch>
-                  <Route exact path="/" component={ScoreTable}></Route>
+                  <Route exact path="/" component={Landing}></Route>
                   <Route exact path="/scores" component={ScoreTable}></Route>
                   <Route exact path="/new-entry" component={NewAddTeam}></Route>
+                  <Route exact path="/faq" component={FAQ}></Route>
                 </Switch>
+                <NewFooter></NewFooter>
                 {/* <ScoreTable></ScoreTable> */}
                 {/* <NewTable></NewTable> */}
                 {/* <Drawer></Drawer> */}

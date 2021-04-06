@@ -1,21 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { Hidden, useTheme } from '@material-ui/core';
-import PersonSharpIcon from '@material-ui/icons/PersonSharp';
 import { GlobalContext } from '../../context/GlobalState';
-import Row from './Row';
-import Alert from '@material-ui/lab/Alert';
 import Spinner from '../layout/Spinner';
 import { makeStyles } from '@material-ui/core/styles';
-import InfoIcon from '@material-ui/icons/Info';
 import * as moment from 'moment';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 const ScoreTable = () => {
   useEffect(() => {
@@ -23,6 +10,7 @@ const ScoreTable = () => {
     getUsers();
     getWorldRankings();
     getEntries();
+
     // if (currentUser) {
     //   getUser(currentUser.email);
     // }
@@ -31,24 +19,6 @@ const ScoreTable = () => {
   const [refresh, setRefresh] = useState(false);
   const [show, setShow] = useState(null);
 
-  const useRowStyles = makeStyles((theme) => ({
-    root: {
-      '& > *': {
-        borderBottom: 'unset',
-      },
-    },
-    tableHead: {
-      background: theme.palette.primary.main,
-      color: '#ecfef6',
-    },
-    tableCell: {
-      color: '#ecfef6',
-    },
-    table: {
-      marginTop: '20px',
-    },
-  }));
-  const classes = useRowStyles();
   const {
     data,
     loading,
@@ -168,7 +138,24 @@ const ScoreTable = () => {
           There is an issue with some golfers scores not showing correctly. <br></br>
           Hopefully it will be resolved soon!{" "}
         </Alert> */}
-        <div className="mx-auto container px-6 mt-24">
+        <div className="w-full h-screen mx-auto container px-6 mt-20">
+          <div className="w-full bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl">
+            <div class="max-w-2xl p-4 f rounded shadow ">
+              <div class="flex flex-row lg:flex-row xl:items-center justify-around">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center bg-gray-100"></div>
+                <div class="pl-4 flex items-center justify-center">
+                  <div class="flex flex-col justify-between items-start ">
+                    <p class="text-lg font-semibold leading-5 pr-14 text-gray-100">
+                      {data.results && data.results.tournament.name}
+                    </p>
+                    <p class="text-lg font-semibold leading-5 pr-14 text-gray-100">
+                      {data.results && data.results.tournament.course}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           {allScores
             .sort((a, b) => {
               if (a.totalScore < b.totalScore) {
@@ -176,7 +163,7 @@ const ScoreTable = () => {
               } else return 1;
             })
             .map((d, i) => (
-              <div className="bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl">
+              <div className="bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl select-none">
                 <div className="flex py-2 items-center justify-start overflow-x-auto">
                   <div className="cursor-pointer w-1/12 lg:hidden ml-2">
                     {show === i ? (
@@ -240,38 +227,29 @@ const ScoreTable = () => {
                         </h4>
                       );
                     })}
-                  {/* 
-                  <h4 className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left">
-                    {d.golfer2}
-                  </h4>
-                  <h4 className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left">
-                    {d.golfer3}
-                  </h4>
-                  <h4 className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left">
-                    {d.golfer4}
-                  </h4>
-                  <h4 className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left">
-                    {d.golfer3}
-                  </h4>
-                  <h4 className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left">
-                    {d.golfer4}
-                  </h4> */}
+
                   <h4 className="text-lg text-gray-100 font-semibold ml-auto  w-2/12 lg:w-1/12 ">
                     {d.totalScore > 0 ? `+${d.totalScore}` : d.totalScore}
                   </h4>
                 </div>
                 {show == i && (
-                  <div className="w-full shadow text-left text-gray-100">
+                  <div className="w-full text-left text-green-600">
                     <div className="border-b border-green-600 flex">
-                      <div className="py-5 ml-2 w-2/12 font-bold text-lg">
+                      <div className="py-1 ml-2 w-2/12 font-bold text-base">
                         Pos
                       </div>
-                      <div className="py-5 w-4/12 font-bold text-lg">Name</div>
-                      <div className="py-5 w-2/12 font-bold text-lg">
+                      <div className="py-1 w-4/12 font-bold text-base">
+                        Name
+                      </div>
+                      <div className="py-1 w-2/12 font-bold text-base">
                         Played
                       </div>
-                      <div className="py-5 w-2/12 font-bold text-lg">Today</div>
-                      <div className="py-5 w-2/12 font-bold text-lg">Score</div>
+                      <div className="py-1 w-2/12 font-bold text-base">
+                        Today
+                      </div>
+                      <div className="py-1 w-2/12 font-bold text-base">
+                        Score
+                      </div>
                     </div>
 
                     <div>
@@ -283,24 +261,30 @@ const ScoreTable = () => {
                             return -1;
                           }
                         })
-                        .map((g) => {
+                        .map((g, i) => {
                           return (
-                            <div className="border-b border-gray-800 flex bg-gray-700 ">
-                              <div className="py-5 ml-2 pr-2 text-sm w-2/12">
+                            <div
+                              className={
+                                i === 5
+                                  ? 'border-b rounded-xl shadow-none border-gray-800 flex bg-gray-900 text-gray-200'
+                                  : 'border-b  border-gray-800 flex bg-gray-900 text-gray-200'
+                              }
+                            >
+                              <div className="py-1 ml-2 pr-2 font-bold text-sm w-2/12">
                                 {g.position}
                               </div>
-                              <div className="pr-2 py-5 text-sm  w-4/12">
+                              <div className="pr-2 py-1 text-sm  w-4/12">
                                 <b>{g.last_name.toUpperCase()}</b>
                                 {`, ${g.first_name.charAt(0)}`}
                               </div>
-                              <div className="pr-2 py-5 text-sm  text-left w-2/12">
+                              <div className="pr-2 py-1 text-sm font-bold  text-left w-2/12">
                                 {g.holes_played}
                               </div>
 
-                              <div className="py-5 pr-2 sm:pr-10  font-bold text-sm w-2/12">
+                              <div className="py-1 pr-2 sm:pr-10  font-bold text-sm w-2/12">
                                 {g.rounds[g.rounds.length - 1].total_to_par}
                               </div>
-                              <div className="py-5 pr-2 font-bold text-sm  w-2/12">
+                              <div className="py-1 pr-2 font-bold text-sm  w-2/12">
                                 {g.total_to_par > 0
                                   ? `+${g.total_to_par}`
                                   : g.total_to_par}
@@ -313,13 +297,6 @@ const ScoreTable = () => {
                 )}
               </div>
             ))}
-          {/* {data.map((d,i) => {
-              return(
-                
-              )
-          })} */}
-
-          <hr className="mt-6 border-t border-gray-300 dark:border-gray-700" />
 
           <style>
             {`
@@ -329,58 +306,6 @@ const ScoreTable = () => {
                     `}
           </style>
         </div>
-        {/* <TableContainer component={Paper}>
-          <Table size="small" aria-label="collapsible table">
-            <TableHead>
-              <TableRow className={classes.tableHead}>
-                <TableCell
-                  onClick={refreshPage}
-                  style={{ color: theme.palette.primary.light }}
-                >
-                  <AutorenewIcon style={{ marginTop: 5 }}></AutorenewIcon>{" "}
-                </TableCell>
-                <TableCell style={{ color: theme.palette.primary.light }}>
-                  Name
-                </TableCell>{" "}
-                {Date.now() > start ? (
-                  <TableCell
-                    style={{ color: theme.palette.primary.light }}
-                    align="left"
-                  >
-                    Score
-                  </TableCell>
-                ) : (
-                  ""
-                )}
-                <Hidden xsDown>
-                  <TableCell style={{ color: theme.palette.primary.light }}>
-                    <PersonSharpIcon style={{ marginTop: 5 }}></PersonSharpIcon>
-                  </TableCell>
-                  <TableCell style={{ color: theme.palette.primary.light }}>
-                    <PersonSharpIcon style={{ marginTop: 5 }}></PersonSharpIcon>
-                  </TableCell>
-                  <TableCell style={{ color: theme.palette.primary.light }}>
-                    <PersonSharpIcon style={{ marginTop: 5 }}></PersonSharpIcon>
-                  </TableCell>
-                  <TableCell style={{ color: theme.palette.primary.light }}>
-                    <PersonSharpIcon></PersonSharpIcon>
-                  </TableCell>
-                </Hidden>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {allScores
-                .sort((a, b) => {
-                  if (a.totalScore < b.totalScore) {
-                    return -1;
-                  } else return 1;
-                })
-                .map((row, index) => (
-                  <Row key={`${row.name}-${index}`} row={row} index={index} />
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer> */}
       </>
     );
   }

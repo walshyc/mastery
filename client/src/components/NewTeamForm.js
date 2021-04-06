@@ -1,39 +1,6 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    width: '90%',
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
 const TeamForm = (props) => {
   const {
@@ -46,7 +13,7 @@ const TeamForm = (props) => {
     setTeamCount,
   } = props;
 
-  const classes = useStyles();
+
 
   const eu = [
     'ENG',
@@ -74,6 +41,16 @@ const TeamForm = (props) => {
     }
   });
 
+  rowPlayers.sort((a, b) => {
+    return a.first_name > b.first_name ? 1 : -1;
+  });
+  usaPlayers.sort((a, b) => {
+    return a.first_name > b.first_name ? 1 : -1;
+  });
+  euPlayers.sort((a, b) => {
+    return a.first_name > b.first_name ? 1 : -1;
+  });
+
   const handleDeleteClick = (e) => {
     e.preventDefault();
     setTeamCount((teamCount) => teamCount - 1);
@@ -86,14 +63,6 @@ const TeamForm = (props) => {
         { selection: '', id: '', no: 'selectionFive' },
         { selection: '', id: '', no: 'selectionSix' },
       ],
-      selectionOne: '',
-      selectionTwo: '',
-      selectionThree: '',
-      selectionFour: '',
-      selectionOneId: '',
-      selectionTwoId: '',
-      selectionThreeId: '',
-      selectionFourId: '',
     });
   };
   let oneIndex = selections.selections.findIndex((s) => {
@@ -119,37 +88,49 @@ const TeamForm = (props) => {
     <>
       <div>
         <div className="w-11/12 mx-auto">
-          <div className="container mx-auto">
-            <div className="my-8 mx-auto xl:w-full xl:mx-0">
-              <div className="xl:flex lg:flex md:flex flex-wrap justify-between">
-                <div className="flex flex-col mb-6 w-full">
-                  <h3 className="pb-2 text-xl tracking-wider font-bold text-gray-900">
+          <div
+            className={
+              number < 4 ? 'container mx-auto' : 'container mx-auto border-t'
+            }
+          >
+            <div className="my-8 mx-auto xl:w-full xl:mx-0 ">
+              <div className="xl:flex lg:flex md:flex flex-wrap justify-between gap-1">
+                <div className="flex flex-row mb-6 w-full justify-between">
+                  <h3 className="text-gray-200 text-left text-lg font-bold leading-tight tracking-normal mb-2">
                     Entry {number}
                   </h3>
-                  <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
-                    <label
-                      htmlFor="LastName"
-                      className="pb-2 text-lg tracking-wider font-bold text-gray-900"
-                    >
-                      Entry Name
-                    </label>
-                    <input
-                      onChange={handleChange}
-                      value={selections.entryName}
-                      type="text"
-                      name="entryName"
-                      required
-                      id="entryName"
-                      className="border-2 bg-white border-gray-300 dark:border-gray-900 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none bg-transparent focus:border-gray-900 text-gray-900 dark:text-gray-100"
-                      placeholder="Optional"
-                    />
-                  </div>
+                  {teamCount >= 2 ? (
+                    <div className="flex justify-end">
+                      <button
+                        onClick={handleDeleteClick}
+                        className="bg-red-500 mr-6 px-2 py-2 mb-4 text-gray-100 font-bold rounded"
+                      >
+                        Remove Team
+                      </button>
+                    </div>
+                  ) : (
+                    ''
+                  )}
                 </div>
-
-                <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                <div className="flex flex-col w-full mt-2">
+                  <label
+                    htmlFor="entryName"
+                    className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal mb-2"
+                  >
+                    Entry Name
+                  </label>
+                  <input
+                    id="entryName"
+                    onChange={handleChange}
+                    value={selections.entryName}
+                    className="text-gray-900 focus:outline-none focus:border focus:border-green-700 bg-white font-normal   h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
+                    placeholder=""
+                  />
+                </div>
+                <div className="flex flex-col w-full md:w-2/5 my-1">
                   <label
                     htmlFor="City"
-                    className="pb-2 text-lg tracking-wider font-bold text-gray-900 dark:text-gray-100"
+                    className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
                     USA 1
                   </label>
@@ -161,7 +142,7 @@ const TeamForm = (props) => {
                       name="selectionOne"
                       required
                       id="selectionOne"
-                      className="bg-white dark:bg-gray-800 appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-900  rounded"
+                      className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       <option value=""></option>
                       {data &&
@@ -171,6 +152,9 @@ const TeamForm = (props) => {
                             return (
                               n !== selections.selections[twoIndex].selection
                             );
+                          })
+                          .sort((a, b) => {
+                            return a < b ? 1 : -1;
                           })
                           .map((p) => {
                             const name = `${p.first_name} ${p.last_name}`;
@@ -227,10 +211,10 @@ const TeamForm = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                <div className="flex flex-col w-full md:w-2/5 my-1">
                   <label
                     htmlFor="City"
-                    className="pb-2 text-lg tracking-wider font-bold text-gray-900 dark:text-gray-100"
+                    className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
                     USA 2
                   </label>
@@ -242,7 +226,7 @@ const TeamForm = (props) => {
                       name="selectionTwo"
                       required
                       id="SelectionTwo"
-                      className="bg-white dark:bg-gray-800 appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-900  rounded"
+                      className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       {' '}
                       <option value=""></option>
@@ -309,10 +293,10 @@ const TeamForm = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                <div className="flex flex-col w-full md:w-2/5 my-1">
                   <label
                     htmlFor="City"
-                    className="pb-2 text-lg tracking-wider font-bold text-gray-900 dark:text-gray-100"
+                    className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
                     European 1
                   </label>
@@ -324,7 +308,7 @@ const TeamForm = (props) => {
                       name="selectionThree"
                       required
                       id="SelectionThree"
-                      className="bg-white dark:bg-gray-800 appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-900  rounded"
+                      className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       {' '}
                       <option value=""></option>
@@ -391,10 +375,10 @@ const TeamForm = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                <div className="flex flex-col w-full md:w-2/5 my-1">
                   <label
                     htmlFor="City"
-                    className="pb-2 text-lg tracking-wider font-bold text-gray-900 dark:text-gray-100"
+                    className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
                     European 2
                   </label>
@@ -406,7 +390,7 @@ const TeamForm = (props) => {
                       name="selectionFour"
                       required
                       id="SelectionFour"
-                      className="bg-white dark:bg-gray-800 appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-900  rounded"
+                      className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       {' '}
                       <option value=""></option>
@@ -473,10 +457,10 @@ const TeamForm = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                <div className="flex flex-col w-full md:w-2/5 my-1">
                   <label
                     htmlFor="City"
-                    className="pb-2 text-lg tracking-wider font-bold text-gray-900 dark:text-gray-100"
+                    className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
                     Rest of the World 1
                   </label>
@@ -488,7 +472,7 @@ const TeamForm = (props) => {
                       name="selectionFive"
                       required
                       id="SelectionFive"
-                      className="bg-white dark:bg-gray-800 appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-900  rounded"
+                      className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       {' '}
                       <option value=""></option>
@@ -555,10 +539,10 @@ const TeamForm = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                <div className="flex flex-col w-full md:w-2/5 my-1">
                   <label
                     htmlFor="City"
-                    className="pb-2 text-lg tracking-wider font-bold text-gray-900 dark:text-gray-100"
+                    className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
                     Rest of the World 2
                   </label>
@@ -570,7 +554,7 @@ const TeamForm = (props) => {
                       name="selectionSix"
                       required
                       id="SelectionSix"
-                      className="bg-white dark:bg-gray-800 appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-900  rounded"
+                      className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       {' '}
                       <option value=""></option>
@@ -640,17 +624,6 @@ const TeamForm = (props) => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="w-full py-4 sm:px-12 px-4 bg-gray-900  mt-6 flex justify-end rounded-bl rounded-br">
-          <button className="btn text-sm focus:outline-none text-gray-100  border border-gray-300  py-2 px-6 mr-4 rounded hover:bg-gray-700 transition duration-150 ease-in-out">
-            Pay
-          </button>
-          <button
-            className="bg-green-700 transition duration-150 ease-in-out hover:bg-green-600 rounded text-white px-8 py-2 text-sm focus:outline-none"
-            type="submit"
-          >
-            Add Another Team
-          </button>
         </div>
       </div>
     </>

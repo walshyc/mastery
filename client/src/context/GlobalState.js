@@ -15,6 +15,7 @@ import * as moment from 'moment';
 import data from '../static/data/mastersData.json';
 
 const initialState = {
+  masters: [],
   users: [],
   loggedInUser: {},
   data: [],
@@ -36,10 +37,10 @@ export const GlobalProvider = ({ children }) => {
   const getScoreData = async () => {
     setLoading();
     const requestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "x-rapidapi-host": "golf-leaderboard-data.p.rapidapi.com",
-        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
+        'x-rapidapi-host': 'golf-leaderboard-data.p.rapidapi.com',
+        'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
       },
     };
 
@@ -54,6 +55,7 @@ export const GlobalProvider = ({ children }) => {
       payload: res.data,
     });
   };
+
   // const getScoreDataWScores = async () => {
   //   setLoading();
   //   const requestOptions = {
@@ -98,6 +100,7 @@ export const GlobalProvider = ({ children }) => {
       payload: res.data.results.entry_list,
     });
   };
+
   const getWorldRankings = async () => {
     setLoading();
     const requestOptions = {
@@ -179,7 +182,7 @@ export const GlobalProvider = ({ children }) => {
     golferFourID,
     golferFiveID,
     golferSixID,
-    entryName = null
+    entryName
   ) => {
     setLoading();
     await db.collection('usersNew').add({
@@ -196,7 +199,6 @@ export const GlobalProvider = ({ children }) => {
       }),
     });
 
-    
     const snapshot = await db.collection('usersNew').get();
 
     const res = snapshot.docs.map((doc) => doc.data());

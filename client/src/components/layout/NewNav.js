@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export default function NewNav() {
   const [show, setShow] = useState(null);
   const [profile, setProfile] = useState(false);
-  
+
   return (
     <>
       <div className="h-full w-full">
@@ -13,337 +13,96 @@ export default function NewNav() {
           <div className="container px-6 h-16 flex justify-between items-center lg:items-stretch mx-auto">
             <div className="flex items-center">
               <div className="mr-10 flex items-center text-green-400">
-                {/* <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  stroke="currentColor"
-                  aria-label="Home"
-                  height={44}
-                  viewBox="0 0 24 24"
-                  enableBackground="new 0 0 300 300"
-                  width={43}
-                  id="logo"
+                <NavLink
+                  to="/"
+                  activeClassName="selected"
+                  className="cursor-pointer"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                  />
-                </svg> */}
-                <h3 className="text-base text-green-400 font-bold tracking-normal leading-tight ml-3 hidden lg:block">
-                  Masteryss
-                </h3>
+                  <h3 className="text-2xl text-green-400 font-bold tracking-normal leading-tight ml-3 hidden lg:block">
+                    Mastery
+                  </h3>
+                </NavLink>
               </div>
-              <ul className="hidden lg:flex items-center h-full">
-                <li className="cursor-pointer h-full flex items-center text-sm  hover:text-green-400 text-gray-200 tracking-normal transition duration-150 ease-in-out">
-                  <span className="mr-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-grid"
-                      width={20}
-                      height={20}
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" />
-                      <rect x={4} y={4} width={6} height={6} rx={1} />
-                      <rect x={14} y={4} width={6} height={6} rx={1} />
-                      <rect x={4} y={14} width={6} height={6} rx={1} />
-                      <rect x={14} y={14} width={6} height={6} rx={1} />
-                    </svg>
-                  </span>
-                  Live Scores
-                </li>
+              <ul className="hidden lg:flex items-center h-full pt-1">
                 <NavLink
                   to="/new-entry"
                   activeClassName="selected"
                   className="cursor-pointer"
                 >
-                  <li className="cursor-pointer h-full flex items-center text-sm hover:text-green-400 text-gray-200 mx-10 tracking-normal transition duration-150 ease-in-out">
+                  <li className="cursor-pointer h-full flex items-center text-sm hover:text-green-400 text-gray-200 mx-5 tracking-normal transition duration-150 ease-in-out">
                     <span className="mr-2">
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6"
+                        fill="none"
                         width={20}
                         height={20}
-                        fill="none"
-                        viewBox="0 0 24 24"
                         stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                        ></path>
                       </svg>
                     </span>
                     Enter
                   </li>
                 </NavLink>
-              </ul>
-            </div>
-            <div className="h-full hidden lg:flex items-center justify-end">
-              <div className="h-full flex">
-                <div className="w-20 h-full flex items-center justify-center border-r border-gray-300 cursor-pointer text-gray-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-bell"
-                    width={28}
-                    height={28}
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                    <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
-                  </svg>
-                </div>
-                <div
-                  className="flex items-center pl-8 relative cursor-pointer"
-                  onClick={() => setProfile(!profile)}
+                <NavLink
+                  to="/scores"
+                  activeClassName="selected"
+                  className="cursor-pointer"
                 >
-                  {/* {profile && (
-                    <ul className="p-2 w-40 border-r bg-white absolute rounded left-0 shadow mt-16 top-0 ">
-                      <li className="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-green-400 focus:text-green-400 focus:outline-none">
-                        <div className="flex items-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="icon icon-tabler icon-tabler-user"
-                            width={20}
-                            height={20}
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <circle cx={12} cy={7} r={4} />
-                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                          </svg>
-                          <span className="ml-2">My Profile</span>
-                        </div>
-                      </li>
-                      <li className="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-green-400 focus:text-green-400 focus:outline-none flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="icon icon-tabler icon-tabler-help"
-                          width={20}
-                          height={20}
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path stroke="none" d="M0 0h24v24H0z" />
-                          <circle cx={12} cy={12} r={9} />
-                          <line x1={12} y1={17} x2={12} y2="17.01" />
-                          <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
-                        </svg>
-                        <span className="ml-2">Help Center</span>
-                      </li>
-                      <li className="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-green-400 flex items-center focus:text-green-400 focus:outline-none">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="icon icon-tabler icon-tabler-settings"
-                          width={20}
-                          height={20}
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path stroke="none" d="M0 0h24v24H0z" />
-                          <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                          <circle cx={12} cy={12} r={3} />
-                        </svg>
-                        <span className="ml-2">Account Settings</span>
-                      </li>
-                    </ul>
-                  )} */}
-                  <img
-                    className="rounded h-10 w-10 object-cover"
-                    src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
-                    alt="logo"
-                  />
-                  <p className="text-gray-800 text-sm ml-2">UserName</p>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center lg:hidden">
-              <ul className="p-2 border-r bg-white absolute rounded top-0 left-0 right-0 shadow mt-16 md:mt-16 hidden">
-                <li className="flex md:hidden cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-green-400 focus:text-green-400 focus:outline-none">
-                  <div className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-grid"
-                      width={20}
-                      height={20}
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" />
-                      <rect x={4} y={4} width={6} height={6} rx={1} />
-                      <rect x={14} y={4} width={6} height={6} rx={1} />
-                      <rect x={4} y={14} width={6} height={6} rx={1} />
-                      <rect x={14} y={14} width={6} height={6} rx={1} />
-                    </svg>
-                    <span className="ml-2 font-bold">Dashboard</span>
-                  </div>
-                </li>
-                <li
-                  className="flex md:hidden flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-green-400 focus:text-green-400 focus:outline-none flex justify-center"
-                  onclick="dropdownHandler(this)"
-                >
-                  <div className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={20}
-                      height={20}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <span className="ml-2 font-bold">Products</span>
-                  </div>
-                </li>
-                <li className="flex md:hidden cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-green-400 flex items-center focus:text-green-400 focus:outline-none">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-compass"
-                    width={20}
-                    height={20}
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <polyline points="8 16 10 10 16 8 14 14 8 16" />
-                    <circle cx={12} cy={12} r={9} />
-                  </svg>
-                  <span className="ml-2 font-bold">Performance</span>
-                </li>
-                <li
-                  className="border-b border-gray-300 flex md:hidden flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal pt-2 pb-4 hover:text-green-400 focus:text-green-400 focus:outline-none flex justify-center"
-                  onclick="dropdownHandler(this)"
-                >
-                  <div className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-code"
-                      width={20}
-                      height={20}
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" />
-                      <polyline points="7 8 3 12 7 16" />
-                      <polyline points="17 8 21 12 17 16" />
-                      <line x1={14} y1={4} x2={10} y2={20} />
-                    </svg>
-                    <span className="ml-2 font-bold">Deliverables</span>
-                  </div>
-                </li>
-                <li className="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-green-400 flex items-center focus:text-green-400 focus:outline-none">
-                  <div className="flex items-center">
-                    <div className="w-12 cursor-pointer flex text-sm border-2 border-transparent rounded focus:outline-none focus:border-white transition duration-150 ease-in-out">
-                      <img
-                        className="rounded h-10 w-10 object-cover"
-                        src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png"
-                        alt="logo"
-                      />
-                    </div>
-                    <p className="text-sm ml-2 cursor-pointer">Jane Doe</p>
-                    <div className="sm:ml-2 text-gray-800 relative">
+                  <li className="cursor-pointer h-full flex items-center text-sm  hover:text-green-400 text-gray-200 mx-5 tracking-normal transition duration-150 ease-in-out">
+                    <span className="mr-2">
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-chevron-down cursor-pointer"
+                        class="w-6 h-6"
                         width={20}
                         height={20}
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
                         fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path stroke="none" d="M0 0h24v24H0z" />
-                        <polyline points="6 9 12 15 18 9" />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                        ></path>
                       </svg>
-                    </div>
-                  </div>
-                </li>
-                <li className="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-green-400 focus:text-green-400 focus:outline-none">
-                  <div className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-user"
-                      width={20}
-                      height={20}
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" />
-                      <circle cx={12} cy={7} r={4} />
-                      <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                    </svg>
-                    <span className="ml-2">Profile</span>
-                  </div>
-                </li>
+                    </span>
+                    Live Scores
+                  </li>
+                </NavLink>
+                <NavLink
+                  to="/scores"
+                  activeClassName="font-bold"
+                  className="cursor-pointer"
+                >
+                  <li className="cursor-pointer h-full flex items-center text-sm  hover:text-green-400 text-gray-200 mx-5 tracking-normal transition duration-150 ease-in-out">
+                    <span className="mr-2">
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
+                    About
+                  </li>
+                </NavLink>
               </ul>
             </div>
           </div>
@@ -352,9 +111,11 @@ export default function NewNav() {
         <nav>
           <div className="py-4 px-6 w-full  flex lg:hidden justify-between items-center bg-gray-900 fixed top-0 z-40">
             <div className="w-24 text-green-400">
-              <h3 className="text-base text-green-400 font-bold text-xl tracking-normal leading-tight ml-3">
-                Masterym
-              </h3>
+              <NavLink to="/">
+                <h3 className="text-green-500 font-bold text-xl tracking-normal leading-tight ml-3">
+                  Mastery
+                </h3>
+              </NavLink>
               {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -377,7 +138,7 @@ export default function NewNav() {
             <div>
               <div
                 id="menu"
-                className="text-green-400"
+                className="text-green-500"
                 onClick={() => setShow(!show)}
               >
                 {show ? (
@@ -408,43 +169,26 @@ export default function NewNav() {
           <div
             className={
               show
-                ? 'absolute lg:hidden w-full h-full transform -translate-x-0 z-40'
-                : 'absolute lg:hidden w-full h-full transform -translate-x-full z-40'
+                ? 'w-full h-full absolute z-40 xl:hidden transform  translate-x-0 '
+                : '   w-full h-full absolute z-40 xl:hidden transform -translate-x-full'
             }
-            id="mobile-nav"
           >
             <div
               className="bg-gray-900 opacity-50 w-full h-full"
               onClick={() => setShow(!show)}
             />
-            <div className="w-64 z-40 fixed overflow-y-auto z-40 top-0 bg-gray-900 shadow h-full flex-col justify-between lg:hidden pb-4 transition duration-150 ease-in-out">
+            <div className="w-64 z-40 fixed overflow-y-auto z-40 top-0 bg-gray-900 shadow h-full flex-col justify-between xl:hidden pb-4 transition duration-150 ease-in-out">
               <div className="px-6 h-full">
                 <div className="flex flex-col justify-between h-full w-full">
                   <div>
-                    <div className="mt-6 flex w-full items-center justify-between">
+                    <div className="mt-6 flex-1 flex w-full items-center justify-between">
                       <div className="flex items-center justify-between w-full">
                         <div className="flex items-center">
-                          {/* <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            stroke="currentColor"
-                            aria-label="Home"
-                            height={44}
-                            viewBox="0 0 24 24"
-                            enableBackground="new 0 0 300 300"
-                            width={43}
-                            id="logo"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                            />
-                          </svg> */}
-                          <p className="text-base text-green-400 ml-3">
-                            Mastery
-                          </p>
+                          <Link to="/">
+                            <p className="text-green-400 font-bold text-xl">
+                              Mastery
+                            </p>
+                          </Link>
                         </div>
                         <div
                           id="cross"
@@ -470,152 +214,102 @@ export default function NewNav() {
                         </div>
                       </div>
                     </div>
-                    <ul className="f-m-m">
+                    <ul className="f-m-m text-green-400">
                       <NavLink
-                        activeClassName="selected"
-                        className="cursor-pointer"
-                        to="/"
+                        activeClassName="font-bold"
+                        className="cursor-pointer "
+                        exact
+                        to="/scores"
                       >
-                        <li className="text-gray-800 pt-8">
+                        <li className=" pt-8">
                           <div className="flex items-center">
-                            <div className="w-6 h-6 md:w-8 md:h-8 text-green-400">
+                            <div className="w-6 h-6 md:w-8 md:h-8 ">
                               <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="icon icon-tabler icon-tabler-grid"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
+                                class="w-6 h-6"
+                                width={20}
+                                height={20}
                                 fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
                               >
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <rect x={4} y={4} width={6} height={6} rx={1} />
-                                <rect
-                                  x={14}
-                                  y={4}
-                                  width={6}
-                                  height={6}
-                                  rx={1}
-                                />
-                                <rect
-                                  x={4}
-                                  y={14}
-                                  width={6}
-                                  height={6}
-                                  rx={1}
-                                />
-                                <rect
-                                  x={14}
-                                  y={14}
-                                  width={6}
-                                  height={6}
-                                  rx={1}
-                                />
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                                ></path>
                               </svg>
                             </div>
-                            <p className="text-green-400 lg:text-base text-base ml-3">
+                            <p className=" lg:text-base text-base ml-3">
                               Live Scores
                             </p>
                           </div>
                         </li>
                       </NavLink>
                       <NavLink
+                        activeClassName="font-bold"
+                        className="cursor-pointer "
+                        exact
                         to="/new-entry"
-                        activeClassName="selected"
-                        className="cursor-pointer"
                       >
-                        <li className="text-gray-800 pt-8">
+                        <li className="pt-8">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                              <div className="w-6 h-6 md:w-8 md:h-8 text-green-400">
+                              <div className="w-6 h-6 md:w-8 md:h-8 ">
                                 <svg
-                                  xmlns="http://www.w3.org/2000/svg"
+                                  class="w-6 h-6"
+                                  fill="none"
                                   width={20}
                                   height={20}
-                                  fill="none"
-                                  viewBox="0 0 24 24"
                                   stroke="currentColor"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="1.5"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                                  ></path>
+                                </svg>
+                              </div>
+                              <p className=" text-base ml-3">Enter Now</p>
+                            </div>
+                          </div>
+                        </li>
+                      </NavLink>
+                      <NavLink
+                        activeClassName="font-bold"
+                        className="cursor-pointer "
+                        exact
+                        to="/faq"
+                      >
+                        <li className="pt-8">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center">
+                              <div className="w-6 h-6 md:w-8 md:h-8 ">
+                                <svg
+                                  className="w-6 h-6"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     strokeWidth={2}
-                                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                                  />
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                                   />
                                 </svg>
                               </div>
-                              <p className="text-green-400  text-base ml-3">
-                                Enter
-                              </p>
+                              <p className=" text-base ml-3">About</p>
                             </div>
                           </div>
                         </li>
                       </NavLink>
                     </ul>
-                  </div>
-                  <div className="w-full pt-4">
-                    <div className="border-t border-gray-300">
-                      <div className="w-full flex items-center justify-between pt-1">
-                        <div className="flex items-center">
-                          <img
-                            alt="profile-pic"
-                            src="https://tuk-cdn.s3.amazonaws.com/assets/components/boxed_layout/bl_1.png"
-                            className="w-8 h-8 rounded-md"
-                          />
-                          <p className=" text-gray-800 text-base leading-4 ml-2">
-                            Jane Doe
-                          </p>
-                        </div>
-                        <ul className="flex">
-                          <li className="cursor-pointer text-gray-800 pt-5 pb-3">
-                            <div className="w-6 h-6 md:w-8 md:h-8">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="icon icon-tabler icon-tabler-messages"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1}
-                                stroke="currentColor"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
-                                <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
-                              </svg>
-                            </div>
-                          </li>
-                          <li className="cursor-pointer text-gray-800 pt-5 pb-3 pl-3">
-                            <div className="w-6 h-6 md:w-8 md:h-8">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="icon icon-tabler icon-tabler-bell"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1}
-                                stroke="currentColor"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                                <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
-                              </svg>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
