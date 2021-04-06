@@ -113,6 +113,7 @@ export default function CompetitionCard() {
 
             {checkRound(data.results.tournament.live_details.current_round)}
           </Typography>
+          <div className="text-green-800 bg-green-300">Test</div>
           <Typography
             variant="subtitle1"
             color="textSecondary"
