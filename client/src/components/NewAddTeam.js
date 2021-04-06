@@ -525,7 +525,7 @@ const AddNewTeam = () => {
     <>
       {error && <Alert severity="error">{error}</Alert>}
       <div className="bg-green-900">
-        <div className=" bg-gray-900 px-4 xl:px-0 py-16 lg:pt-0">
+        <div className=" bg-gray-900 px-4 xl:px-0 py-4 lg:pt-0">
           <div className="mx-auto container">
             <div className="mb-4 lg:mb-20">
               <h1 className="text-center text-2xl lg:text-5xl font-bold text-gray-200 tracking-1px">

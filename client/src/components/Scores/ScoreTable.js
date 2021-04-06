@@ -3,6 +3,7 @@ import { GlobalContext } from '../../context/GlobalState';
 import Spinner from '../layout/Spinner';
 import { makeStyles } from '@material-ui/core/styles';
 import * as moment from 'moment';
+import masters from '../../static/images/masters.jpg';
 
 const ScoreTable = () => {
   useEffect(() => {
@@ -124,6 +125,21 @@ const ScoreTable = () => {
     }
   }
 
+  const checkRound = (a) => {
+    switch (a) {
+      case 1:
+        return '1st Round';
+      case 2:
+        return '2nd Round';
+      case 3:
+        return '3rd Round';
+      case 4:
+        return '4th Round';
+      default:
+        return '';
+    }
+  };
+
   const refreshPage = (e) => {
     getScoreData();
     setRefresh(!refresh);
@@ -138,19 +154,110 @@ const ScoreTable = () => {
           There is an issue with some golfers scores not showing correctly. <br></br>
           Hopefully it will be resolved soon!{" "}
         </Alert> */}
-        <div className="w-full h-screen mx-auto container px-6 mt-20">
+        <div className="w-full h-screen mx-auto container px-6 mt-2 bg-gradient-to-b from-green-400 to-green-900">
           <div className="w-full bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl">
-            <div class="max-w-2xl p-4 f rounded shadow ">
+            <div class="w-full p-4 f rounded shadow ">
               <div class="flex flex-row lg:flex-row xl:items-center justify-around">
-                <div class="w-20 h-20 rounded-full flex items-center justify-center bg-gray-100"></div>
-                <div class="pl-4 flex items-center justify-center">
+                <img
+                  class="hidden  w-1/2 h-1/2 rounded-full sm:flex items-center justify-center bg-gray-100"
+                  src={masters}
+                  alt="masters"
+                  srcset=""
+                />
+
+                <div class="flex items-center justify-start w-full sm:w-1/2 sm:pl-4 text-left">
                   <div class="flex flex-col justify-between items-start ">
-                    <p class="text-lg font-semibold leading-5 pr-14 text-gray-100">
-                      {data.results && data.results.tournament.name}
-                    </p>
-                    <p class="text-lg font-semibold leading-5 pr-14 text-gray-100">
-                      {data.results && data.results.tournament.course}
-                    </p>
+                    <div className="flex justify-start gap-4">
+                      <svg
+                        className="w-6 h-6 text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                      <p class="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
+                        {data.results && data.results.tournament.name}
+                      </p>
+                    </div>
+                    <div className="flex justify-start gap-4">
+                      <svg
+                        className="w-6 h-6 text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"
+                        />
+                      </svg>
+                      <p class="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
+                        {data.results && data.results.tournament.course}
+                      </p>
+                    </div>
+                    <div className="flex justify-start gap-4">
+                      <svg
+                        className="w-6 h-6 text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                        />
+                      </svg>
+                      <p class="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
+                        {data.results &&
+                          checkRound(
+                            data.results.tournament.live_details.current_round
+                          )}
+                      </p>
+                    </div>
+                    <div className="flex justify-start gap-4">
+                      <svg
+                        className="w-6 h-6 text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                        />
+                      </svg>
+                      <p class="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
+                        {data.results &&
+                          'Updated ' +
+                            moment(
+                              new Date(
+                                data.results.tournament.live_details.updated
+                              ).toISOString()
+                            ).fromNow('')}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -203,9 +310,22 @@ const ScoreTable = () => {
                       </svg>
                     )}
                   </div>
-                  <h4 className="text-lg text-gray-100 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left">
-                    {d.entryName}
-                  </h4>
+                  {show === i ? (
+                    <h4
+                      onClick={() => setShow(null)}
+                      className="text-lg text-gray-100 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left"
+                    >
+                      {d.entryName}
+                    </h4>
+                  ) : (
+                    <h4
+                      onClick={() => setShow(i)}
+                      className="text-lg text-gray-100 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left"
+                    >
+                      {d.entryName}
+                    </h4>
+                  )}
+
                   {d.detail
                     .sort((a, b) => {
                       if (a.position > b.position) {
