@@ -143,7 +143,7 @@ const ScoreTable = () => {
           There is an issue with some golfers scores not showing correctly. <br></br>
           Hopefully it will be resolved soon!{" "}
         </Alert> */}
-        <div className="w-full h-screen mx-auto container px-6 mt-2 mb-96">
+        <div className="w-full h-full  mx-auto container px-6 mt-2 mb-96">
           <div className="w-full bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl">
             <div class="w-full p-4 f rounded shadow ">
               <div class="flex flex-row lg:flex-row xl:items-center justify-around">
