@@ -532,7 +532,7 @@ const AddNewTeam = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="flag-usa"
-                  class="svg-inline--fa fa-flag-usa fa-w-16 w-16 h-16"
+                  className="svg-inline--fa fa-flag-usa fa-w-16 w-16 h-16"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
@@ -557,7 +557,7 @@ const AddNewTeam = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="globe-europe"
-                  class="svg-inline--fa fa-globe-europe fa-w-16 w-16 h-16"
+                  className="svg-inline--fa fa-globe-europe fa-w-16 w-16 h-16"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 496 512"
@@ -582,7 +582,7 @@ const AddNewTeam = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="globe"
-                  class="svg-inline--fa fa-globe fa-w-16 h-16 w-16"
+                  className="svg-inline--fa fa-globe fa-w-16 h-16 w-16"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 496 512"
@@ -607,7 +607,7 @@ const AddNewTeam = () => {
                   focusable="false"
                   data-prefix="fas"
                   data-icon="euro-sign"
-                  class="svg-inline--fa fa-euro-sign fa-w-10 w-16 h-16"
+                  className="svg-inline--fa fa-euro-sign fa-w-10 w-16 h-16"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 320 512"
@@ -750,7 +750,6 @@ const AddNewTeam = () => {
 
               <button
                 type="submit"
-                fullWidth
                 variant="contained"
                 color="primary"
                 disabled={isProcessing || enableButton}

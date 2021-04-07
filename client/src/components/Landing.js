@@ -15,7 +15,7 @@ const Landing = () => {
             <Link to="/new-entry">
               <button className="flex items-center justify-center hover:text-white hover:bg-gray-900 hover:border-gray-900 border bg-white transition duration-150 ease-in-out focus:outline-none  rounded text-gray-900 px-4 sm:px-8 py-1 sm:py-3 text-lg shadow-xl">
                 <svg
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   width={20}
                   height={20}
                   fill="none"
@@ -24,9 +24,9 @@ const Landing = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
@@ -36,7 +36,7 @@ const Landing = () => {
             <Link to="/scores">
               <button className="flex items-center justify-center shadow-xl hover:bg-white hover:text-gray-900 hover:border-green-600 ml-3 sm:ml-6 bg-transparent transition duration-150 ease-in-out focus:outline-none hover:bg-green-700-800 rounded border border-white text-white px-4 sm:px-8 py-1 sm:py-3 text-lg">
                 <svg
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   width={20}
                   height={20}
                   fill="none"
@@ -45,9 +45,9 @@ const Landing = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>{' '}

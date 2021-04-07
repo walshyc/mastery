@@ -143,18 +143,24 @@ const ScoreTable = () => {
           There is an issue with some golfers scores not showing correctly. <br></br>
           Hopefully it will be resolved soon!{" "}
         </Alert> */}
-        <div className="w-full h-full  mx-auto container px-6 mt-2 mb-96">
+        <div
+          className={
+            show != null
+              ? 'w-full h-full  mx-auto container px-6 mt-2 mb-10'
+              : 'w-full h-full  mx-auto container px-6 mt-2'
+          }
+        >
           <div className="w-full bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl">
-            <div class="w-full p-4 f rounded shadow ">
-              <div class="flex flex-row lg:flex-row xl:items-center justify-around">
+            <div className="w-full p-4 f rounded shadow ">
+              <div className="flex flex-row lg:flex-row xl:items-center justify-around">
                 <img
-                  class="hidden lg:w-3/12  w-1/2 h-1/2 rounded-full sm:flex items-center justify-center bg-gray-100"
+                  className="hidden lg:w-3/12  w-1/2 h-1/2 rounded-full sm:flex items-center justify-center bg-gray-100"
                   src={masters}
                   alt="masters"
                 />
 
-                <div class="flex items-center justify-start w-full lg:w-9/12 sm:w-1/2 sm:pl-10 text-left">
-                  <div class="flex flex-col justify-between items-start ">
+                <div className="flex items-center justify-start w-full lg:w-9/12 sm:w-1/2 sm:pl-10 text-left">
+                  <div className="flex flex-col justify-between items-start ">
                     <div className="flex justify-start gap-4 pb-1">
                       <svg
                         className="w-6 h-6 text-gray-300"
@@ -176,7 +182,7 @@ const ScoreTable = () => {
                           d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                         />
                       </svg>
-                      <p class="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
+                      <p className="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
                         {data.results && data.results.tournament.name}
                       </p>
                     </div>
@@ -195,7 +201,7 @@ const ScoreTable = () => {
                           d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"
                         />
                       </svg>
-                      <p class="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
+                      <p className="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
                         {data.results && data.results.tournament.course}
                       </p>
                     </div>
@@ -214,7 +220,7 @@ const ScoreTable = () => {
                           d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                         />
                       </svg>
-                      <p class="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
+                      <p className="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
                         {data.results &&
                           checkRound(
                             data.results.tournament.live_details.current_round
@@ -236,7 +242,7 @@ const ScoreTable = () => {
                           d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                         />
                       </svg>
-                      <p class="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
+                      <p className="text-base sm:text-xl lg:text-2xl sm:pb-3 text-left font-semibold leading-5 pr-1 text-gray-300">
                         {data.results &&
                           'Updated ' +
                             moment(
@@ -259,17 +265,17 @@ const ScoreTable = () => {
             })
             .map((d, i) => (
               <div
-                key={i}
+                key={d.entryName + i + ''}
                 className="bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl select-none"
               >
-                <div className="flex py-2 items-center justify-start overflow-x-auto">
+                <div className="flex py-1 items-center justify-start overflow-x-auto">
                   <div className="cursor-pointer w-1/12 lg:hidden ml-2">
                     {show === i ? (
                       <svg
                         onClick={() => setShow(null)}
                         width={28}
                         height={28}
-                        className="icon icon-tabler text-gray-100"
+                        className="icon icon-tabler text-gray-300"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -292,7 +298,7 @@ const ScoreTable = () => {
                         fill="none"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="icon icon-tabler text-gray-100 icon-tabler-chevron-down"
+                        className="icon icon-tabler text-gray-300 icon-tabler-chevron-down"
                         onClick={() => setShow(i)}
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -304,14 +310,14 @@ const ScoreTable = () => {
                   {show === i ? (
                     <h4
                       onClick={() => setShow(null)}
-                      className="text-lg text-gray-100 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left"
+                      className="text-base text-gray-300 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left"
                     >
                       {d.entryName}
                     </h4>
                   ) : (
                     <h4
                       onClick={() => setShow(i)}
-                      className="text-lg text-gray-100 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left"
+                      className="text-base text-gray-300 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left"
                     >
                       {d.entryName}
                     </h4>
@@ -325,15 +331,15 @@ const ScoreTable = () => {
                         return -1;
                       }
                     })
-                    .map((g, index) => {
+                    .map((g) => {
                       return (
                         <h4
                           key={`${g.first_name}${g.last_name} `}
-                          className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left"
+                          className="hidden lg:block text-xs text-gray-300 font-light lg:w-2/12 text-left "
                         >
                           <b> {g.last_name.toUpperCase()}</b>
                           {`, ${g.first_name.charAt(0)}`}{' '}
-                          <b>
+                          <b className='pl-1'>
                             {g.total_to_par > 0
                               ? `+${g.total_to_par}`
                               : g.total_to_par}
@@ -342,11 +348,11 @@ const ScoreTable = () => {
                       );
                     })} */}
 
-                  <h4 className="text-lg text-gray-100 font-semibold ml-auto  w-2/12 lg:w-1/12 ">
+                  <h4 className="text-lg text-gray-300 font-semibold ml-auto  w-2/12 lg:w-1/12 ">
                     {d.totalScore > 0 ? `+${d.totalScore}` : d.totalScore}
                   </h4>
                 </div>
-                {/* {show === i && (
+                {show === i && (
                   <div className="w-full text-left text-green-600">
                     <div className="border-b border-green-600 flex">
                       <div className="py-1 ml-2 w-2/12 font-bold text-base">
@@ -378,6 +384,7 @@ const ScoreTable = () => {
                         .map((g, index) => {
                           return (
                             <div
+                              key={g.first_name + index + ''}
                               className={
                                 index === 5
                                   ? 'border-b rounded-xl shadow-none border-gray-800 flex bg-gray-900 text-gray-200'
@@ -408,7 +415,7 @@ const ScoreTable = () => {
                         })}
                     </div>
                   </div>
-                )} */}
+                )}
               </div>
             ))}
 

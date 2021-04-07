@@ -127,6 +127,39 @@ export const GlobalProvider = ({ children }) => {
     const snapshot = await db.collection('usersNew').get();
     const res = snapshot.docs.map((doc) => doc.data());
     //console.log('got users')
+    //console.log(res);
+    const totaled = res.map((u) => {
+      return {
+        name: u.entryName,
+        total:
+          u.selections[0].golferOne.player_id +
+          u.selections[0].golferTwo.player_id +
+          u.selections[0].golferThree.player_id +
+          u.selections[0].golferFour.player_id +
+          u.selections[0].golferFive.player_id +
+          u.selections[0].golferSix.player_id,
+      };
+    });
+    totaled.sort((a, b) => {
+      if (a.total === b.total) {
+        return -1;
+      }
+      if (a.total > b.total) {
+        return 1;
+      }
+      return 0;
+    });
+    let duplicate = [];
+    totaled.sort((a, b) => {
+      if (a.total === b.total) {
+        duplicate.push(a);
+        duplicate.push(b);
+        return 1;
+      } else return 0;
+    });
+
+    console.log(totaled);
+    console.log(duplicate);
     dispatch({
       type: GET_USERS,
       payload: res,
