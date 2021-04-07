@@ -45,10 +45,10 @@ function App() {
 
   // const classes = useStyles();
 
-  //const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY_PUB);
-  const stripePromise = loadStripe(
-    'pk_test_51HjBmkEjMQzPzA4cHelZNtijjsNwO4DZFbjxqvFtXZocrRkLjMha6S3hyi3VntJFwJTpvx7rwpYKFXs4JcZKdbJl00aWJw9Ibt'
-  );
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY_PUB);
+  // const stripePromise = loadStripe(
+  //   'pk_test_51HjBmkEjMQzPzA4cHelZNtijjsNwO4DZFbjxqvFtXZocrRkLjMha6S3hyi3VntJFwJTpvx7rwpYKFXs4JcZKdbJl00aWJw9Ibt'
+  // );
 
   return (
     <GlobalProvider>
