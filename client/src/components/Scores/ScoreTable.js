@@ -352,7 +352,7 @@ const ScoreTable = () => {
                     {d.totalScore > 0 ? `+${d.totalScore}` : d.totalScore}
                   </h4>
                 </div>
-                {show === i && (
+                {/* {show === i && (
                   <div className="w-full text-left text-green-600">
                     <div className="border-b border-green-600 flex">
                       <div className="py-1 ml-2 w-2/12 font-bold text-base">
@@ -415,7 +415,7 @@ const ScoreTable = () => {
                         })}
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
             ))}
 
