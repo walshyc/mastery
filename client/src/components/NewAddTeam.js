@@ -631,7 +631,7 @@ const AddNewTeam = () => {
         </div>
         <div className="flex container mx-auto">
           <form
-            className="w-full pt-8 shadow bg-green-900"
+            className="w-full lg:w-1/2 mx-auto pt-8 shadow bg-green-900"
             onSubmit={handleSubmit}
           >
             <div className="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5">
