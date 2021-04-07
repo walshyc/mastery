@@ -154,7 +154,7 @@ const ScoreTable = () => {
           There is an issue with some golfers scores not showing correctly. <br></br>
           Hopefully it will be resolved soon!{" "}
         </Alert> */}
-        <div className="w-full h-screen mx-auto container px-6 mt-2 bg-gradient-to-b from-green-400 to-green-900">
+        <div className="w-full h-screen mx-auto container px-6 mt-2 ">
           <div className="w-full bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl">
             <div class="w-full p-4 f rounded shadow ">
               <div class="flex flex-row lg:flex-row xl:items-center justify-around">
@@ -167,7 +167,7 @@ const ScoreTable = () => {
 
                 <div class="flex items-center justify-start w-full sm:w-1/2 sm:pl-4 text-left">
                   <div class="flex flex-col justify-between items-start ">
-                    <div className="flex justify-start gap-4">
+                    <div className="flex justify-start gap-4 pb-1">
                       <svg
                         className="w-6 h-6 text-gray-300"
                         fill="none"
@@ -192,7 +192,7 @@ const ScoreTable = () => {
                         {data.results && data.results.tournament.name}
                       </p>
                     </div>
-                    <div className="flex justify-start gap-4">
+                    <div className="flex justify-start gap-4 pb-1">
                       <svg
                         className="w-6 h-6 text-gray-300"
                         fill="none"
@@ -211,7 +211,7 @@ const ScoreTable = () => {
                         {data.results && data.results.tournament.course}
                       </p>
                     </div>
-                    <div className="flex justify-start gap-4">
+                    <div className="flex justify-start gap-4 pb-1">
                       <svg
                         className="w-6 h-6 text-gray-300"
                         fill="none"
@@ -233,7 +233,7 @@ const ScoreTable = () => {
                           )}
                       </p>
                     </div>
-                    <div className="flex justify-start gap-4">
+                    <div className="flex justify-start gap-4 pb-1">
                       <svg
                         className="w-6 h-6 text-gray-300"
                         fill="none"
