@@ -1,23 +1,22 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import Spinner from '../layout/Spinner';
-import { makeStyles } from '@material-ui/core/styles';
 import * as moment from 'moment';
 import masters from '../../static/images/masters.jpg';
 
 const ScoreTable = () => {
-  useEffect(() => {
-    getScoreData();
-    getUsers();
-    getWorldRankings();
-    getEntries();
+  // useEffect(() => {
+  //   getScoreData();
+  //   getUsers();
+  //   getWorldRankings();
+  //   getEntries();
 
-    // if (currentUser) {
-    //   getUser(currentUser.email);
-    // }
-    // eslint-disable-next-line
-  }, []);
-  const [refresh, setRefresh] = useState(false);
+  //   // if (currentUser) {
+  //   //   getUser(currentUser.email);
+  //   // }
+  //   // eslint-disable-next-line
+  // }, []);
+  //const [refresh, setRefresh] = useState(false);
   const [show, setShow] = useState(null);
 
   const {
@@ -28,7 +27,6 @@ const ScoreTable = () => {
     getEntries,
     users,
     matchSelection,
-    start,
     getScoreData,
   } = useContext(GlobalContext);
 
@@ -140,10 +138,10 @@ const ScoreTable = () => {
     }
   };
 
-  const refreshPage = (e) => {
-    getScoreData();
-    setRefresh(!refresh);
-  };
+  // const refreshPage = (e) => {
+  //   getScoreData();
+  //   setRefresh(!refresh);
+  // };
 
   if (loading) {
     return <Spinner></Spinner>;
@@ -162,7 +160,6 @@ const ScoreTable = () => {
                   class="hidden  w-1/2 h-1/2 rounded-full sm:flex items-center justify-center bg-gray-100"
                   src={masters}
                   alt="masters"
-                  srcset=""
                 />
 
                 <div class="flex items-center justify-start w-full sm:w-1/2 sm:pl-4 text-left">
@@ -270,7 +267,10 @@ const ScoreTable = () => {
               } else return 1;
             })
             .map((d, i) => (
-              <div className="bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl select-none">
+              <div
+                key={i}
+                className="bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl select-none"
+              >
                 <div className="flex py-2 items-center justify-start overflow-x-auto">
                   <div className="cursor-pointer w-1/12 lg:hidden ml-2">
                     {show === i ? (
@@ -334,9 +334,12 @@ const ScoreTable = () => {
                         return -1;
                       }
                     })
-                    .map((g) => {
+                    .map((g, index) => {
                       return (
-                        <h4 className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left">
+                        <h4
+                          key={index}
+                          className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left"
+                        >
                           <b> {g.last_name.toUpperCase()}</b>
                           {`, ${g.first_name.charAt(0)}`}{' '}
                           <b>
@@ -352,7 +355,7 @@ const ScoreTable = () => {
                     {d.totalScore > 0 ? `+${d.totalScore}` : d.totalScore}
                   </h4>
                 </div>
-                {show == i && (
+                {show === i && (
                   <div className="w-full text-left text-green-600">
                     <div className="border-b border-green-600 flex">
                       <div className="py-1 ml-2 w-2/12 font-bold text-base">
@@ -381,11 +384,11 @@ const ScoreTable = () => {
                             return -1;
                           }
                         })
-                        .map((g, i) => {
+                        .map((g, index) => {
                           return (
                             <div
                               className={
-                                i === 5
+                                index === 5
                                   ? 'border-b rounded-xl shadow-none border-gray-800 flex bg-gray-900 text-gray-200'
                                   : 'border-b  border-gray-800 flex bg-gray-900 text-gray-200'
                               }

@@ -28,14 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddNewTeam = () => {
-  const {
-    data,
-    addSelections,
-    getUsers,
-    getScoreData,
-    loading,
-    entries,
-  } = useContext(GlobalContext);
+  const { addSelections, loading, entries } = useContext(GlobalContext);
   const classes = useStyles();
 
   const [error, setError] = useState('');
@@ -84,14 +77,14 @@ const AddNewTeam = () => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    getScoreData();
-    const getData = async () => {
-      await getUsers();
-    };
-    getData();
-    // eslint-disable-next-line
-  }, [data.length]);
+  // useEffect(() => {
+  //   getScoreData();
+  //   const getData = async () => {
+  //     await getUsers();
+  //   };
+  //   getData();
+  //   // eslint-disable-next-line
+  // }, [data.length]);
 
   let enableButton;
   if (teamCount === 1) {

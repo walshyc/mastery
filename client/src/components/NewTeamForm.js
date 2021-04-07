@@ -1,6 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-
 
 const TeamForm = (props) => {
   const {
@@ -12,8 +10,6 @@ const TeamForm = (props) => {
     number,
     setTeamCount,
   } = props;
-
-
 
   const eu = [
     'ENG',

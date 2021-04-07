@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 import { db, firebase } from '../firebase';
 import * as moment from 'moment';
-import data from '../static/data/mastersData.json';
+//import data from '../static/data/mastersData.json';
 
 const initialState = {
   masters: [],
@@ -49,7 +49,7 @@ export const GlobalProvider = ({ children }) => {
       requestOptions
     );
 
-    console.log(data);
+    //console.log(res);
     dispatch({
       type: GET_SCORE_DATA,
       payload: res.data,
@@ -95,7 +95,7 @@ export const GlobalProvider = ({ children }) => {
       `https://golf-leaderboard-data.p.rapidapi.com/entry-list/279`,
       requestOptions
     );
-    console.log(data)
+    //console.log(res);
     dispatch({
       type: GET_ENTRIES,
       payload: res.data.results.entry_list,
