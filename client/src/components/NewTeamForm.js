@@ -124,7 +124,7 @@ const TeamForm = (props) => {
                     onChange={handleChange}
                     value={selections.entryName}
                     className="text-gray-900 focus:outline-none focus:border focus:border-green-700 bg-white font-normal   h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
-                    placeholder=""
+                    placeholder="Name to be displayed"
                   />
                 </div>
                 <div className="flex flex-col w-full md:w-2/5 my-1">

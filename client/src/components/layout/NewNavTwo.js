@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Transition } from '@headlessui/react';
+import { GlobalContext } from '../../context/GlobalState';
 import { NavLink, Link } from 'react-router-dom';
 
 function NewNavTwo() {
+  const { getUsers, getScoreData, getWorldRankings, getEntries } = useContext(
+    GlobalContext
+  );
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    getScoreData();
+    getUsers();
+    getEntries();
+    getWorldRankings();
+
+    // eslint-disable-next-line
+  }, []);
   return (
     <div>
       <nav className="bg-gray-900">

@@ -45,7 +45,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/278`,
+      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/279`,
       requestOptions
     );
 
@@ -92,9 +92,10 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/entry-list/278`,
+      `https://golf-leaderboard-data.p.rapidapi.com/entry-list/279`,
       requestOptions
     );
+    console.log(data)
     dispatch({
       type: GET_ENTRIES,
       payload: res.data.results.entry_list,
