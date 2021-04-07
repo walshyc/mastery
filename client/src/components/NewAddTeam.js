@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -526,7 +526,7 @@ const AddNewTeam = () => {
               </h1>
             </div>
             <div className="flex flex-wrap justify-center">
-              <div className="flex flex-col items-center w-full sm:w-5/12 lg:w-3/12 m-4 bg-white rounded-3xl text-green-800 shadow-md py-6 px-12">
+              <div className="flex flex-col items-center w-2/3 sm:w-5/12 lg:w-2/12 m-2 bg-white rounded-3xl text-green-800 shadow-md py-6 px-4">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -543,12 +543,15 @@ const AddNewTeam = () => {
                   ></path>
                 </svg>
                 <div className="pt-5">
+                  <h1 className="text-xl font-bold tracking-wider text-green-800">
+                    Step 1
+                  </h1>
                   <h1 className="text-xl font-semibold tracking-wider text-gray-900">
                     Choose 2 USA
                   </h1>
                 </div>
               </div>
-              <div className="flex flex-col items-center w-full sm:w-5/12 lg:w-3/12 m-4 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-12">
+              <div className="flex flex-col items-center w-2/3 sm:w-5/12 lg:w-2/12 m-2 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-4">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -565,12 +568,15 @@ const AddNewTeam = () => {
                   ></path>
                 </svg>
                 <div className="pt-5">
+                  <h1 className="text-xl font-bold tracking-wider text-green-800">
+                    Step 2
+                  </h1>
                   <h1 className="text-xl font-semibold tracking-wider text-gray-900">
                     Choose 2 European's
                   </h1>
                 </div>
               </div>
-              <div className="flex flex-col items-center w-full sm:w-5/12 lg:w-3/12 m-4 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-12">
+              <div className="flex flex-col items-center w-2/3 sm:w-5/12 lg:w-2/12 m-2 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-4">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -587,12 +593,15 @@ const AddNewTeam = () => {
                   ></path>
                 </svg>
                 <div className="pt-5">
+                  <h1 className="text-xl font-bold tracking-wider text-green-800">
+                    Step 3
+                  </h1>
                   <h1 className="text-xl font-semibold tracking-wider text-gray-900">
                     Choose 2 from the Rest!
                   </h1>
                 </div>
               </div>
-              <div className="flex flex-col items-center w-full sm:w-5/12 lg:w-3/12 m-4 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-12">
+              <div className="flex flex-col items-center w-2/3 sm:w-5/12 lg:w-2/12 m-2 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-4">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -609,8 +618,11 @@ const AddNewTeam = () => {
                   ></path>
                 </svg>
                 <div className="pt-5">
+                  <h1 className="text-xl font-bold tracking-wider text-green-800">
+                    Enter Below
+                  </h1>
                   <h1 className="text-xl font-semibold tracking-wider text-gray-900">
-                    €5 per team <br></br> 3 teams for €12.50
+                    €5 per team <br></br> 3 for €12.50 <br></br>
                   </h1>
                 </div>
               </div>
