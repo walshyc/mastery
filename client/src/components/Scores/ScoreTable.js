@@ -148,12 +148,12 @@ const ScoreTable = () => {
             <div class="w-full p-4 f rounded shadow ">
               <div class="flex flex-row lg:flex-row xl:items-center justify-around">
                 <img
-                  class="hidden  w-1/2 h-1/2 rounded-full sm:flex items-center justify-center bg-gray-100"
+                  class="hidden lg:w-3/12  w-1/2 h-1/2 rounded-full sm:flex items-center justify-center bg-gray-100"
                   src={masters}
                   alt="masters"
                 />
 
-                <div class="flex items-center justify-start w-full sm:w-1/2 sm:pl-4 text-left">
+                <div class="flex items-center justify-start w-full lg:w-9/12 sm:w-1/2 sm:pl-10 text-left">
                   <div class="flex flex-col justify-between items-start ">
                     <div className="flex justify-start gap-4 pb-1">
                       <svg
@@ -317,7 +317,7 @@ const ScoreTable = () => {
                     </h4>
                   )}
 
-                  {d.detail
+                  {/* {d.detail
                     .sort((a, b) => {
                       if (a.position > b.position) {
                         return 1;
@@ -340,13 +340,13 @@ const ScoreTable = () => {
                           </b>
                         </h4>
                       );
-                    })}
+                    })} */}
 
                   <h4 className="text-lg text-gray-100 font-semibold ml-auto  w-2/12 lg:w-1/12 ">
                     {d.totalScore > 0 ? `+${d.totalScore}` : d.totalScore}
                   </h4>
                 </div>
-                {show === i && (
+                {/* {show === i && (
                   <div className="w-full text-left text-green-600">
                     <div className="border-b border-green-600 flex">
                       <div className="py-1 ml-2 w-2/12 font-bold text-base">
@@ -408,7 +408,7 @@ const ScoreTable = () => {
                         })}
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
             ))}
 
