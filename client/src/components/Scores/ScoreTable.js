@@ -19,16 +19,7 @@ const ScoreTable = () => {
   //const [refresh, setRefresh] = useState(false);
   const [show, setShow] = useState(null);
 
-  const {
-    data,
-    loading,
-    getUsers,
-    getWorldRankings,
-    getEntries,
-    users,
-    matchSelection,
-    getScoreData,
-  } = useContext(GlobalContext);
+  const { data, loading, users, matchSelection } = useContext(GlobalContext);
 
   const createData = (
     entryName,
@@ -152,7 +143,7 @@ const ScoreTable = () => {
           There is an issue with some golfers scores not showing correctly. <br></br>
           Hopefully it will be resolved soon!{" "}
         </Alert> */}
-        <div className="w-full h-screen mx-auto container px-6 mt-2 ">
+        <div className="w-full h-screen mx-auto container px-6 mt-2 mb-96">
           <div className="w-full bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl">
             <div class="w-full p-4 f rounded shadow ">
               <div class="flex flex-row lg:flex-row xl:items-center justify-around">
@@ -337,7 +328,7 @@ const ScoreTable = () => {
                     .map((g, index) => {
                       return (
                         <h4
-                          key={index}
+                          key={`${g.first_name}${g.last_name} `}
                           className="hidden lg:block text-xs text-gray-100 font-light lg:w-2/12 text-left"
                         >
                           <b> {g.last_name.toUpperCase()}</b>
