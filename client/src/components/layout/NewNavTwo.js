@@ -29,13 +29,13 @@ function NewNavTwo() {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <NavLink
+                  {/* <NavLink
                     to="/new-entry"
                     activeClassName="font-bold"
                     className=" hover:bg-green-400 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
                   >
                     Enter
-                  </NavLink>
+                  </NavLink> */}
                   <NavLink
                     to="/scores"
                     activeClassName="font-bold"
@@ -111,14 +111,14 @@ function NewNavTwo() {
         >
           <div className="md:hidden" id="mobile-menu">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <NavLink
+              {/* <NavLink
                 onClick={() => setIsOpen(!isOpen)}
                 to="/new-entry"
                 activeClassName="font-bold"
                 className="text-left hover:bg-green-400 text-white block px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
               >
                 Enter
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 onClick={() => setIsOpen(!isOpen)}
                 to="/scores"

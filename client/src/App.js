@@ -60,10 +60,10 @@ function App() {
                 {/* <NewNav></NewNav> */}
                 <NewNavTwo></NewNavTwo>
                 <Switch>
-                  <Route exact path="/" component={Landing}></Route>
                   <Route exact path="/scores" component={ScoreTable}></Route>
-                  <Route exact path="/new-entry" component={NewAddTeam}></Route>
+                  {/* <Route exact path="/new-entry" component={NewAddTeam}></Route> */}
                   <Route exact path="/faq" component={FAQ}></Route>
+                  <Route path="/" component={ScoreTable}></Route>
                 </Switch>
                 <NewFooter></NewFooter>
                 {/* <ScoreTable></ScoreTable> */}

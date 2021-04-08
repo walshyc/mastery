@@ -266,7 +266,7 @@ const ScoreTable = () => {
             .map((d, i) => (
               <div
                 key={d.entryName + i + ''}
-                className="bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl select-none"
+                className="bg-gray-900 my-2 border border-gray-900 rounded-xl shadow-xl select-none"
               >
                 <div className="flex py-1 items-center justify-start overflow-x-auto">
                   <div className="cursor-pointer w-1/12 lg:hidden ml-2">
@@ -323,7 +323,7 @@ const ScoreTable = () => {
                     </h4>
                   )}
 
-                  {/* {d.detail
+                  {d.detail
                     .sort((a, b) => {
                       if (a.position > b.position) {
                         return 1;
@@ -335,39 +335,39 @@ const ScoreTable = () => {
                       return (
                         <h4
                           key={`${g.first_name}${g.last_name} `}
-                          className="hidden lg:block text-xs text-gray-300 font-light lg:w-2/12 text-left "
+                          className="hidden lg:block text-xs text-gray-300 lg:w-2/12 text-left "
                         >
-                          <b> {g.last_name.toUpperCase()}</b>
+                          {g.last_name}
                           {`, ${g.first_name.charAt(0)}`}{' '}
-                          <b className='pl-1'>
+                          <span className="pl-1">
                             {g.total_to_par > 0
                               ? `+${g.total_to_par}`
                               : g.total_to_par}
-                          </b>
+                          </span>
                         </h4>
                       );
-                    })} */}
+                    })}
 
                   <h4 className="text-lg text-gray-300 font-semibold ml-auto  w-2/12 lg:w-1/12 ">
                     {d.totalScore > 0 ? `+${d.totalScore}` : d.totalScore}
                   </h4>
                 </div>
-                {/* {show === i && (
+                {show === i && (
                   <div className="w-full text-left text-green-600">
                     <div className="border-b border-green-600 flex">
-                      <div className="py-1 ml-2 w-2/12 font-bold text-base">
+                      <div className="py-1 ml-2 w-2/12 font-bold text-sm  md:font-bold">
                         Pos
                       </div>
-                      <div className="py-1 w-4/12 font-bold text-base">
+                      <div className="py-1 w-4/12 font-bold  text-sm md:font-bold">
                         Name
                       </div>
-                      <div className="py-1 w-2/12 font-bold text-base">
+                      <div className="py-1 pr-2 w-2/12 font-bold text-right text-sm md:font-bold">
                         Played
                       </div>
-                      <div className="py-1 w-2/12 font-bold text-base">
+                      <div className="py-1 pr-2 w-2/12 font-bold text-right text-sm md:font-bold">
                         Today
                       </div>
-                      <div className="py-1 w-2/12 font-bold text-base">
+                      <div className="py-1 pr-2 w-2/12 font-bold text-right text-sm md:font-bold">
                         Score
                       </div>
                     </div>
@@ -391,21 +391,21 @@ const ScoreTable = () => {
                                   : 'border-b  border-gray-800 flex bg-gray-900 text-gray-200'
                               }
                             >
-                              <div className="py-1 ml-2 pr-2 font-bold text-sm w-2/12">
+                              <div className="py-1 ml-2 pr-2  text-sm w-2/12">
                                 {g.position}
                               </div>
-                              <div className="pr-2 py-1 text-sm  w-4/12">
-                                <b>{g.last_name.toUpperCase()}</b>
+                              <div className="pr-2 py-1 text-sm w-4/12">
+                                {g.last_name}
                                 {`, ${g.first_name.charAt(0)}`}
                               </div>
-                              <div className="pr-2 py-1 text-sm font-bold  text-left w-2/12">
+                              <div className="pr-2 py-1 text-sm text-right w-2/12">
                                 {g.holes_played}
                               </div>
 
-                              <div className="py-1 pr-2 sm:pr-10  font-bold text-sm w-2/12">
+                              <div className="py-1 pr-2 text-right text-sm w-2/12">
                                 {g.rounds[g.rounds.length - 1].total_to_par}
                               </div>
-                              <div className="py-1 pr-2 font-bold text-sm  w-2/12">
+                              <div className="py-1 pr-2 text-sm text-right w-2/12">
                                 {g.total_to_par > 0
                                   ? `+${g.total_to_par}`
                                   : g.total_to_par}
@@ -415,7 +415,7 @@ const ScoreTable = () => {
                         })}
                     </div>
                   </div>
-                )} */}
+                )}
               </div>
             ))}
 

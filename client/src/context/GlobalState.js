@@ -141,7 +141,7 @@ export const GlobalProvider = ({ children }) => {
       };
     });
     totaled.sort((a, b) => {
-      if (a.total === b.total) {
+      if (a.total < b.total) {
         return -1;
       }
       if (a.total > b.total) {
@@ -158,8 +158,8 @@ export const GlobalProvider = ({ children }) => {
       } else return 0;
     });
 
-    console.log(totaled);
-    console.log(duplicate);
+    //console.log(totaled);
+    //console.log(duplicate);
     dispatch({
       type: GET_USERS,
       payload: res,
