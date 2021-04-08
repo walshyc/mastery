@@ -271,7 +271,7 @@ const ScoreTable = () => {
                 <div className="flex items-end"></div>
                 <div className="h-1 w-1 bg-yellow-500 rounded-full mr-2 hidden xl:block" />
                 <p className="text-base font-semibold text-gray-900">
-                  Please click on your team to enter a quick question in the
+                  Please click on your team to answer a quick question in the
                   event of a tiebraker being required!
                 </p>
               </div>
