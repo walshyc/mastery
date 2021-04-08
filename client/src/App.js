@@ -11,6 +11,7 @@ import NewAddTeam from './components/NewAddTeam';
 import Landing from './components/Landing';
 import FAQ from './components/FAQ';
 import ScoreTable from './components/Scores/ScoreTable';
+import ScoreTable2 from './components/Scores/ScoreTable2';
 import NewFooter from './components/layout/NewFooter';
 import NewNavTwo from './components/layout/NewNavTwo';
 
@@ -61,6 +62,7 @@ function App() {
                 <NewNavTwo></NewNavTwo>
                 <Switch>
                   <Route exact path="/scores" component={ScoreTable}></Route>
+                  <Route exact path="/lads" component={ScoreTable2}></Route>
                   {/* <Route exact path="/new-entry" component={NewAddTeam}></Route> */}
                   <Route exact path="/faq" component={FAQ}></Route>
                   <Route path="/" component={ScoreTable}></Route>

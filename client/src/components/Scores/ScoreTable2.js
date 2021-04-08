@@ -4,7 +4,7 @@ import Spinner from '../layout/Spinner';
 import * as moment from 'moment';
 import masters from '../../static/images/masters.jpg';
 
-const ScoreTable = () => {
+const ScoreTable2 = () => {
   // useEffect(() => {
   //   getScoreData();
   //   getUsers();
@@ -60,12 +60,12 @@ const ScoreTable = () => {
   };
   const score = (id) =>
     data.results.leaderboard.find((g) => g.player_id === id).total_to_par;
-
+  const lads = users.filter((u) => u.lads);
   let rows = [];
   if (data.length === 0) {
     rows = [];
   } else {
-    rows = users
+    rows = lads
       .filter((a) => {
         if (typeof a.selections !== 'undefined' && a.selections != null) {
           return true; // skip
@@ -310,14 +310,14 @@ const ScoreTable = () => {
                   {show === i ? (
                     <h4
                       onClick={() => setShow(null)}
-                      className="text-base text-gray-300 font-semibold w-8/12 lg:w-3/12 lg:ml-4 pl-2 text-left"
+                      className="text-base text-gray-300 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left"
                     >
                       {d.entryName}
                     </h4>
                   ) : (
                     <h4
                       onClick={() => setShow(i)}
-                      className="text-base text-gray-300 font-semibold w-8/12 lg:w-3/12 lg:ml-4 pl-2 text-left"
+                      className="text-base text-gray-300 font-semibold w-8/12 lg:w-3/12 lg:ml-4 left text-left"
                     >
                       {d.entryName}
                     </h4>
@@ -432,4 +432,4 @@ const ScoreTable = () => {
   }
 };
 
-export default ScoreTable;
+export default ScoreTable2;
