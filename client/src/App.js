@@ -14,6 +14,7 @@ import ScoreTable from './components/Scores/ScoreTable';
 import ScoreTable2 from './components/Scores/ScoreTable2';
 import NewFooter from './components/layout/NewFooter';
 import NewNavTwo from './components/layout/NewNavTwo';
+import Tiebreaker from './components/Tiebreaker';
 
 function App() {
   const theme = createMuiTheme({
@@ -65,6 +66,11 @@ function App() {
                   <Route exact path="/lads" component={ScoreTable2}></Route>
                   {/* <Route exact path="/new-entry" component={NewAddTeam}></Route> */}
                   <Route exact path="/faq" component={FAQ}></Route>
+                  <Route
+                    exact
+                    path="/tiebreaker"
+                    component={Tiebreaker}
+                  ></Route>
                   <Route path="/" component={ScoreTable}></Route>
                 </Switch>
                 <NewFooter></NewFooter>

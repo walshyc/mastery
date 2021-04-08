@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
+import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import * as moment from 'moment';
 import masters from '../../static/images/masters.jpg';
@@ -36,7 +37,8 @@ const ScoreTable = () => {
     fiveID,
     golfer6,
     sixID,
-    totalScore
+    totalScore,
+    tiebraker
   ) => {
     return {
       entryName,
@@ -48,6 +50,7 @@ const ScoreTable = () => {
       golfer5,
       golfer6,
       totalScore,
+      tiebraker,
       detail: [
         matchSelection(oneID)[0],
         matchSelection(twoID)[0],
@@ -96,7 +99,8 @@ const ScoreTable = () => {
               score(s.golferThree.player_id) +
               score(s.golferFour.player_id) +
               score(s.golferFive.player_id) +
-              score(s.golferSix.player_id)
+              score(s.golferSix.player_id),
+            u.tiebraker
           );
           return row;
         });
@@ -104,6 +108,7 @@ const ScoreTable = () => {
       });
   }
   let allScores = rows.reduce((a, b) => a.concat(b), []);
+  console.log(allScores);
   const date = moment('2020-11-12T12:00:00.000');
   if (Date.now() < date) {
     for (let i = allScores.length - 1; i > 0; i--) {
@@ -254,6 +259,21 @@ const ScoreTable = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center md:hidden">
+            <div
+              id="alert"
+              className="w-full bg-yellow-200 shadow rounded-md  md:flex justify-between items-center  top-0 mt-2 mb-2 py-2 px-2 translate-hidden"
+            >
+              <div className="sm:flex items-center">
+                <div className="flex items-end"></div>
+                <div className="h-1 w-1 bg-yellow-500 rounded-full mr-2 hidden xl:block" />
+                <p className="text-base font-semibold text-gray-900">
+                  Please click on your team to enter a quick question in the
+                  event of a tiebraker being required!
+                </p>
               </div>
             </div>
           </div>
@@ -413,6 +433,24 @@ const ScoreTable = () => {
                             </div>
                           );
                         })}
+                      {d.tiebraker === true ? (
+                        ''
+                      ) : (
+                        <div className="flex justify-end">
+                          <Link
+                            to={{
+                              pathname: '/tiebreaker',
+                              state: {
+                                entry: d.entryName,
+                              },
+                            }}
+                          >
+                            <button className="ml-auto px-2 py-1 text-xs text-gray-100 m-2 rounded-xl bg-green-600">
+                              Enter Tiebreaker
+                            </button>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}

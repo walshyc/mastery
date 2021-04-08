@@ -127,7 +127,7 @@ export const GlobalProvider = ({ children }) => {
     const snapshot = await db.collection('usersNew').get();
     const res = snapshot.docs.map((doc) => doc.data());
     //console.log('got users')
-    //console.log(res);
+    console.log(res);
     const totaled = res.map((u) => {
       return {
         name: u.entryName,
@@ -158,8 +158,8 @@ export const GlobalProvider = ({ children }) => {
       } else return 0;
     });
 
-    //console.log(totaled);
-    //console.log(duplicate);
+    console.log(totaled);
+    console.log(duplicate);
     dispatch({
       type: GET_USERS,
       payload: res,
@@ -205,6 +205,24 @@ export const GlobalProvider = ({ children }) => {
     const leaderboard = state.data.results.leaderboard;
     const player = leaderboard.filter((p) => p.player_id === parseInt(id));
     return player;
+  };
+  const addTie = async (entry, email, answer) => {
+    await db.collection('usersTie').add({
+      entry,
+      email,
+      answer,
+    });
+
+    await db
+      .collection('usersNew')
+      .where('entryName', '==', entry)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          console.log(doc.id, ' => ', doc.data());
+          doc.ref.update({ tie: answer, tiebraker: true });
+        });
+      });
   };
 
   const addSelections = async (
@@ -258,6 +276,7 @@ export const GlobalProvider = ({ children }) => {
         getScoreData,
         setLoading,
         getUsers,
+        addTie,
         getEntries,
         addUser,
         removeUser,
