@@ -127,7 +127,10 @@ export const GlobalProvider = ({ children }) => {
     const snapshot = await db.collection('usersNew').get();
     const res = snapshot.docs.map((doc) => doc.data());
     //console.log('got users')
-    console.log(res);
+    const ties = await db.collection('usersTie').get();
+    const resties = ties.docs.map((doc) => doc.data());
+    //console.log('got users')
+    //console.log(resties);
     const totaled = res.map((u) => {
       return {
         name: u.entryName,
@@ -158,8 +161,8 @@ export const GlobalProvider = ({ children }) => {
       } else return 0;
     });
 
-    console.log(totaled);
-    console.log(duplicate);
+    //console.log(totaled);
+    //console.log(duplicate);
     dispatch({
       type: GET_USERS,
       payload: res,

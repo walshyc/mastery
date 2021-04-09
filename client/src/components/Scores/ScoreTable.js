@@ -108,7 +108,6 @@ const ScoreTable = () => {
       });
   }
   let allScores = rows.reduce((a, b) => a.concat(b), []);
-  console.log(allScores);
   const date = moment('2020-11-12T12:00:00.000');
   if (Date.now() < date) {
     for (let i = allScores.length - 1; i > 0; i--) {
