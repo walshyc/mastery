@@ -129,8 +129,7 @@ export const GlobalProvider = ({ children }) => {
     //console.log('got users')
     const ties = await db.collection('usersTie').get();
     const resties = ties.docs.map((doc) => doc.data());
-    //console.log('got users')
-    //console.log(resties);
+    console.log(resties);
     const totaled = res.map((u) => {
       return {
         name: u.entryName,

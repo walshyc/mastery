@@ -21,7 +21,7 @@ const ScoreTable = () => {
   const [show, setShow] = useState(null);
 
   const { data, loading, users, matchSelection } = useContext(GlobalContext);
-
+  console.log(data);
   const createData = (
     entryName,
     name,
@@ -38,7 +38,8 @@ const ScoreTable = () => {
     golfer6,
     sixID,
     totalScore,
-    tiebraker
+    tiebraker,
+    status
   ) => {
     return {
       entryName,
@@ -59,6 +60,7 @@ const ScoreTable = () => {
         matchSelection(fiveID)[0],
         matchSelection(sixID)[0],
       ],
+      status,
     };
   };
   const score = (id) =>
@@ -82,6 +84,7 @@ const ScoreTable = () => {
           const row = createData(
             entryName,
             name,
+
             `${s.golferOne.first_name} ${s.golferOne.last_name}`,
             s.golferOne.player_id,
             `${s.golferTwo.first_name} ${s.golferTwo.last_name}`,
@@ -100,7 +103,8 @@ const ScoreTable = () => {
               score(s.golferFour.player_id) +
               score(s.golferFive.player_id) +
               score(s.golferSix.player_id),
-            u.tiebraker
+            u.tiebraker,
+            s.status
           );
           return row;
         });
@@ -108,6 +112,7 @@ const ScoreTable = () => {
       });
   }
   let allScores = rows.reduce((a, b) => a.concat(b), []);
+  console.log(allScores);
   const date = moment('2020-11-12T12:00:00.000');
   if (Date.now() < date) {
     for (let i = allScores.length - 1; i > 0; i--) {
@@ -422,7 +427,9 @@ const ScoreTable = () => {
                               </div>
 
                               <div className="py-1 pr-2 text-right text-sm w-2/12">
-                                {g.rounds[g.rounds.length - 1].total_to_par}
+                                {g.status === 'cut'
+                                  ? "Cut"
+                                  : g.rounds[g.rounds.length - 1].total_to_par}
                               </div>
                               <div className="py-1 pr-2 text-sm text-right w-2/12">
                                 {g.total_to_par > 0
