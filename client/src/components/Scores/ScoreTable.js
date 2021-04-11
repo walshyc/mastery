@@ -39,6 +39,7 @@ const ScoreTable = () => {
     sixID,
     totalScore,
     tiebraker,
+    tie,
     status
   ) => {
     return {
@@ -52,6 +53,7 @@ const ScoreTable = () => {
       golfer6,
       totalScore,
       tiebraker,
+      tie,
       detail: [
         matchSelection(oneID)[0],
         matchSelection(twoID)[0],
@@ -104,8 +106,10 @@ const ScoreTable = () => {
               score(s.golferFive.player_id) +
               score(s.golferSix.player_id),
             u.tiebraker,
+            u.tie,
             s.status
           );
+          console.log(row);
           return row;
         });
         return inside;
@@ -266,7 +270,7 @@ const ScoreTable = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center md:hidden">
+          {/* <div className="flex items-center justify-center md:hidden">
             <div
               id="alert"
               className="w-full bg-yellow-200 shadow rounded-md  md:flex justify-between items-center  top-0 mt-2 mb-2 py-2 px-2 translate-hidden"
@@ -280,7 +284,7 @@ const ScoreTable = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
           {allScores
             .sort((a, b) => {
               if (a.totalScore < b.totalScore) {
@@ -428,7 +432,7 @@ const ScoreTable = () => {
 
                               <div className="py-1 pr-2 text-right text-sm w-2/12">
                                 {g.status === 'cut'
-                                  ? "Cut"
+                                  ? 'Cut'
                                   : g.rounds[g.rounds.length - 1].total_to_par}
                               </div>
                               <div className="py-1 pr-2 text-sm text-right w-2/12">
@@ -439,24 +443,12 @@ const ScoreTable = () => {
                             </div>
                           );
                         })}
-                      {d.tiebraker === true ? (
-                        ''
-                      ) : (
-                        <div className="flex justify-end">
-                          <Link
-                            to={{
-                              pathname: '/tiebreaker',
-                              state: {
-                                entry: d.entryName,
-                              },
-                            }}
-                          >
-                            <button className="ml-auto px-2 py-1 text-xs text-gray-100 m-2 rounded-xl bg-green-600">
-                              Enter Tiebreaker
-                            </button>
-                          </Link>
+
+                      <div className="flex justify-end">
+                        <div className="ml-auto px-2 py-1 text-xs text-gray-100 m-2 rounded-xl bg-green-600">
+                          Tiebreaker {d.tie ? d.tie : '0'}
                         </div>
-                      )}
+                      </div>
                     </div>
                   </div>
                 )}
