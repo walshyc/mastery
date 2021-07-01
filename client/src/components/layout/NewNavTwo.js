@@ -4,15 +4,15 @@ import { GlobalContext } from '../../context/GlobalState';
 import { NavLink, Link } from 'react-router-dom';
 
 function NewNavTwo() {
-  const { getUsers, getScoreData, getWorldRankings, getEntries } = useContext(
-    GlobalContext
-  );
+  const { getUsers, getScoreData, getWorldRankings, getEntries, getCastlebar } =
+    useContext(GlobalContext);
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     getScoreData();
     getUsers();
     getEntries();
     getWorldRankings();
+    getCastlebar();
 
     // eslint-disable-next-line
   }, []);
@@ -29,20 +29,20 @@ function NewNavTwo() {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  {/* <NavLink
-                    to="/new-entry"
+                  <NavLink
+                    to="/enter"
                     activeClassName="font-bold"
                     className=" hover:bg-green-400 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
                   >
                     Enter
-                  </NavLink> */}
-                  <NavLink
+                  </NavLink>
+                  {/* <NavLink
                     to="/scores"
                     activeClassName="font-bold"
                     className=" hover:bg-green-400 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
                   >
                     Scores
-                  </NavLink>
+                  </NavLink> */}
                   <NavLink
                     to="/faq"
                     activeClassName="font-bold"
@@ -50,6 +50,13 @@ function NewNavTwo() {
                   >
                     About
                   </NavLink>
+                  {/* <NavLink
+                    to="/test"
+                    activeClassName="font-bold"
+                    className=" hover:bg-green-400 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                  >
+                    Test
+                  </NavLink> */}
                 </div>
               </div>
             </div>
@@ -111,22 +118,22 @@ function NewNavTwo() {
         >
           <div className="md:hidden" id="mobile-menu">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {/* <NavLink
+              <NavLink
                 onClick={() => setIsOpen(!isOpen)}
-                to="/new-entry"
+                to="/enter"
                 activeClassName="font-bold"
                 className="text-left hover:bg-green-400 text-white block px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
               >
                 Enter
-              </NavLink> */}
-              <NavLink
+              </NavLink>
+              {/* <NavLink
                 onClick={() => setIsOpen(!isOpen)}
                 to="/scores"
                 activeClassName="font-bold"
                 className="text-left hover:bg-green-400 text-white block px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
               >
                 Scores
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 onClick={() => setIsOpen(!isOpen)}
                 to="/faq"

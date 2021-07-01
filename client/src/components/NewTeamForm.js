@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useContext, useState } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
 const TeamForm = (props) => {
   const {
@@ -9,6 +10,8 @@ const TeamForm = (props) => {
     teamCount,
     number,
     setTeamCount,
+    worldRankings,
+    cbar,
   } = props;
 
   const eu = [
@@ -25,27 +28,44 @@ const TeamForm = (props) => {
     'AUT',
     'WAL',
   ];
-  let rowPlayers = [];
-  let usaPlayers = [];
-  let euPlayers = data.filter((player) => {
-    if (eu.includes(player.country)) {
-      return eu.includes(player.country);
-    } else if (player.country === 'USA') {
-      usaPlayers.push(player);
-    } else {
-      rowPlayers.push(player);
-    }
-  });
 
-  rowPlayers.sort((a, b) => {
-    return a.first_name > b.first_name ? 1 : -1;
+  const result = cbar.map((a) => {
+    const player = worldRankings.find((b) => b.player_name === a.fullname);
+
+    return { player, number: a.number };
   });
-  usaPlayers.sort((a, b) => {
-    return a.first_name > b.first_name ? 1 : -1;
-  });
-  euPlayers.sort((a, b) => {
-    return a.first_name > b.first_name ? 1 : -1;
-  });
+  console.log(result);
+
+  let groupOne = result
+    .filter((r) => r.number > 0 && r.number < 26)
+    .sort((a, b) => b.number - a.number);
+  let groupTwo = result
+    .filter((r) => r.number > 25 && r.number < 51)
+    .sort((a, b) => b.number - a.number);
+  let groupThree = result
+    .filter((r) => r.number > 50 && r.number < 76)
+    .sort((a, b) => b.number - a.number);
+  // let rowPlayers = [];
+  // let usaPlayers = [];
+  // let euPlayers = data.filter((player) => {
+  //   if (eu.includes(player.country)) {
+  //     return eu.includes(player.country);
+  //   } else if (player.country === 'USA') {
+  //     usaPlayers.push(player);
+  //   } else {
+  //     rowPlayers.push(player);
+  //   }
+  // });
+
+  // rowPlayers.sort((a, b) => {
+  //   return a.first_name > b.first_name ? 1 : -1;
+  // });
+  // usaPlayers.sort((a, b) => {
+  //   return a.first_name > b.first_name ? 1 : -1;
+  // });
+  // euPlayers.sort((a, b) => {
+  //   return a.first_name > b.first_name ? 1 : -1;
+  // });
 
   const handleDeleteClick = (e) => {
     e.preventDefault();
@@ -123,12 +143,27 @@ const TeamForm = (props) => {
                     placeholder="Name to be displayed"
                   />
                 </div>
+                <div className="flex flex-col w-full mt-4">
+                  <label
+                    htmlFor="totalscore"
+                    className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal mb-2"
+                  >
+                    Tiebreaker - Number of birdies scored in the final round
+                  </label>
+                  <input
+                    id="tiebreaker"
+                    onChange={handleChange}
+                    value={selections.tiebreaker}
+                    className="text-gray-900 focus:outline-none focus:border focus:border-green-700 bg-white font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
+                    type="number"
+                  />
+                </div>
                 <div className="flex flex-col w-full md:w-2/5 my-1">
                   <label
                     htmlFor="City"
                     className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
-                    USA 1
+                    Group 1
                   </label>
                   <div className="border border-gray-300 dark:border-gray-700 shadow-sm rounded flex relative">
                     <select
@@ -142,9 +177,9 @@ const TeamForm = (props) => {
                     >
                       <option value=""></option>
                       {data &&
-                        usaPlayers
-                          .filter((player) => {
-                            let n = `${player.first_name} ${player.last_name}`;
+                        groupOne
+                          .filter((pla) => {
+                            let n = pla.player.player_name;
                             return (
                               n !== selections.selections[twoIndex].selection
                             );
@@ -153,17 +188,17 @@ const TeamForm = (props) => {
                             return a < b ? 1 : -1;
                           })
                           .map((p) => {
-                            const name = `${p.first_name} ${p.last_name}`;
+                            const name = p.player.player_name;
                             return (
                               <option
                                 value={name}
                                 name={name}
-                                key={p.player_id}
-                                playerid={p.player_id}
+                                key={p.player.player_id}
+                                playerid={p.player.player_id}
                                 selection="selectionOne"
                                 selectionid="selectionOneId"
                               >
-                                {name}
+                                {p.number}. {name}
                               </option>
                             );
                           })}
@@ -212,7 +247,7 @@ const TeamForm = (props) => {
                     htmlFor="City"
                     className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
-                    USA 2
+                    Group 1
                   </label>
                   <div className="border border-gray-300 dark:border-gray-700 shadow-sm rounded flex relative">
                     <select
@@ -227,25 +262,28 @@ const TeamForm = (props) => {
                       {' '}
                       <option value=""></option>
                       {data &&
-                        usaPlayers
-                          .filter((player) => {
-                            let n = `${player.first_name} ${player.last_name}`;
+                        groupOne
+                          .filter((pla) => {
+                            let n = pla.player.player_name;
                             return (
                               n !== selections.selections[oneIndex].selection
                             );
                           })
+                          .sort((a, b) => {
+                            return a < b ? 1 : -1;
+                          })
                           .map((p) => {
-                            const name = `${p.first_name} ${p.last_name}`;
+                            const name = p.player.player_name;
                             return (
                               <option
                                 value={name}
                                 name={name}
-                                key={p.player_id}
-                                playerid={p.player_id}
+                                key={p.player.player_id}
+                                playerid={p.player.player_id}
                                 selection="selectionTwo"
                                 selectionid="selectionTwoId"
                               >
-                                {name}
+                                {p.number}. {name}
                               </option>
                             );
                           })}
@@ -294,7 +332,7 @@ const TeamForm = (props) => {
                     htmlFor="City"
                     className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
-                    European 1
+                    Group 2
                   </label>
                   <div className="border border-gray-300 dark:border-gray-700 shadow-sm rounded flex relative">
                     <select
@@ -309,25 +347,28 @@ const TeamForm = (props) => {
                       {' '}
                       <option value=""></option>
                       {data &&
-                        euPlayers
-                          .filter((player) => {
-                            let n = `${player.first_name} ${player.last_name}`;
+                        groupTwo
+                          .filter((pla) => {
+                            let n = pla.player.player_name;
                             return (
                               n !== selections.selections[fourIndex].selection
                             );
                           })
+                          .sort((a, b) => {
+                            return a < b ? 1 : -1;
+                          })
                           .map((p) => {
-                            const name = `${p.first_name} ${p.last_name}`;
+                            const name = p.player.player_name;
                             return (
                               <option
                                 value={name}
                                 name={name}
-                                key={p.player_id}
-                                playerid={p.player_id}
+                                key={p.player.player_id}
+                                playerid={p.player.player_id}
                                 selection="selectionThree"
-                                selectionid="selectionThree"
+                                selectionid="selectionThreeId"
                               >
-                                {name}
+                                {p.number}. {name}
                               </option>
                             );
                           })}
@@ -376,7 +417,7 @@ const TeamForm = (props) => {
                     htmlFor="City"
                     className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
-                    European 2
+                    Group 2
                   </label>
                   <div className="border border-gray-300 dark:border-gray-700 shadow-sm rounded flex relative">
                     <select
@@ -391,25 +432,28 @@ const TeamForm = (props) => {
                       {' '}
                       <option value=""></option>
                       {data &&
-                        euPlayers
-                          .filter((player) => {
-                            let n = `${player.first_name} ${player.last_name}`;
+                        groupTwo
+                          .filter((pla) => {
+                            let n = pla.player.player_name;
                             return (
                               n !== selections.selections[threeIndex].selection
                             );
                           })
+                          .sort((a, b) => {
+                            return a < b ? 1 : -1;
+                          })
                           .map((p) => {
-                            const name = `${p.first_name} ${p.last_name}`;
+                            const name = p.player.player_name;
                             return (
                               <option
                                 value={name}
                                 name={name}
-                                key={p.player_id}
-                                playerid={p.player_id}
+                                key={p.player.player_id}
+                                playerid={p.player.player_id}
                                 selection="selectionFour"
-                                selectionid="selectionFour"
+                                selectionid="selectionFourId"
                               >
-                                {name}
+                                {p.number}. {name}
                               </option>
                             );
                           })}
@@ -458,7 +502,7 @@ const TeamForm = (props) => {
                     htmlFor="City"
                     className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
-                    Rest of the World 1
+                    Group 3
                   </label>
                   <div className="border border-gray-300 dark:border-gray-700 shadow-sm rounded flex relative">
                     <select
@@ -473,25 +517,28 @@ const TeamForm = (props) => {
                       {' '}
                       <option value=""></option>
                       {data &&
-                        rowPlayers
-                          .filter((player) => {
-                            let n = `${player.first_name} ${player.last_name}`;
+                        groupThree
+                          .filter((pla) => {
+                            let n = pla.player.player_name;
                             return (
                               n !== selections.selections[sixIndex].selection
                             );
                           })
+                          .sort((a, b) => {
+                            return a < b ? 1 : -1;
+                          })
                           .map((p) => {
-                            const name = `${p.first_name} ${p.last_name}`;
+                            const name = p.player.player_name;
                             return (
                               <option
                                 value={name}
                                 name={name}
-                                key={p.player_id}
-                                playerid={p.player_id}
+                                key={p.player.player_id}
+                                playerid={p.player.player_id}
                                 selection="selectionFive"
-                                selectionid="selectionFive"
+                                selectionid="selectionFiveId"
                               >
-                                {name}
+                                {p.number}. {name}
                               </option>
                             );
                           })}
@@ -540,7 +587,7 @@ const TeamForm = (props) => {
                     htmlFor="City"
                     className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal my-2"
                   >
-                    Rest of the World 2
+                    Group 3
                   </label>
                   <div className="border border-gray-300 dark:border-gray-700 shadow-sm rounded flex relative">
                     <select
@@ -555,25 +602,28 @@ const TeamForm = (props) => {
                       {' '}
                       <option value=""></option>
                       {data &&
-                        rowPlayers
-                          .filter((player) => {
-                            let n = `${player.first_name} ${player.last_name}`;
+                        groupThree
+                          .filter((pla) => {
+                            let n = pla.player.player_name;
                             return (
                               n !== selections.selections[fiveIndex].selection
                             );
                           })
+                          .sort((a, b) => {
+                            return a < b ? 1 : -1;
+                          })
                           .map((p) => {
-                            const name = `${p.first_name} ${p.last_name}`;
+                            const name = p.player.player_name;
                             return (
                               <option
                                 value={name}
                                 name={name}
-                                key={p.player_id}
-                                playerid={p.player_id}
+                                key={p.player.player_id}
+                                playerid={p.player.player_id}
                                 selection="selectionSix"
-                                selectionid="selectionSix"
+                                selectionid="selectionSixId"
                               >
-                                {name}
+                                {p.number}. {name}
                               </option>
                             );
                           })}

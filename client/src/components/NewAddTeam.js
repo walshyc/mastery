@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddNewTeam = () => {
-  const { addSelections, loading, entries } = useContext(GlobalContext);
+  const { addSelections, loading, entries, worldRankings, cbarPlayers } =
+    useContext(GlobalContext);
   const classes = useStyles();
 
   const [error, setError] = useState('');
@@ -36,10 +37,12 @@ const AddNewTeam = () => {
   const [checkoutErrorMessage, setCheckoutErrorMessage] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [tiebreaker, setTiebreaker] = useState('');
   const [email, setEmail] = useState('');
   const [teamCount, setTeamCount] = useState(1);
   const [teamOne, setTeamOne] = useState({
     entryName: '',
+    tiebreaker: '',
     selections: [
       { selection: '', id: '', no: 'selectionOne' },
       { selection: '', id: '', no: 'selectionTwo' },
@@ -51,6 +54,7 @@ const AddNewTeam = () => {
   });
   const [teamTwo, setTeamTwo] = useState({
     entryName: '',
+    tiebreaker: '',
     selections: [
       { selection: '', id: '', no: 'selectionOne' },
       { selection: '', id: '', no: 'selectionTwo' },
@@ -62,6 +66,7 @@ const AddNewTeam = () => {
   });
   const [teamThree, setTeamThree] = useState({
     entryName: '',
+    tiebreaker: '',
     selections: [
       { selection: '', id: '', no: 'selectionOne' },
       { selection: '', id: '', no: 'selectionTwo' },
@@ -95,7 +100,8 @@ const AddNewTeam = () => {
       teamOne.selections[3].id.length > 0 &&
       teamOne.selections[4].id.length > 0 &&
       teamOne.selections[5].id.length > 0 &&
-      teamOne.entryName.length > 0
+      teamOne.entryName.length > 0 &&
+      teamOne.tiebreaker.length > 0
     );
   } else if (teamCount === 2) {
     enableButton = !(
@@ -112,7 +118,9 @@ const AddNewTeam = () => {
       teamTwo.selections[4].id.length > 0 &&
       teamTwo.selections[5].id.length > 0 &&
       teamOne.entryName.length > 0 &&
-      teamTwo.entryName.length > 0
+      teamTwo.entryName.length > 0 &&
+      teamOne.tiebreaker.length > 0 &&
+      teamTwo.tiebreaker.length > 0
     );
   } else {
     enableButton = !(
@@ -136,7 +144,10 @@ const AddNewTeam = () => {
       teamThree.selections[5].id.length > 0 &&
       teamOne.entryName.length > 0 &&
       teamTwo.entryName.length > 0 &&
-      teamThree.entryName.length > 0
+      teamThree.entryName.length > 0 &&
+      teamOne.tiebreaker.length > 0 &&
+      teamTwo.tiebreaker.length > 0 &&
+      teamThree.tiebreaker.length > 0
     );
   }
 
@@ -149,11 +160,11 @@ const AddNewTeam = () => {
 
   let amount;
   if (teamCount === 1) {
-    amount = 500;
-  } else if (teamCount === 2) {
     amount = 1000;
+  } else if (teamCount === 2) {
+    amount = 2000;
   } else {
-    amount = 1250;
+    amount = 3000;
   }
 
   const handleSubmit = async (e) => {
@@ -224,12 +235,19 @@ const AddNewTeam = () => {
           name,
           email,
           teamOne.selections[0].id,
+          teamOne.selections[0].selection,
           teamOne.selections[1].id,
+          teamOne.selections[1].selection,
           teamOne.selections[2].id,
+          teamOne.selections[2].selection,
           teamOne.selections[3].id,
+          teamOne.selections[3].selection,
           teamOne.selections[4].id,
+          teamOne.selections[4].selection,
           teamOne.selections[5].id,
-          teamOne.entryName
+          teamOne.selections[5].selection,
+          teamOne.entryName,
+          teamOne.tiebreaker
         );
       }
       if (
@@ -245,12 +263,19 @@ const AddNewTeam = () => {
           name,
           email,
           teamTwo.selections[0].id,
+          teamTwo.selections[0].selection,
           teamTwo.selections[1].id,
+          teamTwo.selections[1].selection,
           teamTwo.selections[2].id,
+          teamTwo.selections[2].selection,
           teamTwo.selections[3].id,
+          teamTwo.selections[3].selection,
           teamTwo.selections[4].id,
+          teamTwo.selections[4].selection,
           teamTwo.selections[5].id,
-          teamTwo.entryName
+          teamTwo.selections[5].selection,
+          teamTwo.entryName,
+          teamTwo.tiebreaker
         );
       }
       if (
@@ -266,12 +291,19 @@ const AddNewTeam = () => {
           name,
           email,
           teamThree.selections[0].id,
+          teamThree.selections[0].selection,
           teamThree.selections[1].id,
+          teamThree.selections[1].selection,
           teamThree.selections[2].id,
+          teamThree.selections[2].selection,
           teamThree.selections[3].id,
+          teamThree.selections[3].selection,
           teamThree.selections[4].id,
+          teamThree.selections[4].selection,
           teamThree.selections[5].id,
-          teamThree.entryName
+          teamThree.selections[5].selection,
+          teamThree.entryName,
+          teamThree.tiebreaker
         );
       }
     } catch (err) {
@@ -291,13 +323,18 @@ const AddNewTeam = () => {
         ...teamOne,
         entryName: event.target.value,
       });
+    } else if (event.target.id === 'tiebreaker') {
+      setTeamOne({
+        ...teamOne,
+        tiebreaker: event.target.value,
+      });
     } else {
-      const id = event.currentTarget[event.target.selectedIndex].getAttribute(
-        'playerid'
-      );
-      const name = event.currentTarget[event.target.selectedIndex].getAttribute(
-        'name'
-      );
+      const id =
+        event.currentTarget[event.target.selectedIndex].getAttribute(
+          'playerid'
+        );
+      const name =
+        event.currentTarget[event.target.selectedIndex].getAttribute('name');
       const index = teamOne.selections.findIndex((s) => {
         return s.no === event.target.name;
       });
@@ -329,19 +366,26 @@ const AddNewTeam = () => {
         ...teamTwo,
         entryName: event.target.value,
       });
+    } else if (event.target.id === 'tiebreaker') {
+      setTeamTwo({
+        ...teamTwo,
+        tiebreaker: event.target.value,
+      });
     } else {
-      const id = event.currentTarget[event.target.selectedIndex].getAttribute(
-        'playerid'
-      );
-      const name = event.currentTarget[event.target.selectedIndex].getAttribute(
-        'name'
-      );
-      const selection = event.currentTarget[
-        event.target.selectedIndex
-      ].getAttribute('selection');
-      const selectionid = event.currentTarget[
-        event.target.selectedIndex
-      ].getAttribute('selectionid');
+      const id =
+        event.currentTarget[event.target.selectedIndex].getAttribute(
+          'playerid'
+        );
+      const name =
+        event.currentTarget[event.target.selectedIndex].getAttribute('name');
+      const selection =
+        event.currentTarget[event.target.selectedIndex].getAttribute(
+          'selection'
+        );
+      const selectionid =
+        event.currentTarget[event.target.selectedIndex].getAttribute(
+          'selectionid'
+        );
       const index = teamTwo.selections.findIndex((s) => {
         return s.no === event.target.name;
       });
@@ -375,19 +419,26 @@ const AddNewTeam = () => {
         ...teamThree,
         entryName: event.target.value,
       });
+    } else if (event.target.id === 'tiebreaker') {
+      setTeamThree({
+        ...teamThree,
+        tiebreaker: event.target.value,
+      });
     } else {
-      const id = event.currentTarget[event.target.selectedIndex].getAttribute(
-        'playerid'
-      );
-      const name = event.currentTarget[event.target.selectedIndex].getAttribute(
-        'name'
-      );
-      const selection = event.currentTarget[
-        event.target.selectedIndex
-      ].getAttribute('selection');
-      const selectionid = event.currentTarget[
-        event.target.selectedIndex
-      ].getAttribute('selectionid');
+      const id =
+        event.currentTarget[event.target.selectedIndex].getAttribute(
+          'playerid'
+        );
+      const name =
+        event.currentTarget[event.target.selectedIndex].getAttribute('name');
+      const selection =
+        event.currentTarget[event.target.selectedIndex].getAttribute(
+          'selection'
+        );
+      const selectionid =
+        event.currentTarget[event.target.selectedIndex].getAttribute(
+          'selectionid'
+        );
       const index = teamThree.selections.findIndex((s) => {
         return s.no === event.target.name;
       });
@@ -452,7 +503,9 @@ const AddNewTeam = () => {
           setTeamCount={setTeamCount}
           setSelections={setTeamOne}
           data={entries}
+          worldRankings={worldRankings}
           number={1}
+          cbar={cbarPlayers}
           handleChange={handleChangeTeamOne}
         ></NewTeamForm>
       );
@@ -465,7 +518,9 @@ const AddNewTeam = () => {
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
             data={entries}
+            worldRankings={worldRankings}
             number={1}
+            cbar={cbarPlayers}
             handleChange={handleChangeTeamOne}
           ></NewTeamForm>
 
@@ -474,8 +529,10 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamTwo}
+            worldRankings={worldRankings}
             data={entries}
             number={2}
+            cbar={cbarPlayers}
             handleChange={handleChangeTeamTwo}
           ></NewTeamForm>
         </>
@@ -489,8 +546,10 @@ const AddNewTeam = () => {
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
             data={entries}
+            worldRankings={worldRankings}
             handleChange={handleChangeTeamOne}
             number={1}
+            cbar={cbarPlayers}
           ></NewTeamForm>{' '}
           <NewTeamForm
             selections={teamTwo}
@@ -498,6 +557,8 @@ const AddNewTeam = () => {
             setTeamCount={setTeamCount}
             setSelections={setTeamTwo}
             data={entries}
+            worldRankings={worldRankings}
+            cbar={cbarPlayers}
             handleChange={handleChangeTeamTwo}
             number={2}
           ></NewTeamForm>{' '}
@@ -506,6 +567,8 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamThree}
+            cbar={cbarPlayers}
+            worldRankings={worldRankings}
             data={entries}
             handleChange={handleChangeTeamThree}
             number={3}
@@ -531,31 +594,6 @@ const AddNewTeam = () => {
                   aria-hidden="true"
                   focusable="false"
                   data-prefix="fas"
-                  data-icon="flag-usa"
-                  className="svg-inline--fa fa-flag-usa fa-w-16 w-16 h-16"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M32 0C14.3 0 0 14.3 0 32v464c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V32C64 14.3 49.7 0 32 0zm267.9 303.6c-57.2-15.1-111.7-28.8-203.9 11.1V384c185.7-92.2 221.7 53.3 397.5-23.1 11.4-5 18.5-16.5 18.5-28.8v-36c-43.6 17.3-80.2 24.1-112.1 24.1-37.4-.1-68.9-8.4-100-16.6zm0-96c-57.2-15.1-111.7-28.8-203.9 11.1v61.5c94.8-37.6 154.6-22.7 212.1-7.6 57.2 15.1 111.7 28.8 203.9-11.1V200c-43.6 17.3-80.2 24.1-112.1 24.1-37.4 0-68.9-8.3-100-16.5zm9.5-125.9c51.8 15.6 97.4 29 202.6-20.1V30.8c0-25.1-26.8-38.1-49.4-26.6C291.3 91.5 305.4-62.2 96 32.4v151.9c94.8-37.5 154.6-22.7 212.1-7.6 57.2 15 111.7 28.7 203.9-11.1V96.7c-53.6 23.5-93.3 31.4-126.1 31.4s-59-7.8-85.7-15.9c-4-1.2-8.1-2.4-12.1-3.5V75.5c7.2 2 14.3 4.1 21.3 6.2zM160 128.1c-8.8 0-16-7.1-16-16 0-8.8 7.2-16 16-16s16 7.1 16 16-7.2 16-16 16zm0-55.8c-8.8 0-16-7.1-16-16 0-8.8 7.2-16 16-16s16 7.1 16 16c0 8.8-7.2 16-16 16zm64 47.9c-8.8 0-16-7.1-16-16 0-8.8 7.2-16 16-16s16 7.1 16 16c0 8.8-7.2 16-16 16zm0-55.9c-8.8 0-16-7.1-16-16 0-8.8 7.2-16 16-16s16 7.1 16 16c0 8.8-7.2 16-16 16z"
-                  ></path>
-                </svg>
-                <div className="pt-5">
-                  <h1 className="text-xl font-bold tracking-wider text-green-800">
-                    Step 1
-                  </h1>
-                  <h1 className="text-xl font-semibold tracking-wider text-gray-900">
-                    Choose 2 USA
-                  </h1>
-                </div>
-              </div>
-              <div className="flex flex-col items-center w-2/3 sm:w-5/12 lg:w-2/12 m-2 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-4">
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
                   data-icon="globe-europe"
                   className="svg-inline--fa fa-globe-europe fa-w-16 w-16 h-16"
                   role="img"
@@ -569,38 +607,18 @@ const AddNewTeam = () => {
                 </svg>
                 <div className="pt-5">
                   <h1 className="text-xl font-bold tracking-wider text-green-800">
-                    Step 2
+                    Choose your 6 Golfers
                   </h1>
-                  <h1 className="text-xl font-semibold tracking-wider text-gray-900">
-                    Choose 2 European's
-                  </h1>
+                  <h2 className="text-xl font-semibold tracking-wider text-gray-900">
+                    2 from each Group
+                  </h2>
+
+                  <Link classname="text-green-800 font-bold pt-2" to="/faq">
+                    View Groups Here
+                  </Link>
                 </div>
               </div>
-              <div className="flex flex-col items-center w-2/3 sm:w-5/12 lg:w-2/12 m-2 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-4">
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="globe"
-                  className="svg-inline--fa fa-globe fa-w-16 h-16 w-16"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 496 512"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"
-                  ></path>
-                </svg>
-                <div className="pt-5">
-                  <h1 className="text-xl font-bold tracking-wider text-green-800">
-                    Step 3
-                  </h1>
-                  <h1 className="text-xl font-semibold tracking-wider text-gray-900">
-                    Choose 2 from the Rest!
-                  </h1>
-                </div>
-              </div>
+
               <div className="flex flex-col items-center w-2/3 sm:w-5/12 lg:w-2/12 m-2 bg-white  text-green-800 rounded-3xl shadow-md py-6 px-4">
                 <svg
                   aria-hidden="true"
@@ -622,7 +640,7 @@ const AddNewTeam = () => {
                     Enter Below
                   </h1>
                   <h1 className="text-xl font-semibold tracking-wider text-gray-900">
-                    €5 per team <br></br> 3 for €12.50 <br></br>
+                    €10 per team
                   </h1>
                 </div>
               </div>

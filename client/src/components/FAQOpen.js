@@ -1,10 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-
+import { GlobalContext } from '../context/GlobalState';
 import graphic from '../static/images/landing.png';
-function FAQ() {
+function FAQOpen() {
   const [show, setShow] = useState(null);
+  const [players, setPlayers] = useState(null);
+  const { cbarPlayers } = useContext(GlobalContext);
+
+  useEffect(() => {
+    setPlayers(cbarPlayers);
+  }, []);
+
   return (
     <>
       <div className="mx-auto container f-f-p px-4 xl:px-0 my-8 pt-8 min-h-screen ">
@@ -59,8 +65,8 @@ function FAQ() {
                   <li className="pt-1 pb-2">
                     <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm">
                       You can add a team <Link to="/new-entry">here.</Link> Each
-                      team comprises of 6 golfers, 2 USA players, 2 Europeans
-                      and 2 from the Rest of the World
+                      team comprises of 6 golfers. The golfers are broken up
+                      into 3 groups, you must pick 2 golfers from each group.
                     </p>
                   </li>
                 </ul>
@@ -69,7 +75,7 @@ function FAQ() {
             <div>
               <div className="flex py-2 xl:py-4 mb-4 justify-between items-center border-b border-gray-200">
                 <h1 className="text-gray-800 tracking-wide">
-                  How much does it cost?
+                  What are the groups
                 </h1>
                 <div data-menu className="cursor-pointer text-gray-800">
                   {show === 1 ? (
@@ -109,10 +115,48 @@ function FAQ() {
               </div>
               {show === 1 && (
                 <ul>
-                  <li className="pt-1 pb-2">
-                    <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm">
-                      Each entry of 6 golfers cost €5. You can enter 3 teams for
-                      for €12.50!
+                  <li className="pt-1 pb-2 text-left">
+                    <p classname="text-xl font-bold text-left py-2 my-2">Group 1</p>
+                    <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm tracking-wide leading-loose">
+                      {players
+                        .filter((r) => r.number > 0 && r.number < 26)
+                        .map((p, i) => {
+                          let name;
+                          if (i === 24) {
+                            name = '& ' + p.fullname + '.';
+                          } else {
+                            name = p.fullname + ', ';
+                          }
+                          return name;
+                        })}
+                    </p>
+                    <p classname="text-xl font-bold text-left py-2 my-2">Group 2</p>
+                    <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm tracking-wide leading-loose">
+                      {players
+                        .filter((r) => r.number > 25 && r.number < 51)
+                        .map((p, i) => {
+                          let name;
+                          if (i === 24) {
+                            name = '& ' + p.fullname + '.';
+                          } else {
+                            name = p.fullname + ', ';
+                          }
+                          return name;
+                        })}
+                    </p>
+                    <p classname="text-xl font-bold text-left py-2 my-2">Group 3</p>
+                    <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm tracking-wide leading-loose">
+                      {players
+                        .filter((r) => r.number > 50 && r.number < 76)
+                        .map((p, i) => {
+                          let name;
+                          if (i === 24) {
+                            name = '& ' + p.fullname + '.';
+                          } else {
+                            name = p.fullname + ', ';
+                          }
+                          return name;
+                        })}
                     </p>
                   </li>
                 </ul>
@@ -121,7 +165,7 @@ function FAQ() {
             <div>
               <div className="flex py-2 xl:py-4 mb-4 justify-between items-center border-b border-gray-200">
                 <h1 className="text-gray-800 tracking-wide">
-                  How does the scoring work?
+                  How much does it cost?
                 </h1>
                 <div data-menu className="cursor-pointer text-gray-800">
                   {show === 2 ? (
@@ -163,9 +207,75 @@ function FAQ() {
                 <ul>
                   <li className="pt-1 pb-2">
                     <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm">
-                      You can add a team <Link to="/new-entry">here.</Link> Each
-                      team comprises of 6 golfers, 2 USA players, 2 Europeans
-                      and 2 from the Rest of the World
+                      Each entry of 6 golfers cost €10. You can enter as many
+                      teams as you want!
+                    </p>
+                  </li>
+                </ul>
+              )}
+            </div>
+            <div>
+              <div className="flex py-2 xl:py-4 mb-4 justify-between items-center border-b border-gray-200">
+                <h1 className="text-gray-800 tracking-wide">
+                  How does the scoring work?
+                </h1>
+                <div data-menu className="cursor-pointer text-gray-800">
+                  {show === 3 ? (
+                    <svg
+                      className="w-6 h-6"
+                      onClick={() => setShow(null)}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M5 15l7-7 7 7"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      onClick={() => setShow(3)}
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  )}
+                </div>
+              </div>
+              {show === 3 && (
+                <ul>
+                  <li className="pt-1 pb-2">
+                    <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm tracking-wide">
+                      Scores are calculated on the basis of the golfers
+                      finishing score; that is if golfer 1 finishes on -10,
+                      golfer 2 on -5, 3rd one - 2, 4th one +2, 5th one +5 and
+                      6th one + 6, scores are added to give -4. If one of your
+                      golfers fails to make the cut, an additional penalty of 5
+                      points are added to the score that he has when finishing
+                      day two.
+                    </p>
+                    <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm mt-3 tracing-wide">
+                      Al 6 golfers scores will count. If one of your golfers do
+                      not start the Open, you will be allocated the golfer
+                      listed immediately beneath your choice on the list of the
+                      world’s top 50. In the event of a tie, a tie breaker of
+                      number of birdies on final day will decide. If any golfer
+                      withdraws through injury of illness after starting the
+                      competition, a 5 shot penalty will be added to his score.
+                      The final decision rests with the Organising Committee.
                     </p>
                   </li>
                 </ul>
@@ -217,9 +327,10 @@ function FAQ() {
                 <ul>
                   <li className="pt-1 pb-2">
                     <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm">
-                      1st Place - €300 <br />
-                      2nd Place - €160 <br />
-                      3rd Place - €40 <br />
+                      1st Place - €500 <br />
+                      2nd Place - €200 <br />
+                      3rd Place - €100 <br />
+                      4th Place - €100 <br />
                     </p>
                   </li>
                 </ul>
@@ -283,4 +394,4 @@ function FAQ() {
   );
 }
 
-export default FAQ;
+export default FAQOpen;
