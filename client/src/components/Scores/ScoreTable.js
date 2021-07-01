@@ -7,17 +7,17 @@ import masters from '../../static/images/masters.jpg';
 
 const ScoreTable = () => {
   // useEffect(() => {
-  //   getScoreData();
-  //   getUsers();
-  //   getWorldRankings();
-  //   getEntries();
+  //   //getScoreData();
+  //  // getUsers();
+  //   //getWorldRankings();
+  //   //getEntries();
 
   //   // if (currentUser) {
   //   //   getUser(currentUser.email);
   //   // }
   //   // eslint-disable-next-line
   // }, []);
-  //const [refresh, setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [show, setShow] = useState(null);
 
   const { data, loading, users, matchSelection } = useContext(GlobalContext);
@@ -109,7 +109,7 @@ const ScoreTable = () => {
             u.tie,
             s.status
           );
-          console.log(row);
+          //console.log(row);
           return row;
         });
         return inside;
@@ -159,8 +159,8 @@ const ScoreTable = () => {
         <div
           className={
             show != null
-              ? 'w-full h-full  mx-auto container px-6 mt-2 mb-10'
-              : 'w-full h-full  mx-auto container px-6 mt-2'
+              ? 'w-full h-full flex-grow  mx-auto container px-6 mt-2 mb-10'
+              : 'w-full h-full flex-grow  mx-auto container px-6 mt-2'
           }
         >
           <div className="w-full bg-gray-900 my-3 border border-gray-900 rounded-xl shadow-xl">

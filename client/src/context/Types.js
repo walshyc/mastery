@@ -7,3 +7,4 @@ export const GET_USER = "GET_USER";
 export const REMOVE_USER = "REMOVE_USER";
 export const ADD_SELECTION = "ADD_SELECTION";
 export const UPDATED = "UPDATED";
+export const GET_CBAR = "GET_CBAR";

@@ -8,6 +8,7 @@ import {
   GET_WORLD_RANKINGS,
   SET_LOADING,
   GET_ENTRIES,
+  GET_CBAR,
 } from './Types';
 import axios from 'axios';
 import { db, firebase } from '../firebase';
@@ -17,6 +18,7 @@ import * as moment from 'moment';
 const initialState = {
   masters: [],
   users: [],
+  cbarPlayers: [],
   loggedInUser: {},
   data: [],
   worldRankings: [],
@@ -116,9 +118,29 @@ export const GlobalProvider = ({ children }) => {
       `https://golf-leaderboard-data.p.rapidapi.com/world-rankings`,
       requestOptions
     );
+    console.log(res.data.results.rankings);
     dispatch({
       type: GET_WORLD_RANKINGS,
-      payload: res.data,
+      payload: res.data.results.rankings,
+    });
+  };
+  const getCastlebar = async () => {
+    setLoading();
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-host': 'golf-leaderboard-data.p.rapidapi.com',
+        'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
+      },
+    };
+
+    const res = await axios.get(
+      `https://gsx2json.com/api?id=14TmND5J_9SSarbrghzRPGMjQLtvsczO5Rnkwp0xBnSA&sheet=1`
+    );
+    console.log(res.data.rows);
+    dispatch({
+      type: GET_CBAR,
+      payload: res.data.rows,
     });
   };
 
@@ -208,6 +230,7 @@ export const GlobalProvider = ({ children }) => {
     const player = leaderboard.filter((p) => p.player_id === parseInt(id));
     return player;
   };
+
   const addTie = async (entry, email, answer) => {
     await db.collection('usersTie').add({
       entry,
@@ -228,6 +251,48 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const addSelections = async (
+    name,
+    email,
+    golferOneID,
+    golferOneName,
+    golferTwoID,
+    golferTwoName,
+    golferThreeID,
+    golferThreeName,
+    golferFourID,
+    golferFourName,
+    golferFiveID,
+    golferFiveName,
+    golferSixID,
+    golferSixName,
+    entryName,
+    tiebraker
+  ) => {
+    setLoading();
+    await db.collection('usersOpen').add({
+      entryName,
+      name,
+      email,
+      tiebraker,
+      selections: firebase.firestore.FieldValue.arrayUnion({
+        golferOne: { id: golferOneID, name: golferOneName },
+        golferTwo: { id: golferTwoID, name: golferTwoName },
+        golferThree: { id: golferThreeID, name: golferThreeName },
+        golferFour: { id: golferFourID, name: golferFourName },
+        golferFive: { id: golferFiveID, name: golferFiveName },
+        golferSix: { id: golferSixID, name: golferSixName },
+      }),
+    });
+
+    const snapshot = await db.collection('usersOpen').get();
+
+    const res = snapshot.docs.map((doc) => doc.data());
+    dispatch({
+      type: GET_USERS,
+      payload: res,
+    });
+  };
+  const addSelectionsOpen = async (
     name,
     email,
     golferOneID,
@@ -275,6 +340,7 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         selections: state.selections,
         start: state.start,
+        cbarPlayers: state.cbarPlayers,
         getScoreData,
         setLoading,
         getUsers,
@@ -286,6 +352,7 @@ export const GlobalProvider = ({ children }) => {
         getUser,
         addSelections,
         matchSelection,
+        getCastlebar,
       }}
     >
       {children}

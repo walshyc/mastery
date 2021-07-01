@@ -7,7 +7,8 @@ import {
   UPDATED,
   GET_WORLD_RANKINGS,
   GET_ENTRIES,
-} from "./Types";
+  GET_CBAR,
+} from './Types';
 const AppReducer = (state, action) => {
   switch (action.type) {
     case GET_SCORE_DATA:
@@ -26,6 +27,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         users: action.payload,
+        loading: false,
+      };
+    case GET_CBAR:
+      return {
+        ...state,
+        cbarPlayers: action.payload,
         loading: false,
       };
     case GET_ENTRIES:
