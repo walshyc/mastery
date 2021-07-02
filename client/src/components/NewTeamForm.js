@@ -28,19 +28,19 @@ const TeamForm = (props) => {
     'WAL',
   ];
 
-  const result = cbar.map((a) => {
-    const player = worldRankings.find((b) => b.player_name === a.fullname);
+  // const result = cbar.map((a) => {
+  //   const player = worldRankings.find((b) => b.player_name === a.fullname);
 
-    return { player, number: a.number };
-  });
+  //   return { player, number: a.number };
+  // });
 
-  let groupOne = result
+  let groupOne = cbar
     .filter((r) => r.number > 0 && r.number < 26)
     .sort((a, b) => b.number - a.number);
-  let groupTwo = result
+  let groupTwo = cbar
     .filter((r) => r.number > 25 && r.number < 51)
     .sort((a, b) => b.number - a.number);
-  let groupThree = result
+  let groupThree = cbar
     .filter((r) => r.number > 50 && r.number < 76)
     .sort((a, b) => b.number - a.number);
   // let rowPlayers = [];

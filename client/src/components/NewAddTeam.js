@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -45,7 +45,18 @@ const AddNewTeam = () => {
   const [lastName, setLastName] = useState('');
   const [tiebreaker, setTiebreaker] = useState('');
   const [email, setEmail] = useState('');
+  const [result, setResult] = useState([]);
   const [teamCount, setTeamCount] = useState(1);
+
+  useEffect(() => {
+    setResult(
+      cbarPlayers.map((a) => {
+        const player = worldRankings.find((b) => b.player_name === a.fullname);
+
+        return { player, number: a.number };
+      })
+    );
+  }, []);
   const [teamOne, setTeamOne] = useState({
     entryName: '',
     tiebreaker: '',
@@ -317,7 +328,9 @@ const AddNewTeam = () => {
     }
     const getData = async () => {
       //await getUsers().then(getUser(currentUser.email));
-      setMessage('Thanks for your entry. Check back from Thursday 15th July to see how you are doing!');
+      setMessage(
+        'Thanks for your entry. Check back from Thursday 15th July to see how you are doing!'
+      );
       history.push('/');
     };
     getData();
@@ -511,7 +524,7 @@ const AddNewTeam = () => {
           data={entries}
           worldRankings={worldRankings}
           number={1}
-          cbar={cbarPlayers}
+          cbar={result}
           handleChange={handleChangeTeamOne}
         ></NewTeamForm>
       );
@@ -526,7 +539,7 @@ const AddNewTeam = () => {
             data={entries}
             worldRankings={worldRankings}
             number={1}
-            cbar={cbarPlayers}
+            cbar={result}
             handleChange={handleChangeTeamOne}
           ></NewTeamForm>
 
@@ -538,7 +551,7 @@ const AddNewTeam = () => {
             worldRankings={worldRankings}
             data={entries}
             number={2}
-            cbar={cbarPlayers}
+            cbar={result}
             handleChange={handleChangeTeamTwo}
           ></NewTeamForm>
         </>
@@ -555,7 +568,7 @@ const AddNewTeam = () => {
             worldRankings={worldRankings}
             handleChange={handleChangeTeamOne}
             number={1}
-            cbar={cbarPlayers}
+            cbar={result}
           ></NewTeamForm>{' '}
           <NewTeamForm
             selections={teamTwo}
@@ -564,7 +577,7 @@ const AddNewTeam = () => {
             setSelections={setTeamTwo}
             data={entries}
             worldRankings={worldRankings}
-            cbar={cbarPlayers}
+            cbar={result}
             handleChange={handleChangeTeamTwo}
             number={2}
           ></NewTeamForm>{' '}
@@ -573,7 +586,7 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamThree}
-            cbar={cbarPlayers}
+            cbar={result}
             worldRankings={worldRankings}
             data={entries}
             handleChange={handleChangeTeamThree}
