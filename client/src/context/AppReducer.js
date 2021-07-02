@@ -8,6 +8,7 @@ import {
   GET_WORLD_RANKINGS,
   GET_ENTRIES,
   GET_CBAR,
+  SET_MESSAGE,
 } from './Types';
 const AppReducer = (state, action) => {
   switch (action.type) {
@@ -27,6 +28,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         users: action.payload,
+        loading: false,
+      };
+    case SET_MESSAGE:
+      return {
+        ...state,
+        message: action.payload,
         loading: false,
       };
     case GET_CBAR:

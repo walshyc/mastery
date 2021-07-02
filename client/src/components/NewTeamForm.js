@@ -1,5 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../context/GlobalState';
+import React from 'react';
 
 const TeamForm = (props) => {
   const {
@@ -34,7 +33,6 @@ const TeamForm = (props) => {
 
     return { player, number: a.number };
   });
-  console.log(result);
 
   let groupOne = result
     .filter((r) => r.number > 0 && r.number < 26)

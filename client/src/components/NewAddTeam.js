@@ -28,8 +28,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddNewTeam = () => {
-  const { addSelections, loading, entries, worldRankings, cbarPlayers } =
-    useContext(GlobalContext);
+  const {
+    addSelections,
+    loading,
+    entries,
+    worldRankings,
+    cbarPlayers,
+    setMessage,
+  } = useContext(GlobalContext);
   const classes = useStyles();
 
   const [error, setError] = useState('');
@@ -219,7 +225,6 @@ const AddNewTeam = () => {
       setIsProcessing(false);
       console.log(err);
     }
-    console.log(name);
 
     try {
       if (
@@ -307,11 +312,12 @@ const AddNewTeam = () => {
         );
       }
     } catch (err) {
-      setError('Could not add your team');
+      setError('Could not add your team. Please try again');
       console.log(err);
     }
     const getData = async () => {
       //await getUsers().then(getUser(currentUser.email));
+      setMessage('Thanks for your entry. Check back from Thursday 15th July to see how you are doing!');
       history.push('/');
     };
     getData();
@@ -613,7 +619,7 @@ const AddNewTeam = () => {
                     2 from each Group
                   </h2>
 
-                  <Link classname="text-green-800 font-bold pt-2" to="/faq">
+                  <Link className="text-green-800 font-bold pt-2" to="/faq">
                     View Groups Here
                   </Link>
                 </div>

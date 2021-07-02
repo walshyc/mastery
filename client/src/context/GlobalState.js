@@ -9,6 +9,7 @@ import {
   SET_LOADING,
   GET_ENTRIES,
   GET_CBAR,
+  SET_MESSAGE,
 } from './Types';
 import axios from 'axios';
 import { db, firebase } from '../firebase';
@@ -17,6 +18,7 @@ import * as moment from 'moment';
 
 const initialState = {
   masters: [],
+  message: null,
   users: [],
   cbarPlayers: [],
   loggedInUser: {},
@@ -118,7 +120,6 @@ export const GlobalProvider = ({ children }) => {
       `https://golf-leaderboard-data.p.rapidapi.com/world-rankings`,
       requestOptions
     );
-    console.log(res.data.results.rankings);
     dispatch({
       type: GET_WORLD_RANKINGS,
       payload: res.data.results.rankings,
@@ -126,18 +127,9 @@ export const GlobalProvider = ({ children }) => {
   };
   const getCastlebar = async () => {
     setLoading();
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-host': 'golf-leaderboard-data.p.rapidapi.com',
-        'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
-      },
-    };
-
     const res = await axios.get(
       `https://gsx2json.com/api?id=14TmND5J_9SSarbrghzRPGMjQLtvsczO5Rnkwp0xBnSA&sheet=1`
     );
-    console.log(res.data.rows);
     dispatch({
       type: GET_CBAR,
       payload: res.data.rows,
@@ -150,8 +142,8 @@ export const GlobalProvider = ({ children }) => {
     const res = snapshot.docs.map((doc) => doc.data());
     //console.log('got users')
     const ties = await db.collection('usersTie').get();
-    const resties = ties.docs.map((doc) => doc.data());
-    console.log(resties);
+    //const resties = ties.docs.map((doc) => doc.data());
+
     const totaled = res.map((u) => {
       return {
         name: u.entryName,
@@ -206,6 +198,14 @@ export const GlobalProvider = ({ children }) => {
     setLoading();
     dispatch({
       type: REMOVE_USER,
+    });
+  };
+
+  const setMessage = (message) => {
+    setLoading();
+    dispatch({
+      type: SET_MESSAGE,
+      payload: message,
     });
   };
 
@@ -332,6 +332,7 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         player: state.player,
+        message: state.message,
         users: state.users,
         entries: state.entries,
         loggedInUser: state.loggedInUser,
@@ -353,6 +354,7 @@ export const GlobalProvider = ({ children }) => {
         addSelections,
         matchSelection,
         getCastlebar,
+        setMessage
       }}
     >
       {children}
