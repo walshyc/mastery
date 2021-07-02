@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from './layout/Spinner';
 
 const TeamForm = (props) => {
   const {
@@ -10,6 +11,7 @@ const TeamForm = (props) => {
     number,
     setTeamCount,
     worldRankings,
+    loading,
     cbar,
   } = props;
 
@@ -98,6 +100,10 @@ const TeamForm = (props) => {
     return s.no === 'selectionSix';
   });
 
+  if (loading) {
+    return <Spinner></Spinner>
+  }
+
   return (
     <>
       <div>
@@ -174,7 +180,7 @@ const TeamForm = (props) => {
                       className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       <option value=""></option>
-                      {data &&
+                      {!loading && data &&
                         groupOne
                           .filter((pla) => {
                             let n = pla.player.player_name;
@@ -259,7 +265,7 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
+                      {!loading && data &&
                         groupOne
                           .filter((pla) => {
                             let n = pla.player.player_name;
@@ -344,7 +350,7 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
+                      {!loading && data &&
                         groupTwo
                           .filter((pla) => {
                             let n = pla.player.player_name;
@@ -429,7 +435,7 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
+                      {!loading && data &&
                         groupTwo
                           .filter((pla) => {
                             let n = pla.player.player_name;
@@ -514,7 +520,7 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
+                      {!loading && data &&
                         groupThree
                           .filter((pla) => {
                             let n = pla.player.player_name;
@@ -599,7 +605,7 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
+                      {!loading && data &&
                         groupThree
                           .filter((pla) => {
                             let n = pla.player.player_name;

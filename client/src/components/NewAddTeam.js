@@ -522,6 +522,7 @@ const AddNewTeam = () => {
           setTeamCount={setTeamCount}
           setSelections={setTeamOne}
           data={entries}
+          loading={loading}
           worldRankings={worldRankings}
           number={1}
           cbar={result}
@@ -536,6 +537,7 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
+            loading={loading}
             data={entries}
             worldRankings={worldRankings}
             number={1}
@@ -548,6 +550,7 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamTwo}
+            loading={loading}
             worldRankings={worldRankings}
             data={entries}
             number={2}
@@ -564,6 +567,7 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
+            loading={loading}
             data={entries}
             worldRankings={worldRankings}
             handleChange={handleChangeTeamOne}
@@ -575,6 +579,7 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamTwo}
+            loading={loading}
             data={entries}
             worldRankings={worldRankings}
             cbar={result}
@@ -586,6 +591,7 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamThree}
+            loading={loading}
             cbar={result}
             worldRankings={worldRankings}
             data={entries}
