@@ -39,7 +39,9 @@ const AppReducer = (state, action) => {
     case GET_CBAR:
       return {
         ...state,
-        cbarPlayers: action.payload,
+        one: action.payload.groupOne,
+        two: action.payload.groupTwo,
+        three: action.payload.groupThree,
         loading: false,
       };
     case GET_ENTRIES:

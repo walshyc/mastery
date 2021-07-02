@@ -667,6 +667,9 @@ const AddNewTeam = () => {
                   <h1 className="text-xl font-semibold tracking-wider text-gray-900">
                     €10 per team
                   </h1>
+                  <h1 className="text-xl font-bold tracking-wider text-green-800">
+                    3 teams for €20!
+                  </h1>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Spinner from './layout/Spinner';
+import { GlobalContext } from '../context/GlobalState';
 
 const TeamForm = (props) => {
   const {
@@ -11,9 +12,10 @@ const TeamForm = (props) => {
     number,
     setTeamCount,
     worldRankings,
-    loading,
     cbar,
   } = props;
+
+  const { one, two, three, loading } = useContext(GlobalContext);
 
   const eu = [
     'ENG',
@@ -101,7 +103,7 @@ const TeamForm = (props) => {
   });
 
   if (loading) {
-    return <Spinner></Spinner>
+    return <Spinner></Spinner>;
   }
 
   return (
@@ -180,8 +182,9 @@ const TeamForm = (props) => {
                       className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       <option value=""></option>
-                      {!loading && data &&
-                        groupOne
+                      {!loading &&
+                        data &&
+                        one
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -265,8 +268,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {!loading && data &&
-                        groupOne
+                      {!loading &&
+                        data &&
+                        one
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -350,8 +354,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {!loading && data &&
-                        groupTwo
+                      {!loading &&
+                        data &&
+                        two
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -435,8 +440,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {!loading && data &&
-                        groupTwo
+                      {!loading &&
+                        data &&
+                        two
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -520,8 +526,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {!loading && data &&
-                        groupThree
+                      {!loading &&
+                        data &&
+                        three
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -605,8 +612,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {!loading && data &&
-                        groupThree
+                      {!loading &&
+                        data &&
+                        three
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (

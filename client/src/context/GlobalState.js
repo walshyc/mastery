@@ -26,6 +26,9 @@ const initialState = {
   worldRankings: [],
   entries: [],
   loading: true,
+  one: null,
+  two: null,
+  three: null,
   updated: '',
   start: moment('2020-11-12T12:00:00.000'),
   selections: [
@@ -127,12 +130,43 @@ export const GlobalProvider = ({ children }) => {
   };
   const getCastlebar = async () => {
     setLoading();
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-host': 'golf-leaderboard-data.p.rapidapi.com',
+        'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
+      },
+    };
+    setLoading();
+    const resRankings = await axios.get(
+      `https://golf-leaderboard-data.p.rapidapi.com/world-rankings`,
+      requestOptions
+    );
+    setLoading();
     const res = await axios.get(
       `https://gsx2json.com/api?id=14TmND5J_9SSarbrghzRPGMjQLtvsczO5Rnkwp0xBnSA&sheet=1`
     );
+    const data = res.data.rows.map((a) => {
+      const player = resRankings.data.results.rankings.find(
+        (b) => b.player_name === a.fullname
+      );
+
+      return { player, number: a.number };
+    });
+    console.log(data);
+    let groupOne = data
+      .filter((r) => r.number > 0 && r.number < 26)
+      .sort((a, b) => b.number - a.number);
+    let groupTwo = data
+      .filter((r) => r.number > 25 && r.number < 51)
+      .sort((a, b) => b.number - a.number);
+    let groupThree = data
+      .filter((r) => r.number > 50 && r.number < 76)
+      .sort((a, b) => b.number - a.number);
+    setLoading();
     dispatch({
       type: GET_CBAR,
-      payload: res.data.rows,
+      payload: { groupOne, groupTwo, groupThree },
     });
   };
 
@@ -342,6 +376,9 @@ export const GlobalProvider = ({ children }) => {
         selections: state.selections,
         start: state.start,
         cbarPlayers: state.cbarPlayers,
+        one: state.one,
+        two: state.two,
+        three: state.three,
         getScoreData,
         setLoading,
         getUsers,
@@ -354,7 +391,7 @@ export const GlobalProvider = ({ children }) => {
         addSelections,
         matchSelection,
         getCastlebar,
-        setMessage
+        setMessage,
       }}
     >
       {children}
