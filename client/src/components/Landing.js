@@ -11,7 +11,7 @@ const Landing = () => {
     setAlert(message)
     const timeout = setTimeout(() => {
       setAlert(null);
-    }, 1000);
+    }, 10000);
 
     return () => clearTimeout(timeout);
   }, []);
