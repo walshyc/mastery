@@ -164,7 +164,7 @@ const AddNewTeam = () => {
   } else if (teamCount === 2) {
     amount = 2000;
   } else {
-    amount = 3000;
+    amount = 2000;
   }
 
   const handleSubmit = async (e) => {

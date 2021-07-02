@@ -207,7 +207,7 @@ function FAQOpen() {
                 <ul>
                   <li className="pt-1 pb-2">
                     <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm">
-                      Each entry of 6 golfers cost €10. You can enter as many
+                      Each entry of 6 golfers cost €10. 3 entries for €20. You can enter as many
                       teams as you want!
                     </p>
                   </li>
