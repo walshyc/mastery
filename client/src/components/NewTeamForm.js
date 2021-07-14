@@ -1,4 +1,5 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import Spinner from './layout/Spinner';
 import { GlobalContext } from '../context/GlobalState';
 
 const TeamForm = (props) => {
@@ -13,6 +14,8 @@ const TeamForm = (props) => {
     worldRankings,
     cbar,
   } = props;
+
+  const { one, two, three, loading } = useContext(GlobalContext);
 
   const eu = [
     'ENG',
@@ -29,20 +32,19 @@ const TeamForm = (props) => {
     'WAL',
   ];
 
-  const result = cbar.map((a) => {
-    const player = worldRankings.find((b) => b.player_name === a.fullname);
+  // const result = cbar.map((a) => {
+  //   const player = worldRankings.find((b) => b.player_name === a.fullname);
 
-    return { player, number: a.number };
-  });
-  console.log(result);
+  //   return { player, number: a.number };
+  // });
 
-  let groupOne = result
+  let groupOne = cbar
     .filter((r) => r.number > 0 && r.number < 26)
     .sort((a, b) => b.number - a.number);
-  let groupTwo = result
+  let groupTwo = cbar
     .filter((r) => r.number > 25 && r.number < 51)
     .sort((a, b) => b.number - a.number);
-  let groupThree = result
+  let groupThree = cbar
     .filter((r) => r.number > 50 && r.number < 76)
     .sort((a, b) => b.number - a.number);
   // let rowPlayers = [];
@@ -100,6 +102,10 @@ const TeamForm = (props) => {
     return s.no === 'selectionSix';
   });
 
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <>
       <div>
@@ -148,7 +154,7 @@ const TeamForm = (props) => {
                     htmlFor="totalscore"
                     className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal mb-2"
                   >
-                    Tiebreaker - Number of birdies scored in the final round
+                    Tiebreaker - Number of birdies scored in the final round for the entire field
                   </label>
                   <input
                     id="tiebreaker"
@@ -176,8 +182,9 @@ const TeamForm = (props) => {
                       className="bg-white appearance-none z-10 pl-3 h-8 w-full text-sm border border-transparent focus:outline-none focus:border-gray-900  text-gray-800 rounded"
                     >
                       <option value=""></option>
-                      {data &&
-                        groupOne
+                      {!loading &&
+                        data &&
+                        one
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -261,8 +268,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
-                        groupOne
+                      {!loading &&
+                        data &&
+                        one
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -346,8 +354,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
-                        groupTwo
+                      {!loading &&
+                        data &&
+                        two
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -431,8 +440,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
-                        groupTwo
+                      {!loading &&
+                        data &&
+                        two
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -516,8 +526,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
-                        groupThree
+                      {!loading &&
+                        data &&
+                        three
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (
@@ -601,8 +612,9 @@ const TeamForm = (props) => {
                     >
                       {' '}
                       <option value=""></option>
-                      {data &&
-                        groupThree
+                      {!loading &&
+                        data &&
+                        three
                           .filter((pla) => {
                             let n = pla.player.player_name;
                             return (

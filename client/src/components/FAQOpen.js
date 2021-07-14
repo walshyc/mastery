@@ -5,10 +5,11 @@ import graphic from '../static/images/landing.png';
 function FAQOpen() {
   const [show, setShow] = useState(null);
   const [players, setPlayers] = useState(null);
-  const { cbarPlayers } = useContext(GlobalContext);
+  const { cbarPlayers, one, two, three } = useContext(GlobalContext);
 
   useEffect(() => {
     setPlayers(cbarPlayers);
+    console.log(cbarPlayers);
   }, []);
 
   return (
@@ -116,44 +117,50 @@ function FAQOpen() {
               {show === 1 && (
                 <ul>
                   <li className="pt-1 pb-2 text-left">
-                    <p classname="text-xl font-bold text-left py-2 my-2">Group 1</p>
+                    <p classname="text-xl font-bold text-left py-2 my-2">
+                      Group 1
+                    </p>
                     <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm tracking-wide leading-loose">
-                      {players
-                        .filter((r) => r.number > 0 && r.number < 26)
+                      {one
+                        .sort((a, b) => a.number - b.number)
                         .map((p, i) => {
                           let name;
                           if (i === 24) {
-                            name = '& ' + p.fullname + '.';
+                            name = '& ' + p.player.player_name + '.';
                           } else {
-                            name = p.fullname + ', ';
+                            name = p.player.player_name + ', ';
                           }
                           return name;
                         })}
                     </p>
-                    <p classname="text-xl font-bold text-left py-2 my-2">Group 2</p>
+                    <p classname="text-xl font-bold text-left py-2 my-2">
+                      Group 2
+                    </p>
                     <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm tracking-wide leading-loose">
-                      {players
-                        .filter((r) => r.number > 25 && r.number < 51)
+                      {two
+                        .sort((a, b) => a.number - b.number)
                         .map((p, i) => {
                           let name;
                           if (i === 24) {
-                            name = '& ' + p.fullname + '.';
+                            name = '& ' + p.player.player_name + '.';
                           } else {
-                            name = p.fullname + ', ';
+                            name = p.player.player_name + ', ';
                           }
                           return name;
                         })}
                     </p>
-                    <p classname="text-xl font-bold text-left py-2 my-2">Group 3</p>
+                    <p classname="text-xl font-bold text-left py-2 my-2">
+                      Group 3
+                    </p>
                     <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm tracking-wide leading-loose">
-                      {players
-                        .filter((r) => r.number > 50 && r.number < 76)
+                      {three
+                        .sort((a, b) => a.number - b.number)
                         .map((p, i) => {
                           let name;
                           if (i === 24) {
-                            name = '& ' + p.fullname + '.';
+                            name = '& ' + p.player.player_name + '.';
                           } else {
-                            name = p.fullname + ', ';
+                            name = p.player.player_name + ', ';
                           }
                           return name;
                         })}
@@ -207,8 +214,8 @@ function FAQOpen() {
                 <ul>
                   <li className="pt-1 pb-2">
                     <p className="xl:w-10/12 w-full text-gray-800 text-left text-sm">
-                      Each entry of 6 golfers cost €10. 3 entries for €20. You can enter as many
-                      teams as you want!
+                      Each entry of 6 golfers cost €10. 3 entries for €20. You
+                      can enter as many teams as you want!
                     </p>
                   </li>
                 </ul>

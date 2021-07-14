@@ -8,6 +8,7 @@ import {
   GET_WORLD_RANKINGS,
   GET_ENTRIES,
   GET_CBAR,
+  SET_MESSAGE,
 } from './Types';
 const AppReducer = (state, action) => {
   switch (action.type) {
@@ -29,10 +30,18 @@ const AppReducer = (state, action) => {
         users: action.payload,
         loading: false,
       };
+    case SET_MESSAGE:
+      return {
+        ...state,
+        message: action.payload,
+        loading: false,
+      };
     case GET_CBAR:
       return {
         ...state,
-        cbarPlayers: action.payload,
+        one: action.payload.groupOne,
+        two: action.payload.groupTwo,
+        three: action.payload.groupThree,
         loading: false,
       };
     case GET_ENTRIES:

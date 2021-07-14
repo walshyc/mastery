@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -28,8 +28,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddNewTeam = () => {
-  const { addSelections, loading, entries, worldRankings, cbarPlayers } =
-    useContext(GlobalContext);
+  const {
+    addSelections,
+    loading,
+    entries,
+    worldRankings,
+    cbarPlayers,
+    setMessage,
+  } = useContext(GlobalContext);
   const classes = useStyles();
 
   const [error, setError] = useState('');
@@ -39,7 +45,18 @@ const AddNewTeam = () => {
   const [lastName, setLastName] = useState('');
   const [tiebreaker, setTiebreaker] = useState('');
   const [email, setEmail] = useState('');
+  const [result, setResult] = useState([]);
   const [teamCount, setTeamCount] = useState(1);
+
+  useEffect(() => {
+    setResult(
+      cbarPlayers.map((a) => {
+        const player = worldRankings.find((b) => b.player_name === a.fullname);
+
+        return { player, number: a.number };
+      })
+    );
+  }, []);
   const [teamOne, setTeamOne] = useState({
     entryName: '',
     tiebreaker: '',
@@ -219,7 +236,6 @@ const AddNewTeam = () => {
       setIsProcessing(false);
       console.log(err);
     }
-    console.log(name);
 
     try {
       if (
@@ -307,11 +323,14 @@ const AddNewTeam = () => {
         );
       }
     } catch (err) {
-      setError('Could not add your team');
+      setError('Could not add your team. Please try again');
       console.log(err);
     }
     const getData = async () => {
       //await getUsers().then(getUser(currentUser.email));
+      setMessage(
+        'Thanks for your entry. Check back from Thursday 15th July to see how you are doing!'
+      );
       history.push('/');
     };
     getData();
@@ -503,9 +522,10 @@ const AddNewTeam = () => {
           setTeamCount={setTeamCount}
           setSelections={setTeamOne}
           data={entries}
+          loading={loading}
           worldRankings={worldRankings}
           number={1}
-          cbar={cbarPlayers}
+          cbar={result}
           handleChange={handleChangeTeamOne}
         ></NewTeamForm>
       );
@@ -517,10 +537,11 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
+            loading={loading}
             data={entries}
             worldRankings={worldRankings}
             number={1}
-            cbar={cbarPlayers}
+            cbar={result}
             handleChange={handleChangeTeamOne}
           ></NewTeamForm>
 
@@ -529,10 +550,11 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamTwo}
+            loading={loading}
             worldRankings={worldRankings}
             data={entries}
             number={2}
-            cbar={cbarPlayers}
+            cbar={result}
             handleChange={handleChangeTeamTwo}
           ></NewTeamForm>
         </>
@@ -545,20 +567,22 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamOne}
+            loading={loading}
             data={entries}
             worldRankings={worldRankings}
             handleChange={handleChangeTeamOne}
             number={1}
-            cbar={cbarPlayers}
+            cbar={result}
           ></NewTeamForm>{' '}
           <NewTeamForm
             selections={teamTwo}
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamTwo}
+            loading={loading}
             data={entries}
             worldRankings={worldRankings}
-            cbar={cbarPlayers}
+            cbar={result}
             handleChange={handleChangeTeamTwo}
             number={2}
           ></NewTeamForm>{' '}
@@ -567,7 +591,8 @@ const AddNewTeam = () => {
             teamCount={teamCount}
             setTeamCount={setTeamCount}
             setSelections={setTeamThree}
-            cbar={cbarPlayers}
+            loading={loading}
+            cbar={result}
             worldRankings={worldRankings}
             data={entries}
             handleChange={handleChangeTeamThree}
@@ -613,7 +638,7 @@ const AddNewTeam = () => {
                     2 from each Group
                   </h2>
 
-                  <Link classname="text-green-800 font-bold pt-2" to="/faq">
+                  <Link className="text-green-800 font-bold pt-2" to="/faq">
                     View Groups Here
                   </Link>
                 </div>
@@ -641,6 +666,9 @@ const AddNewTeam = () => {
                   </h1>
                   <h1 className="text-xl font-semibold tracking-wider text-gray-900">
                     €10 per team
+                  </h1>
+                  <h1 className="text-xl font-bold tracking-wider text-green-800">
+                    3 teams for €20!
                   </h1>
                 </div>
               </div>

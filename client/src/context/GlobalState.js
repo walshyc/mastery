@@ -9,6 +9,7 @@ import {
   SET_LOADING,
   GET_ENTRIES,
   GET_CBAR,
+  SET_MESSAGE,
 } from './Types';
 import axios from 'axios';
 import { db, firebase } from '../firebase';
@@ -17,6 +18,7 @@ import * as moment from 'moment';
 
 const initialState = {
   masters: [],
+  message: null,
   users: [],
   cbarPlayers: [],
   loggedInUser: {},
@@ -24,6 +26,9 @@ const initialState = {
   worldRankings: [],
   entries: [],
   loading: true,
+  one: null,
+  two: null,
+  three: null,
   updated: '',
   start: moment('2020-11-12T12:00:00.000'),
   selections: [
@@ -118,7 +123,6 @@ export const GlobalProvider = ({ children }) => {
       `https://golf-leaderboard-data.p.rapidapi.com/world-rankings`,
       requestOptions
     );
-    console.log(res.data.results.rankings);
     dispatch({
       type: GET_WORLD_RANKINGS,
       payload: res.data.results.rankings,
@@ -133,60 +137,82 @@ export const GlobalProvider = ({ children }) => {
         'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
       },
     };
-
+    setLoading();
+    const resRankings = await axios.get(
+      `https://golf-leaderboard-data.p.rapidapi.com/world-rankings`,
+      requestOptions
+    );
+    setLoading();
     const res = await axios.get(
       `https://gsx2json.com/api?id=14TmND5J_9SSarbrghzRPGMjQLtvsczO5Rnkwp0xBnSA&sheet=1`
     );
-    console.log(res.data.rows);
+    const data = res.data.rows.map((a) => {
+      const player = resRankings.data.results.rankings.find(
+        (b) => b.player_name === a.fullname
+      );
+
+      return { player, number: a.number };
+    });
+    console.log(data);
+    let groupOne = data
+      .filter((r) => r.number > 0 && r.number < 26)
+      .sort((a, b) => b.number - a.number);
+    let groupTwo = data
+      .filter((r) => r.number > 25 && r.number < 51)
+      .sort((a, b) => b.number - a.number);
+    let groupThree = data
+      .filter((r) => r.number > 50 && r.number < 76)
+      .sort((a, b) => b.number - a.number);
+    setLoading();
     dispatch({
       type: GET_CBAR,
-      payload: res.data.rows,
+      payload: { groupOne, groupTwo, groupThree },
     });
   };
 
   const getUsers = async () => {
     setLoading();
-    const snapshot = await db.collection('usersNew').get();
-    const res = snapshot.docs.map((doc) => doc.data());
-    //console.log('got users')
-    const ties = await db.collection('usersTie').get();
-    const resties = ties.docs.map((doc) => doc.data());
-    console.log(resties);
-    const totaled = res.map((u) => {
-      return {
-        name: u.entryName,
-        total:
-          u.selections[0].golferOne.player_id +
-          u.selections[0].golferTwo.player_id +
-          u.selections[0].golferThree.player_id +
-          u.selections[0].golferFour.player_id +
-          u.selections[0].golferFive.player_id +
-          u.selections[0].golferSix.player_id,
-      };
-    });
-    totaled.sort((a, b) => {
-      if (a.total < b.total) {
-        return -1;
-      }
-      if (a.total > b.total) {
-        return 1;
-      }
-      return 0;
-    });
-    let duplicate = [];
-    totaled.sort((a, b) => {
-      if (a.total === b.total) {
-        duplicate.push(a);
-        duplicate.push(b);
-        return 1;
-      } else return 0;
-    });
+    // const snapshot = await db.collection('usersNew').get();
+    // const res = snapshot.docs.map((doc) => doc.data());
+    // //console.log('got users')
+    // const ties = await db.collection('usersTie').get();
+    // //const resties = ties.docs.map((doc) => doc.data());
+
+    // const totaled = res.map((u) => {
+    //   return {
+    //     name: u.entryName,
+    //     total:
+    //       u.selections[0].golferOne.player_id +
+    //       u.selections[0].golferTwo.player_id +
+    //       u.selections[0].golferThree.player_id +
+    //       u.selections[0].golferFour.player_id +
+    //       u.selections[0].golferFive.player_id +
+    //       u.selections[0].golferSix.player_id,
+    //   };
+    // });
+    // totaled.sort((a, b) => {
+    //   if (a.total < b.total) {
+    //     return -1;
+    //   }
+    //   if (a.total > b.total) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // });
+    // let duplicate = [];
+    // totaled.sort((a, b) => {
+    //   if (a.total === b.total) {
+    //     duplicate.push(a);
+    //     duplicate.push(b);
+    //     return 1;
+    //   } else return 0;
+    // });
 
     //console.log(totaled);
     //console.log(duplicate);
     dispatch({
       type: GET_USERS,
-      payload: res,
+      payload: 1,
     });
   };
 
@@ -206,6 +232,14 @@ export const GlobalProvider = ({ children }) => {
     setLoading();
     dispatch({
       type: REMOVE_USER,
+    });
+  };
+
+  const setMessage = (message) => {
+    setLoading();
+    dispatch({
+      type: SET_MESSAGE,
+      payload: message,
     });
   };
 
@@ -332,6 +366,7 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         player: state.player,
+        message: state.message,
         users: state.users,
         entries: state.entries,
         loggedInUser: state.loggedInUser,
@@ -341,6 +376,9 @@ export const GlobalProvider = ({ children }) => {
         selections: state.selections,
         start: state.start,
         cbarPlayers: state.cbarPlayers,
+        one: state.one,
+        two: state.two,
+        three: state.three,
         getScoreData,
         setLoading,
         getUsers,
@@ -353,6 +391,7 @@ export const GlobalProvider = ({ children }) => {
         addSelections,
         matchSelection,
         getCastlebar,
+        setMessage,
       }}
     >
       {children}
