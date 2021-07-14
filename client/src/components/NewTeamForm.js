@@ -154,7 +154,7 @@ const TeamForm = (props) => {
                     htmlFor="totalscore"
                     className="text-gray-200 text-left text-sm font-bold leading-tight tracking-normal mb-2"
                   >
-                    Tiebreaker - Number of birdies scored in the final round
+                    Tiebreaker - Number of birdies scored in the final round for the entire field
                   </label>
                   <input
                     id="tiebreaker"
