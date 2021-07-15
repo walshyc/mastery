@@ -2,7 +2,7 @@ import React from 'react';
 
 const NewFooter = () => {
   return (
-    <div className="bg-gray-800 text-yellow-500 py-4 flex flex-col items-center justify-center f-f-l">
+    <div className="bg-gray-900 text-yellow-500 py-4 flex flex-col items-center justify-center f-f-l">
       <div className="flex items-center justify-center py-2">
         <a
           className="cursor-pointer"
