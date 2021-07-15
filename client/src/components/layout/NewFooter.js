@@ -74,7 +74,6 @@ const NewFooter = () => {
           2021 Conor Walsh
         </p>
         <p className="lg:text-bold mt-2 text-yellow-500 leading-5">
-          Want to use Mastery for your club in the future.{' '}
           <a
             className="cursor-pointer font-bold"
             href="mailto:conorwalsh0703@gmail.com"
