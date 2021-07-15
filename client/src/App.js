@@ -60,14 +60,14 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router>
             <AuthProvider>
-              <div className="App w-full min-h-screen bg-green-400">
+              <div className="App w-full min-h-screen bg-yellow-500">
                 {/* <NewNav></NewNav> */}
                 <NewNavTwo></NewNavTwo>
                 <Switch>
                   <Route exact path="/scores" component={ScoreTable}></Route>
                   <Route exact path="/lads" component={ScoreTable2}></Route>
                   {/* <Route exact path="/new-entry" component={NewAddTeam}></Route> */}
-                  <Route exact path="/enter" component={NewAddTeam}></Route>
+                  {/* <Route exact path="/enter" component={NewAddTeam}></Route> */}
                   <Route
                     exact
                     path="/enter-offline"
@@ -80,7 +80,7 @@ function App() {
                     component={Tiebreaker}
                   ></Route>
                   {/* <Route path="/" component={ScoreTable}></Route> */}
-                  <Route path="/" component={Landing}></Route>
+                  <Route path="/" component={ScoreTable}></Route>
                 </Switch>
                 <NewFooter></NewFooter>
                 {/* <ScoreTable></ScoreTable> */}

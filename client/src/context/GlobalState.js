@@ -172,12 +172,8 @@ export const GlobalProvider = ({ children }) => {
 
   const getUsers = async () => {
     setLoading();
-    const snapshot = await db.collection('usersOpen').get();
+    const snapshot = await db.collection('usersOpenNew').get();
     const res = snapshot.docs.map((doc) => doc.data());
-    console.log(res);
-    //console.log('got users')
-    //const ties = await db.collection('usersTie').get();
-    //const resties = ties.docs.map((doc) => doc.data());
 
     const totaled = res.map((u) => {
       return {
@@ -304,18 +300,18 @@ export const GlobalProvider = ({ children }) => {
     tiebraker
   ) => {
     setLoading();
-    await db.collection('usersOpen').add({
+    await db.collection('usersOpenNew').add({
       entryName,
       name,
       email,
       tiebraker,
       selections: firebase.firestore.FieldValue.arrayUnion({
-        golferOne: { id: golferOneID, name: golferOneName },
-        golferTwo: { id: golferTwoID, name: golferTwoName },
-        golferThree: { id: golferThreeID, name: golferThreeName },
-        golferFour: { id: golferFourID, name: golferFourName },
-        golferFive: { id: golferFiveID, name: golferFiveName },
-        golferSix: { id: golferSixID, name: golferSixName },
+        golferOne: matchSelection(golferOneID),
+        golferTwo: matchSelection(golferTwoID),
+        golferThree: matchSelection(golferThreeID),
+        golferFour: matchSelection(golferFourID),
+        golferFive: matchSelection(golferFiveID),
+        golferSix: matchSelection(golferSixID),
       }),
     });
 
