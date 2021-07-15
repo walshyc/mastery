@@ -153,7 +153,6 @@ export const GlobalProvider = ({ children }) => {
 
       return { player, number: a.number };
     });
-    console.log(data);
     let groupOne = data
       .filter((r) => r.number > 0 && r.number < 26)
       .sort((a, b) => b.number - a.number);
@@ -204,8 +203,6 @@ export const GlobalProvider = ({ children }) => {
         return 1;
       } else return 0;
     });
-
-    console.log(totaled);
     console.log(duplicate);
     dispatch({
       type: GET_USERS,
@@ -306,12 +303,12 @@ export const GlobalProvider = ({ children }) => {
       email,
       tiebraker,
       selections: firebase.firestore.FieldValue.arrayUnion({
-        golferOne: matchSelection(golferOneID),
-        golferTwo: matchSelection(golferTwoID),
-        golferThree: matchSelection(golferThreeID),
-        golferFour: matchSelection(golferFourID),
-        golferFive: matchSelection(golferFiveID),
-        golferSix: matchSelection(golferSixID),
+        golferOne: matchSelection(golferOneID)[0],
+        golferTwo: matchSelection(golferTwoID)[0],
+        golferThree: matchSelection(golferThreeID)[0],
+        golferFour: matchSelection(golferFourID)[0],
+        golferFive: matchSelection(golferFiveID)[0],
+        golferSix: matchSelection(golferSixID)[0],
       }),
     });
 

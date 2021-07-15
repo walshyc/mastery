@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import { GlobalContext } from '../context/GlobalState';
 import Spinner from './layout/Spinner';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import axios from 'axios';
+import { useStripe, useElements } from '@stripe/react-stripe-js';
+
 import NewTeamForm from './NewTeamForm';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +43,7 @@ const AddOffline = () => {
   const [checkoutErrorMessage, setCheckoutErrorMessage] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [tiebreaker, setTiebreaker] = useState('');
+  // const [tiebreaker, setTiebreaker] = useState('');
   const [email, setEmail] = useState('');
   const [result, setResult] = useState([]);
   const [teamCount, setTeamCount] = useState(1);

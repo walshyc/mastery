@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
-import { Link } from 'react-router-dom';
-import Spinner from '../layout/Spinner';
 import * as moment from 'moment';
 import masters from '../../static/images/open-image.jpg';
 
@@ -17,10 +15,10 @@ const ScoreTable = () => {
   //   // }
   //   // eslint-disable-next-line
   // }, []);
-  const [refresh, setRefresh] = useState(false);
+  // const [refresh, setRefresh] = useState(false);
   const [show, setShow] = useState(null);
 
-  const { data, loading, users, matchSelection } = useContext(GlobalContext);
+  const { data, users, matchSelection } = useContext(GlobalContext);
   const createData = (
     entryName,
     name,
@@ -78,7 +76,6 @@ const ScoreTable = () => {
         const name = u.name;
         const entryName = u.entryName;
         let inside = u.selections.map((s) => {
-          console.log(s);
           const row = createData(
             entryName,
             name,
@@ -108,7 +105,6 @@ const ScoreTable = () => {
       });
   }
   let allScores = rows.reduce((a, b) => a.concat(b), []);
-  console.log(allScores);
   const date = moment('2020-11-12T12:00:00.000');
   if (Date.now() < date) {
     for (let i = allScores.length - 1; i > 0; i--) {
