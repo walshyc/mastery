@@ -67,7 +67,7 @@ function App() {
                   <Route exact path="/scores" component={ScoreTable}></Route>
                   <Route exact path="/lads" component={ScoreTable2}></Route>
                   {/* <Route exact path="/new-entry" component={NewAddTeam}></Route> */}
-                  <Route exact path="/enter" component={NewAddTeam}></Route>
+                  {/* <Route exact path="/enter" component={NewAddTeam}></Route> */}
                   <Route exact path="/faq" component={FAQOpen}></Route>
                   <Route
                     exact

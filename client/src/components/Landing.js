@@ -63,7 +63,7 @@ const Landing = () => {
           </div>
           <div className="w-11/12 sm:w-2/3 flex justify-center items-center mb-10 sm:mb-20">
             <div className="flex items-start">
-              {one && (
+              {/* {one && (
                 <Link to="/enter">
                   <button className="flex items-center justify-center hover:text-white hover:bg-gray-900 hover:border-gray-900 border bg-white transition duration-150 ease-in-out focus:outline-none  rounded text-gray-900 px-4 sm:px-8 py-1 sm:py-3 text-lg shadow-xl">
                     <svg
@@ -85,7 +85,7 @@ const Landing = () => {
                     <span className="pl-1">Enter Now</span>
                   </button>
                 </Link>
-              )}
+              )} */}
               {/* <Link to="/scores">
               <button className="flex items-center justify-center shadow-xl hover:bg-white hover:text-gray-900 hover:border-green-600 ml-3 sm:ml-6 bg-transparent transition duration-150 ease-in-out focus:outline-none hover:bg-green-700-800 rounded border border-white text-white px-4 sm:px-8 py-1 sm:py-3 text-lg">
                 <svg
