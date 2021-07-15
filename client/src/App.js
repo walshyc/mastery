@@ -16,6 +16,7 @@ import NewFooter from './components/layout/NewFooter';
 import NewNavTwo from './components/layout/NewNavTwo';
 import Tiebreaker from './components/Tiebreaker';
 import FAQOpen from './components/FAQOpen';
+import AddOffline from './components/AddOffline';
 
 function App() {
   const theme = createMuiTheme({
@@ -37,7 +38,6 @@ function App() {
       fontWeightLight: 300,
       fontWeightRegular: 400,
       fontWeightMedium: 500,
-      
     },
   });
 
@@ -68,6 +68,11 @@ function App() {
                   <Route exact path="/lads" component={ScoreTable2}></Route>
                   {/* <Route exact path="/new-entry" component={NewAddTeam}></Route> */}
                   <Route exact path="/enter" component={NewAddTeam}></Route>
+                  <Route
+                    exact
+                    path="/enter-offline"
+                    component={AddOffline}
+                  ></Route>
                   <Route exact path="/faq" component={FAQOpen}></Route>
                   <Route
                     exact

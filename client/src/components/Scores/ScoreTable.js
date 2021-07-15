@@ -3,7 +3,7 @@ import { GlobalContext } from '../../context/GlobalState';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import * as moment from 'moment';
-import masters from '../../static/images/masters.jpg';
+import masters from '../../static/images/open-image.jpg';
 
 const ScoreTable = () => {
   // useEffect(() => {
@@ -21,7 +21,6 @@ const ScoreTable = () => {
   const [show, setShow] = useState(null);
 
   const { data, loading, users, matchSelection } = useContext(GlobalContext);
-  console.log(data);
   const createData = (
     entryName,
     name,
@@ -38,9 +37,7 @@ const ScoreTable = () => {
     golfer6,
     sixID,
     totalScore,
-    tiebraker,
-    tie,
-    status
+    tiebraker
   ) => {
     return {
       entryName,
@@ -53,7 +50,6 @@ const ScoreTable = () => {
       golfer6,
       totalScore,
       tiebraker,
-      tie,
       detail: [
         matchSelection(oneID)[0],
         matchSelection(twoID)[0],
@@ -62,7 +58,6 @@ const ScoreTable = () => {
         matchSelection(fiveID)[0],
         matchSelection(sixID)[0],
       ],
-      status,
     };
   };
   const score = (id) =>
@@ -86,7 +81,6 @@ const ScoreTable = () => {
           const row = createData(
             entryName,
             name,
-
             `${s.golferOne.first_name} ${s.golferOne.last_name}`,
             s.golferOne.player_id,
             `${s.golferTwo.first_name} ${s.golferTwo.last_name}`,
@@ -105,11 +99,8 @@ const ScoreTable = () => {
               score(s.golferFour.player_id) +
               score(s.golferFive.player_id) +
               score(s.golferSix.player_id),
-            u.tiebraker,
-            u.tie,
-            s.status
+            u.tiebraker
           );
-          //console.log(row);
           return row;
         });
         return inside;
@@ -446,7 +437,7 @@ const ScoreTable = () => {
 
                       <div className="flex justify-end">
                         <div className="ml-auto px-2 py-1 text-xs text-gray-100 m-2 rounded-xl bg-green-600">
-                          Tiebreaker {d.tie ? d.tie : '0'}
+                          Tiebreaker {d.tiebraker}
                         </div>
                       </div>
                     </div>
