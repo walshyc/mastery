@@ -52,7 +52,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/279`,
+      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/294`,
       requestOptions
     );
 
@@ -99,7 +99,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/entry-list/279`,
+      `https://golf-leaderboard-data.p.rapidapi.com/entry-list/294`,
       requestOptions
     );
     //console.log(res);
@@ -172,47 +172,44 @@ export const GlobalProvider = ({ children }) => {
 
   const getUsers = async () => {
     setLoading();
-    // const snapshot = await db.collection('usersNew').get();
-    // const res = snapshot.docs.map((doc) => doc.data());
-    // //console.log('got users')
-    // const ties = await db.collection('usersTie').get();
-    // //const resties = ties.docs.map((doc) => doc.data());
+    const snapshot = await db.collection('usersOpenNew').get();
+    const res = snapshot.docs.map((doc) => doc.data());
 
-    // const totaled = res.map((u) => {
-    //   return {
-    //     name: u.entryName,
-    //     total:
-    //       u.selections[0].golferOne.player_id +
-    //       u.selections[0].golferTwo.player_id +
-    //       u.selections[0].golferThree.player_id +
-    //       u.selections[0].golferFour.player_id +
-    //       u.selections[0].golferFive.player_id +
-    //       u.selections[0].golferSix.player_id,
-    //   };
-    // });
-    // totaled.sort((a, b) => {
-    //   if (a.total < b.total) {
-    //     return -1;
-    //   }
-    //   if (a.total > b.total) {
-    //     return 1;
-    //   }
-    //   return 0;
-    // });
-    // let duplicate = [];
-    // totaled.sort((a, b) => {
-    //   if (a.total === b.total) {
-    //     duplicate.push(a);
-    //     duplicate.push(b);
-    //     return 1;
-    //   } else return 0;
-    // });
+    const totaled = res.map((u) => {
+      return {
+        name: u.entryName,
+        total:
+          u.selections[0].golferOne.player_id +
+          u.selections[0].golferTwo.player_id +
+          u.selections[0].golferThree.player_id +
+          u.selections[0].golferFour.player_id +
+          u.selections[0].golferFive.player_id +
+          u.selections[0].golferSix.player_id,
+      };
+    });
+    totaled.sort((a, b) => {
+      if (a.total < b.total) {
+        return -1;
+      }
+      if (a.total > b.total) {
+        return 1;
+      }
+      return 0;
+    });
+    let duplicate = [];
+    totaled.sort((a, b) => {
+      if (a.total === b.total) {
+        duplicate.push(a);
+        duplicate.push(b);
+        return 1;
+      } else return 0;
+    });
 
-    //console.log(totaled);
-    //console.log(duplicate);
+    console.log(totaled);
+    console.log(duplicate);
     dispatch({
       type: GET_USERS,
-      payload: 1,
+      payload: res,
     });
   };
 
@@ -303,18 +300,18 @@ export const GlobalProvider = ({ children }) => {
     tiebraker
   ) => {
     setLoading();
-    await db.collection('usersOpen').add({
+    await db.collection('usersOpenNew').add({
       entryName,
       name,
       email,
       tiebraker,
       selections: firebase.firestore.FieldValue.arrayUnion({
-        golferOne: { id: golferOneID, name: golferOneName },
-        golferTwo: { id: golferTwoID, name: golferTwoName },
-        golferThree: { id: golferThreeID, name: golferThreeName },
-        golferFour: { id: golferFourID, name: golferFourName },
-        golferFive: { id: golferFiveID, name: golferFiveName },
-        golferSix: { id: golferSixID, name: golferSixName },
+        golferOne: matchSelection(golferOneID),
+        golferTwo: matchSelection(golferTwoID),
+        golferThree: matchSelection(golferThreeID),
+        golferFour: matchSelection(golferFourID),
+        golferFive: matchSelection(golferFiveID),
+        golferSix: matchSelection(golferSixID),
       }),
     });
 
@@ -325,6 +322,62 @@ export const GlobalProvider = ({ children }) => {
       type: GET_USERS,
       payload: res,
     });
+  };
+  const convertSelections = async () => {
+    setLoading();
+    const snapshotUsers = await db.collection('usersOpen').get();
+    const resUsers = snapshotUsers.docs.map((doc) => doc.data());
+    console.log(resUsers);
+    const snapshotUsersTwo = await db.collection('usersOpenNew').get();
+    const resUsersTwo = snapshotUsersTwo.docs.map((doc) => doc.data());
+    console.log('old', resUsers);
+    console.log('new', resUsersTwo);
+
+    resUsers.map(async (player) => {
+      // console.log(player.selections[0].golferOne.name);
+      // console.log(player.selections[0].golferTwo.name);
+      // console.log(player.selections[0].golferThree.name);
+      // console.log(player.selections[0].golferFour.name);
+      // console.log(player.selections[0].golferFive.name);
+      // console.log(player.selections[0].golferSix.name);
+      // if (
+      //   player.selections[0].golferOne.id === '99895' ||
+      //   player.selections[0].golferTwo.id === '99895' ||
+      //   player.selections[0].golferThree.id === '99895' ||
+      //   player.selections[0].golferFour.id === '99895' ||
+      //   player.selections[0].golferFive.id === '99895' ||
+      //   player.selections[0].golferSix.id === '99895'
+      // ) {
+      //   console.log(player);
+      // }
+      try {
+        await db.collection('usersOpenNew').add({
+          entryName: player.entryName,
+          name: player.name,
+          email: player.email,
+          tiebraker: player.tiebraker,
+          selections: firebase.firestore.FieldValue.arrayUnion({
+            golferOne: matchSelection(player.selections[0].golferOne.id)[0],
+            golferTwo: matchSelection(player.selections[0].golferTwo.id)[0],
+            golferThree: matchSelection(player.selections[0].golferThree.id)[0],
+            golferFour: matchSelection(player.selections[0].golferFour.id)[0],
+            golferFive: matchSelection(player.selections[0].golferFive.id)[0],
+            golferSix: matchSelection(player.selections[0].golferSix.id)[0],
+          }),
+        });
+      } catch (error) {
+        console.log(error);
+        console.log(player);
+      }
+    });
+
+    // const snapshot = await db.collection('usersOpen').get();
+
+    // const res = snapshot.docs.map((doc) => doc.data());
+    // dispatch({
+    //   type: GET_USERS,
+    //   payload: res,
+    // });
   };
   const addSelectionsOpen = async (
     name,
@@ -389,6 +442,7 @@ export const GlobalProvider = ({ children }) => {
         getWorldRankings,
         getUser,
         addSelections,
+        convertSelections,
         matchSelection,
         getCastlebar,
         setMessage,
