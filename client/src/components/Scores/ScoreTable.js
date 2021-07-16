@@ -136,7 +136,6 @@ const ScoreTable = () => {
       } else return toPar + 5;
     }
   };
-  console.log(allScores);
 
   const checkRound = (a) => {
     switch (a) {
