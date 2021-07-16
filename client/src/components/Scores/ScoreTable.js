@@ -58,8 +58,19 @@ const ScoreTable = () => {
       ],
     };
   };
-  const score = (id) =>
-    data.results.leaderboard.find((g) => g.player_id === id).total_to_par;
+  const score = (id) => {
+    if (
+      data.results.leaderboard.find((g) => g.player_id === id).status ===
+      'active'
+    ) {
+      return data.results.leaderboard.find((g) => g.player_id === id)
+        .total_to_par;
+    } else
+      return (
+        data.results.leaderboard.find((g) => g.player_id === id).total_to_par +
+        5
+      );
+  };
 
   let rows = [];
   if (data.length === 0) {
@@ -114,6 +125,18 @@ const ScoreTable = () => {
       allScores[j] = temp;
     }
   }
+  const showScore = (status, toPar) => {
+    if (status === 'active') {
+      if (toPar > 0) {
+        return `+${toPar}`;
+      } else return toPar;
+    } else {
+      if (toPar + 5 > 0) {
+        return `+${toPar + 5}`;
+      } else return toPar + 5;
+    }
+  };
+  console.log(allScores);
 
   const checkRound = (a) => {
     switch (a) {
@@ -350,12 +373,11 @@ const ScoreTable = () => {
                         key={`${g.first_name}${g.last_name} `}
                         className="hidden lg:block text-xs text-gray-300 lg:w-2/12 text-left "
                       >
-                        {g.last_name}
-                        {`, ${g.first_name.charAt(0)}`}{' '}
+                        {g.status !== 'active'
+                          ? `${g.last_name}, ${g.first_name.charAt(0)} (Cut)`
+                          : `${g.last_name}, ${g.first_name.charAt(0)}`}
                         <span className="pl-1">
-                          {g.total_to_par > 0
-                            ? `+${g.total_to_par}`
-                            : g.total_to_par}
+                          {showScore(g.status, g.total_to_par)}
                         </span>
                       </h4>
                     );
@@ -416,14 +438,12 @@ const ScoreTable = () => {
                             </div>
 
                             <div className="py-1 pr-2 text-right text-sm w-2/12">
-                              {g.status === 'cut'
+                              {g.status !== 'active'
                                 ? 'Cut'
                                 : g.rounds[g.rounds.length - 1].total_to_par}
                             </div>
                             <div className="py-1 pr-2 text-sm text-right w-2/12">
-                              {g.total_to_par > 0
-                                ? `+${g.total_to_par}`
-                                : g.total_to_par}
+                              {showScore(g.status, g.total_to_par)}
                             </div>
                           </div>
                         );
