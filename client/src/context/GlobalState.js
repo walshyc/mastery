@@ -14,7 +14,9 @@ import {
 import axios from 'axios';
 import { db, firebase } from '../firebase';
 import * as moment from 'moment';
-//import data from '../static/data/mastersData.json';
+import data from '../static/data/mastersData.json';
+
+
 
 const initialState = {
   masters: [],
@@ -43,23 +45,23 @@ export const GlobalProvider = ({ children }) => {
 
   const getScoreData = async () => {
     setLoading();
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-host': 'golf-leaderboard-data.p.rapidapi.com',
-        'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
-      },
-    };
+    // const requestOptions = {
+    //   method: 'GET',
+    //   headers: {
+    //     'x-rapidapi-host': 'golf-leaderboard-data.p.rapidapi.com',
+    //     'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
+    //   },
+    // };
 
-    const res = await axios.get(
-      `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/294`,
-      requestOptions
-    );
+    // const res = await axios.get(
+    //   `https://golf-leaderboard-data.p.rapidapi.com/leaderboard/294`,
+    //   requestOptions
+    // );
 
-    //console.log(res);
+    // console.log(res.data);
     dispatch({
       type: GET_SCORE_DATA,
-      payload: res.data,
+      payload: data,
     });
   };
 
@@ -203,7 +205,7 @@ export const GlobalProvider = ({ children }) => {
         return 1;
       } else return 0;
     });
-    console.log(duplicate);
+    //console.log(duplicate);
     dispatch({
       type: GET_USERS,
       payload: res,
